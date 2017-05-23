@@ -1,0 +1,275 @@
+
+*,*:before,*:after {box-sizing:border-box;}
+
+#{headings()} {
+	font-family: $heading-font-family;
+}
+
+.inner {
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	@include clearfix();
+}
+
+.dhr-main {
+	min-height: 60vh;
+}
+
+.dhr-preheadline {
+	text-transform: uppercase;
+	color: $secondary;
+	font-size: .9em;
+	font-family: $body-font-family;
+}
+
+a.dhr-button {
+	display: inline-block;
+	padding: .75em 1.5em;
+	background: $primary;
+	color: $darkblue;
+	font-size: .9em;
+	border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+// HEADER ----------------------------------------//
+
+.dhr-header {
+	> .inner {
+		width: 100%;
+	}
+}
+
+.dhr-header--brand {
+	padding: 1em 0;
+	@include clearfix();
+	
+	a {
+		width: 11em;
+		float: left;
+	}
+}
+
+.dhr-header--navtoggle {
+	display:block;
+	width: 4em;
+	float: right;
+	text-align: right;
+}
+
+
+.dhr-header--menu {
+	background: $darkblue;
+	
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		> li {
+			display: block;
+			text-align: center;
+
+			a {
+				display: block;
+				color: $white;
+				padding: .6em;
+				border-top: 1px solid tint($darkblue, 5%);
+				transition: background .3s ease;
+
+				&:hover, &:active {
+					background: tint($darkblue, 5%);
+				}
+			}
+		}
+	}
+
+	.dhr-button {
+		border-radius:0;
+		width: 100%;
+		text-align: center;
+	}
+}
+
+
+@media (min-width:$bp-md) {
+
+	.dhr-header {
+		padding: 1em 0;
+		> .inner {
+			width: 94%;
+		}
+	}
+	
+	.dhr-header--brand {
+		padding: .25em 0 0;
+		width: 35%;
+		float: left;
+		a {
+			width: 13em;
+		}
+	}
+
+	.dhr-header--navtoggle {
+		display: none;
+	}
+
+	.dhr-header--menu {
+		background: transparent;
+		position: relative;
+		width: 65%;
+		float: right;
+		text-align: right;
+		display: block !important;
+		ul {
+			padding-right: 12em;
+			padding-top: .45em;
+		}
+		ul > li {
+			display: inline-block;
+
+			a {
+				padding: .2em;
+				border: none;
+
+				&:hover {
+					background: transparent;
+					color: $primary;
+				}
+			}
+		}
+
+		.dhr-button {
+			width: auto;
+			position: absolute;
+			right:0; top:0;
+			border-radius: 5px;
+		}
+	}
+
+}
+
+
+
+@media (min-width:$bp-lg) {
+
+	.dhr-header {
+		padding: 1.2em 0;
+	}
+	
+	.dhr-header--brand {
+		padding-top: 0.1em;
+		a {
+			width: 14em;
+		}
+	}
+
+	.dhr-header--menu {
+		ul {
+			padding-right: 13em;
+		}
+		ul > li {
+			margin-left: 1em;
+			&:first-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+}
+
+
+
+@media (min-width:$bp-xl) {
+	
+	.dhr-header {
+		padding: 1.5em 0;
+	}
+	
+	.dhr-header--menu {
+
+		ul > li {
+			margin-left: 1.5em;
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+// FORMS ----------------------------------------//
+
+.dhr-form--inner {
+	max-width: 992px;
+}
+
+.dhr-formfield {
+
+	input[type="email"], input[type="text"] {
+		@include appearance(none); outline:none; border:none;
+		padding: 0;
+		background: transparent;
+		text-align: center;
+		display: block;
+		width: 100%; 
+		border:none;
+		border-bottom: 2px solid tint($darkblue,10%);
+
+		@include placeholder() {
+			color: tint($darkblue,15%);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+// FOOTER ----------------------------------------//
+
+.dhr-footer {
+}
+
+.dhr-footer--content {
+	padding: 3em 0;
+	text-align: center;
+}
+
+
+.dhr-footer--headline {
+	h2 {
+		color: $white;
+	}
+}
+
+.dhr-footer--form {
+	padding: 2em 0 3em;
+
+	input[type="email"], input[type="text"] {
+		height: 2em;
+		font-size: 2em;
+	}
+}
+
+
+
+
+

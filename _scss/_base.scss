@@ -1,0 +1,79 @@
+
+//full _normalize.scss?
+$legacynormalize: true;
+
+
+// COLOR PALLETTE ----------------------//
+$white: #fff;
+$light: #FFFEF9;
+$gray: #878E88;
+
+$darkblue: #292b33;
+
+$primary: #ffa700;
+$secondary: #2bace9;
+
+
+// FONT FAMILY/SIZES/COLORS -----------------//
+$base-font-size: 18px;
+$body-line-height: 1.55;
+$heading-line-height: 1.15;
+
+$body-font-family: 'Proxima Nova',sans-serif;
+$heading-font-family: 'Ubuntu', sans-serif;
+$sans-serif: $body-font-family;
+
+$body-background-color: $darkblue;
+$body-font-color: $gray;
+$heading-font-color: shade($gray, 25%);
+
+
+// BREAKPOINTS -----------------------//
+$bp-md: 767px;
+$bp-lg: 992px;
+$bp-xl: 1199px;
+$bp-xxl: 1440px;
+
+
+
+
+
+
+
+
+
+// MIXINS & FUNCTIONS ------------------------//
+@mixin clearfix() {
+	&:after {
+    clear:both;
+    content:"";display:table;
+  }
+  &:before {
+    content:"";display:table;
+  }
+}
+
+@mixin font-smoothing() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &:-moz-placeholder { @content; }
+}
+
+@mixin sr-only() {
+	position: absolute !important;
+  height: 1px; width: 1px; 
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+
+@function headings() {
+	@return h1,h2,h3,h4,h5,h6;
+}
