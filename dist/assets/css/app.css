@@ -461,13 +461,26 @@ h1, h2, h3, h4, h5, h6 {
   font-size: .9em;
   font-family: "Proxima Nova", sans-serif; }
 
+.dhr-mainheadline {
+  color: #fff; }
+
 a.dhr-button {
   display: inline-block;
   padding: .75em 1.5em;
   background: #ffa700;
   color: #292b33;
   font-size: .9em;
-  border-radius: 5px; }
+  border-radius: 5px;
+  font-weight: bold;
+  -webkit-transition: background .3s ease;
+  -o-transition: background .3s ease;
+  transition: background .3s ease; }
+  a.dhr-button:hover {
+    background: #e69600; }
+  a.dhr-button:active {
+    -webkit-transform: translateY(1px);
+        -ms-transform: translateY(1px);
+            transform: translateY(1px); }
 
 .dhr-header > .inner {
   width: 100%; }
@@ -573,8 +586,58 @@ a.dhr-button {
   .dhr-header--menu ul > li {
     margin-left: 1.5em; } }
 
+.dhr-hero {
+  padding: 5em 0; }
+  .dhr-hero--content, .dhr-hero--play {
+    text-align: center; }
+
+@media (min-width: 767px) {
+  .dhr-hero--content, .dhr-hero--play {
+    width: 50%;
+    float: left; }
+  .dhr-hero--content {
+    text-align: left; }
+  .dhr-hero--play {
+    text-align: right; } }
+
+@media (min-width: 1199px) {
+  .dhr-hero {
+    padding: 9em 0; } }
+
+.dhr-playbtn {
+  display: inline-block;
+  position: relative;
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  overflow: hidden; }
+  .dhr-playbtn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+    .dhr-playbtn svg circle {
+      fill: none;
+      stroke-width: 10; }
+    .dhr-playbtn svg.dhr-playbtn--circ-back circle {
+      stroke: rgba(255, 255, 255, 0.5); }
+    .dhr-playbtn svg.dhr-playbtn--circ-front circle {
+      stroke: #ffa700;
+      stroke-dasharray: 580;
+      stroke-dashoffset: 580;
+      opacity: 0;
+      -webkit-transition: all 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      -o-transition: all 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      transition: all 1.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
+  .dhr-playbtn:hover svg.dhr-playbtn--circ-front circle {
+    opacity: 1;
+    stroke-dashoffset: 0; }
+
 .dhr-form--inner {
-  max-width: 992px; }
+  max-width: 992px;
+  margin-right: auto;
+  margin-left: auto; }
 
 .dhr-formfield input[type="email"], .dhr-formfield input[type="text"] {
   -webkit-appearance: none;
