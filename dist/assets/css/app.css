@@ -580,7 +580,13 @@ h1, h2, h3, h4, h5, h6 {
     background: #f7f7f7; }
 
 .dhr-introblock {
-  padding-top: 50%; }
+  padding-top: 65%; }
+  @media (min-width: 440px) {
+    .dhr-introblock {
+      padding-top: 16em; } }
+  @media (min-width: 767px) {
+    .dhr-introblock {
+      padding-top: 7em; } }
 
 .dhr-markbg {
   display: block;
@@ -601,16 +607,19 @@ h1, h2, h3, h4, h5, h6 {
 .dhr-videocard {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 50%;
   width: 100%;
   max-width: 22em;
-  margin-top: -15%; }
+  -webkit-transform: translate(50%, -2em);
+      -ms-transform: translate(50%, -2em);
+          transform: translate(50%, -2em); }
   .dhr-videocard figure img {
     display: block;
     border-radius: .25em;
     width: 100%;
     height: auto; }
   .dhr-videocard--play {
+    line-height: 0;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -620,7 +629,11 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 767px) {
   .dhr-videocard {
-    width: 42%; } }
+    right: 0;
+    width: 42%;
+    -webkit-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%); } }
 
 .dhr-divider {
   border: none;
@@ -807,9 +820,12 @@ a.dhr-button {
   -webkit-transition: background 0.5s ease;
   -o-transition: background 0.5s ease;
   transition: background 0.5s ease; }
+  .dhr-header--outer {
+    max-width: 1720px;
+    margin: 0 auto; }
   .dhr-header.at-page-top {
     background: transparent; }
-  .dhr-header > .inner {
+  .dhr-header .inner {
     width: 100%;
     max-width: none; }
   .dhr-is-mainnavshowing .dhr-header {
@@ -870,8 +886,8 @@ a.dhr-button {
     left: 0;
     width: 100%;
     padding: 0.8em 0 1.1em; }
-    .dhr-header > .inner {
-      width: 94%; }
+    .dhr-header .inner {
+      width: 96%; }
   .dhr-header--brand {
     padding: .35em 0 0;
     width: 35%;
@@ -974,9 +990,21 @@ a.dhr-button {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; }
+  width: 100%;
+  height: 100%; }
   .dhr-fixedhero--img {
-    height: 65%; }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; }
+  .dhr-fixedhero--outer {
+    position: relative;
+    height: 100vh; }
+  .dhr-fixedhero--autoheight .dhr-fixedhero--outer {
+    height: 0;
+    padding-bottom: 50%; }
 
 .dhr-homehero {
   padding-bottom: 3.5em; }
@@ -990,7 +1018,7 @@ a.dhr-button {
   text-align: center;
   color: #fff; }
 
-.dhr-featureshero .dhr-coverimg:after {
+.dhr-currentpage-features .dhr-fixedhero--img:after {
   content: "";
   display: block;
   position: absolute;

@@ -7,11 +7,16 @@
 	background: $darkblue;
 	transition: background 0.5s ease;
 
+	&--outer {
+		max-width: $site-outer-max;
+		margin: 0 auto;
+	}
+
 	&.at-page-top {
 		background: transparent;
 	}
 	
-	> .inner {
+	.inner {
 		width: 100%;
 		max-width: none;
 	}
@@ -81,8 +86,8 @@
 	.dhr-header {
 		position: fixed; top:0; left:0; width:100%;
 		padding: 0.8em 0 1.1em;
-		> .inner {
-			width: 94%;
+		.inner {
+			width: 96%;
 		}
 	}
 	
