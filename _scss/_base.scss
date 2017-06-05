@@ -16,7 +16,7 @@ $secondary: #2bace9;
 
 // FONT FAMILY/SIZES/COLORS -----------------//
 $base-font-size: 18px;
-$body-line-height: 1.55;
+$body-line-height: 1.8;
 $heading-line-height: 1.15;
 
 $body-font-family: 'Proxima Nova',sans-serif;
@@ -29,13 +29,11 @@ $heading-font-color: shade($gray, 25%);
 
 
 // BREAKPOINTS -----------------------//
+$bp-sm: 580px;
 $bp-md: 767px;
 $bp-lg: 992px;
 $bp-xl: 1199px;
 $bp-xxl: 1440px;
-
-
-
 
 
 

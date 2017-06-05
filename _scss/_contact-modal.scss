@@ -1,0 +1,38 @@
+
+
+.dhr-contactmodal {
+	display: none;
+	position: fixed; z-index: 99999;
+	top:0; left:0; width:100%; height:100%;
+	background: $secondary;
+
+
+	&--top {
+		padding: 1em 0;
+		background: darken($secondary,10%);
+	}
+}
+
+.dhr-contactomodal--close {
+	
+	button {
+		line-height: 1;
+		@include appearance(none); border:none; background:none; outline: none;
+		padding:0;
+
+		font-size: 2.5em;
+		color: $white;
+
+		i {
+			height: 1em; width:1em;
+			display:block;
+			transition: transform .4s $ease-out-quart;
+		}
+
+		&:hover {
+			i {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}

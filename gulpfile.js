@@ -4,6 +4,7 @@ const gulp = require('gulp'),
 			sass = require('gulp-sass'),
 			sourcemaps = require('gulp-sourcemaps'),
 			autoprefixer = require('gulp-autoprefixer'),
+			concat = require('gulp-concat'),
 			webpack = require('webpack'),
 			argv = require('yargs').argv,
 			_if = require('gulp-if'),
@@ -24,6 +25,13 @@ const PATHS = {
 
 	//js entry for webpack
 	webpack_entry: '_js/app.js',
+
+	//js libs in separate bundle
+	plugins_js: [
+		'node_modules/jquery/dist/jquery.min.js',
+		'node_modules/velocity-animate/velocity.min.js',
+		'node_modules/velocity-animate/velocity.ui.min.js'
+	],
 
 	//file to hot-reload/inject changes from
 	inject: 'dist/assets/css/*.css',
@@ -71,7 +79,6 @@ const webpackConfig = {
 
 
 
-
 // TASKS ----------------------------------------------//
 
 //SERVER 
@@ -83,11 +90,13 @@ gulp.task('server', () => {
 	});
 });
 
+
 //BUILD 
 //delete html files in the /dist
 gulp.task('build', () => {
 	return del(PATHS.distfiles).then(ssg.build);
 });
+
 
 //SCSS 
 //compiles sass files & writes sourcemaps
@@ -105,6 +114,15 @@ gulp.task('scss', () => {
 		.pipe(gulp.dest(PATHS.dest.css));
 });
 
+
+//JS LIBS (separate es5 bundle)
+gulp.task('jslibs', () => {
+	return gulp.src(PATHS.plugins_js)
+		.pipe(concat('plugins.min.js'))
+		.pipe(gulp.dest(PATHS.dest.js));
+});
+
+
 //WEBPACK
 gulp.task('webpack', () => {
 	var webpackCompiler = webpack(webpackConfig);
@@ -117,13 +135,15 @@ gulp.task('webpack', () => {
 	});
 });
 
+
 //DEBUG
 gulp.task('debug', () => {
 	console.log(argv);
 });
 
+
 // DEFAULT TASK
-gulp.task('default', ['build', 'scss', 'webpack', 'server'], () => {
+gulp.task('default', ['build', 'scss', 'jslibs', 'webpack', 'server'], () => {
 	//browsersync will inject changes in compiled css (hot reload)
 	gulp.watch(PATHS.scss, ['scss']);
 	//rebuild on changes to html in /src

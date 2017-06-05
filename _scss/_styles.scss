@@ -1,37 +1,163 @@
 
 *,*:before,*:after {box-sizing:border-box;}
 
+
+
+body {
+	@include font-smoothing();
+	&:before {
+		content:'xs';
+		display: none;
+	}
+	@media (min-width:$bp-sm) {
+		&:before {
+			content:'sm';
+		}
+	}
+	@media (min-width:$bp-md) {
+		&:before {
+			content:'md';
+		}
+	}
+	@media (min-width:$bp-lg) {
+		&:before {
+			content:'lg';
+		}
+	}
+	@media (min-width:$bp-xl) {
+		font-size: 115%;
+		&:before {
+			content:'xl';
+		}
+	}
+	@media (min-width:$bp-xxl) {
+		font-size: 125%;
+		&:before {
+			content:'xxl';
+		}
+	}
+}
+
+
 #{headings()} {
 	font-family: $heading-font-family;
 }
 
 .inner {
 	width: 90%;
+	max-width: 71.5em;
 	margin-right: auto;
 	margin-left: auto;
 	@include clearfix();
 }
 
-.dhr-main {
-	min-height: 60vh;
+.inner-small {
+	max-width: 36em;
+	margin-right: auto;
+	margin-left: auto;
 }
+.inner-medium {
+	max-width: 47em;
+	margin-right: auto;
+	margin-left: auto;
+}
+.inner-large {
+	max-width: 60em;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+
+// Layout / Blocks -------------//
+
+//<main> element
+.dhr-main {
+	background: shade($white,3%);
+	//min-height: 200vh;
+}
+
+
+.dhr-block {
+	position: relative;
+	overflow: hidden;
+	padding: 3em 0;
+
+	> .inner {
+		position: relative; z-index:199;
+	}
+
+	&--light {
+		
+	}
+}
+
+
+.dhr-introblock {
+	padding-top: 8em;
+}
+
+
+
+.dhr-markbg {
+	display:block; position:absolute; z-index: 0;
+	top:0; left:-5%; width: 110%;
+	transform: translateY(-67%);
+	
+}
+
+.dhr-divider {
+	border:none;
+	margin:0;
+	height: 2px;
+	background: rgba($white,0.3);
+}
+
+
+
+
+
 
 .dhr-preheadline {
 	text-transform: uppercase;
 	color: $secondary;
 	font-size: .9em;
 	font-family: $body-font-family;
+	letter-spacing: 0.035em;
 }
 
+//main page headline
 .dhr-mainheadline {
 	color: $white;
+
+	@media (min-width:$bp-lg) {
+		font-size: 2.4em;
+	}
 }
+
+
+//main page headline
+.dhr-sectionheadline {
+	font-size: 1.4em;
+
+	@media (min-width:$bp-lg) {
+		font-size: 1.8em;
+	}
+}
+
+
+
+
+
+
+
+
 
 
 // BUTTONS
 a.dhr-button {
 	display: inline-block;
-	padding: .75em 1.5em;
+	padding: .7em 1.5em;
 	background: $primary;
 	color: $darkblue;
 	font-size: .9em;
@@ -54,263 +180,20 @@ a.dhr-button {
 
 
 
-// HEADER ----------------------------------------//
 
-.dhr-header {
-	> .inner {
-		width: 100%;
-	}
+
+
+//HELPER CLASSES
+.sr-only {
+	@include sr-only();
 }
 
-.dhr-header--brand {
-	padding: 1em 0;
-	@include clearfix();
-	
-	a {
-		width: 11em;
-		float: left;
-	}
+.dhr-coverimg {
+	display:block; position:absolute;
+	top:0; left:0; width:100%; height:100%;
+	background-size: cover;
+	background-position: center top;
 }
-
-.dhr-header--navtoggle {
-	display:block;
-	width: 4em;
-	float: right;
-	text-align: right;
-}
-
-
-.dhr-header--menu {
-	background: $darkblue;
-	
-	ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-
-		> li {
-			display: block;
-			text-align: center;
-
-			a {
-				display: block;
-				color: $white;
-				padding: .6em;
-				border-top: 1px solid tint($darkblue, 5%);
-				transition: background .3s ease;
-
-				&:hover, &:active {
-					background: tint($darkblue, 5%);
-				}
-			}
-		}
-	}
-
-	.dhr-button {
-		border-radius:0;
-		width: 100%;
-		text-align: center;
-	}
-}
-
-
-@media (min-width:$bp-md) {
-
-	.dhr-header {
-		padding: 1em 0;
-		> .inner {
-			width: 94%;
-		}
-	}
-	
-	.dhr-header--brand {
-		padding: .25em 0 0;
-		width: 35%;
-		float: left;
-		a {
-			width: 13em;
-		}
-	}
-
-	.dhr-header--navtoggle {
-		display: none;
-	}
-
-	.dhr-header--menu {
-		background: transparent;
-		position: relative;
-		width: 65%;
-		float: right;
-		text-align: right;
-		display: block !important;
-		ul {
-			padding-right: 12em;
-			padding-top: .45em;
-		}
-		ul > li {
-			display: inline-block;
-
-			a {
-				padding: .2em;
-				border: none;
-
-				&:hover {
-					background: transparent;
-					color: $primary;
-				}
-			}
-		}
-
-		.dhr-button {
-			width: auto;
-			position: absolute;
-			right:0; top:0;
-			border-radius: 5px;
-		}
-	}
-
-}
-
-
-
-@media (min-width:$bp-lg) {
-
-	.dhr-header {
-		padding: 1.2em 0;
-	}
-	
-	.dhr-header--brand {
-		padding-top: 0.1em;
-		a {
-			width: 14em;
-		}
-	}
-
-	.dhr-header--menu {
-		ul {
-			padding-right: 13em;
-		}
-		ul > li {
-			margin-left: 1em;
-			&:first-child {
-				margin-right: 0;
-			}
-		}
-	}
-
-}
-
-
-
-@media (min-width:$bp-xl) {
-	
-	.dhr-header {
-		padding: 1.5em 0;
-	}
-	
-	.dhr-header--menu {
-
-		ul > li {
-			margin-left: 1.5em;
-		}
-	}
-
-}
-
-
-
-
-
-
-
-// HERO --------------------------------------------//
-
-.dhr-hero {
-	padding: 5em 0;
-
-	&--content, &--play {
-		text-align: center;
-	}
-}
-
-
-@media (min-width:$bp-md) {
-
-	.dhr-hero--content, .dhr-hero--play {
-		width: 50%; 
-		float: left;
-	}
-	.dhr-hero--content {
-		text-align: left;
-	}
-	.dhr-hero--play {
-		text-align: right;
-	}
-
-}
-
-
-@media (min-width:$bp-lg) {
-	
-}
-
-
-@media (min-width:$bp-xl) {
-
-	.dhr-hero {
-		padding: 9em 0;
-	}
-	
-}
-
-
-
-
-// PLAY BTN --------------------------------------------//
-
-.dhr-playbtn {
-	display: inline-block;
-	position: relative; 
-	width: 10em; height: 10em;
-	border-radius: 50%;
-	overflow:hidden;
-
-	svg {
-		position: absolute;
-		top:0; left:0; width:100%; height:100%;
-
-		circle {
-			fill: none;
-			stroke-width: 10;
-		}
-
-		&.dhr-playbtn--circ-back {
-			circle {
-				stroke: rgba($white,0.5);
-			}
-		}
-		&.dhr-playbtn--circ-front {
-			circle {
-				stroke: $primary;
-				stroke-dasharray: 580;
-				stroke-dashoffset: 580;
-				opacity: 0;
-				transition: all 1.5s $ease-out-circ;
-			}
-		}
-	}
-	
-
-	&:hover {
-		
-		svg.dhr-playbtn--circ-front circle {
-			opacity: 1;
-			stroke-dashoffset: 0;
-		}
-	}
-}
-
-
 
 
 
@@ -331,50 +214,141 @@ a.dhr-button {
 		@include appearance(none); outline:none; border:none;
 		padding: 0;
 		background: transparent;
-		text-align: center;
 		display: block;
 		width: 100%; 
 		border:none;
 		border-bottom: 2px solid tint($darkblue,10%);
+	}
+}
 
-		@include placeholder() {
-			color: tint($darkblue,15%);
+
+
+
+
+
+
+
+// HOMEPAGE EPISODE LIST ----------------------------------------//
+
+
+.dhr-episodelist {
+	position: relative;
+	&:before {
+		content:""; display:block; position:absolute;
+		bottom:0; left:0; width:100%; height: 12.5%;
+		background: $darkblue;
+	}
+}
+
+.dhr-episodeitem {
+	position: relative;
+	margin-bottom: 5%;
+
+	figure {
+		position: relative;
+		background: $darkblue;
+		overflow: hidden;
+		border-radius: .25em;
+
+		&:after {
+			display:block; content:""; display:block;
+			position: absolute; 
+			top:0; left:0; width:100%; height:100%;
+			background: rgba($darkblue,0.65);
+			opacity: 1;
+			transition: opacity .35s ease;
+			mix-blend-mode: multiply;
+		}
+
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			border-radius: .25em;
+			opacity: 1;
+			transition: transform .35s $ease-out-quart;
 		}
 	}
-}
 
-
-
-
-
-
-
-
-// FOOTER ----------------------------------------//
-
-.dhr-footer {
-}
-
-.dhr-footer--content {
-	padding: 3em 0;
-	text-align: center;
-}
-
-
-.dhr-footer--headline {
-	h2 {
-		color: $white;
+	&:not([class*="locked"]) a:hover {
+		figure:after {
+			opacity: 0.65;
+		}
+		figure img {
+			transform: scale(1.05);
+		}
 	}
-}
 
-.dhr-footer--form {
-	padding: 2em 0 3em;
+	&--content {
+		position: absolute; z-index:299;
+		top:50%; left:0; width:100%;
+		transform: translateY(-50%);
+		text-align: center;
 
-	input[type="email"], input[type="text"] {
-		height: 2em;
-		font-size: 2em;
+		h4 {
+			font-family: $body-font-family;
+			margin: 0;
+			text-transform: uppercase;
+			color: $white;
+		}
 	}
+	&--liner {
+		padding: 0 .5em .5em;
+	}
+
+	&--icon {
+		font-size: 1.7em;
+	}
+	&--activeborder {
+		display: block; position:absolute; z-index:99;
+		bottom:0; left:0; width:100%;
+		border-radius: .5em;
+		height: .5em;
+		background: $primary;
+	}
+
+	
+	//overrides for the locked state
+	&--locked {
+		
+		.dhr-episodeitem--icon, .dhr-episodeitem--activeborder {
+			display: none;
+		}
+
+		a {
+			cursor: default; //not-allowed
+		}
+	}
+
+} //end episodde item
+
+
+
+@media (min-width:$bp-md) {
+
+	.dhr-episodelist {
+		&:before {
+			height: 25%;
+		}
+	}
+	
+	.dhr-episodeitem {
+		width: 49%;
+		float: left;
+		margin-right: 2%;
+		margin-bottom: 2%;
+
+		&:nth-child(even) {
+			margin-right: 0;
+		}
+	}
+
 }
+
+
+
+
+
 
 
 

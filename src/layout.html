@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<script src="assets/js/modernizr.js"></script>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -11,19 +12,20 @@
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:500">
 	<link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body>
-	<div class="site-outer">
-		{{> header}}
-		
-		<main class="dhr-main" role="main">
-			<page>
-		</main>
+<body class="dhr-currentpage-{{current_page_name}}">
 
-		{{> footer}}
-	</div>
+	{{> header}}
+	
+	<main class="dhr-main" role="main">
+		<page>
+	</main>
+
+	{{> footer}}
+
 	
 	{{> contact-overlay}}
-
+	
+	<script src="assets/js/plugins.min.js"></script>
 	<script src="assets/js/app.bundle.js"></script>
 </body>
 </html>

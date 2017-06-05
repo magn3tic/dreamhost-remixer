@@ -1,0 +1,183 @@
+
+// HEADER ----------------------------------------//
+
+.dhr-header {
+	position: relative;
+	z-index: 1999;
+	background: $darkblue;
+	transition: background 0.5s ease;
+
+	&.at-page-top {
+		background: transparent;
+	}
+	
+	> .inner {
+		width: 100%;
+		max-width: none;
+	}
+
+	.dhr-is-mainnavshowing & {
+		background: $darkblue;
+		transition-duration: 0s;
+	}
+}
+
+.dhr-header--brand {
+	padding: 1em 2%;
+	@include clearfix();
+	
+	a {
+		width: 11em;
+		float: left;
+	}
+}
+
+.dhr-header--navtoggle {
+	display:block;
+	width: 4em;
+	float: right;
+	text-align: right;
+}
+
+
+.dhr-header--menu {
+	display:none;
+	background: $darkblue;
+	
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		> li {
+			display: block;
+			text-align: center;
+			font-weight: bold;
+
+			a {
+				display: block;
+				color: $white;
+				padding: .6em;
+				border-top: 1px solid tint($darkblue, 5%);
+				transition: background .3s ease, color .3s ease;
+
+				&:hover, &:active {
+					background: tint($darkblue, 5%);
+				}
+			}
+		}
+	}
+
+	.dhr-button {
+		border-radius:0;
+		width: 100%;
+		text-align: center;
+	}
+}
+
+
+@media (min-width:$bp-md) {
+
+	.dhr-header {
+		position: fixed; top:0; left:0; width:100%;
+		padding: 0.8em 0 1.1em;
+		> .inner {
+			width: 94%;
+		}
+	}
+	
+	.dhr-header--brand {
+		padding: .35em 0 0;
+		width: 35%;
+		float: left;
+		a {
+			width: 12em;
+		}
+	}
+
+	.dhr-header--navtoggle {
+		display: none;
+	}
+
+	.dhr-header--menu {
+		background: transparent;
+		position: relative;
+		width: 65%;
+		float: right;
+		text-align: right;
+		display: block !important;
+		ul {
+			padding-right: 12em;
+			padding-top: .4em;
+		}
+		ul > li {
+			display: inline-block;
+
+			a {
+				padding: .2em;
+				border: none;
+
+				&:hover {
+					background: transparent;
+					color: $primary;
+				}
+			}
+		}
+
+		.dhr-button {
+			width: auto;
+			position: absolute;
+			right:0; top:0;
+			border-radius: 5px;
+		}
+	}
+
+}
+
+
+
+@media (min-width:$bp-lg) {
+
+	.dhr-header {
+		padding: 1.2em 0;
+	}
+	
+	.dhr-header--brand {
+		padding-top: 0.3em;
+		a {
+			width: 13em;
+		}
+	}
+
+	.dhr-header--menu {
+		ul {
+			padding-right: 13em;
+		}
+		ul > li {
+			margin-left: 1em;
+			&:first-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+}
+
+
+
+@media (min-width:$bp-xl) {
+	
+	.dhr-header {
+		padding: 1.5em 0;
+	}
+	
+	.dhr-header--menu {
+
+		ul > li {
+			margin-left: 1.5em;
+		}
+	}
+
+}
+
+

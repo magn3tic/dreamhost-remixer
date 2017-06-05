@@ -73,5 +73,114 @@
 "use strict";
 
 
+//plugins.min.js is loaded before the webpack bundle
+//it is a bundle of jquery & plugins because some don't yet support es6 module
+
+
+//"globals"
+var $body = $('body');
+
+// mobile nav toggle
+var $mainnav = $('#dhr-mainnav'),
+    $navtoggle = $('#dhr-menu-toggle');
+
+var mainNavOpen = false;
+
+$navtoggle.on('click', function (event) {
+	event.preventDefault();
+
+	//debounces clicks
+	if ($mainnav.hasClass('velocity-animating')) {
+		return;
+	}
+
+	if (mainNavOpen) {
+		$mainnav.velocity('slideUp', { duration: 400, easing: 'easeOutQuart', complete: function complete() {
+				$body.removeClass('dhr-is-mainnavshowing');
+			} });
+		mainNavOpen = false;
+	} else {
+		$mainnav.velocity('slideDown', { duration: 700, easing: 'easeOutQuart' });
+		$body.addClass('dhr-is-mainnavshowing');
+		mainNavOpen = true;
+	}
+});
+
+// header behavior
+var $siteheader = $('#dhr-header'),
+    $window = $(window);
+
+var headerheight = $siteheader.outerHeight(),
+    headertop = parseInt($siteheader.css('top')) + scrollDiff,
+    winheight = $window.height(),
+    docheight = $(document).height(),
+    scrollBefore = 0,
+    scrollCurrent = 0,
+    scrollDiff = 0,
+    headerInView = true,
+    didScroll = false;
+
+var scrollUpdate = function scrollUpdate() {
+	headerheight = $siteheader.outerHeight().toFixed(2);
+	winheight = $window.height();
+	scrollCurrent = $(window).scrollTop();
+	scrollDiff = scrollBefore - scrollCurrent;
+	headertop = parseInt($siteheader.css('top')) + scrollDiff;
+},
+    resizeUpdate = function resizeUpdate() {
+	//update everything that needs recalc when window resizes
+};
+
+var ticker = function ticker() {
+	if (didScroll) {
+		scrollUpdate();
+
+		if (scrollCurrent <= 0) {
+			//if back at window top
+			$siteheader.css('top', 0).addClass('at-page-top');
+		} else if (scrollDiff > 0) {
+			//back up from downscroll
+			$siteheader.css('top', headertop > 0 ? 0 : headertop);
+
+			if (scrollCurrent > headerheight + 30) {
+				$siteheader.removeClass('at-page-top');
+			}
+		} else if (scrollDiff < 0) {
+			if (scrollCurrent + winheight >= docheight - headerheight) {
+				//just reached page bottom
+				$siteheader.css('top', (headertop = scrollCurrent + winheight - docheight) < 0 ? headertop : 0);
+				$siteheader.removeClass('at-page-top');
+			} else {
+				//$siteheader.removeClass('at-page-top');
+				$siteheader.css('top', Math.abs(headertop) > headerheight ? -headerheight : headertop);
+			}
+		}
+		scrollBefore = scrollCurrent;
+
+		didScroll = false;
+	}
+	requestAnimationFrame(ticker);
+};
+
+ticker.call();
+$window.scroll(function () {
+	return didScroll = true;
+});
+$window.resize(scrollUpdate);
+
+// Contact Modal
+var $modaltrigger = $('a[href="#contact"]'),
+    $modalclose = $('#dhr-modalclose'),
+    $modal = $('#dhr-contactmodal');
+
+$modaltrigger.on('click', function () {
+	$modal.velocity('transition.fadeIn');
+});
+
+$modalclose.on('click', function () {
+
+	$modal.velocity('transition.fadeOut');
+});
+
 /***/ })
 /******/ ]);

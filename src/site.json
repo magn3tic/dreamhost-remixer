@@ -1,30 +1,31 @@
 {
 	"globals": {
-		"name": "Dreamhost"
+		"name": "Dreamhost",
+		"remixer_signup_url": "https://signup.dreamhost.com/remixer/email/"
 	},
 
 	"episodes": [{
 		"name": "Master of Cultural Identity",
 		"headline": "Master Your Domain with Remixer by Dreamhost",
-		"image": "",
+		"image": "ep1-poster.jpg",
 		"video": "",
 		"release": 1495559554755
 	}, {
 		"name": "Master of Leathercraft",
 		"headline": "",
-		"image": "",
+		"image": "ep2-poster.jpg",
 		"video": "",
 		"release": 1495559554755
 	}, {
 		"name": "Master of Legacy",
 		"headline": "",
-		"image": "",
+		"image": "ep3-poster.jpg",
 		"video": "",
 		"release": 1495559554755
 	}, {
 		"name": "Master of Perseverance",
 		"headline": "",
-		"image": "",
+		"image": "ep4-poster.jpg",
 		"video": "",
 		"release": 1495559554755
 	}]

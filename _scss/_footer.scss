@@ -1,0 +1,89 @@
+
+// FOOTER ----------------------------------------//
+
+.dhr-footer {
+	background: $darkblue;
+
+	&--social {
+		padding: 1em 0 2em;
+		ul {
+			list-style:none;
+			padding:0; margin:0;
+		}
+
+		li {
+			display: inline-block;
+			margin-right: .5em;
+			font-size: 1.3em;
+		}
+		a {
+			display: block;
+			padding: 2px;
+			color: $white;
+		}
+		i[class*="icon"] {
+			width: auto;
+		}
+	}
+}
+
+.dhr-footer--content {
+	padding: 8em 0 4em;
+	text-align: center;
+}
+
+
+.dhr-footer--headline {
+	h2 {
+		color: $white;
+	}
+}
+
+
+//footer email capture
+.dhr-footer--form {
+	padding: 2em 0 3em;
+
+	.dhr-formfield {
+		position: relative;
+	}
+
+
+	input[type="email"], input[type="text"] {
+		height: 2em;
+		font-size: 1.2em;
+
+		&:focus {
+
+		}
+
+		@include placeholder() {
+			color: tint($darkblue,15%);
+		}
+	}
+}
+
+.dhr-footer--submit {
+	@include appearance(none); border:none; outline:none;
+	line-height:1;
+	position:absolute; bottom:2px; right:0;
+	background: $darkblue;
+	padding-right: 0; padding-left: 0;
+	svg {
+		width: 2.5em;
+		height: 1.5em;
+		path {
+			fill: $primary;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
