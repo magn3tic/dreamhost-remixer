@@ -1,0 +1,14 @@
+.dhr-image-overlay {
+  &--right {
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    right: 5%;
+    z-index: 999;
+    top: 0;
+    border-radius: 10px;
+    background: $secondary;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+}

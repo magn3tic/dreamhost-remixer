@@ -1,5 +1,3 @@
-// import Flickity from 'flickity';
-
 export const $f = {
 	carousel: $('.dhr-episode-carousel'),
 	isOpen: false
