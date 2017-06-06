@@ -1,0 +1,56 @@
+.has-carousel {
+  padding-top: 6em;
+  padding-bottom: 6em;
+}
+.slider-overlay-container {
+
+}
+.dhr-episode-carousel {
+  width: 70%;
+  margin-left: auto;
+  figure {
+    width: 100%;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.flickity-viewport {
+  border-radius: 10px 0 0 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.flickity-page-dots {
+  width: 2.5em;
+  left: -10%;
+  bottom: 50%;
+  .dot {
+    display: block;
+    float: right;
+    border-radius: 0;
+    height: 1px;
+    width: 1em;
+    margin-top: .65em;
+  }
+  .is-selected {
+    height: 2px;
+    background: $primary;
+    width: 2.5em;
+    animation: dotResize 0.6s 1;
+  }
+}
+
+@keyframes dotResize {
+  0% {
+    width: .625em;
+  }
+  50% {
+    width: 2.8125em;
+  }
+  100% {
+    width: 2.5em;
+  }
+}
