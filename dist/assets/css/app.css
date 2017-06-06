@@ -586,7 +586,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: auto; }
 
 .dhr-main {
-  max-width: 1700px;
+  max-width: 1670px;
   margin: 0 auto; }
 
 .dhr-block {
@@ -937,7 +937,7 @@ a.dhr-button {
   -o-transition: background 0.5s ease;
   transition: background 0.5s ease; }
   .dhr-header--outer {
-    max-width: 1700px;
+    max-width: 1670px;
     margin: 0 auto; }
   .dhr-header.at-page-top {
     background: transparent; }
@@ -1292,6 +1292,48 @@ a.dhr-button {
     -webkit-transform: scale(0.95);
         -ms-transform: scale(0.95);
             transform: scale(0.95); }
+
+.dhr-testify--img {
+  position: relative;
+  z-index: 199;
+  margin-bottom: 2em; }
+  .dhr-testify--img figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px; }
+  .dhr-testify--img-overlay {
+    position: absolute;
+    right: 50%;
+    top: -10%;
+    width: 150%;
+    height: 120%;
+    background: rgba(43, 172, 233, 0.95);
+    mix-blend-mode: multiply;
+    border-radius: 0 10px 10px 0; }
+    .no-backgroundblendmode .dhr-testify--img-overlay {
+      z-index: -1; }
+
+.dhr-testify--content blockquote {
+  margin: 0 0 1em;
+  padding: 0; }
+
+@media (min-width: 767px) {
+  .dhr-testify--img {
+    width: 45%;
+    float: left; }
+  .dhr-testify--content {
+    width: 50%;
+    float: right;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column; } }
 
 .dhr-footer {
   position: relative;
