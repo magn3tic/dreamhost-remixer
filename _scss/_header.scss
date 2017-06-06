@@ -42,6 +42,17 @@
 	width: 4em;
 	float: right;
 	text-align: right;
+	button {
+		line-height:1;
+		@include appearance(none);
+		padding: .5em;
+		background: none;
+		border: 1px solid $white;
+		border-radius: .25em;
+		color: $white;
+		font-size: .85em;
+		font-weight: bold;
+	}
 }
 
 

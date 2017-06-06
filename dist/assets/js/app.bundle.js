@@ -78,7 +78,20 @@
 
 
 //"globals"
-var $body = $('body');
+var $body = $('body'),
+    $window = $(window);
+
+// set hero sizes (one fallback / one necessary)
+var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
+    $fixedheroimg = $('.dhr-fixedhero--outer'),
+    $heroviewport = $('.dhr-hero'),
+    isFullheightHero = $fixedautoheight.length === 0;
+var setHeroSize = function setHeroSize() {
+	var heightToSet = isFullheightHero ? $window.height() : $heroviewport.outerHeight() + 105;
+	$fixedheroimg.css({ height: heightToSet + 'px' });
+};
+setHeroSize();
+$window.bind('resize load', setHeroSize);
 
 // mobile nav toggle
 var $mainnav = $('#dhr-mainnav'),
@@ -107,8 +120,7 @@ $navtoggle.on('click', function (event) {
 });
 
 // header behavior
-var $siteheader = $('#dhr-header'),
-    $window = $(window);
+var $siteheader = $('#dhr-header');
 
 var headerheight = $siteheader.outerHeight(),
     headertop = parseInt($siteheader.css('top')) + scrollDiff,
@@ -178,7 +190,6 @@ $modaltrigger.on('click', function () {
 });
 
 $modalclose.on('click', function () {
-
 	$modal.velocity('transition.fadeOut');
 });
 

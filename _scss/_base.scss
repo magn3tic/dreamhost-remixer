@@ -4,6 +4,8 @@ $legacynormalize: true;
 
 
 // COLOR PALLETTE ----------------------//
+$black: #272727;
+
 $white: #fff;
 $light: #FFFEF9;
 $gray: #878E88;
@@ -17,15 +19,15 @@ $secondary: #2bace9;
 // FONT FAMILY/SIZES/COLORS -----------------//
 $base-font-size: 18px;
 $body-line-height: 1.8;
-$heading-line-height: 1.15;
+$heading-line-height: 1.2;
 
 $body-font-family: 'Proxima Nova',sans-serif;
 $heading-font-family: 'Ubuntu', sans-serif;
 $sans-serif: $body-font-family;
 
 $body-background-color: $darkblue;
-$body-font-color: $gray;
-$heading-font-color: shade($gray, 25%);
+$body-font-color: tint($darkblue,15%);
+$heading-font-color: $darkblue;
 
 
 // BREAKPOINTS -----------------------//
@@ -36,8 +38,8 @@ $bp-xl: 1199px;
 $bp-xxl: 1440px;
 
 
-$site-outer-max: 1720px;
-$site-header-max: 1855px;
+// OUTER OUTER SITE CONTAINER ---------------//
+$site-outer-max: 1780px;
 
 
 

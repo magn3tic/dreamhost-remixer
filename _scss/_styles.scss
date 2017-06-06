@@ -39,9 +39,43 @@ body {
 }
 
 
+// type/ headings
 #{headings()} {
 	font-family: $heading-font-family;
 }
+
+.dhr-preheadline {
+	text-transform: uppercase;
+	color: $secondary;
+	font-size: .9em;
+	font-family: $body-font-family;
+	letter-spacing: 0.035em;
+}
+
+//main page headline
+.dhr-mainheadline {
+	color: $white;
+
+	@media (min-width:$bp-lg) {
+		font-size: 2.4em;
+	}
+}
+
+
+//main page headline
+.dhr-sectionheadline {
+	font-size: 1.4em;
+	margin-bottom: .7em;
+
+	@media (min-width:$bp-lg) {
+		font-size: 1.8em;
+	}
+}
+
+
+
+
+// wrapper/container elements
 
 .inner {
 	width: 90%;
@@ -57,7 +91,7 @@ body {
 	margin-left: auto;
 }
 .inner-medium {
-	max-width: 47em;
+	max-width: 48em;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -84,12 +118,28 @@ body {
 	overflow: hidden;
 	padding: 3em 0;
 
+	@media (min-width:$bp-md) {
+		padding: 5em 0;
+	}
+	@media (min-width:$bp-lg) {
+		padding: 6em 0;
+	}
+	@media (min-width:$bp-xl) {
+		padding: 7em 0;
+	}
+
 	> .inner {
 		position: relative; z-index:199;
 	}
 
 	&--light {
 		background: shade($white,3%);
+	}
+
+	&--content {
+		p:last-of-type {
+			margin-bottom: 1.5em;
+		}
 	}
 }
 
@@ -102,18 +152,28 @@ body {
 	}
 	
 	@media (min-width:$bp-md) {
-		padding-top: 7em;
+		padding-top: 16%;
 	}
+
+	@media (min-width:$bp-xxl) {
+		padding-top: 14em;
+	}
+
 }
 
 
+
+
+// big logomark background
 .dhr-markbg {
 	display:block; position:absolute; z-index: 0;
-	top:0; left:-5%; width: 110%;
+	top:0; left:0; width: 100%;
 	svg {
-		transform: translateY(-67%);
+		transform: translateY(-65%) rotate(-1deg);
 	}
 }
+
+
 
 
 
@@ -129,7 +189,7 @@ body {
 	position: absolute;
 	top:0; right:50%;
 	width: 100%;
-	max-width: 22em;
+	max-width: 23.5em;
 	transform: translate(50%, -2em);
 
 	figure {
@@ -137,6 +197,7 @@ body {
 			display:block;
 			border-radius: .25em;
 			width: 100%; height:auto;
+			box-shadow: rgba($darkblue,0.2) 0 0 1em;
 		}
 	}
 
@@ -173,37 +234,6 @@ body {
 	background: rgba($white,0.3);
 }
 
-
-
-
-// type/ headings
-
-.dhr-preheadline {
-	text-transform: uppercase;
-	color: $secondary;
-	font-size: .9em;
-	font-family: $body-font-family;
-	letter-spacing: 0.035em;
-}
-
-//main page headline
-.dhr-mainheadline {
-	color: $white;
-
-	@media (min-width:$bp-lg) {
-		font-size: 2.4em;
-	}
-}
-
-
-//main page headline
-.dhr-sectionheadline {
-	font-size: 1.4em;
-
-	@media (min-width:$bp-lg) {
-		font-size: 1.8em;
-	}
-}
 
 
 
@@ -396,7 +426,8 @@ a.dhr-button {
 
 	.dhr-episodelist {
 		&:before {
-			height: 25%;
+			height: 90%;
+			background: linear-gradient(to top, $darkblue 0%, rgba($darkblue, 0.99) 25%, rgba($darkblue,0.0001) 100%);
 		}
 	}
 	
