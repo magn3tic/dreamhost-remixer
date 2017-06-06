@@ -3,7 +3,9 @@
   padding-bottom: 6em;
 }
 .slider-overlay-container {
-
+  position: relative;
+  padding-top: 3em;
+  padding-bottom: 3em;
 }
 .dhr-episode-carousel {
   width: 70%;
@@ -53,4 +55,8 @@
   100% {
     width: 2.5em;
   }
+}
+
+@media(min-width: $bp-md) {
+
 }
