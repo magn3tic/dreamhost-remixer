@@ -1,0 +1,41 @@
+
+
+
+
+.dhr-testify--img {
+	position: relative; z-index:199;
+	figure {
+		img {
+			display:block;
+			width:100%; height:auto;
+		}
+	}
+}
+
+
+.dhr-testify--content {
+	blockquote {
+		margin:0 0 1em; padding:0;
+	}
+}
+
+
+
+
+@media (min-width:$bp-md) {
+	
+	.dhr-testify--img {
+		width: 45%;
+	}
+
+}
+
+@media (min-width:$bp-lg) {
+
+	
+}
+
+@media (min-width:$bp-xl) {
+
+	
+}

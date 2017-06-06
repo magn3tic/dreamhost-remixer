@@ -1293,6 +1293,22 @@ a.dhr-button {
         -ms-transform: scale(0.95);
             transform: scale(0.95); }
 
+.dhr-testify--img {
+  position: relative;
+  z-index: 199; }
+  .dhr-testify--img figure img {
+    display: block;
+    width: 100%;
+    height: auto; }
+
+.dhr-testify--content blockquote {
+  margin: 0 0 1em;
+  padding: 0; }
+
+@media (min-width: 767px) {
+  .dhr-testify--img {
+    width: 45%; } }
+
 .dhr-footer {
   position: relative;
   background: #292b33; }
