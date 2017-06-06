@@ -30,7 +30,6 @@
 
 .dhr-footer--content {
 	padding: 8em 0 4em;
-	text-align: center;
 }
 
 
@@ -80,7 +79,13 @@
 }
 
 
+@media (min-width:$bp-md) {
 
+	.dhr-footer--content {
+		text-align: center;
+	}
+
+}
 
 
 

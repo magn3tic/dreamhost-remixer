@@ -13719,6 +13719,7 @@ return Flickity;
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// player & autoPlay
 ( function( window, factory ) {
   // universal module definition
@@ -13748,6 +13749,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// player & auto
       window.Flickity
     );
   }
+=======
+//"globals"
+var $body = $('body'),
+    $window = $(window);
+
+// set hero sizes (one fallback / one necessary)
+var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
+    $fixedheroimg = $('.dhr-fixedhero--outer'),
+    $heroviewport = $('.dhr-hero'),
+    isFullheightHero = $fixedautoheight.length === 0;
+var setHeroSize = function setHeroSize() {
+	var heightToSet = isFullheightHero ? $window.height() : $heroviewport.outerHeight() + 105;
+	$fixedheroimg.css({ height: heightToSet + 'px' });
+};
+setHeroSize();
+$window.bind('resize load', setHeroSize);
+>>>>>>> 20fbbc7a4759002cd983a8c79fe942abb052a178
 
 }( window, function factory( EvEmitter, utils, Flickity ) {
 
@@ -13767,6 +13785,7 @@ if ( 'hidden' in document ) {
 
 // -------------------------- Player -------------------------- //
 
+<<<<<<< HEAD
 function Player( parent ) {
   this.parent = parent;
   this.state = 'stopped';
@@ -13780,6 +13799,10 @@ function Player( parent ) {
     }.bind( this );
   }
 }
+=======
+// header behavior
+var $siteheader = $('#dhr-header');
+>>>>>>> 20fbbc7a4759002cd983a8c79fe942abb052a178
 
 Player.prototype = Object.create( EvEmitter.prototype );
 
@@ -13866,6 +13889,7 @@ utils.extend( Flickity.defaults, {
   pauseAutoPlayOnHover: true
 });
 
+<<<<<<< HEAD
 Flickity.createMethods.push('_createPlayer');
 var proto = Flickity.prototype;
 
@@ -14125,6 +14149,10 @@ utils.extend( Flickity.defaults, {
     x2: 70, y2: 40,
     x3: 30
   }
+=======
+$modalclose.on('click', function () {
+	$modal.velocity('transition.fadeOut');
+>>>>>>> 20fbbc7a4759002cd983a8c79fe942abb052a178
 });
 
 Flickity.createMethods.push('_createPrevNextButtons');

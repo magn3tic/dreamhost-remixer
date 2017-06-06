@@ -8,8 +8,25 @@ import $f from './sliders';
 
 
 //"globals"
-const $body = $('body');
-			
+const $body = $('body'),
+			$window = $(window);
+
+
+
+
+// set hero sizes (one fallback / one necessary)
+const $fixedautoheight = $('.dhr-fixedhero--autoheight'),
+			$fixedheroimg = $('.dhr-fixedhero--outer'),
+			$heroviewport = $('.dhr-hero'),
+			isFullheightHero = $fixedautoheight.length === 0;
+const setHeroSize = () => {
+	let heightToSet = isFullheightHero ? $window.height() : $heroviewport.outerHeight()+105;
+	$fixedheroimg.css({height: heightToSet+'px'})
+};
+setHeroSize();
+$window.bind('resize load', setHeroSize);
+
+
 
 
 
@@ -41,8 +58,7 @@ $navtoggle.on('click', (event) => {
 
 
 // header behavior
-const $siteheader = $('#dhr-header'),
-			$window = $(window);
+const $siteheader = $('#dhr-header');
 			
 let headerheight = $siteheader.outerHeight(),
 		headertop = parseInt($siteheader.css('top')) + scrollDiff,
@@ -114,16 +130,17 @@ const $modaltrigger = $('a[href="#contact"]'),
 			$modal = $('#dhr-contactmodal');
 
 
-
 $modaltrigger.on('click', () => {
 	$modal.velocity('transition.fadeIn');
 });
 
 $modalclose.on('click', () => {
-
 	$modal.velocity('transition.fadeOut');
-	
 });
+
+
+
+
 
 
 
