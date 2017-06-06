@@ -73,7 +73,7 @@ body {
 
 //<main> element
 .dhr-main {
-	max-width: 1720px;
+	max-width: $site-outer-max;
 	margin: 0 auto;
 	//min-height: 200vh;
 }
@@ -95,7 +95,15 @@ body {
 
 
 .dhr-introblock {
-	padding-top: 50%;
+	padding-top: 65%;
+
+	@media (min-width:440px) {
+		padding-top: 16em;
+	}
+	
+	@media (min-width:$bp-md) {
+		padding-top: 7em;
+	}
 }
 
 
@@ -119,10 +127,10 @@ body {
 
 .dhr-videocard {
 	position: absolute;
-	top:0; right:0;
+	top:0; right:50%;
 	width: 100%;
 	max-width: 22em;
-	margin-top: -15%;
+	transform: translate(50%, -2em);
 
 	figure {
 		img {
@@ -133,6 +141,7 @@ body {
 	}
 
 	&--play {
+		line-height: 0;
 		position: absolute;
 		top:50%; left:50%;
 		transform: translate(-50%, -50%);
@@ -143,7 +152,9 @@ body {
 @media (min-width:$bp-md) {
 
 	.dhr-videocard {
+		right:0;
 		width: 42%;
+		transform: translate(0, -50%);
 	}
 }
 

@@ -62,10 +62,26 @@
 // FIXED HEROES
 .dhr-fixedhero {
 	position: fixed;
-	top:0; left:0; width:100%;
+	top:0; left:0; width:100%; height:100%;
+
 
 	&--img {
-		height: 65%;
+		position: absolute; top:0; left:0;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+	}
+
+	&--outer {
+		position: relative;
+		height: 100vh;
+	}
+
+	&--autoheight {
+		.dhr-fixedhero--outer {
+			height:0;
+			padding-bottom: 50%;
+		}
 	}
 }
 
@@ -96,9 +112,9 @@
 
 
 //FEATURES SPECIFIC
-.dhr-featureshero {
+.dhr-currentpage-features {
 
-	.dhr-coverimg {
+	.dhr-fixedhero--img {
 		//background-attachment:fixed;
 		&:after {
 			content:""; display:block; position:absolute;
