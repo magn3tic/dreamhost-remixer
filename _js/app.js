@@ -1,3 +1,7 @@
+import $ from 'jquery';
+import $d from './dummy';
+import $f from './sliders';
+
 
 //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
