@@ -131,7 +131,7 @@ $modaltrigger.on('click', () => {
 });
 
 $modalclose.on('click', () => {
-	$modal.velocity('transition.fadeOut');
+	$modal.velocity('transition.fadeOut', {duration:150});
 });
 
 

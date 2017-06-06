@@ -190,7 +190,7 @@ $modaltrigger.on('click', function () {
 });
 
 $modalclose.on('click', function () {
-	$modal.velocity('transition.fadeOut');
+	$modal.velocity('transition.fadeOut', { duration: 150 });
 });
 
 /***/ })
