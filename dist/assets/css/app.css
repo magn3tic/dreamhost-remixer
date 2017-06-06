@@ -586,7 +586,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: auto; }
 
 .dhr-main {
-  max-width: 1780px;
+  max-width: 1700px;
   margin: 0 auto; }
 
 .dhr-block {
@@ -607,6 +607,8 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 199; }
   .dhr-block--light {
     background: #f7f7f7; }
+  .dhr-block--dark {
+    background: #292b33; }
   .dhr-block--content p:last-of-type {
     margin-bottom: 1.5em; }
 
@@ -634,6 +636,85 @@ h1, h2, h3, h4, h5, h6 {
         -ms-transform: translateY(-65%) rotate(-1deg);
             transform: translateY(-65%) rotate(-1deg); }
 
+.dhr-oneimg {
+  padding: 0 !important; }
+  .dhr-oneimg:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #292b33; }
+  .dhr-oneimg figure {
+    position: relative;
+    margin: 1em 0; }
+    .dhr-oneimg figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px; }
+    .dhr-oneimg figure .dhr-baseplate {
+      width: 90%;
+      height: 80%; }
+
+.dhr-featureslist > .inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  align-item: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start; }
+
+.dhr-featureitem--content {
+  color: #fff; }
+  .dhr-featureitem--content h1, .dhr-featureitem--content h2, .dhr-featureitem--content h3, .dhr-featureitem--content h4, .dhr-featureitem--content h5, .dhr-featureitem--content h6 {
+    color: #fff; }
+
+.dhr-featureitem {
+  margin-bottom: 2em; }
+  .dhr-featureitem figure {
+    position: relative; }
+    .dhr-featureitem figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px; }
+  .dhr-featureitem--content {
+    padding-top: 2em; }
+
+@media (min-width: 767px) {
+  .dhr-featureslist > .inner {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+  .dhr-featureitem {
+    width: 47%;
+    margin-bottom: 4em; }
+    .dhr-featureitem:nth-child(odd) {
+      margin-right: 6%; } }
+
+@media (min-width: 992px) {
+  .dhr-featureitem {
+    width: 45%;
+    margin-bottom: 4em; }
+    .dhr-featureitem:nth-child(odd) {
+      margin-right: 10%; } }
+
 .dhr-videocard--outer .inner {
   position: relative;
   z-index: 199; }
@@ -649,7 +730,7 @@ h1, h2, h3, h4, h5, h6 {
           transform: translate(50%, -2em); }
   .dhr-videocard figure img {
     display: block;
-    border-radius: .25em;
+    border-radius: 10px;
     width: 100%;
     height: auto;
     -webkit-box-shadow: rgba(41, 43, 51, 0.2) 0 0 1em;
@@ -713,6 +794,20 @@ a.dhr-button {
   background-size: cover;
   background-position: center top; }
 
+.dhr-baseplate {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  bottom: -1em;
+  right: -1em;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px; }
+  .dhr-baseplate--blue {
+    background: #2bace9; }
+  .dhr-baseplate--dark {
+    background: #34363d; }
+
 .dhr-form--inner {
   max-width: 992px;
   margin-right: auto;
@@ -752,7 +847,7 @@ a.dhr-button {
     position: relative;
     background: #292b33;
     overflow: hidden;
-    border-radius: .25em; }
+    border-radius: 10px; }
     .dhr-episodeitem figure:after {
       display: block;
       content: "";
@@ -772,7 +867,7 @@ a.dhr-button {
       display: block;
       width: 100%;
       height: auto;
-      border-radius: .25em;
+      border-radius: 10px;
       opacity: 1;
       -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
       transition: -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -842,7 +937,7 @@ a.dhr-button {
   -o-transition: background 0.5s ease;
   transition: background 0.5s ease; }
   .dhr-header--outer {
-    max-width: 1780px;
+    max-width: 1700px;
     margin: 0 auto; }
   .dhr-header.at-page-top {
     background: transparent; }
@@ -1020,6 +1115,9 @@ a.dhr-button {
   width: 100%;
   height: 100%;
   background-size: cover; }
+
+.dhr-hero--btns {
+  padding-top: .5em; }
 
 .dhr-fixedhero {
   position: fixed;

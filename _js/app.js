@@ -1,7 +1,3 @@
-import $ from 'jquery';
-import Flickity from 'flickity';
-import $f from './sliders';
-
 //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
 
@@ -116,7 +112,7 @@ const ticker = () => {
 
 ticker.call();
 $window.resize(scrollUpdate);
-
+$window.scroll(() => didScroll = true);
 
 
 
@@ -133,5 +129,5 @@ $modaltrigger.on('click', () => {
 });
 
 $modalclose.on('click', () => {
-	$modal.velocity('transition.fadeOut');
+	$modal.velocity('transition.fadeOut', {duration:150});
 });
