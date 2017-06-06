@@ -1,0 +1,63 @@
+.dhr-next-episode--anchor {
+  padding-top: 4em;
+  padding-bottom: 4em;
+  position: relative;
+  overflow: hidden;
+}
+
+.next-episode-bg {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -3;
+  background-image: url('../img/next-episode-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.light-mark-under, .dark-mark-over {
+  position: absolute;
+  svg {
+    height: 100%;
+  }
+}
+
+.light-mark-under {
+  z-index: -2;
+  top: -25%;
+  left: 10%;
+  width: 80%;
+  transform: rotate(15deg);
+  path {
+    fill: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.dark-mark-over {
+  z-index: -1;
+  top: 5%;
+  left: 30%;
+  width: 40%;
+  height: 90%;
+  path {
+    fill: $secondary;
+    mix-blend-mode: multiply;
+  }
+}
+
+.next-episode--content {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  p {
+    color: $white;
+    i {
+      font-size: 2em;
+      color: $primary;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+  }
+}

@@ -73,15 +73,19 @@
 "use strict";
 
 
-//plugins.min.js is loaded before the webpack bundle
-//it is a bundle of jquery & plugins because some don't yet support es6 module
+var _sliders = __webpack_require__(1);
 
+var _sliders2 = _interopRequireDefault(_sliders);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //"globals"
 var $body = $('body'),
     $window = $(window);
 
 // set hero sizes (one fallback / one necessary)
+//plugins.min.js is loaded before the webpack bundle
+//it is a bundle of jquery & plugins because some don't yet support es6 module
 var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
     $fixedheroimg = $('.dhr-fixedhero--outer'),
     $heroviewport = $('.dhr-hero'),
@@ -191,6 +195,28 @@ $modaltrigger.on('click', function () {
 
 $modalclose.on('click', function () {
 	$modal.velocity('transition.fadeOut', { duration: 150 });
+});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var $f = exports.$f = {
+	carousel: $('.dhr-episode-carousel'),
+	isOpen: false
+};
+
+$f.carousel.flickity({
+	cellAlign: "left",
+	cellSelector: ".cell-img",
+	prevNextButtons: false,
+	contain: true
 });
 
 /***/ })
