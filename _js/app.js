@@ -1,7 +1,6 @@
 import $ from 'jquery';
-import $d from './dummy';
+import Flickity from 'flickity';
 import $f from './sliders';
-
 
 //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
@@ -41,7 +40,7 @@ $navtoggle.on('click', (event) => {
 
 	//debounces clicks
 	if ($mainnav.hasClass('velocity-animating')) {return;}
-	
+
 	if (mainNavOpen) {
 		$mainnav.velocity('slideUp', {duration:400,easing:'easeOutQuart', complete: () => {
 			$body.removeClass('dhr-is-mainnavshowing');
@@ -59,7 +58,7 @@ $navtoggle.on('click', (event) => {
 
 // header behavior
 const $siteheader = $('#dhr-header');
-			
+
 let headerheight = $siteheader.outerHeight(),
 		headertop = parseInt($siteheader.css('top')) + scrollDiff,
 		winheight = $window.height(),
@@ -89,21 +88,21 @@ const ticker = () => {
 
 		if (scrollCurrent <= 0) {
 			//if back at window top
-			$siteheader.css('top', 0).addClass('at-page-top');	
+			$siteheader.css('top', 0).addClass('at-page-top');
 		} else if (scrollDiff > 0) {
 			//back up from downscroll
 			$siteheader.css('top', headertop > 0 ? 0 : headertop);
-			
+
 			if (scrollCurrent > headerheight+30) {
-				$siteheader.removeClass('at-page-top'); 
+				$siteheader.removeClass('at-page-top');
 			}
 
 		} else if (scrollDiff < 0) {
-			if (scrollCurrent + winheight >= docheight - headerheight) {  
+			if (scrollCurrent + winheight >= docheight - headerheight) {
 				//just reached page bottom
 				$siteheader.css('top', (headertop = scrollCurrent + winheight - docheight ) < 0 ? headertop : 0);
 				$siteheader.removeClass('at-page-top');
-			} else { 
+			} else {
 				//$siteheader.removeClass('at-page-top');
 				$siteheader.css('top', Math.abs(headertop) > headerheight ? -headerheight : headertop );
 			}
@@ -116,7 +115,6 @@ const ticker = () => {
 };
 
 ticker.call();
-$window.scroll(() => didScroll = true);
 $window.resize(scrollUpdate);
 
 
@@ -137,17 +135,3 @@ $modaltrigger.on('click', () => {
 $modalclose.on('click', () => {
 	$modal.velocity('transition.fadeOut');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

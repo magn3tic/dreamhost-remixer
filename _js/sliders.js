@@ -1,13 +1,13 @@
-import $ from 'jquery';
-import {$d} from './dummy';
-import Flickity from 'flickity';
+// import Flickity from 'flickity';
 
 export const $f = {
 	carousel: $('.dhr-episode-carousel'),
 	isOpen: false
 };
 
-// let flkty = new Flickity($f.carousel, {
-// 	imagesLoaded: true,
-// 	percentPosition: true
-// });
+$f.carousel.flickity({
+	cellAlign: "left",
+	cellSelector: ".cell-img",
+	prevNextButtons: false,
+	contain: true
+});

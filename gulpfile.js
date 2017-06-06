@@ -30,7 +30,8 @@ const PATHS = {
 	plugins_js: [
 		'node_modules/jquery/dist/jquery.min.js',
 		'node_modules/velocity-animate/velocity.min.js',
-		'node_modules/velocity-animate/velocity.ui.min.js'
+		'node_modules/velocity-animate/velocity.ui.min.js',
+		'node_modules/flickity/dist/flickity.pkgd.min.js'
 	],
 
 	//file to hot-reload/inject changes from
@@ -81,7 +82,7 @@ const webpackConfig = {
 
 // TASKS ----------------------------------------------//
 
-//SERVER 
+//SERVER
 //starts a browsersync server
 gulp.task('server', () => {
 	browsersync.init({
@@ -91,14 +92,14 @@ gulp.task('server', () => {
 });
 
 
-//BUILD 
+//BUILD
 //delete html files in the /dist
 gulp.task('build', () => {
 	return del(PATHS.distfiles).then(ssg.build);
 });
 
 
-//SCSS 
+//SCSS
 //compiles sass files & writes sourcemaps
 gulp.task('scss', () => {
 	return gulp.src(PATHS.scss)
