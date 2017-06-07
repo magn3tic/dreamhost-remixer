@@ -1,9 +1,10 @@
 @import "bourbon/bourbon";
 
-@import "base";
-@import "normalize";
+@import "base/base";
+@import "base/normalize";
 
-@import "fontello";
+@import "lib/fontello";
+@import "lib/flickity";
 
 @import "styles";
 

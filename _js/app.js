@@ -1,10 +1,16 @@
 //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
+
+
 import './sliders.js';
+
 
 //"globals"
 const $body = $('body'),
-			$window = $(window);
+			$window = $(window),
+			$siteheader = $('#dhr-header'),
+			$sitemain = $('#dhr-main'),
+			$sitefooter = $('#dhr-footer');
 const easeOutBack = [0.175, 0.985, 0.35, 1.05];
 
 
@@ -26,6 +32,17 @@ const setHeroSize = () => {
 };
 setHeroSize();
 $window.bind('resize load', setHeroSize);
+
+
+
+
+//animated scroll links
+const $scrollanchors = $('a[data-scroll]');
+
+$scrollanchors.click(function(e) {
+	e.preventDefault();
+	$($(this).attr('href')).velocity('scroll', {duration: 750, easing: easeOutBack})
+});
 
 
 

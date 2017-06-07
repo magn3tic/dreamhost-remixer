@@ -79,6 +79,57 @@
 }
 
 
+.dhr-footer--copyright {
+	h5, p {
+		font-family: $body-font-family;
+		font-weight: normal;
+		color: $bluegray;
+	}
+	h5 {
+		font-size: 1.2em;
+	}
+}
+
+
+.dhr-footer--backtop {
+	margin-bottom: 2em;
+	a {
+		position: relative;
+		display: inline-block;
+		text-transform: uppercase;
+		font-weight: bold;
+		color: $bluegray;
+		font-size: .85em;
+		
+		&:after {
+			content: attr(data-text); display:block;
+			position: absolute; bottom:0; left:0;
+			color: $primary;
+			white-space: nowrap;
+			overflow:hidden;
+			opacity:0; 
+			width:0;
+			visibility:hidden;
+			transition: all .3s ease;
+		}
+
+		&:hover {
+			&:after {
+				visibility: visible;
+				width: 100%; opacity:1;
+			}
+		}
+	}
+
+
+}
+
+html.no-generatedcontent a:hover {
+	color: $primary;
+}
+
+
+
 @media (min-width:$bp-md) {
 
 	.dhr-footer--content {
