@@ -51,14 +51,18 @@
 
 .next-episode--content {
   text-align: center;
-  .play-now {
-    color: $white;
-    i {
-      vertical-align: middle;
-      font-size: 2em;
-      color: $primary;
-      padding-left: 1em;
-      padding-right: 1em;
-    }
+}
+
+.play-now {
+  color: $white;
+  strong {
+    font-size: .85em;
+  }
+  i {
+    vertical-align: middle;
+    font-size: 2em;
+    color: $primary;
+    padding-left: 1em;
+    padding-right: 1em;
   }
 }
