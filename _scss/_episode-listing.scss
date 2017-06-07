@@ -1,0 +1,119 @@
+
+// HOMEPAGE EPISODE LIST ----------------------------------------//
+
+
+.dhr-episodelist {
+	position: relative;
+	&:before {
+		content:""; display:block; position:absolute;
+		bottom:0; left:0; width:100%; height: 12.5%;
+		background: $darkblue;
+	}
+}
+
+.dhr-episodeitem {
+	position: relative;
+	margin-bottom: 5%;
+
+	figure {
+		position: relative;
+		background: $darkblue;
+		overflow: hidden;
+		border-radius: $global-border-radius;
+
+		&:after {
+			display:block; content:""; display:block;
+			position: absolute; 
+			top:0; left:0; width:100%; height:100%;
+			background: rgba($darkblue,0.65);
+			opacity: 1;
+			transition: opacity .35s ease;
+			mix-blend-mode: multiply;
+		}
+
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			border-radius: $global-border-radius;
+			opacity: 1;
+			transition: transform .35s $ease-out-quart;
+		}
+	}
+
+	&:not([class*="locked"]) a:hover {
+		figure:after {
+			opacity: 0.65;
+		}
+		figure img {
+			transform: scale(1.05);
+		}
+	}
+
+	&--content {
+		position: absolute; z-index:299;
+		top:50%; left:0; width:100%;
+		transform: translateY(-50%);
+		text-align: center;
+
+		h4 {
+			font-family: $body-font-family;
+			margin: 0;
+			text-transform: uppercase;
+			color: $white;
+		}
+	}
+	&--liner {
+		padding: 0 .5em .5em;
+	}
+
+	&--icon {
+		font-size: 1.7em;
+	}
+	&--activeborder {
+		display: block; position:absolute; z-index:99;
+		bottom:0; left:0; width:100%;
+		border-radius: .5em;
+		height: .5em;
+		background: $primary;
+	}
+
+	
+	//overrides for the locked state
+	&--locked {
+		
+		.dhr-episodeitem--icon, .dhr-episodeitem--activeborder {
+			display: none;
+		}
+
+		a {
+			cursor: default; //not-allowed
+		}
+	}
+
+} //end episodde item
+
+
+
+@media (min-width:$bp-md) {
+
+	.dhr-episodelist {
+		&:before {
+			height: 90%;
+			background: linear-gradient(to top, $darkblue 0%, rgba($darkblue, 0.99) 25%, rgba($darkblue,0.0001) 100%);
+		}
+	}
+	
+	.dhr-episodeitem {
+		width: 49%;
+		float: left;
+		margin-right: 2%;
+		margin-bottom: 2%;
+
+		&:nth-child(even) {
+			margin-right: 0;
+		}
+	}
+
+}
+
