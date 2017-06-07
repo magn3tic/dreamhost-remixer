@@ -71,6 +71,7 @@ $navtoggle.on('click', (event) => {
 
 
 // header behavior
+
 let headerheight = $siteheader.outerHeight(),
 		headertop = parseInt($siteheader.css('top')) + scrollDiff,
 		winheight = $window.height(),

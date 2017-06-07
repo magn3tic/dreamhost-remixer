@@ -1848,13 +1848,16 @@ html.no-generatedcontent a:hover {
 
 .next-episode--content {
   text-align: center; }
-  .next-episode--content .play-now {
-    color: #fff; }
-    .next-episode--content .play-now i {
-      vertical-align: middle;
-      font-size: 2em;
-      color: #ffa700;
-      padding-left: 1em;
-      padding-right: 1em; }
+
+.play-now {
+  color: #fff; }
+  .play-now strong {
+    font-size: .85em; }
+  .play-now i {
+    vertical-align: middle;
+    font-size: 2em;
+    color: #ffa700;
+    padding-left: 1em;
+    padding-right: 1em; }
 
 /*# sourceMappingURL=app.css.map */
