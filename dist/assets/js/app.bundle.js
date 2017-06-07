@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,7 +73,29 @@
 "use strict";
 
 
-var _sliders = __webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var $f = exports.$f = {
+	carousel: $('.dhr-episode-carousel'),
+	isOpen: false
+};
+
+$f.carousel.flickity({
+	cellAlign: "left",
+	cellSelector: ".cell-img",
+	prevNextButtons: false,
+	contain: true
+});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _sliders = __webpack_require__(0);
 
 var _sliders2 = _interopRequireDefault(_sliders);
 
@@ -195,28 +217,6 @@ $modaltrigger.on('click', function () {
 
 $modalclose.on('click', function () {
 	$modal.velocity('transition.fadeOut', { duration: 150 });
-});
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-var $f = exports.$f = {
-	carousel: $('.dhr-episode-carousel'),
-	isOpen: false
-};
-
-$f.carousel.flickity({
-	cellAlign: "left",
-	cellSelector: ".cell-img",
-	prevNextButtons: false,
-	contain: true
 });
 
 /***/ })
