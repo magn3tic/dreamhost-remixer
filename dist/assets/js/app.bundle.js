@@ -102,6 +102,7 @@ var $body = $('body'),
     $window = $(window); //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
 
+
 var easeOutBack = [0.175, 0.985, 0.35, 1.05];
 
 // wtf
@@ -121,6 +122,14 @@ var setHeroSize = function setHeroSize() {
 };
 setHeroSize();
 $window.bind('resize load', setHeroSize);
+
+//animated scroll links
+var $scrollanchors = $('a[data-scroll]');
+
+$scrollanchors.click(function (e) {
+	e.preventDefault();
+	$($(this).attr('href')).velocity('scroll', { duration: 750, easing: easeOutBack });
+});
 
 // mobile nav toggle
 var $mainnav = $('#dhr-mainnav'),

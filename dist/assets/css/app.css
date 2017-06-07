@@ -1439,6 +1439,46 @@ a.dhr-button, button.dhr-button {
     .dhr-footer--submit svg path {
       fill: #ffa700; }
 
+.dhr-footer--copyright h5, .dhr-footer--copyright p {
+  font-family: "Proxima Nova", sans-serif;
+  font-weight: normal;
+  color: #91a2b6; }
+
+.dhr-footer--copyright h5 {
+  font-size: 1.2em; }
+
+.dhr-footer--backtop {
+  margin-bottom: 2em; }
+  .dhr-footer--backtop a {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #91a2b6;
+    font-size: .85em; }
+    .dhr-footer--backtop a:after {
+      content: attr(data-text);
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      color: #ffa700;
+      white-space: nowrap;
+      overflow: hidden;
+      opacity: 0;
+      width: 0;
+      visibility: hidden;
+      -webkit-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease; }
+    .dhr-footer--backtop a:hover:after {
+      visibility: visible;
+      width: 100%;
+      opacity: 1; }
+
+html.no-generatedcontent a:hover {
+  color: #ffa700; }
+
 @media (min-width: 767px) {
   .dhr-footer--content {
     text-align: center; } }
