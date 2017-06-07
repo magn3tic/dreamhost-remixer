@@ -157,6 +157,7 @@ $navtoggle.on('click', function (event) {
 });
 
 // header behavior
+
 var headerheight = _globals.$siteheader.outerHeight(),
     headertop = parseInt(_globals.$siteheader.css('top')) + scrollDiff,
     winheight = _globals.$window.height(),
@@ -298,11 +299,37 @@ var $body = exports.$body = $('body'),
 
 var $lockedepisodes = $('.dhr-episodeitem--locked');
 
+var currentdate = new Date(),
+    currentepoch = currentdate.getTime();
+
+var cdSec = 1000,
+    cdMin = cdSec * 60,
+    cdHr = cdMin * 60,
+    cdDay = cdHr * 24;
+
+var doTimeUpdate = function doTimeUpdate($html) {};
+
 $lockedepisodes.each(function (index, item) {
 
 			var $this = $(item),
 			    $countdown = $this.find('[data-countdown]'),
-			    unlocktime = $countdown.data('countdown');
+			    unlockepoch = parseInt($countdown.data('countdown')),
+			    unlocktime = new Date(unlockepoch),
+			    $html = {
+						days: $countdown.find('[data-countdown-days]'),
+						hours: $countdown.find('[data-countdown-hours]'),
+						mins: $countdown.find('[data-countdown-mins]')
+			};
+
+			var timeDiff = unlockepoch - currentepoch;
+
+			var daysTil = Math.floor(timeDiff / cdDay);
+
+			console.log(daysTil);
+
+			$this.click(function (event) {
+						return event.preventDefault();
+			}).addClass('is-countdownstarted');
 });
 
 /***/ })
