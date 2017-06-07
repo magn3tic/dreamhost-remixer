@@ -1548,16 +1548,16 @@ html.no-generatedcontent a:hover {
   text-align: center; }
 
 .has-carousel {
-  padding-top: 6em;
-  padding-bottom: 6em; }
+  padding-top: 2em;
+  padding-bottom: 2em; }
 
 .slider-overlay-container {
   position: relative;
-  padding-top: 3em;
-  padding-bottom: 3em; }
+  padding-top: 1em;
+  padding-bottom: 1em; }
 
 .dhr-episode-carousel {
-  width: 70%;
+  width: 80%;
   margin-left: auto; }
   .dhr-episode-carousel figure {
     width: 100%; }
@@ -1574,7 +1574,7 @@ html.no-generatedcontent a:hover {
 
 .flickity-page-dots {
   width: 2.5em;
-  left: -10%;
+  left: -15%;
   bottom: 50%; }
   .flickity-page-dots .dot {
     display: block;
@@ -1606,6 +1606,31 @@ html.no-generatedcontent a:hover {
   100% {
     width: 2.5em; } }
 
+@media (min-width: 767px) {
+  .has-carousel {
+    padding-top: 6em;
+    padding-bottom: 6em; }
+  .dhr-episode-carousel {
+    width: 70%; }
+  .slider-overlay-container {
+    position: relative;
+    padding-top: 3em;
+    padding-bottom: 3em; }
+  .flickity-page-dots {
+    width: 2.5em;
+    left: -15%;
+    bottom: 50%; }
+    .flickity-page-dots .dot {
+      display: block;
+      float: right;
+      border-radius: 0;
+      height: 1px;
+      width: 1em;
+      margin-top: .65em; }
+    .flickity-page-dots .is-selected {
+      height: 2px;
+      width: 2.5em; } }
+
 .dhr-image-overlay--right {
   position: absolute;
   height: 100%;
@@ -1619,10 +1644,12 @@ html.no-generatedcontent a:hover {
   pointer-events: none; }
 
 .dhr-next-episode--anchor {
-  padding-top: 4em;
-  padding-bottom: 4em;
   position: relative;
   overflow: hidden; }
+  .dhr-next-episode--anchor:hover .next-episode-bg {
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1); }
 
 .next-episode-bg {
   position: absolute;
@@ -1633,30 +1660,28 @@ html.no-generatedcontent a:hover {
   z-index: -3;
   background-image: url("../img/next-episode-bg.jpg");
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out; }
 
 .light-mark-under, .dark-mark-over {
-  position: absolute; }
-  .light-mark-under svg, .dark-mark-over svg {
-    height: 100%; }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
 
 .light-mark-under {
   z-index: -2;
-  top: -25%;
-  left: 10%;
-  width: 80%;
-  -webkit-transform: rotate(15deg);
-      -ms-transform: rotate(15deg);
-          transform: rotate(15deg); }
+  width: 80%; }
   .light-mark-under path {
     fill: rgba(255, 255, 255, 0.1); }
 
 .dark-mark-over {
   z-index: -1;
-  top: 5%;
-  left: 30%;
-  width: 40%;
-  height: 90%; }
+  width: 40%; }
   .dark-mark-over path {
     fill: #2bace9;
     mix-blend-mode: multiply; }

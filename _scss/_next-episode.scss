@@ -1,8 +1,11 @@
 .dhr-next-episode--anchor {
-  padding-top: 4em;
-  padding-bottom: 4em;
   position: relative;
   overflow: hidden;
+  &:hover {
+    .next-episode-bg {
+      transform: scale(1.1);
+    }
+  }
 }
 
 .next-episode-bg {
@@ -14,22 +17,20 @@
   background-image: url('../img/next-episode-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  transition: all 1s ease-in-out;
 }
 
 
 .light-mark-under, .dark-mark-over {
   position: absolute;
-  svg {
-    height: 100%;
-  }
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
 .light-mark-under {
   z-index: -2;
-  top: -25%;
-  left: 10%;
   width: 80%;
-  transform: rotate(15deg);
   path {
     fill: rgba(255, 255, 255, 0.1);
   }
@@ -37,15 +38,16 @@
 
 .dark-mark-over {
   z-index: -1;
-  top: 5%;
-  left: 30%;
   width: 40%;
-  height: 90%;
+  svg {
+    // transform: rotate(180deg);
+  }
   path {
     fill: $secondary;
     mix-blend-mode: multiply;
   }
 }
+
 
 .next-episode--content {
   width: 50%;
