@@ -1404,6 +1404,46 @@ a.dhr-button, button.dhr-button {
     display: none; }
   .dhr-episodeitem--locked a {
     cursor: default; }
+  .dhr-episodeitem--locked .dhr-episodeitem--countdown {
+    display: block; }
+
+.dhr-episodeitem--countdown {
+  display: none; }
+
+.dhr-countdown--outer {
+  position: relative;
+  display: inline-block;
+  padding: 1em 0.8em;
+  line-height: 1.3;
+  color: #fff; }
+
+.dhr-countdown--span {
+  display: inline-block; }
+  .dhr-countdown--span > span {
+    display: block;
+    font-weight: bold; }
+
+.dhr-countdown--sep {
+  margin-right: .2em;
+  font-size: 2em;
+  margin-left: .2em;
+  position: relative;
+  top: -.2em; }
+
+.dhr-countdown--num {
+  font-size: 1.2em; }
+
+.dhr-countdown--word {
+  text-transform: uppercase;
+  font-size: 0.7em; }
+
+.dhr-countdown--border {
+  position: absolute;
+  bottom: .5em;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #2bace9; }
 
 @media (min-width: 767px) {
   .dhr-episodelist:before {

@@ -3,6 +3,7 @@
 
 
 import './sliders.js';
+import './countdown.js';
 
 
 import {$body, $window, $siteheader, $sitemain, $sitefooter, easeOutBack} from './globals.js';
@@ -139,10 +140,12 @@ const $modaltrigger = $('a[href="#contact"]'),
 			$modal = $('#dhr-contactmodal'),
 			$modalbody = $('.dhr-contactmodal--body'),
 			$modaltop = $('.dhr-contactmodal--top'),
-			$maincontent = $('#dhr-main');
+			$maincontent = $('#dhr-main'),
+			$fixedhero = $('.dhr-fixedhero');
 
 //opening
-$modaltrigger.on('click', () => {
+$modaltrigger.on('click', (e) => {
+	e.preventDefault();
 	$modalbody.css({height: ($window.height()-$modaltop.outerHeight())*0.87 });
 	$modal.velocity({
 		translateY: ['0%', '-100%']
@@ -151,12 +154,12 @@ $modaltrigger.on('click', () => {
 		display: 'block',
 		easing: easeOutBack
 	});
-	// $maincontent.velocity({
-	// 	translateY: $window.height()*0.9
-	// }, {
-	// 	easing: easeOutBack,
-	// 	duration: 750
-	// });
+	$maincontent.velocity({
+		scale: 0.85
+	}, {
+		easing: easeOutBack,
+		duration: 250
+	});
 	$body.addClass('is-showing-contactmodal');
 });
 
@@ -169,11 +172,11 @@ $modalclose.on('click', () => {
 		display: 'none',
 		complete: () => $body.removeClass('is-showing-contactmodal')
 	});
-	// $maincontent.velocity({
-	// 	translateY: 0
-	// }, {
-	// 	duration: 0
-	// });
+	$maincontent.velocity({
+		scale: 1
+	}, {
+		duration: 200
+	});
 });
 
 $window.resize(() => $modalbody.css({height:$window.height()-$modaltop.outerHeight()-5}));

@@ -40,7 +40,8 @@
 			transition: transform .35s $ease-out-quart;
 		}
 	}
-
+	
+	//hover state for non-locked
 	&:not([class*="locked"]) a:hover {
 		figure:after {
 			opacity: 0.65;
@@ -49,6 +50,7 @@
 			transform: scale(1.05);
 		}
 	}
+	
 
 	&--content {
 		position: absolute; z-index:299;
@@ -89,9 +91,57 @@
 		a {
 			cursor: default; //not-allowed
 		}
+		.dhr-episodeitem--countdown {
+			display: block;
+		}
 	}
 
 } //end episodde item
+
+
+
+
+//countdown stuff
+.dhr-episodeitem--countdown {
+	display: none;
+}
+.dhr-countdown--outer {
+	position: relative;
+	display: inline-block;
+	padding: 1em 0.8em;
+	line-height: 1.3;
+	color: $white;
+}
+
+.dhr-countdown--span {
+	display: inline-block;
+	> span {
+		display: block;
+		font-weight: bold;
+	}
+}
+
+.dhr-countdown--sep {
+	margin-right: .2em;
+	font-size: 2em;
+	margin-left: .2em;
+	position: relative;
+	top:-.2em;
+}
+
+.dhr-countdown--num {
+	font-size: 1.2em;
+}
+.dhr-countdown--word {
+	text-transform: uppercase;
+	font-size: 0.7em;
+}
+
+.dhr-countdown--border {
+	position:absolute; bottom:.5em; left:0; width:100%;
+	height:2px;
+	background: $secondary;
+}
 
 
 
@@ -114,6 +164,10 @@
 			margin-right: 0;
 		}
 	}
+
+
+
+
 
 }
 

@@ -97,6 +97,8 @@ $f.carousel.flickity({
 
 __webpack_require__(0);
 
+__webpack_require__(3);
+
 var _globals = __webpack_require__(2);
 
 // wtf
@@ -106,14 +108,13 @@ var _globals = __webpack_require__(2);
 
 
 // set hero sizes (one fallback / one necessary)
-//plugins.min.js is loaded before the webpack bundle
-//it is a bundle of jquery & plugins because some don't yet support es6 module
-
-
 var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
     $fixedheroimg = $('.dhr-fixedhero--outer'),
     $heroviewport = $('.dhr-hero'),
-    isFullheightHero = $fixedautoheight.length === 0;
+    isFullheightHero = $fixedautoheight.length === 0; //plugins.min.js is loaded before the webpack bundle
+//it is a bundle of jquery & plugins because some don't yet support es6 module
+
+
 var setHeroSize = function setHeroSize() {
 	var heightToSet = isFullheightHero ? _globals.$window.height() : $heroviewport.outerHeight() + 105;
 	$fixedheroimg.css({ height: heightToSet + 'px' });
@@ -220,10 +221,12 @@ var $modaltrigger = $('a[href="#contact"]'),
     $modal = $('#dhr-contactmodal'),
     $modalbody = $('.dhr-contactmodal--body'),
     $modaltop = $('.dhr-contactmodal--top'),
-    $maincontent = $('#dhr-main');
+    $maincontent = $('#dhr-main'),
+    $fixedhero = $('.dhr-fixedhero');
 
 //opening
-$modaltrigger.on('click', function () {
+$modaltrigger.on('click', function (e) {
+	e.preventDefault();
 	$modalbody.css({ height: (_globals.$window.height() - $modaltop.outerHeight()) * 0.87 });
 	$modal.velocity({
 		translateY: ['0%', '-100%']
@@ -232,12 +235,12 @@ $modaltrigger.on('click', function () {
 		display: 'block',
 		easing: _globals.easeOutBack
 	});
-	// $maincontent.velocity({
-	// 	translateY: $window.height()*0.9
-	// }, {
-	// 	easing: easeOutBack,
-	// 	duration: 750
-	// });
+	$maincontent.velocity({
+		scale: 0.85
+	}, {
+		easing: _globals.easeOutBack,
+		duration: 250
+	});
 	_globals.$body.addClass('is-showing-contactmodal');
 });
 
@@ -252,11 +255,11 @@ $modalclose.on('click', function () {
 			return _globals.$body.removeClass('is-showing-contactmodal');
 		}
 	});
-	// $maincontent.velocity({
-	// 	translateY: 0
-	// }, {
-	// 	duration: 0
-	// });
+	$maincontent.velocity({
+		scale: 1
+	}, {
+		duration: 200
+	});
 });
 
 _globals.$window.resize(function () {
@@ -285,6 +288,22 @@ var $body = exports.$body = $('body'),
     $sitemain = exports.$sitemain = $('#dhr-main'),
     $sitefooter = exports.$sitefooter = $('#dhr-footer'),
     easeOutBack = exports.easeOutBack = [0.175, 0.985, 0.35, 1.05];
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var $lockedepisodes = $('.dhr-episodeitem--locked');
+
+$lockedepisodes.each(function (index, item) {
+
+			var $this = $(item),
+			    $countdown = $this.find('[data-countdown]'),
+			    unlocktime = $countdown.data('countdown');
+});
 
 /***/ })
 /******/ ]);
