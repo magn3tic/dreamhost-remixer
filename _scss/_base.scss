@@ -1,0 +1,86 @@
+
+//full _normalize.scss?
+$legacynormalize: true;
+
+
+// COLOR PALLETTE ----------------------//
+$black: #272727;
+
+$white: #fff;
+$light: #FFFEF9;
+$gray: #878E88;
+
+$darkblue: #292b33;
+$bluegray: #91a2b6;
+
+$primary: #ffa700;
+$secondary: #2bace9;
+
+
+// FONT FAMILY/SIZES/COLORS -----------------//
+$base-font-size: 18px;
+$body-line-height: 1.8;
+$heading-line-height: 1.2;
+
+$body-font-family: 'Proxima Nova',sans-serif;
+$heading-font-family: 'Ubuntu', sans-serif;
+$sans-serif: $body-font-family;
+
+$body-background-color: $darkblue;
+$body-font-color: tint($darkblue,15%);
+$heading-font-color: $darkblue;
+
+
+// BREAKPOINTS -----------------------//
+$bp-sm: 580px;
+$bp-md: 767px;
+$bp-lg: 992px;
+$bp-xl: 1199px;
+$bp-xxl: 1440px;
+
+
+// OUTER OUTER SITE CONTAINER ---------------//
+$site-outer-max: 1670px;
+
+
+//ROUNDING OF IMAGES
+$global-border-radius: 10px;
+
+
+
+
+// MIXINS & FUNCTIONS ------------------------//
+@mixin clearfix() {
+	&:after {
+    clear:both;
+    content:"";display:table;
+  }
+  &:before {
+    content:"";display:table;
+  }
+}
+
+@mixin font-smoothing() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &:-moz-placeholder { @content; }
+}
+
+@mixin sr-only() {
+	position: absolute !important;
+  height: 1px; width: 1px; 
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+
+@function headings() {
+	@return h1,h2,h3,h4,h5,h6;
+}

@@ -5,13 +5,7 @@
 import './sliders.js';
 
 
-//"globals"
-const $body = $('body'),
-			$window = $(window),
-			$siteheader = $('#dhr-header'),
-			$sitemain = $('#dhr-main'),
-			$sitefooter = $('#dhr-footer');
-const easeOutBack = [0.175, 0.985, 0.35, 1.05];
+import {$body, $window, $siteheader, $sitemain, $sitefooter, easeOutBack} from './globals.js';
 
 
 // wtf
@@ -76,8 +70,6 @@ $navtoggle.on('click', (event) => {
 
 
 // header behavior
-const $siteheader = $('#dhr-header');
-
 let headerheight = $siteheader.outerHeight(),
 		headertop = parseInt($siteheader.css('top')) + scrollDiff,
 		winheight = $window.height(),
