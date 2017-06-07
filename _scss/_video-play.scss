@@ -15,7 +15,7 @@
 
 		circle {
 			fill: none;
-			stroke-width: 10;
+			stroke-width: 12;
 		}
 
 		&.dhr-playbtn--circ-back {
@@ -78,5 +78,40 @@
 		transform: scale(0.95);
 	}
 }
+
+
+
+
+
+@media (min-width:$bp-lg) {
+	
+	.dhr-playbtn {
+		width:12em; height:12em;
+	}
+
+
+}
+
+
+@media (min-width:$bp-xl) {
+	
+	.dhr-playbtn {
+		width:14em; height:14em;
+		margin-top: -1em;
+	}
+
+}
+
+
+@media (min-width:$bp-xxl) {
+	
+	.dhr-playbtn {
+		width:14.5em; height:14.5em;
+	}
+
+}
+
+
+
 
 

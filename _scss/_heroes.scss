@@ -219,7 +219,12 @@
 
 	.dhr-hero--content {
 		width: 50%; 
+
+		.dhr-preheadline {
+			margin-bottom: 1em;
+		}
 	}
+
 	.dhr-hero--play {
 		width: 40%; 
 	}

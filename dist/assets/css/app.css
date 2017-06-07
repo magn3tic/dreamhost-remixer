@@ -1298,6 +1298,8 @@ a.dhr-button, button.dhr-button {
     padding: 14em 0 8em; }
   .dhr-hero--content {
     width: 50%; }
+    .dhr-hero--content .dhr-preheadline {
+      margin-bottom: 1em; }
   .dhr-hero--play {
     width: 40%; }
   .dhr-homehero {
@@ -1331,7 +1333,7 @@ a.dhr-button, button.dhr-button {
     height: 100%; }
     .dhr-playbtn svg circle {
       fill: none;
-      stroke-width: 10; }
+      stroke-width: 12; }
     .dhr-playbtn svg.dhr-playbtn--circ-back circle {
       stroke: rgba(255, 255, 255, 0.5); }
     .dhr-playbtn svg.dhr-playbtn--circ-front {
@@ -1388,6 +1390,22 @@ a.dhr-button, button.dhr-button {
     -webkit-transform: scale(0.95);
         -ms-transform: scale(0.95);
             transform: scale(0.95); }
+
+@media (min-width: 992px) {
+  .dhr-playbtn {
+    width: 12em;
+    height: 12em; } }
+
+@media (min-width: 1199px) {
+  .dhr-playbtn {
+    width: 14em;
+    height: 14em;
+    margin-top: -1em; } }
+
+@media (min-width: 1440px) {
+  .dhr-playbtn {
+    width: 14.5em;
+    height: 14.5em; } }
 
 .dhr-episodelist {
   position: relative; }
