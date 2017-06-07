@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,13 +73,42 @@
 "use strict";
 
 
-//plugins.min.js is loaded before the webpack bundle
-//it is a bundle of jquery & plugins because some don't yet support es6 module
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var $f = exports.$f = {
+	carousel: $('.dhr-episode-carousel'),
+	isOpen: false
+};
 
+$f.carousel.flickity({
+	cellAlign: "left",
+	cellSelector: ".cell-img",
+	prevNextButtons: false,
+	contain: true
+});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(0);
 
 //"globals"
 var $body = $('body'),
-    $window = $(window);
+    $window = $(window); //plugins.min.js is loaded before the webpack bundle
+//it is a bundle of jquery & plugins because some don't yet support es6 module
+
+var easeOutBack = [0.175, 0.985, 0.35, 1.05];
+
+// wtf
+// $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
+// 	return [0.175, 0.885, 0.32, 1.275];
+// };
+
 
 // set hero sizes (one fallback / one necessary)
 var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
@@ -183,15 +212,55 @@ $window.scroll(function () {
 // Contact Modal
 var $modaltrigger = $('a[href="#contact"]'),
     $modalclose = $('#dhr-modalclose'),
-    $modal = $('#dhr-contactmodal');
+    $modal = $('#dhr-contactmodal'),
+    $modalbody = $('.dhr-contactmodal--body'),
+    $modaltop = $('.dhr-contactmodal--top'),
+    $maincontent = $('#dhr-main');
 
+//opening
 $modaltrigger.on('click', function () {
-	$modal.velocity('transition.fadeIn');
+	$modalbody.css({ height: ($window.height() - $modaltop.outerHeight()) * 0.87 });
+	$modal.velocity({
+		translateY: ['0%', '-100%']
+	}, {
+		duration: 750,
+		display: 'block',
+		easing: easeOutBack
+	});
+	// $maincontent.velocity({
+	// 	translateY: $window.height()*0.9
+	// }, {
+	// 	easing: easeOutBack,
+	// 	duration: 750
+	// });
+	$body.addClass('is-showing-contactmodal');
 });
 
+//closing
 $modalclose.on('click', function () {
-	$modal.velocity('transition.fadeOut', { duration: 150 });
+	$modal.velocity({
+		translateY: ['100%', '0%']
+	}, {
+		duration: 250,
+		display: 'none',
+		complete: function complete() {
+			return $body.removeClass('is-showing-contactmodal');
+		}
+	});
+	// $maincontent.velocity({
+	// 	translateY: 0
+	// }, {
+	// 	duration: 0
+	// });
 });
+
+$window.resize(function () {
+	return $modalbody.css({ height: $window.height() - $modaltop.outerHeight() - 5 });
+});
+
+if (window.location.hash === '#contact') {
+	$modaltrigger.trigger('click');
+}
 
 /***/ })
 /******/ ]);

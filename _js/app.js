@@ -1,11 +1,19 @@
 //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
 
+import './sliders.js';
+
 
 //"globals"
 const $body = $('body'),
 			$window = $(window);
+const easeOutBack = [0.175, 0.985, 0.35, 1.05];
 
+
+// wtf
+// $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
+// 	return [0.175, 0.885, 0.32, 1.275];
+// };
 
 
 
@@ -121,13 +129,48 @@ $window.scroll(() => didScroll = true);
 // Contact Modal
 const $modaltrigger = $('a[href="#contact"]'),
 			$modalclose = $('#dhr-modalclose'),
-			$modal = $('#dhr-contactmodal');
+			$modal = $('#dhr-contactmodal'),
+			$modalbody = $('.dhr-contactmodal--body'),
+			$modaltop = $('.dhr-contactmodal--top'),
+			$maincontent = $('#dhr-main');
 
-
+//opening
 $modaltrigger.on('click', () => {
-	$modal.velocity('transition.fadeIn');
+	$modalbody.css({height: ($window.height()-$modaltop.outerHeight())*0.87 });
+	$modal.velocity({
+		translateY: ['0%', '-100%']
+	}, {
+		duration: 750,
+		display: 'block',
+		easing: easeOutBack
+	});
+	// $maincontent.velocity({
+	// 	translateY: $window.height()*0.9
+	// }, {
+	// 	easing: easeOutBack,
+	// 	duration: 750
+	// });
+	$body.addClass('is-showing-contactmodal');
 });
 
+//closing
 $modalclose.on('click', () => {
-	$modal.velocity('transition.fadeOut', {duration:150});
+	$modal.velocity({
+		translateY: ['100%', '0%']
+	}, {
+		duration: 250,
+		display: 'none',
+		complete: () => $body.removeClass('is-showing-contactmodal')
+	});
+	// $maincontent.velocity({
+	// 	translateY: 0
+	// }, {
+	// 	duration: 0
+	// });
 });
+
+$window.resize(() => $modalbody.css({height:$window.height()-$modaltop.outerHeight()-5}));
+
+if (window.location.hash === '#contact') {
+	$modaltrigger.trigger('click');
+}

@@ -533,6 +533,8 @@ body {
       font-size: 125%; }
       body:before {
         content: 'xxl'; } }
+  body.is-showing-contactmodal {
+    overflow: hidden; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Ubuntu", sans-serif; }
@@ -758,7 +760,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 2px;
   background: rgba(255, 255, 255, 0.3); }
 
-a.dhr-button {
+button.dhr-button {
+  border: none; }
+
+a.dhr-button, button.dhr-button {
   display: inline-block;
   padding: .7em 1.5em;
   background: #ffa700;
@@ -769,9 +774,9 @@ a.dhr-button {
   -webkit-transition: background .3s ease;
   -o-transition: background .3s ease;
   transition: background .3s ease; }
-  a.dhr-button:hover {
+  a.dhr-button:hover, button.dhr-button:hover {
     background: #e69600; }
-  a.dhr-button:active {
+  a.dhr-button:active, button.dhr-button:active {
     -webkit-transform: translateY(1px);
         -ms-transform: translateY(1px);
             transform: translateY(1px); }
@@ -827,107 +832,6 @@ a.dhr-button {
   width: 100%;
   border: none;
   border-bottom: 2px solid #3e4047; }
-
-.dhr-episodelist {
-  position: relative; }
-  .dhr-episodelist:before {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 12.5%;
-    background: #292b33; }
-
-.dhr-episodeitem {
-  position: relative;
-  margin-bottom: 5%; }
-  .dhr-episodeitem figure {
-    position: relative;
-    background: #292b33;
-    overflow: hidden;
-    border-radius: 10px; }
-    .dhr-episodeitem figure:after {
-      display: block;
-      content: "";
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(41, 43, 51, 0.65);
-      opacity: 1;
-      -webkit-transition: opacity .35s ease;
-      -o-transition: opacity .35s ease;
-      transition: opacity .35s ease;
-      mix-blend-mode: multiply; }
-    .dhr-episodeitem figure img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      opacity: 1;
-      -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-      transition: -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-      -o-transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-      transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-      transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); }
-  .dhr-episodeitem:not([class*="locked"]) a:hover figure:after {
-    opacity: 0.65; }
-  .dhr-episodeitem:not([class*="locked"]) a:hover figure img {
-    -webkit-transform: scale(1.05);
-        -ms-transform: scale(1.05);
-            transform: scale(1.05); }
-  .dhr-episodeitem--content {
-    position: absolute;
-    z-index: 299;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-    text-align: center; }
-    .dhr-episodeitem--content h4 {
-      font-family: "Proxima Nova", sans-serif;
-      margin: 0;
-      text-transform: uppercase;
-      color: #fff; }
-  .dhr-episodeitem--liner {
-    padding: 0 .5em .5em; }
-  .dhr-episodeitem--icon {
-    font-size: 1.7em; }
-  .dhr-episodeitem--activeborder {
-    display: block;
-    position: absolute;
-    z-index: 99;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-radius: .5em;
-    height: .5em;
-    background: #ffa700; }
-  .dhr-episodeitem--locked .dhr-episodeitem--icon, .dhr-episodeitem--locked .dhr-episodeitem--activeborder {
-    display: none; }
-  .dhr-episodeitem--locked a {
-    cursor: default; }
-
-@media (min-width: 767px) {
-  .dhr-episodelist:before {
-    height: 90%;
-    background: -webkit-gradient(linear, left bottom, left top, from(#292b33), color-stop(25%, rgba(41, 43, 51, 0.99)), to(rgba(41, 43, 51, 0.0001)));
-    background: -webkit-linear-gradient(bottom, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%);
-    background: -o-linear-gradient(bottom, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%);
-    background: linear-gradient(to top, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%); }
-  .dhr-episodeitem {
-    width: 49%;
-    float: left;
-    margin-right: 2%;
-    margin-bottom: 2%; }
-    .dhr-episodeitem:nth-child(even) {
-      margin-right: 0; } }
 
 .dhr-header {
   position: relative;
@@ -994,6 +898,8 @@ a.dhr-button {
       display: block;
       text-align: center;
       font-weight: bold; }
+      .dhr-header--menu ul > li.is-currentpage a {
+        color: #ffa700; }
       .dhr-header--menu ul > li a {
         display: block;
         color: #fff;
@@ -1293,6 +1199,107 @@ a.dhr-button {
         -ms-transform: scale(0.95);
             transform: scale(0.95); }
 
+.dhr-episodelist {
+  position: relative; }
+  .dhr-episodelist:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 12.5%;
+    background: #292b33; }
+
+.dhr-episodeitem {
+  position: relative;
+  margin-bottom: 5%; }
+  .dhr-episodeitem figure {
+    position: relative;
+    background: #292b33;
+    overflow: hidden;
+    border-radius: 10px; }
+    .dhr-episodeitem figure:after {
+      display: block;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(41, 43, 51, 0.65);
+      opacity: 1;
+      -webkit-transition: opacity .35s ease;
+      -o-transition: opacity .35s ease;
+      transition: opacity .35s ease;
+      mix-blend-mode: multiply; }
+    .dhr-episodeitem figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      opacity: 1;
+      -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      -o-transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); }
+  .dhr-episodeitem:not([class*="locked"]) a:hover figure:after {
+    opacity: 0.65; }
+  .dhr-episodeitem:not([class*="locked"]) a:hover figure img {
+    -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+            transform: scale(1.05); }
+  .dhr-episodeitem--content {
+    position: absolute;
+    z-index: 299;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    text-align: center; }
+    .dhr-episodeitem--content h4 {
+      font-family: "Proxima Nova", sans-serif;
+      margin: 0;
+      text-transform: uppercase;
+      color: #fff; }
+  .dhr-episodeitem--liner {
+    padding: 0 .5em .5em; }
+  .dhr-episodeitem--icon {
+    font-size: 1.7em; }
+  .dhr-episodeitem--activeborder {
+    display: block;
+    position: absolute;
+    z-index: 99;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: .5em;
+    height: .5em;
+    background: #ffa700; }
+  .dhr-episodeitem--locked .dhr-episodeitem--icon, .dhr-episodeitem--locked .dhr-episodeitem--activeborder {
+    display: none; }
+  .dhr-episodeitem--locked a {
+    cursor: default; }
+
+@media (min-width: 767px) {
+  .dhr-episodelist:before {
+    height: 90%;
+    background: -webkit-gradient(linear, left bottom, left top, from(#292b33), color-stop(25%, rgba(41, 43, 51, 0.99)), to(rgba(41, 43, 51, 0.0001)));
+    background: -webkit-linear-gradient(bottom, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%);
+    background: -o-linear-gradient(bottom, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%);
+    background: linear-gradient(to top, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%); }
+  .dhr-episodeitem {
+    width: 49%;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 2%; }
+    .dhr-episodeitem:nth-child(even) {
+      margin-right: 0; } }
+
 .dhr-testify--img {
   position: relative;
   z-index: 199;
@@ -1318,22 +1325,56 @@ a.dhr-button {
   margin: 0 0 1em;
   padding: 0; }
 
+.dhr-testify--social {
+  padding-top: 2em; }
+  .dhr-testify--social h5 {
+    color: #bfbfbf;
+    font-family: "Proxima Nova", sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .8em;
+    letter-spacing: 0.05em; }
+  .dhr-testify--social ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .dhr-testify--social ul li {
+      display: inline-block;
+      margin-right: .7em;
+      font-size: 1.3em; }
+    .dhr-testify--social ul a {
+      display: block;
+      color: #292b33;
+      -webkit-transition: color .3s ease;
+      -o-transition: color .3s ease;
+      transition: color .3s ease; }
+      .dhr-testify--social ul a:hover {
+        color: #2bace9; }
+
 @media (min-width: 767px) {
-  .dhr-testify--img {
-    width: 45%;
-    float: left; }
-  .dhr-testify--content {
-    width: 50%;
-    float: right;
+  .dhr-testify > .inner {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column; } }
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start; }
+  .dhr-testify--img {
+    width: 45%;
+    margin-bottom: 0;
+    margin-right: 5%; }
+  .dhr-testify--content {
+    width: 50%; }
+  .dhr-testify--wider .dhr-testify--img {
+    width: 50%; }
+  .dhr-testify--wider .dhr-testify--content {
+    width: 45%; } }
 
 .dhr-footer {
   position: relative;
@@ -1412,8 +1453,22 @@ a.dhr-button {
   height: 100%;
   background: #2bace9; }
   .dhr-contactmodal--top {
-    padding: 1em 0;
+    padding: 1.35em 0;
     background: #1591cc; }
+  .dhr-contactmodal--body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
 
 .dhr-contactomodal--close button {
   line-height: 1;
@@ -1432,15 +1487,25 @@ a.dhr-button {
     height: 1em;
     width: 1em;
     display: block;
-    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: -webkit-transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    -o-transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+    -webkit-transition: -webkit-transform .3s ease;
+    transition: -webkit-transform .3s ease;
+    -o-transition: transform .3s ease;
+    transition: transform .3s ease;
+    transition: transform .3s ease, -webkit-transform .3s ease; }
   .dhr-contactomodal--close button:hover i {
-    -webkit-transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-            transform: rotate(180deg); }
+    -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+            transform: scale(0.95); }
+
+.dhr-contactmodal--intro {
+  text-align: center;
+  color: #fff; }
+  .dhr-contactmodal--intro p a {
+    font-weight: bold;
+    color: #292b33; }
+
+.dhr-contactmodal--form {
+  text-align: center; }
 
 .has-carousel {
   padding-top: 6em;

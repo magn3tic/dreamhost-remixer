@@ -1,8 +1,6 @@
 
 
 .dhr-testify {
-	
-
 }
 
 
@@ -39,29 +37,68 @@
 }
 
 
+.dhr-testify--social {
+	padding-top: 2em;
+	h5 {
+		color: darken($white,25%);
+		font-family: $body-font-family;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: .8em;
+		letter-spacing: 0.05em;
+	}
+	ul {
+		list-style: none;
+		margin:0; padding:0;
+
+		li {
+			display: inline-block;
+			margin-right: .7em;
+			font-size: 1.3em;
+		}
+		a {
+			display: block;
+			color: $darkblue;
+			transition: color .3s ease;
+			&:hover {
+				color: $secondary;
+			}
+		}
+	}
+}
+
+
 
 
 @media (min-width:$bp-md) {
 
 	.dhr-testify {
 		> .inner {
-			// display: flex;
-			// align-items: center;
-			// justify-content: flex-start;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
 		}
 	}
 	
 	.dhr-testify--img {
 		width: 45%;
-		float: left;
+		margin-bottom: 0;
+		margin-right: 5%;
 	}
 	.dhr-testify--content {
 		width: 50%;
-		float: right;
-		display: flex;
-		flex-direction: column;
-		
 	}
+
+	.dhr-testify--wider {
+		
+		.dhr-testify--img {
+			width: 50%;
+		}
+		.dhr-testify--content {
+			width: 45%;
+		}
+	}
+
 
 }
 
