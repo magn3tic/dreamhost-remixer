@@ -63,15 +63,218 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
-/* 1 */
-/***/ (function(module, exports) {
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Duplicate declaration \"$siteheader\"\n\n\u001b[0m \u001b[90m 77 | \u001b[39m\n \u001b[90m 78 | \u001b[39m\u001b[90m// header behavior\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 79 | \u001b[39m\u001b[36mconst\u001b[39m $siteheader \u001b[33m=\u001b[39m $(\u001b[32m'#dhr-header'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 80 | \u001b[39m\n \u001b[90m 81 | \u001b[39mlet headerheight \u001b[33m=\u001b[39m $siteheader\u001b[33m.\u001b[39mouterHeight()\u001b[33m,\u001b[39m\n \u001b[90m 82 | \u001b[39m\t\theadertop \u001b[33m=\u001b[39m parseInt($siteheader\u001b[33m.\u001b[39mcss(\u001b[32m'top'\u001b[39m)) \u001b[33m+\u001b[39m scrollDiff\u001b[33m,\u001b[39m\u001b[0m\n");
+"use strict";
+
+
+__webpack_require__(1);
+
+//"globals"
+var $body = $('body'),
+    $window = $(window),
+    $siteheader = $('#dhr-header'),
+    $sitemain = $('#dhr-main'),
+    $sitefooter = $('#dhr-footer'); //plugins.min.js is loaded before the webpack bundle
+//it is a bundle of jquery & plugins because some don't yet support es6 module
+
+
+var easeOutBack = [0.175, 0.985, 0.35, 1.05];
+
+// wtf
+// $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
+// 	return [0.175, 0.885, 0.32, 1.275];
+// };
+
+
+// set hero sizes (one fallback / one necessary)
+var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
+    $fixedheroimg = $('.dhr-fixedhero--outer'),
+    $heroviewport = $('.dhr-hero'),
+    isFullheightHero = $fixedautoheight.length === 0;
+var setHeroSize = function setHeroSize() {
+	var heightToSet = isFullheightHero ? $window.height() : $heroviewport.outerHeight() + 105;
+	$fixedheroimg.css({ height: heightToSet + 'px' });
+};
+setHeroSize();
+$window.bind('resize load', setHeroSize);
+
+//animated scroll links
+var $scrollanchors = $('a[data-scroll]');
+
+$scrollanchors.click(function (e) {
+	e.preventDefault();
+	$($(this).attr('href')).velocity('scroll', { duration: 750, easing: easeOutBack });
+});
+
+// mobile nav toggle
+var $mainnav = $('#dhr-mainnav'),
+    $navtoggle = $('#dhr-menu-toggle');
+
+var mainNavOpen = false;
+
+$navtoggle.on('click', function (event) {
+	event.preventDefault();
+
+	//debounces clicks
+	if ($mainnav.hasClass('velocity-animating')) {
+		return;
+	}
+
+	if (mainNavOpen) {
+		$mainnav.velocity('slideUp', { duration: 400, easing: 'easeOutQuart', complete: function complete() {
+				$body.removeClass('dhr-is-mainnavshowing');
+			} });
+		mainNavOpen = false;
+	} else {
+		$mainnav.velocity('slideDown', { duration: 700, easing: 'easeOutQuart' });
+		$body.addClass('dhr-is-mainnavshowing');
+		mainNavOpen = true;
+	}
+});
+
+// header behavior
+
+// Already declared in `globals` above? <=====
+// const $siteheader = $('#dhr-header');
+
+var headerheight = $siteheader.outerHeight(),
+    headertop = parseInt($siteheader.css('top')) + scrollDiff,
+    winheight = $window.height(),
+    docheight = $(document).height(),
+    scrollBefore = 0,
+    scrollCurrent = 0,
+    scrollDiff = 0,
+    headerInView = true,
+    didScroll = false;
+
+var scrollUpdate = function scrollUpdate() {
+	headerheight = $siteheader.outerHeight().toFixed(2);
+	winheight = $window.height();
+	scrollCurrent = $(window).scrollTop();
+	scrollDiff = scrollBefore - scrollCurrent;
+	headertop = parseInt($siteheader.css('top')) + scrollDiff;
+},
+    resizeUpdate = function resizeUpdate() {
+	//update everything that needs recalc when window resizes
+};
+
+var ticker = function ticker() {
+	if (didScroll) {
+		scrollUpdate();
+
+		if (scrollCurrent <= 0) {
+			//if back at window top
+			$siteheader.css('top', 0).addClass('at-page-top');
+		} else if (scrollDiff > 0) {
+			//back up from downscroll
+			$siteheader.css('top', headertop > 0 ? 0 : headertop);
+
+			if (scrollCurrent > headerheight + 30) {
+				$siteheader.removeClass('at-page-top');
+			}
+		} else if (scrollDiff < 0) {
+			if (scrollCurrent + winheight >= docheight - headerheight) {
+				//just reached page bottom
+				$siteheader.css('top', (headertop = scrollCurrent + winheight - docheight) < 0 ? headertop : 0);
+				$siteheader.removeClass('at-page-top');
+			} else {
+				//$siteheader.removeClass('at-page-top');
+				$siteheader.css('top', Math.abs(headertop) > headerheight ? -headerheight : headertop);
+			}
+		}
+		scrollBefore = scrollCurrent;
+
+		didScroll = false;
+	}
+	requestAnimationFrame(ticker);
+};
+
+ticker.call();
+$window.resize(scrollUpdate);
+$window.scroll(function () {
+	return didScroll = true;
+});
+
+// Contact Modal
+var $modaltrigger = $('a[href="#contact"]'),
+    $modalclose = $('#dhr-modalclose'),
+    $modal = $('#dhr-contactmodal'),
+    $modalbody = $('.dhr-contactmodal--body'),
+    $modaltop = $('.dhr-contactmodal--top'),
+    $maincontent = $('#dhr-main');
+
+//opening
+$modaltrigger.on('click', function () {
+	$modalbody.css({ height: ($window.height() - $modaltop.outerHeight()) * 0.87 });
+	$modal.velocity({
+		translateY: ['0%', '-100%']
+	}, {
+		duration: 750,
+		display: 'block',
+		easing: easeOutBack
+	});
+	// $maincontent.velocity({
+	// 	translateY: $window.height()*0.9
+	// }, {
+	// 	easing: easeOutBack,
+	// 	duration: 750
+	// });
+	$body.addClass('is-showing-contactmodal');
+});
+
+//closing
+$modalclose.on('click', function () {
+	$modal.velocity({
+		translateY: ['100%', '0%']
+	}, {
+		duration: 250,
+		display: 'none',
+		complete: function complete() {
+			return $body.removeClass('is-showing-contactmodal');
+		}
+	});
+	// $maincontent.velocity({
+	// 	translateY: 0
+	// }, {
+	// 	duration: 0
+	// });
+});
+
+$window.resize(function () {
+	return $modalbody.css({ height: $window.height() - $modaltop.outerHeight() - 5 });
+});
+
+if (window.location.hash === '#contact') {
+	$modaltrigger.trigger('click');
+}
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var $f = exports.$f = {
+	carousel: $('.dhr-episode-carousel'),
+	isOpen: false
+};
+
+$f.carousel.flickity({
+	cellAlign: "left",
+	cellSelector: ".cell-img",
+	prevNextButtons: false,
+	contain: true
+});
 
 /***/ })
 /******/ ]);

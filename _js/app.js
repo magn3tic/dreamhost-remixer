@@ -76,7 +76,9 @@ $navtoggle.on('click', (event) => {
 
 
 // header behavior
-const $siteheader = $('#dhr-header');
+
+// Already declared in `globals` above? <=====
+// const $siteheader = $('#dhr-header');
 
 let headerheight = $siteheader.outerHeight(),
 		headertop = parseInt($siteheader.css('top')) + scrollDiff,
