@@ -1575,7 +1575,21 @@ a.dhr-button, button.dhr-button {
   .slider-overlay-container {
     position: relative;
     padding-top: 3em;
-    padding-bottom: 3em; } }
+    padding-bottom: 3em; }
+  .flickity-page-dots {
+    width: 2.5em;
+    left: -15%;
+    bottom: 50%; }
+    .flickity-page-dots .dot {
+      display: block;
+      float: right;
+      border-radius: 0;
+      height: 1px;
+      width: 1em;
+      margin-top: .65em; }
+    .flickity-page-dots .is-selected {
+      height: 2px;
+      width: 2.5em; } }
 
 .dhr-image-overlay--right {
   position: absolute;
@@ -1590,10 +1604,12 @@ a.dhr-button, button.dhr-button {
   pointer-events: none; }
 
 .dhr-next-episode--anchor {
-  padding-top: 4em;
-  padding-bottom: 4em;
   position: relative;
   overflow: hidden; }
+  .dhr-next-episode--anchor:hover .next-episode-bg {
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1); }
 
 .next-episode-bg {
   position: absolute;
@@ -1604,7 +1620,10 @@ a.dhr-button, button.dhr-button {
   z-index: -3;
   background-image: url("../img/next-episode-bg.jpg");
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out; }
 
 .light-mark-under, .dark-mark-over {
   position: absolute;

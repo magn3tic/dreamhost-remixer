@@ -70,4 +70,21 @@
     padding-top: 3em;
     padding-bottom: 3em;
   }
+  .flickity-page-dots {
+    width: 2.5em;
+    left: -15%;
+    bottom: 50%;
+    .dot {
+      display: block;
+      float: right;
+      border-radius: 0;
+      height: 1px;
+      width: 1em;
+      margin-top: .65em;
+    }
+    .is-selected {
+      height: 2px;
+      width: 2.5em;
+    }
+  }
 }

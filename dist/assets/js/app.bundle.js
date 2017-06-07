@@ -80,25 +80,6 @@ var $f = exports.$f = {
 	carousel: $('.dhr-episode-carousel'),
 	isOpen: false
 };
-<<<<<<< HEAD
-
-$f.carousel.flickity({
-	cellAlign: "left",
-	cellSelector: ".cell-img",
-	prevNextButtons: false,
-	contain: true
-});
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _sliders = __webpack_require__(0);
-=======
->>>>>>> 322c5445201e3333274bae951efc9828467afab3
 
 $f.carousel.flickity({
 	cellAlign: "left",
@@ -273,8 +254,6 @@ $modalclose.on('click', function () {
 	// });
 });
 
-<<<<<<< HEAD
-=======
 $window.resize(function () {
 	return $modalbody.css({ height: $window.height() - $modaltop.outerHeight() - 5 });
 });
@@ -283,6 +262,5 @@ if (window.location.hash === '#contact') {
 	$modaltrigger.trigger('click');
 }
 
->>>>>>> 322c5445201e3333274bae951efc9828467afab3
 /***/ })
 /******/ ]);
