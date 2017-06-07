@@ -7,7 +7,10 @@ import './sliders.js';
 
 //"globals"
 const $body = $('body'),
-			$window = $(window);
+			$window = $(window),
+			$siteheader = $('#dhr-header'),
+			$sitemain = $('#dhr-main'),
+			$sitefooter = $('#dhr-footer');
 const easeOutBack = [0.175, 0.985, 0.35, 1.05];
 
 
