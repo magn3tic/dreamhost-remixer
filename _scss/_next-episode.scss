@@ -50,12 +50,11 @@
 
 
 .next-episode--content {
-  width: 50%;
-  margin: auto;
   text-align: center;
-  p {
+  .play-now {
     color: $white;
     i {
+      vertical-align: middle;
       font-size: 2em;
       color: $primary;
       padding-left: 1em;

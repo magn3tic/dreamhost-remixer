@@ -1807,12 +1807,11 @@ html.no-generatedcontent a:hover {
     mix-blend-mode: multiply; }
 
 .next-episode--content {
-  width: 50%;
-  margin: auto;
   text-align: center; }
-  .next-episode--content p {
+  .next-episode--content .play-now {
     color: #fff; }
-    .next-episode--content p i {
+    .next-episode--content .play-now i {
+      vertical-align: middle;
       font-size: 2em;
       color: #ffa700;
       padding-left: 1em;
