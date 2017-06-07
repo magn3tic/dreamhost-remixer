@@ -31,7 +31,8 @@ const PATHS = {
 		'node_modules/jquery/dist/jquery.min.js',
 		'node_modules/velocity-animate/velocity.min.js',
 		'node_modules/velocity-animate/velocity.ui.min.js',
-		'node_modules/flickity/dist/flickity.pkgd.min.js'
+		'node_modules/flickity/dist/flickity.pkgd.min.js',
+		'node_modules/odometer/odometer.min.js'
 	],
 
 	//file to hot-reload/inject changes from

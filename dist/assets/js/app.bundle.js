@@ -63,11 +63,106 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var $lockedepisodes = $('.dhr-episodeitem--locked'),
+    cdSec = 1000,
+    cdMin = cdSec * 60,
+    cdHr = cdMin * 60,
+    cdDay = cdHr * 24;
+
+var currentdate = new Date(),
+    currentepoch = currentdate.getTime();
+
+//new time every second
+window.setInterval(function () {
+	currentdate = new Date();
+	currentepoch = currentdate.getTime();
+	$(document).trigger('clocktick');
+}, 1000);
+
+//helpers
+var doHtmlUpdate = function doHtmlUpdate($html, until) {
+	var divisions = Object.keys(until);
+	for (var i = 0; i < divisions.length; i++) {
+		$html[divisions[i]].text(until[divisions[i]]);
+	}
+};
+var digitPrefixer = function digitPrefixer(digit) {
+	var strdigit = digit.toString(),
+	    result = strdigit.length > 1 ? strdigit : '0' + strdigit;
+	//console.log(result);
+	return result;
+};
+
+//go through each locked episode
+$lockedepisodes.each(function (index, item) {
+
+	var $this = $(item),
+	    $countdown = $this.find('[data-countdown]'),
+	    unlockepoch = parseInt($countdown.data('countdown')),
+	    unlocktime = new Date(unlockepoch),
+	    $html = {
+		days: $countdown.find('[data-countdown-days] .dhr-countdown--num'),
+		hours: $countdown.find('[data-countdown-hours] .dhr-countdown--num'),
+		mins: $countdown.find('[data-countdown-mins] .dhr-countdown--num'),
+		sec: $countdown.find('[data-countdown-sec] .dhr-countdown--num')
+	};
+
+	var timeDiff = unlockepoch - currentepoch,
+	    until = {
+		days: digitPrefixer(Math.floor(timeDiff / cdDay)),
+		hours: digitPrefixer(Math.floor(timeDiff % cdDay / cdHr)),
+		mins: digitPrefixer(Math.floor(timeDiff % cdHr / cdMin)),
+		sec: digitPrefixer(Math.floor(timeDiff % cdMin / cdSec))
+	};
+
+	doHtmlUpdate($html, until);
+
+	//every second
+	$(document).on('clocktick', function () {
+		timeDiff = unlockepoch - currentepoch;
+		until.days = digitPrefixer(Math.floor(timeDiff / cdDay));
+		until.hours = digitPrefixer(Math.floor(timeDiff % cdDay / cdHr));
+		until.mins = digitPrefixer(Math.floor(timeDiff % cdHr / cdMin));
+		until.sec = digitPrefixer(Math.floor(timeDiff % cdMin / cdSec));
+		doHtmlUpdate($html, until);
+	});
+
+	$this.click(function (event) {
+		return event.preventDefault();
+	}).addClass('is-countdownstarted');
+});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+						value: true
+});
+
+//"globals"
+var $body = exports.$body = $('body'),
+    $window = exports.$window = $(window),
+    $siteheader = exports.$siteheader = $('#dhr-header'),
+    $sitemain = exports.$sitemain = $('#dhr-main'),
+    $sitefooter = exports.$sitefooter = $('#dhr-footer'),
+    easeOutBack = exports.easeOutBack = [0.175, 0.985, 0.35, 1.05];
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89,17 +184,17 @@ $f.carousel.flickity({
 });
 
 /***/ }),
-/* 1 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+__webpack_require__(2);
+
 __webpack_require__(0);
 
-__webpack_require__(3);
-
-var _globals = __webpack_require__(2);
+var _globals = __webpack_require__(1);
 
 // wtf
 // $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
@@ -270,67 +365,6 @@ _globals.$window.resize(function () {
 if (window.location.hash === '#contact') {
 	$modaltrigger.trigger('click');
 }
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-						value: true
-});
-
-//"globals"
-var $body = exports.$body = $('body'),
-    $window = exports.$window = $(window),
-    $siteheader = exports.$siteheader = $('#dhr-header'),
-    $sitemain = exports.$sitemain = $('#dhr-main'),
-    $sitefooter = exports.$sitefooter = $('#dhr-footer'),
-    easeOutBack = exports.easeOutBack = [0.175, 0.985, 0.35, 1.05];
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var $lockedepisodes = $('.dhr-episodeitem--locked');
-
-var currentdate = new Date(),
-    currentepoch = currentdate.getTime();
-
-var cdSec = 1000,
-    cdMin = cdSec * 60,
-    cdHr = cdMin * 60,
-    cdDay = cdHr * 24;
-
-var doTimeUpdate = function doTimeUpdate($html) {};
-
-$lockedepisodes.each(function (index, item) {
-
-			var $this = $(item),
-			    $countdown = $this.find('[data-countdown]'),
-			    unlockepoch = parseInt($countdown.data('countdown')),
-			    unlocktime = new Date(unlockepoch),
-			    $html = {
-						days: $countdown.find('[data-countdown-days]'),
-						hours: $countdown.find('[data-countdown-hours]'),
-						mins: $countdown.find('[data-countdown-mins]')
-			};
-
-			var timeDiff = unlockepoch - currentepoch;
-
-			var daysTil = Math.floor(timeDiff / cdDay);
-
-			console.log(daysTil);
-
-			$this.click(function (event) {
-						return event.preventDefault();
-			}).addClass('is-countdownstarted');
-});
 
 /***/ })
 /******/ ]);

@@ -624,6 +624,81 @@ http://flickity.metafizzy.co
 .flickity-page-dots .dot.is-selected {
   opacity: 1; }
 
+.odometer.odometer-auto-theme, .odometer.odometer-theme-minimal {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  position: relative; }
+
+.odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-minimal .odometer-digit {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  position: relative; }
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-minimal .odometer-digit .odometer-digit-spacer {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  visibility: hidden; }
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-minimal .odometer-digit .odometer-digit-inner {
+  text-align: left;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden; }
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-minimal .odometer-digit .odometer-ribbon {
+  display: block; }
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-minimal .odometer-digit .odometer-ribbon-inner {
+  display: block;
+  -webkit-backface-visibility: hidden; }
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-minimal .odometer-digit .odometer-value {
+  display: block;
+  -webkit-transform: translateZ(0); }
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-minimal .odometer-digit .odometer-value.odometer-last-value {
+  position: absolute; }
+
+.odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-minimal.odometer-animating-up .odometer-ribbon-inner {
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+.odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-minimal.odometer-animating-up.odometer-animating .odometer-ribbon-inner {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%); }
+
+.odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-minimal.odometer-animating-down .odometer-ribbon-inner {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%); }
+
+.odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-minimal.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0); }
+
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
@@ -703,7 +778,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: auto; }
 
 .inner-large {
-  max-width: 60em;
+  max-width: 58em;
   margin-right: auto;
   margin-left: auto; }
 
@@ -932,11 +1007,6 @@ a.dhr-button, button.dhr-button {
     background: #2bace9; }
   .dhr-baseplate--dark {
     background: #34363d; }
-
-.dhr-form--inner {
-  max-width: 992px;
-  margin-right: auto;
-  margin-left: auto; }
 
 .dhr-formfield input[type="email"], .dhr-formfield input[type="text"] {
   -webkit-appearance: none;
@@ -1328,8 +1398,12 @@ a.dhr-button, button.dhr-button {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 12.5%;
-    background: #292b33; }
+    height: 33%;
+    background: #292b33;
+    background: -webkit-gradient(linear, left bottom, left top, from(#292b33), color-stop(25%, rgba(41, 43, 51, 0.99)), to(rgba(41, 43, 51, 0.0001)));
+    background: -webkit-linear-gradient(bottom, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%);
+    background: -o-linear-gradient(bottom, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%);
+    background: linear-gradient(to top, #292b33 0%, rgba(41, 43, 51, 0.99) 25%, rgba(41, 43, 51, 0.0001) 100%); }
 
 .dhr-episodeitem {
   position: relative;
@@ -1395,8 +1469,8 @@ a.dhr-button, button.dhr-button {
     position: absolute;
     z-index: 99;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 1%;
+    width: 98%;
     border-radius: .5em;
     height: .5em;
     background: #ffa700; }
@@ -1413,7 +1487,7 @@ a.dhr-button, button.dhr-button {
 .dhr-countdown--outer {
   position: relative;
   display: inline-block;
-  padding: 1em 0.8em;
+  padding: 1em 0.8em 1.5em;
   line-height: 1.3;
   color: #fff; }
 
@@ -1439,7 +1513,7 @@ a.dhr-button, button.dhr-button {
 
 .dhr-countdown--border {
   position: absolute;
-  bottom: .5em;
+  bottom: 1em;
   left: 0;
   width: 100%;
   height: 2px;
@@ -1459,6 +1533,14 @@ a.dhr-button, button.dhr-button {
     margin-bottom: 2%; }
     .dhr-episodeitem:nth-child(even) {
       margin-right: 0; } }
+
+@media (min-width: 992px) {
+  .dhr-countdown--num {
+    font-size: 1.35em; } }
+
+@media (min-width: 1199px) {
+  .dhr-countdown--num {
+    font-size: 1.6em; } }
 
 .dhr-testify--img {
   position: relative;
@@ -1539,6 +1621,8 @@ a.dhr-button, button.dhr-button {
 .dhr-footer {
   position: relative;
   background: #292b33; }
+  .dhr-footer > .inner {
+    position: relative; }
   .dhr-footer--social {
     padding: 1em 0 2em; }
     .dhr-footer--social ul {
@@ -1557,6 +1641,7 @@ a.dhr-button, button.dhr-button {
       width: auto; }
 
 .dhr-footer--content {
+  text-align: center;
   padding: 8em 0 4em; }
 
 .dhr-footer--headline h2 {
@@ -1568,7 +1653,15 @@ a.dhr-button, button.dhr-button {
     position: relative; }
   .dhr-footer--form input[type="email"], .dhr-footer--form input[type="text"] {
     height: 2em;
-    font-size: 1.2em; }
+    font-size: 1.2em;
+    color: #fff; }
+    .dhr-footer--form input[type="email"]:focus + .dhr-footer--emailborder, .dhr-footer--form input[type="text"]:focus + .dhr-footer--emailborder {
+      -webkit-transform: scale(1, 1);
+          -ms-transform: scale(1, 1);
+              transform: scale(1, 1);
+      -webkit-transform-origin: left center;
+          -ms-transform-origin: left center;
+              transform-origin: left center; }
     .dhr-footer--form input[type="email"]::-webkit-input-placeholder, .dhr-footer--form input[type="text"]::-webkit-input-placeholder {
       color: #494b52; }
     .dhr-footer--form input[type="email"]::-moz-placeholder, .dhr-footer--form input[type="text"]::-moz-placeholder {
@@ -1577,6 +1670,26 @@ a.dhr-button, button.dhr-button {
       color: #494b52; }
     .dhr-footer--form input[type="email"]:-moz-placeholder, .dhr-footer--form input[type="text"]:-moz-placeholder {
       color: #494b52; }
+
+.dhr-footer--emailborder {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #91a2b6;
+  -webkit-transform-origin: right center;
+      -ms-transform-origin: right center;
+          transform-origin: right center;
+  -webkit-transform: scale(0, 1);
+      -ms-transform: scale(0, 1);
+          transform: scale(0, 1);
+  -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); }
 
 .dhr-footer--submit {
   -webkit-appearance: none;
@@ -1591,13 +1704,29 @@ a.dhr-button, button.dhr-button {
   bottom: 2px;
   right: 0;
   background: #292b33;
-  padding-right: 0;
-  padding-left: 0; }
+  padding: .35em;
+  -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: -webkit-transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
   .dhr-footer--submit svg {
-    width: 2.5em;
-    height: 1.5em; }
+    width: 2.2em;
+    height: 1.2em;
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+    -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: -webkit-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     .dhr-footer--submit svg path {
       fill: #ffa700; }
+  .dhr-footer--submit:hover svg {
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1); }
 
 .dhr-footer--copyright h5, .dhr-footer--copyright p {
   font-family: "Proxima Nova", sans-serif;
@@ -1605,7 +1734,8 @@ a.dhr-button, button.dhr-button {
   color: #91a2b6; }
 
 .dhr-footer--copyright h5 {
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  margin-bottom: .2em; }
 
 .dhr-footer--backtop {
   margin-bottom: 2em; }
@@ -1628,9 +1758,9 @@ a.dhr-button, button.dhr-button {
       opacity: 0;
       width: 0;
       visibility: hidden;
-      -webkit-transition: all .3s ease;
-      -o-transition: all .3s ease;
-      transition: all .3s ease; }
+      -webkit-transition: width .3s ease;
+      -o-transition: width .3s ease;
+      transition: width .3s ease; }
     .dhr-footer--backtop a:hover:after {
       visibility: visible;
       width: 100%;
@@ -1639,9 +1769,44 @@ a.dhr-button, button.dhr-button {
 html.no-generatedcontent a:hover {
   color: #ffa700; }
 
+@media (min-width: 580px) {
+  .dhr-footer--form input[type="text"], .dhr-footer--form input[type="email"] {
+    text-align: center;
+    font-size: 1.4em; }
+    .dhr-footer--form input[type="text"]:focus ~ .dhr-footer--submit, .dhr-footer--form input[type="email"]:focus ~ .dhr-footer--submit {
+      -webkit-transform: translateX(-1em);
+          -ms-transform: translateX(-1em);
+              transform: translateX(-1em); }
+  .dhr-footer--submit {
+    padding: .45em; } }
+
 @media (min-width: 767px) {
   .dhr-footer--content {
-    text-align: center; } }
+    text-align: center; }
+  .dhr-footer--form input[type="text"], .dhr-footer--form input[type="email"] {
+    font-size: 1.7em; }
+    .dhr-footer--form input[type="text"]:focus ~ .dhr-footer--submit, .dhr-footer--form input[type="email"]:focus ~ .dhr-footer--submit {
+      -webkit-transform: translateX(-1.5em);
+          -ms-transform: translateX(-1.5em);
+              transform: translateX(-1.5em); }
+  .dhr-footer--submit {
+    padding: .7em; } }
+
+@media (min-width: 1199px) {
+  .dhr-footer--form input[type="text"]:focus ~ .dhr-footer--submit, .dhr-footer--form input[type="email"]:focus ~ .dhr-footer--submit {
+    -webkit-transform: translateX(-2.5em);
+        -ms-transform: translateX(-2.5em);
+            transform: translateX(-2.5em); }
+  .dhr-footer--copyright h5 {
+    font-size: 1.45em; } }
+
+@media (min-width: 1440px) {
+  .dhr-footer--backtop {
+    margin: 0;
+    position: absolute;
+    right: 0; }
+  .dhr-footer--social {
+    padding-top: 2em; } }
 
 .dhr-contactmodal {
   display: none;
