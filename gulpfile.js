@@ -32,6 +32,7 @@ const PATHS = {
 		'node_modules/velocity-animate/velocity.min.js',
 		'node_modules/velocity-animate/velocity.ui.min.js',
 		'node_modules/flickity/dist/flickity.pkgd.min.js',
+		'node_modules/skrollr/dist/skrollr.min.js',
 		'node_modules/odometer/odometer.min.js'
 	],
 

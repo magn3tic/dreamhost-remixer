@@ -10,6 +10,12 @@
 					<i class="icon-cancel" aria-hidden="true"></i>
 				</button>
 			</div>
+
+			<div class="dhr-contactmodal--logo">
+				<a href="/">
+					{{> logo-svg id='contactmodal-logo-svg'}}
+				</a>
+			</div>
 		</div>
 	</div>
 	
@@ -17,9 +23,9 @@
 		<div class="inner">
 
 			<div class="dhr-contactmodal--intro">
-				<div class="inner-medium">
-					<h5>Contact Us</h5>
-					<h2>Help is just a click away</h2>
+				<div class="inner-small">
+					<h5 class="dhr-preheadline">Contact Us</h5>
+					<h2 class="dhr-sectionheadline">Help is just a click away</h2>
 					<p>We don't outsource. DreamHost employees are...DreamHost employees!  If you're already a customer, contact support through your <a href="#0">control panel</a>.</p>
 				</div>
 			</div>
@@ -27,20 +33,21 @@
 			<div class="dhr-contactmodal--form">
 				<form id="dhr-contact-form" class="dhr-inlineform" action="">
 					<p>
-						<span>Hello, my name is</span>
+						<span class="dhr-inlineform--word">Hello, my name is</span>
 						<span class="dhr-inlineform--input">
 							<input type="text" placeholder="First Name">
 						</span>
 						<span class="dhr-inlineform--input">
 							<input type="text" placeholder="Last Name">
 						</span>
-						<span>,from</span>
+						<span class="dhr-inlineform--word">,from</span>
 						<span class="dhr-inlineform--input">
 							<input type="text" placeholder="Company Name">
 						</span>
+						<span class="dhr-inlineform--word">.</span>
 					</p>
 					<p>
-						<span>I would like to contact</span>
+						<span class="dhr-inlineform--word">I would like to contact</span>
 						<span class="dhr-inlineform--input">
 							<select name="" id="">
 								<option value="">-- Select One</option>
@@ -48,20 +55,21 @@
 								<option value="">Support</option>
 							</select>	
 						</span>
-						<span>regarding</span>
+						<span class="dhr-inlineform--word">regarding</span>
 						<span class="dhr-inlineform--input">
 							<input type="text" placeholder="Briefly write your question">
 						</span>
 					</p>
 					<p>
-						<span>You can reach me at</span>
+						<span class="dhr-inlineform--word">You can reach me at</span>
 						<span class="dhr-inlineform--input">
 							<input type="email" placeholder="Email Address">
 						</span>
-						<span>or call</span>
+						<span class="dhr-inlineform--word">or call</span>
 						<span class="dhr-inlineform--input">
 							<input type="tel" placeholder="Phone Number">
 						</span>
+						<span>Talk to you soon!</span>
 					</p>
 					<div class="dhr-contactmodal--btns">
 						<button type="submit" class="dhr-button">Send Your Question</button>
@@ -70,9 +78,7 @@
 			</div>
 
 			<div class="dhr-contactmodal--social">
-				<ul>
-					
-				</ul>
+				{{> social-icons}}
 			</div>
 
 		</div>

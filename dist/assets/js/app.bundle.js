@@ -63,11 +63,104 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+						value: true
+});
+
+//"globals"
+var $body = exports.$body = $('body'),
+    $window = exports.$window = $(window),
+    $siteheader = exports.$siteheader = $('#dhr-header'),
+    $sitemain = exports.$sitemain = $('#dhr-main'),
+    $sitefooter = exports.$sitefooter = $('#dhr-footer'),
+    easeOutBack = exports.easeOutBack = [0.0755, 0.985, 0.325, 1.07];
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _globals = __webpack_require__(0);
+
+// Contact Modal
+var $modaltrigger = $('a[href="#contact"]'),
+    $modalclose = $('#dhr-modalclose'),
+    $modal = $('#dhr-contactmodal'),
+    $modalbody = $('.dhr-contactmodal--body'),
+    $modaltop = $('.dhr-contactmodal--top'),
+    $maincontent = $('#dhr-main'),
+    $fixedhero = $('.dhr-fixedhero'),
+    $movecontents = $maincontent.add($fixedhero).add(_globals.$sitefooter),
+    $modalstaggeritems = $('.dhr-contactmodal--intro h5, .dhr-contactmodal--intro h2, .dhr-contactmodal--intro p, .dhr-contactmodal--form p, .dhr-contactmodal--btns, .dhr-contactmodal--social');
+
+//$modalstaggeritems.css({display:'none',opacity:0});
+
+//opening
+$modaltrigger.on('click', function (e) {
+	e.preventDefault();
+	$modalbody.css({ height: (_globals.$window.height() - $modaltop.outerHeight()) * 0.87 });
+	$modal.velocity({
+		translateY: ['0%', '-100%']
+	}, {
+		duration: 600,
+		display: 'block',
+		easing: _globals.easeOutBack
+	});
+	$modalstaggeritems.velocity('transition.slideDownIn', { stagger: 90, drag: true, duration: 350 });
+	$movecontents.velocity({
+		translateY: _globals.$window.height()
+	}, {
+		easing: _globals.easeOutBack,
+		duration: 600
+	});
+
+	_globals.$body.addClass('is-showing-contactmodal');
+});
+
+//closing
+$modalclose.on('click', function () {
+	$modal.velocity({
+		translateY: ['-100%', '0%']
+	}, {
+		duration: 350,
+		display: 'none',
+		easing: 'easeOutCirc',
+		complete: function complete() {
+			_globals.$body.removeClass('is-showing-contactmodal');
+			//$modalstaggeritems.css({display:'none'});
+		}
+	});
+	//$modalstaggeritems.velocity('transition.fadeOut', {duration:100})
+	$movecontents.velocity({
+		translateY: 0
+	}, {
+		easing: 'easeOutCirc',
+		duration: 350
+	});
+});
+
+_globals.$window.resize(function () {
+	return $modalbody.css({ height: _globals.$window.height() - $modaltop.outerHeight() - 5 });
+});
+
+if (window.location.hash === '#contact') {
+	$modaltrigger.trigger('click');
+}
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -143,26 +236,34 @@ $lockedepisodes.each(function (index, item) {
 });
 
 /***/ }),
-/* 1 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-						value: true
+var _globals = __webpack_require__(0);
+
+var $transitionlinks = $('a[data-page-transition]');
+
+$transitionlinks.click(function (event) {
+	event.preventDefault();
+
+	var href = $(this).attr('href');
+
+	_globals.$body.addClass('is-pagetransitioning').velocity('scroll', { duration: 500 });
+
+	setTimeout(function () {
+		window.location.replace(href);
+	}, 500);
 });
 
-//"globals"
-var $body = exports.$body = $('body'),
-    $window = exports.$window = $(window),
-    $siteheader = exports.$siteheader = $('#dhr-header'),
-    $sitemain = exports.$sitemain = $('#dhr-main'),
-    $sitefooter = exports.$sitefooter = $('#dhr-footer'),
-    easeOutBack = exports.easeOutBack = [0.175, 0.985, 0.35, 1.05];
+_globals.$window.on('load', function () {
+	_globals.$body.addClass('is-fullyloaded');
+});
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -184,17 +285,21 @@ $f.carousel.flickity({
 });
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+__webpack_require__(4);
+
 __webpack_require__(2);
 
-__webpack_require__(0);
+__webpack_require__(3);
 
-var _globals = __webpack_require__(1);
+__webpack_require__(1);
+
+var _globals = __webpack_require__(0);
 
 // wtf
 // $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
@@ -310,61 +415,6 @@ _globals.$window.resize(scrollUpdate);
 _globals.$window.scroll(function () {
 	return didScroll = true;
 });
-
-// Contact Modal
-var $modaltrigger = $('a[href="#contact"]'),
-    $modalclose = $('#dhr-modalclose'),
-    $modal = $('#dhr-contactmodal'),
-    $modalbody = $('.dhr-contactmodal--body'),
-    $modaltop = $('.dhr-contactmodal--top'),
-    $maincontent = $('#dhr-main'),
-    $fixedhero = $('.dhr-fixedhero');
-
-//opening
-$modaltrigger.on('click', function (e) {
-	e.preventDefault();
-	$modalbody.css({ height: (_globals.$window.height() - $modaltop.outerHeight()) * 0.87 });
-	$modal.velocity({
-		translateY: ['0%', '-100%']
-	}, {
-		duration: 750,
-		display: 'block',
-		easing: _globals.easeOutBack
-	});
-	$maincontent.velocity({
-		scale: 0.85
-	}, {
-		easing: _globals.easeOutBack,
-		duration: 250
-	});
-	_globals.$body.addClass('is-showing-contactmodal');
-});
-
-//closing
-$modalclose.on('click', function () {
-	$modal.velocity({
-		translateY: ['100%', '0%']
-	}, {
-		duration: 250,
-		display: 'none',
-		complete: function complete() {
-			return _globals.$body.removeClass('is-showing-contactmodal');
-		}
-	});
-	$maincontent.velocity({
-		scale: 1
-	}, {
-		duration: 200
-	});
-});
-
-_globals.$window.resize(function () {
-	return $modalbody.css({ height: _globals.$window.height() - $modaltop.outerHeight() - 5 });
-});
-
-if (window.location.hash === '#contact') {
-	$modaltrigger.trigger('click');
-}
 
 /***/ })
 /******/ ]);

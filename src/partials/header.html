@@ -5,7 +5,7 @@
 			
 			<div class="dhr-header--brand">
 				<a href="/">
-					<span class="site-header--logo">{{> logo-svg}}</span>
+					<span class="site-header--logo">{{> logo-svg id='dhr-logosvg'}}</span>
 				</a>
 				<div class="dhr-header--navtoggle">
 					<button id="dhr-menu-toggle">Menu</button>
@@ -15,10 +15,10 @@
 			<nav id="dhr-mainnav" class="dhr-header--menu">
 				<ul>
 					<li class="{{#compare current_page_name 'index' operator='==='}}is-currentpage{{/compare}}">
-						<a href="/">Episodes</a>
+						<a data-page-transition href="/">Episodes</a>
 					</li>
 					<li class="{{#compare current_page_name 'features' operator='==='}}is-currentpage{{/compare}}">
-						<a href="/features.html">Features</a>
+						<a data-page-transition href="/features.html">Features</a>
 					</li>
 					<li>
 						<a href="#contact">Contact</a>

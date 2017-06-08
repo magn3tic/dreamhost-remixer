@@ -4,6 +4,8 @@
 
 import './sliders.js';
 import './countdown.js';
+import './pageload-sequence.js';
+import './contact-modal.js';
 
 
 import {$body, $window, $siteheader, $sitemain, $sitefooter, easeOutBack} from './globals.js';
@@ -135,53 +137,4 @@ $window.scroll(() => didScroll = true);
 
 
 
-// Contact Modal
-const $modaltrigger = $('a[href="#contact"]'),
-			$modalclose = $('#dhr-modalclose'),
-			$modal = $('#dhr-contactmodal'),
-			$modalbody = $('.dhr-contactmodal--body'),
-			$modaltop = $('.dhr-contactmodal--top'),
-			$maincontent = $('#dhr-main'),
-			$fixedhero = $('.dhr-fixedhero');
 
-//opening
-$modaltrigger.on('click', (e) => {
-	e.preventDefault();
-	$modalbody.css({height: ($window.height()-$modaltop.outerHeight())*0.87 });
-	$modal.velocity({
-		translateY: ['0%', '-100%']
-	}, {
-		duration: 750,
-		display: 'block',
-		easing: easeOutBack
-	});
-	$maincontent.velocity({
-		scale: 0.85
-	}, {
-		easing: easeOutBack,
-		duration: 250
-	});
-	$body.addClass('is-showing-contactmodal');
-});
-
-//closing
-$modalclose.on('click', () => {
-	$modal.velocity({
-		translateY: ['100%', '0%']
-	}, {
-		duration: 250,
-		display: 'none',
-		complete: () => $body.removeClass('is-showing-contactmodal')
-	});
-	$maincontent.velocity({
-		scale: 1
-	}, {
-		duration: 200
-	});
-});
-
-$window.resize(() => $modalbody.css({height:$window.height()-$modaltop.outerHeight()-5}));
-
-if (window.location.hash === '#contact') {
-	$modaltrigger.trigger('click');
-}

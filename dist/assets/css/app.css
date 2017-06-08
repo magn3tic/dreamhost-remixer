@@ -1836,8 +1836,19 @@ html.no-generatedcontent a:hover {
   height: 100%;
   background: #2bace9; }
   .dhr-contactmodal--top {
-    padding: 1.35em 0;
-    background: #1591cc; }
+    padding: 1.4em 0;
+    background: #2592c6; }
+    .dhr-contactmodal--top:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -10em;
+      left: 0;
+      height: 10em;
+      width: 100%;
+      background: #2592c6; }
+    .dhr-contactmodal--top > .inner {
+      position: relative; }
   .dhr-contactmodal--body {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1851,44 +1862,123 @@ html.no-generatedcontent a:hover {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
         -ms-flex-pack: center;
-            justify-content: center; }
+            justify-content: center;
+    min-height: 650px; }
 
-.dhr-contactomodal--close button {
-  line-height: 1;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-  border: none;
-  background: none;
-  outline: none;
-  padding: 0;
-  font-size: 2.5em;
-  color: #fff; }
-  .dhr-contactomodal--close button i {
-    height: 1em;
-    width: 1em;
-    display: block;
-    -webkit-transition: -webkit-transform .3s ease;
-    transition: -webkit-transform .3s ease;
-    -o-transition: transform .3s ease;
-    transition: transform .3s ease;
-    transition: transform .3s ease, -webkit-transform .3s ease; }
-  .dhr-contactomodal--close button:hover i {
-    -webkit-transform: scale(0.95);
-        -ms-transform: scale(0.95);
-            transform: scale(0.95); }
+.dhr-contactomodal--close {
+  position: absolute;
+  left: 0; }
+  .dhr-contactomodal--close button {
+    line-height: 1;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    font-size: 2em;
+    color: #fff; }
+    .dhr-contactomodal--close button i {
+      height: 1em;
+      width: 1em;
+      display: block;
+      -webkit-transition: -webkit-transform .3s ease;
+      transition: -webkit-transform .3s ease;
+      -o-transition: transform .3s ease;
+      transition: transform .3s ease;
+      transition: transform .3s ease, -webkit-transform .3s ease; }
+    .dhr-contactomodal--close button:hover i {
+      -webkit-transform: scale(0.95);
+          -ms-transform: scale(0.95);
+              transform: scale(0.95); }
+
+.dhr-contactmodal--logo {
+  width: 12em;
+  margin: 0 auto; }
 
 .dhr-contactmodal--intro {
   text-align: center;
-  color: #fff; }
+  color: #fff;
+  margin-bottom: 1.5em; }
   .dhr-contactmodal--intro p a {
     font-weight: bold;
+    color: #292b33;
+    position: relative; }
+    .dhr-contactmodal--intro p a:after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #1381b5; }
+  .dhr-contactmodal--intro .dhr-preheadline {
     color: #292b33; }
+  .dhr-contactmodal--intro .dhr-sectionheadline {
+    color: #fff; }
 
 .dhr-contactmodal--form {
+  text-align: center;
+  color: #fff; }
+  .dhr-contactmodal--form select {
+    border: none;
+    outline: none;
+    background: #289ed6;
+    color: #1c7097; }
+  .dhr-contactmodal--form input[type="text"], .dhr-contactmodal--form input[type="tel"], .dhr-contactmodal--form input[type="email"], .dhr-contactmodal--form select {
+    border: none;
+    outline: none;
+    background: #289ed6;
+    width: 100%;
+    display: block;
+    height: 2.5em;
+    padding-right: 1em;
+    padding-left: 1em;
+    border-radius: 4px; }
+    .dhr-contactmodal--form input[type="text"]::-webkit-input-placeholder, .dhr-contactmodal--form input[type="tel"]::-webkit-input-placeholder, .dhr-contactmodal--form input[type="email"]::-webkit-input-placeholder, .dhr-contactmodal--form select::-webkit-input-placeholder {
+      color: #1c7097; }
+    .dhr-contactmodal--form input[type="text"]::-moz-placeholder, .dhr-contactmodal--form input[type="tel"]::-moz-placeholder, .dhr-contactmodal--form input[type="email"]::-moz-placeholder, .dhr-contactmodal--form select::-moz-placeholder {
+      color: #1c7097; }
+    .dhr-contactmodal--form input[type="text"]:-ms-input-placeholder, .dhr-contactmodal--form input[type="tel"]:-ms-input-placeholder, .dhr-contactmodal--form input[type="email"]:-ms-input-placeholder, .dhr-contactmodal--form select:-ms-input-placeholder {
+      color: #1c7097; }
+    .dhr-contactmodal--form input[type="text"]:-moz-placeholder, .dhr-contactmodal--form input[type="tel"]:-moz-placeholder, .dhr-contactmodal--form input[type="email"]:-moz-placeholder, .dhr-contactmodal--form select:-moz-placeholder {
+      color: #1c7097; }
+
+.dhr-contactmodal--btns {
+  padding-top: 1em; }
+
+.dhr-inlineform--input {
+  display: inline-block;
+  position: relative;
+  width: 12em; }
+
+.dhr-inlineform--word {
+  font-size: .9em; }
+
+.dhr-contactmodal--social {
+  padding: 3.5em 0 1em;
   text-align: center; }
+  .dhr-contactmodal--social ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  .dhr-contactmodal--social li {
+    display: inline-block;
+    font-size: 1.35em;
+    margin-left: .5em; }
+    .dhr-contactmodal--social li:first-child {
+      margin-left: 0; }
+  .dhr-contactmodal--social a {
+    color: #2592c6;
+    -webkit-transition: color .3s ease;
+    -o-transition: color .3s ease;
+    transition: color .3s ease; }
+    .dhr-contactmodal--social a:hover {
+      color: #fff; }
 
 .has-carousel {
   padding-top: 2em;
