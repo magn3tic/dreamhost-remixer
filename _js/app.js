@@ -2,10 +2,14 @@
 //it is a bundle of jquery & plugins because some don't yet support es6 module
 
 
+import './utils.js'; //polyfills, small jquery plugs, etc... include first
+
+
 import './sliders.js';
 import './countdown.js';
 import './pageload-sequence.js';
 import './contact-modal.js';
+import './item-hover.js';
 
 
 import {$body, $window, $siteheader, $sitemain, $sitefooter, easeOutBack} from './globals.js';
@@ -28,7 +32,7 @@ const setHeroSize = () => {
 	$fixedheroimg.css({height: heightToSet+'px'})
 };
 setHeroSize();
-$window.bind('resize load', setHeroSize);
+$window.bind('resize load', $.debounce(300, false, setHeroSize) );
 
 
 
@@ -41,6 +45,14 @@ $scrollanchors.click(function(e) {
 	$($(this).attr('href')).velocity('scroll', {duration: 750, easing: easeOutBack})
 });
 
+
+
+
+//skrollr
+// if (!window.Modernizr.touchevents) {
+// 	const skrolz = skrollr.init({forceHeight: false, smoothScrolling: false});
+// 	$window.bind('load resize', () => skrolz.refresh());
+// }
 
 
 
@@ -72,8 +84,23 @@ $navtoggle.on('click', (event) => {
 
 
 
-// header behavior
 
+//inview class toggling
+const $inviewels = $('[data-inview]'),
+
+inViewTicker = () => {
+	$inviewels.each(function() {
+		const $t = $(this);
+		if ($t.inView(false)) {
+			$t.addClass('is-inview');
+		} else {
+			$t.removeClass('is-inview');
+		}
+	});
+};
+
+
+// header behavior
 let headerheight = $siteheader.outerHeight(),
 		headertop = parseInt($siteheader.css('top')) + scrollDiff,
 		winheight = $window.height(),
@@ -100,6 +127,8 @@ resizeUpdate = () => {
 const ticker = () => {
 	if (didScroll) {
 		scrollUpdate();
+
+		inViewTicker();
 
 		if (scrollCurrent <= 0) {
 			//if back at window top
@@ -130,8 +159,17 @@ const ticker = () => {
 };
 
 ticker.call();
-$window.resize(scrollUpdate);
+$window.on('resize', $.debounce(300, false, scrollUpdate));
 $window.scroll(() => didScroll = true);
+
+
+
+
+
+
+
+
+
 
 
 

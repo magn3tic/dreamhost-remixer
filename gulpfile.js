@@ -33,7 +33,13 @@ const PATHS = {
 		'node_modules/velocity-animate/velocity.ui.min.js',
 		'node_modules/flickity/dist/flickity.pkgd.min.js',
 		'node_modules/skrollr/dist/skrollr.min.js',
-		'node_modules/odometer/odometer.min.js'
+		'node_modules/odometer/odometer.min.js',
+		'_asset/js/pivot.min.js'
+	],
+	//priority(head) js
+	priority_js: [
+		'node_modules/pace-js/pace.min.js',
+		'_asset/js/modernizr.js'
 	],
 
 	//file to hot-reload/inject changes from
@@ -124,6 +130,12 @@ gulp.task('jslibs', () => {
 		.pipe(concat('plugins.min.js'))
 		.pipe(gulp.dest(PATHS.dest.js));
 });
+//JS Priority 
+gulp.task('jspriority', () => {
+	return gulp.src(PATHS.priority_js)
+		.pipe(concat('priority.min.js'))
+		.pipe(gulp.dest(PATHS.dest.js));
+});
 
 
 //WEBPACK
@@ -146,7 +158,7 @@ gulp.task('debug', () => {
 
 
 // DEFAULT TASK
-gulp.task('default', ['build', 'scss', 'jslibs', 'webpack', 'server'], () => {
+gulp.task('default', ['build', 'scss', 'jspriority', 'jslibs', 'webpack', 'server'], () => {
 	//browsersync will inject changes in compiled css (hot reload)
 	gulp.watch(PATHS.scss, ['scss']);
 	//rebuild on changes to html in /src

@@ -31,13 +31,18 @@
 
 .dhr-contactomodal--close {
 	position: absolute;
+	height: 100%;
+	top:0;
 	left:0;
+	width: 2.2em;
+
 	button {
 		line-height: 1;
 		@include appearance(none); border:none; background:none; outline: none;
 		padding:0;
 		font-size: 2em;
 		color: $white;
+		transition: color .3s ease;
 
 		i {
 			height: 1em; width:1em;
@@ -46,6 +51,7 @@
 		}
 
 		&:hover {
+			color: $secondary;
 			i {
 				transform: scale(0.95);
 			}
@@ -55,7 +61,7 @@
 
 
 .dhr-contactmodal--logo {
-	width: 12em;
+	width: 11em;
 	margin: 0 auto;
 }
 
@@ -107,11 +113,22 @@
 		border-radius: 4px;
 		@include placeholder() {
 			color: shade($secondary,35%);
+			transition: color .5s ease;
 		}
 	}
 
+	
 	input[type="text"], input[type="tel"], input[type="email"] {
+		border: 1px solid shade($secondary,8%);
+		transition: all .3s ease;
 
+		&:focus {
+			border-color: shade($secondary,35%);
+			//background: $white;
+			@include placeholder() {
+				color: $white;
+			}
+		}
 	}
 
 }
@@ -169,18 +186,28 @@
 
 
 @media (min-width:$bp-md) {
-
+	
+	.dhr-contactmodal--logo {
+		width: 12em;
+	}
 
 }
 
 
 @media (min-width:$bp-lg) {
-
+	
+	.dhr-contactmodal--logo {
+		width: 13em;
+	}
 
 }
 
 
 @media (min-width:$bp-xl) {
+
+	.dhr-contactmodal--top {
+		padding: 1.7em 0;
+	}
 
 
 }

@@ -62,6 +62,17 @@
 }
 
 
+.dhr-hero--play {
+	transform-style: preserve-3d;
+	perspective:700px;
+	a {
+		display: inline-block;
+		overflow:hidden; border-radius:50%;
+		transition: transform .7s $ease-out-back;
+	}
+}
+
+
 
 
 
@@ -225,8 +236,18 @@
 		}
 	}
 
+	.dhr-hero--leadin {
+		p {
+
+		}
+	}
+
 	.dhr-hero--play {
 		width: 40%; 
+
+		a {
+			margin-top: -1em;
+		}
 	}
 
 	.dhr-homehero {

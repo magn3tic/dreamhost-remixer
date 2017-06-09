@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -103,7 +103,7 @@ var $modaltrigger = $('a[href="#contact"]'),
     $maincontent = $('#dhr-main'),
     $fixedhero = $('.dhr-fixedhero'),
     $movecontents = $maincontent.add($fixedhero).add(_globals.$sitefooter),
-    $modalstaggeritems = $('.dhr-contactmodal--intro h5, .dhr-contactmodal--intro h2, .dhr-contactmodal--intro p, .dhr-contactmodal--form p, .dhr-contactmodal--btns, .dhr-contactmodal--social');
+    $modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns, .dhr-contactmodal--social');
 
 //$modalstaggeritems.css({display:'none',opacity:0});
 
@@ -118,7 +118,7 @@ $modaltrigger.on('click', function (e) {
 		display: 'block',
 		easing: _globals.easeOutBack
 	});
-	$modalstaggeritems.velocity('transition.slideDownIn', { stagger: 90, drag: true, duration: 350 });
+	$modalstaggeritems.velocity('transition.fadeIn', { stagger: 130, drag: true, duration: 350 });
 	$movecontents.velocity({
 		translateY: _globals.$window.height()
 	}, {
@@ -244,26 +244,101 @@ $lockedepisodes.each(function (index, item) {
 
 var _globals = __webpack_require__(0);
 
-var $transitionlinks = $('a[data-page-transition]');
+var $hovercards = $('[data-hovercard]');
 
-$transitionlinks.click(function (event) {
-	event.preventDefault();
+var getTransformValue = function getTransformValue() {
+	var scaleAmount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-	var href = $(this).attr('href');
+	var maxDeg = 7,
+	    $t = $(this);
 
-	_globals.$body.addClass('is-pagetransitioning').velocity('scroll', { duration: 500 });
+	var halfW = $t.width() / 2,
+	    halfH = $t.height() / 2,
+	    coorX = halfW - (event.pageX - $t.offset().left),
+	    coorY = halfH - (event.pageY - $t.offset().top),
+	    degX = (coorY / halfH * maxDeg).toFixed(2) + 'deg',
+	    degY = -(coorX / halfW * maxDeg).toFixed(2) + 'deg';
 
-	setTimeout(function () {
-		window.location.replace(href);
-	}, 500);
-});
+	scaleAmount = scaleAmount ? scaleAmount.toString() : '1.03';
 
-_globals.$window.on('load', function () {
-	_globals.$body.addClass('is-fullyloaded');
+	console.log(scaleAmount);
+
+	return 'translate3d(0, -2px, 0) scale(' + scaleAmount + ') rotateX(' + degX + ') rotateY(' + degY + ')';
+};
+
+$hovercards.each(function () {
+
+	if (Modernizr.touchevents) return;
+
+	var $t = $(this),
+	    $parent = $t.parent(),
+	    scaleVal = $t.data('hovercard-scale') || '';
+
+	var mousedover = false;
+
+	$t.hover(function () {
+		$parent.addClass('is-hovering').siblings().addClass('is-nothovering');
+		mousedover = true;
+	}, function () {
+		$parent.removeClass('is-hovering').siblings().removeClass('is-nothovering');
+		mousedover = false;
+	});
+
+	$t.mousemove(function (event) {
+		$t.css({
+			'transform': getTransformValue.call($t, scaleVal)
+		});
+	});
+
+	$t.mousedown(function () {});
+
+	$t.mouseleave(function () {
+		return $t.attr('style', '');
+	});
 });
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _globals = __webpack_require__(0);
+
+var pageOutDuration = 500,
+    $top = $('#top'),
+    $loadscreen = $('#dhr-loadscreen');
+
+var $transitionlinks = $('a[data-page-transition]');
+
+$transitionlinks.click(function (event) {
+	event.preventDefault();
+	var href = $(this).attr('href');
+
+	$top.velocity('scroll', { duration: pageOutDuration });
+	_globals.$body.addClass('is-pagetransitioning').velocity('transition.fadeOut', { duration: pageOutDuration });
+
+	setTimeout(function () {
+		return window.location.replace(href);
+	}, pageOutDuration);
+});
+
+//on page fully loaded
+var onFullPageload = function onFullPageload() {
+	_globals.$body.addClass('is-fullyloaded');
+
+	$loadscreen.velocity('transition.fadeOut', { duration: 350 });
+};
+
+if (window.Pace) {
+	Pace.on('done', onFullPageload, window);
+} else {
+	//$window.on('load', onFullPageload);
+}
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -277,27 +352,128 @@ var $f = exports.$f = {
 	isOpen: false
 };
 
-$f.carousel.flickity({
-	cellAlign: "left",
-	cellSelector: ".cell-img",
-	prevNextButtons: false,
-	contain: true
-});
+if ($f.carousel.length) {
+	$f.carousel.flickity({
+		cellAlign: "left",
+		cellSelector: ".cell-img",
+		prevNextButtons: false,
+		contain: true
+	});
+}
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(4);
+// in viewport test
+window.$.fn.inView = function (partial) {
+  var $t = $(this),
+      $w = $(window),
+      viewTop = $w.scrollTop(),
+      viewBottom = viewTop + $w.height(),
+      _top = $t.offset().top,
+      _bottom = _top + $t.height(),
+      compareTop = partial === true ? _bottom : _top,
+      compareBottom = partial === true ? _top : _bottom;
+  return compareBottom <= viewBottom && compareTop >= viewTop;
+};
+
+//raf polyfill
+(function () {
+  var lastTime = 0;
+  var vendors = ['ms', 'moz', 'webkit', 'o'];
+  for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+  }
+  if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback, element) {
+    var currTime = new Date().getTime();
+    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+    var id = window.setTimeout(function () {
+      callback(currTime + timeToCall);
+    }, timeToCall);
+    lastTime = currTime + timeToCall;
+    return id;
+  };
+  if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
+    clearTimeout(id);
+  };
+})();
+
+// jQuery throttle / debounce - v1.1 - 3/7/2010
+// http://benalman.com/projects/jquery-throttle-debounce-plugin/
+var $ = window.jQuery,
+    jq_throttle;
+$.throttle = jq_throttle = function jq_throttle(delay, no_trailing, callback, debounce_mode) {
+  var timeout_id,
+      last_exec = 0;
+  if (typeof no_trailing !== 'boolean') {
+    debounce_mode = callback;
+    callback = no_trailing;
+    no_trailing = undefined;
+  }
+  function wrapper() {
+    var that = this,
+        elapsed = +new Date() - last_exec,
+        args = arguments;
+    function exec() {
+      last_exec = +new Date();
+      callback.apply(that, args);
+    };
+    function clear() {
+      timeout_id = undefined;
+    };
+    if (debounce_mode && !timeout_id) {
+      exec();
+    }
+    timeout_id && clearTimeout(timeout_id);
+    if (debounce_mode === undefined && elapsed > delay) {
+      exec();
+    } else if (no_trailing !== true) {
+      timeout_id = setTimeout(debounce_mode ? clear : exec, debounce_mode === undefined ? delay - elapsed : delay);
+    }
+  };
+  return wrapper;
+};
+$.debounce = function (delay, at_begin, callback) {
+  return callback === undefined ? jq_throttle(delay, at_begin, false) : jq_throttle(delay, callback, at_begin !== false);
+};
+
+//centered popup windows
+$.centeredPopup = function (options) {
+  var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left,
+      dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top,
+      width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width,
+      height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height,
+      left = width / 2 - options.width / 2 + dualScreenLeft,
+      top = height / 2 - options.height / 2 + dualScreenTop,
+      newWindow = window.open(options.url, options.title, 'scrollbars=yes, width=' + options.width + ', height=' + options.height + ', top=' + top + ', left=' + left);
+  if (window.focus) {
+    newWindow.focus();
+  }
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(6);
+
+__webpack_require__(5);
 
 __webpack_require__(2);
 
-__webpack_require__(3);
+__webpack_require__(4);
 
 __webpack_require__(1);
+
+__webpack_require__(3);
 
 var _globals = __webpack_require__(0);
 
@@ -308,6 +484,9 @@ var _globals = __webpack_require__(0);
 
 
 // set hero sizes (one fallback / one necessary)
+//polyfills, small jquery plugs, etc... include first
+
+
 var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
     $fixedheroimg = $('.dhr-fixedhero--outer'),
     $heroviewport = $('.dhr-hero'),
@@ -320,7 +499,7 @@ var setHeroSize = function setHeroSize() {
 	$fixedheroimg.css({ height: heightToSet + 'px' });
 };
 setHeroSize();
-_globals.$window.bind('resize load', setHeroSize);
+_globals.$window.bind('resize load', $.debounce(300, false, setHeroSize));
 
 //animated scroll links
 var $scrollanchors = $('a[data-scroll]');
@@ -329,6 +508,13 @@ $scrollanchors.click(function (e) {
 	e.preventDefault();
 	$($(this).attr('href')).velocity('scroll', { duration: 750, easing: _globals.easeOutBack });
 });
+
+//skrollr
+// if (!window.Modernizr.touchevents) {
+// 	const skrolz = skrollr.init({forceHeight: false, smoothScrolling: false});
+// 	$window.bind('load resize', () => skrolz.refresh());
+// }
+
 
 // mobile nav toggle
 var $mainnav = $('#dhr-mainnav'),
@@ -356,8 +542,20 @@ $navtoggle.on('click', function (event) {
 	}
 });
 
-// header behavior
+//inview class toggling
+var $inviewels = $('[data-inview]'),
+    inViewTicker = function inViewTicker() {
+	$inviewels.each(function () {
+		var $t = $(this);
+		if ($t.inView(false)) {
+			$t.addClass('is-inview');
+		} else {
+			$t.removeClass('is-inview');
+		}
+	});
+};
 
+// header behavior
 var headerheight = _globals.$siteheader.outerHeight(),
     headertop = parseInt(_globals.$siteheader.css('top')) + scrollDiff,
     winheight = _globals.$window.height(),
@@ -382,6 +580,8 @@ var scrollUpdate = function scrollUpdate() {
 var ticker = function ticker() {
 	if (didScroll) {
 		scrollUpdate();
+
+		inViewTicker();
 
 		if (scrollCurrent <= 0) {
 			//if back at window top
@@ -411,7 +611,7 @@ var ticker = function ticker() {
 };
 
 ticker.call();
-_globals.$window.resize(scrollUpdate);
+_globals.$window.on('resize', $.debounce(300, false, scrollUpdate));
 _globals.$window.scroll(function () {
 	return didScroll = true;
 });

@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<script src="assets/js/modernizr.js"></script>
 
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script>window.paceOptions = {target:'#dhr-loadscreen'};</script>
+	<script src="assets/js/priority.min.js"></script>
+
+	<script>
+	//surge protector...getit?
+	if (window.location.hostname.indexOf('surge') > -1) {
+		var pw = prompt('Enter the password:');
+		if (pw !== 'mag') {window.location.replace('https://magneticcreative.com');}
+	}
+	</script>
+
+	<meta name="robots" content="noindex">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Dreamhost Remixer</title>
 	<meta name="description" content="Add your metadescription here...">
@@ -12,7 +24,14 @@
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:500">
 	<link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body id="top" class="dhr-currentpage-episode-single">
+<body class="dhr-currentpage-episode-single">
+
+	<div id="top"></div>
+
+	
+	<section id="dhr-loadscreen" class="dhr-loadscreen">
+		
+	</section>
 
 	
 	<header id="dhr-header" class="dhr-header at-page-top">
@@ -20,7 +39,7 @@
 			<div class="inner">
 				
 				<div class="dhr-header--brand">
-					<a href="/">
+					<a data-page-transition href="/">
 						<span class="site-header--logo"><svg id="dhr-logosvg" x="0px" y="0px" viewBox="0 0 365.2 51.1">
 	<path fill="#ffffff" d="M66.6,6.8h13.6c13.2,0,24.3,5.6,24.3,20.6c0,13.3-10.8,20.4-23,20.4H66.6V6.8z M75.6,39.4h4.7  c8.4,0,14.7-3.2,14.7-12.5c0-8-6.4-11.8-14.1-11.8h-5.3V39.4z"/>
 	<path fill="#ffffff" d="M109.1,19.6h8.7v4.5h0.1c1.9-3.4,4.3-5.2,8.1-5.2c1,0,2.1,0.1,2.9,0.3v7.9c-1.2-0.3-2.4-0.6-3.7-0.6  c-6.6,0-7.4,3.8-7.4,9.4v11.8h-8.7C109.1,47.8,109.1,19.6,109.1,19.6z"/>
@@ -89,7 +108,7 @@
 
 		<div class="dhr-hero--play">
 			
-			<a class="dhr-playbtn" href="#0">
+			<div class="dhr-playbtn">
 				<svg class="dhr-playbtn--circ-back" viewBox="0 0 200 200">
 					<circle cx="100" cy="100" r="90"/>
 				</svg>
@@ -99,7 +118,7 @@
 				<span class="dhr-playbtn--icon">
 					<i class="icon-play-1" aria-hidden="true"></i>
 				</span>
-			</a>
+			</div>
 		</div>
 
 	</div>
@@ -178,12 +197,16 @@
 			
 			<div class="dhr-footer--content">
 				
-				<div class="dhr-footer--headline">
-					<h4 class="dhr-preheadline">People are doing amazing things with Remixer</h4>
-					<h2 class="dhr-sectionheadline">Sign up to be the first to hear their stories</h2>
+				<div data-inview="headline" class="dhr-footer--headline">
+					<div class="dhr-headline--sleeve">
+						<h4 class="dhr-preheadline">People are doing amazing things with Remixer</h4>
+					</div>
+					<div class="dhr-headline--sleeve">
+						<h2 class="dhr-sectionheadline">Sign up to be the first to hear their stories</h2>
+					</div>
 				</div>
 	
-				<div class="dhr-footer--form">
+				<div data-inview="fade" class="dhr-footer--form">
 					<form action="">
 						<div class="inner-large">
 							<div class="dhr-formfield">
@@ -201,7 +224,7 @@
 					</form>
 				</div>
 	
-				<div class="dhr-footer--social">
+				<div data-inview="fade" class="dhr-footer--social">
 					<ul>
 						<li>
 							<a href="#0">
@@ -230,11 +253,11 @@
 					</ul>
 				</div>
 	
-				<div class="dhr-footer--backtop">
+				<div data-inview="fade" class="dhr-footer--backtop">
 					<a data-scroll href="#top" data-text="Back To Top">Back To Top</a>
 				</div>
 				
-				<div class="dhr-footer--copyright">
+				<div data-inview="fade" class="dhr-footer--copyright">
 					<h5>Proudly Hosting Over <span>1,500,000</span> Websites Since 1997</h5>
 					<p><span>&copy;</span> 2017 Dreamhost Inc.</p>
 				</div>
@@ -369,8 +392,7 @@
 		</div>
 	
 	</section>
-	
-	<script>window.odometerOptions = {format: 'd'};</script>
+
 	<script src="assets/js/plugins.min.js"></script>
 	<script src="assets/js/app.bundle.js"></script>
 </body>

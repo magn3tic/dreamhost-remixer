@@ -1,12 +1,19 @@
 
 
 .dhr-testify {
+
+
+	.dhr-markbg {
+		svg { 
+			transform: translateY(-68.8%);
+		}
+	}
 }
 
 
 .dhr-testify--img {
 	position: relative; z-index:199;
-	margin-bottom: 2em;
+	margin-bottom: 18.5%;
 	figure {
 		img {
 			display:block;
@@ -77,6 +84,10 @@
 			display: flex;
 			align-items: center;
 			justify-content: flex-start;
+		}
+
+		&--wider {
+
 		}
 	}
 	

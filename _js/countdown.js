@@ -33,6 +33,7 @@ const digitPrefixer = (digit) => {
 };
 
 
+
 //go through each locked episode
 $lockedepisodes.each((index, item) => {
 
@@ -66,6 +67,7 @@ $lockedepisodes.each((index, item) => {
 		until.sec = digitPrefixer(Math.floor((timeDiff%cdMin)/cdSec));
 		doHtmlUpdate($html, until);
 	});
+
 
 	$this.click((event) => event.preventDefault())
 			 .addClass('is-countdownstarted');

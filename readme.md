@@ -10,6 +10,11 @@
 * video playbtn card image - 490X350
 
 
+### Notes
+
+Destroy when not needed with - `surge teardown remixer.surge.sh`
+
+
 
 ### TODOS
 
@@ -17,3 +22,5 @@
 
 - tighten up header/footer/homepage/contactmodal/featurespage
 - page load sequence
+
+- home page play - reveal from fullscreen img - on end or clickout redirect to story page

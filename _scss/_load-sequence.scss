@@ -1,2 +1,91 @@
 
-// styles only related to page load-in sequence --- //
+
+// loading screen / pace
+.dhr-loadscreen {
+	position: fixed; z-index: 999999;
+	top:0; left:0; width:100%; height:100%;
+	background: $darkblue;
+
+	// display: flex;
+	// align-items: center;
+}
+
+.pace {
+	width: 100%;
+	margin: 0;
+	background: tint($darkblue,5%);
+	overflow: hidden;
+}
+
+.pace-progress {
+	&:before {
+		display: block; position:absolute;
+		content: attr(data-progress);
+		color: $white;
+		font-size: 2em;
+	}
+}
+
+.pace-progress-inner {
+	height: .325em;
+	background: $primary;
+	transform: translateX(-100%);
+}
+
+
+
+body {
+	overflow: hidden;
+
+	&.is-pagetransitioning {
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	&.is-fullyloaded {
+		overflow: auto;
+	}
+}
+
+
+
+
+// inview transitions
+
+// .dhr-headline--sleeve {
+// 	position: relative; 
+// 	overflow: hidden;
+// }
+
+// [data-inview="headline"] {
+
+// 	.dhr-preheadline {
+// 		transform: translateY(200%);
+// 		transition: transform 1s $ease-out-circ;
+// 	}
+// 	.dhr-sectionheadline {
+// 		transform: translateY(200%);
+// 		transition: transform 1s $ease-out-circ 0.15s;
+// 	}
+
+// 	&.is-inview {
+// 		.dhr-sectionheadline, .dhr-preheadline {
+// 			transform: translateY(0);
+// 		}
+// 	}
+// }
+
+
+// [data-inview="fade"] {
+// 	opacity: 0;
+// 	transform: translateY(20px);
+// 	transition: opacity 1s ease, transform 1s $ease-out-circ;
+
+// 	&.is-inview {
+// 		transform: translateY(0);
+// 		opacity: 1;
+// 	}
+// }
+
+
+

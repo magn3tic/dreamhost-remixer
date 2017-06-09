@@ -9,25 +9,25 @@
 		"headline": "Master Your Domain with Remixer by Dreamhost",
 		"image": "ep1-poster.jpg",
 		"video": "",
-		"release": 1497883831519
+		"release": 1499883831519
 	}, {
 		"name": "Master of Leathercraft",
 		"headline": "",
 		"image": "ep2-poster.jpg",
 		"video": "",
-		"release": 1497884841519
+		"release": 1499884841519
 	}, {
 		"name": "Master of Legacy",
 		"headline": "",
 		"image": "ep3-poster.jpg",
 		"video": "",
-		"release": 1496885851519
+		"release": 1499885851519
 	}, {
 		"name": "Master of Perseverance",
 		"headline": "",
 		"image": "ep4-poster.jpg",
 		"video": "",
-		"release": 1496886861519
+		"release": 1499886861519
 	}],
 
 	"features": [{
@@ -35,25 +35,37 @@
 		"title": "Begin with a responsive, professionally-designed theme.",
 		"body": "All Remixer themes are built to look beautiful on desktops and mobile devices. They’re so easy, you can begin swapping out content immediately, or use Remixer’s drag and drop functionality to reorder sections throughout your theme.",
 		"btntext": "Browse Our Themes",
-		"link": "#0"
+		"link": "#0",
+		"begin": "22em",
+		"end": "-2em",
+		"percent": "50p"
 	}, {
 		"subtitle": "Feature Two",
 		"title": "Import your own content or browse our royalty-free image library.",
 		"body": "Add and manage content directly from your computer, existing websites or popular social media platforms. You’ll also have access to over 600,000 high-quality images and graphics to help bring your site to life.",
 		"btntext": "Import Your Gallery",
-		"link": "#0"
+		"link": "#0",
+		"begin": "9em",
+		"end": "-2em",
+		"percent": "50p"
 	}, {
 		"subtitle": "Feature Three",
 		"title": "Make each site your own with customizeable click-to-edit themes.",
 		"body": "Remixer’s simple click-to-edit interface lets you change fonts and colors with ease. Choose from 70+ content sections, including contact forms, maps, galleries, and more.",
 		"btntext": "Try Remixer for Free",
-		"link": "#0"
+		"link": "#0",
+		"begin": "15em",
+		"end": "2em",
+		"percent": "100p"
 	}, {
 		"subtitle": "Feature Four",
 		"title": "Publish your site with a single click.",
 		"body": "Just click the publish button and it’s live! Upgrade to a hosting plan and you can assign custom domains and email to your site.",
 		"btntext": "Remix Your Site",
-		"link": "#0"
+		"link": "#0",
+		"begin": "9em",
+		"end": "-1em",
+		"percent": "100p"
 	}]
 
 }

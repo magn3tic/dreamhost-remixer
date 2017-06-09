@@ -10,7 +10,7 @@ const $modaltrigger = $('a[href="#contact"]'),
 			$maincontent = $('#dhr-main'),
 			$fixedhero = $('.dhr-fixedhero'),
 			$movecontents = $maincontent.add($fixedhero).add($sitefooter),
-			$modalstaggeritems = $('.dhr-contactmodal--intro h5, .dhr-contactmodal--intro h2, .dhr-contactmodal--intro p, .dhr-contactmodal--form p, .dhr-contactmodal--btns, .dhr-contactmodal--social');
+			$modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns, .dhr-contactmodal--social');
 
 //$modalstaggeritems.css({display:'none',opacity:0});
 
@@ -25,7 +25,7 @@ $modaltrigger.on('click', (e) => {
 		display: 'block',
 		easing: easeOutBack
 	});
-	$modalstaggeritems.velocity('transition.slideDownIn', {stagger:90, drag:true, duration:350});
+	$modalstaggeritems.velocity('transition.fadeIn', {stagger:130, drag:true, duration:350});
 	$movecontents.velocity({
 		translateY: $window.height()
 	}, {

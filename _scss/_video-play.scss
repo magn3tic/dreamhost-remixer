@@ -2,7 +2,7 @@
 // PLAY BTN --------------------------------------------//
 
 .dhr-playbtn {
-	display: inline-block;
+	display: block;
 	position: relative; 
 	width: 10em; height: 10em;
 	border-radius: 50%;
@@ -20,7 +20,7 @@
 
 		&.dhr-playbtn--circ-back {
 			circle {
-				stroke: rgba($white,0.5);
+				stroke: rgba($white,0.4);
 			}
 		}
 		&.dhr-playbtn--circ-front {
@@ -50,11 +50,17 @@
 		}
 	}
 	
+}
 
-	&:hover {
+
+
+//parent anchor states ------------//
+a {
+
+	&:hover .dhr-playbtn, .is-hovering & {
+		
 		svg.dhr-playbtn--circ-front {
 			transform: rotate(-90deg);
-
 			circle {
 				transition: stroke-dashoffset 0.8s $ease-in-out-quart, opacity 0.5s linear;
 			}
@@ -68,16 +74,17 @@
 		.dhr-playbtn--icon {
 			i { 
 				color: $white; 
-				transition-delay: 0.5s;
+				transition-delay: 0.2s;
 			}
 		}
 	}
-	
 
-	&:active {
+	&:active .dhr-playbtn {
 		transform: scale(0.95);
 	}
 }
+
+
 
 
 
@@ -97,7 +104,6 @@
 	
 	.dhr-playbtn {
 		width:14em; height:14em;
-		margin-top: -1em;
 	}
 
 }

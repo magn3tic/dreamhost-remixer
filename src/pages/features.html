@@ -1,13 +1,5 @@
 
-
-<div class="dhr-fixedhero dhr-fixedhero--autoheight">
-	<div class="dhr-main">
-		<div class="dhr-fixedhero--outer">
-			<div class="dhr-fixedhero--img" style="background-image:url(assets/img/features-hero.jpg);"></div>
-		</div>
-	</div>
-</div>
-
+{{> hero-fixedimg imgurl='assets/img/features-hero.jpg' autoheight=true}}
 
 
 <main id="dhr-main" class="dhr-main" role="main">
@@ -36,10 +28,12 @@
 	<div class="inner">
 		
 		<div class="dhr-videocard">
-			<figure><img src="assets/img/features-video-poster.jpg" alt=""></figure>
-			<div class="dhr-videocard--play">
-				{{> play-btn}}
-			</div>
+			<a href="#0" class="dhr-videocard--link" data-hovercard>
+				<figure>
+					<img src="assets/img/features-video-poster.jpg" alt="">
+				</figure>
+				<div class="dhr-videocard--play">{{> play-btn}}</div>
+			</a>
 		</div>
 
 	</div>
@@ -87,11 +81,14 @@
 
 
 <section class="dhr-block dhr-block--dark dhr-featureslist">
-	<div class="inner inner-large">
+	<div id="dhr-features-list" class="inner inner-xlarge">
 
 		{{#each features}}
 
-		<div class="dhr-featureitem">
+		<div class="dhr-featureitem" 
+		data-anchor-target="#dhr-features-list"
+		data-bottom-top="transform:translate3d(0,{{this.begin}},0);" 
+		data--{{this.percent}}-top="transform:translate3d(0,{{this.end}},0);">
 			<figure>
 				<img src="assets/img/feature-item-{{@index}}.jpg" alt="{{this.subtitle}}">
 				<span class="dhr-baseplate dhr-baseplate--dark"></span>

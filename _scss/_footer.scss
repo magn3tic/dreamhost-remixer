@@ -25,6 +25,10 @@
 			display: block;
 			padding: 2px;
 			color: $white;
+			transition: color .3s ease;
+			&:hover {
+				color: $secondary;
+			}
 		}
 		i[class*="icon"] {
 			width: auto;
@@ -58,6 +62,7 @@
 		height: 2em;
 		font-size: 1.2em;
 		color: $white;
+		border-bottom: 2px solid tint($darkblue,10%);
 
 		&:focus {
 			+ .dhr-footer--emailborder {
@@ -232,10 +237,14 @@ html.no-generatedcontent a:hover {
 
 
 @media (min-width:$bp-xxl) {
+
+	.dhr-footer--content {
+		padding: 10em 0 5em;
+	}
 	
 	.dhr-footer--backtop {
 		margin: 0;
-		position: absolute;
+		position: absolute; z-index:299;
 		right:0;
 	}
 	.dhr-footer--social {

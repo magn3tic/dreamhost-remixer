@@ -3,9 +3,11 @@ export const $f = {
 	isOpen: false
 };
 
-$f.carousel.flickity({
-	cellAlign: "left",
-	cellSelector: ".cell-img",
-	prevNextButtons: false,
-	contain: true
-});
+if ($f.carousel.length) {
+	$f.carousel.flickity({
+		cellAlign: "left",
+		cellSelector: ".cell-img",
+		prevNextButtons: false,
+		contain: true
+	});
+}

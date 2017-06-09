@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<script src="assets/js/modernizr.js"></script>
 
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script>window.paceOptions = {target:'#dhr-loadscreen'};</script>
+	<script src="assets/js/priority.min.js"></script>
+
+	<script>
+	//surge protector...getit?
+	if (window.location.hostname.indexOf('surge') > -1) {
+		var pw = prompt('Enter the password:');
+		if (pw !== 'mag') {window.location.replace('https://magneticcreative.com');}
+	}
+	</script>
+
+	<meta name="robots" content="noindex">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Dreamhost Remixer</title>
 	<meta name="description" content="Add your metadescription here...">
@@ -12,7 +24,11 @@
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:500">
 	<link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body id="top" class="dhr-currentpage-{{current_page_name}}">
+<body class="dhr-currentpage-{{current_page_name}}">
+
+	<div id="top"></div>
+
+	{{> pageload-overlay}}
 
 	{{> header}}
 
@@ -21,8 +37,7 @@
 	{{> footer}}
 
 	{{> contact-overlay}}
-	
-	<script>window.odometerOptions = {format: 'd'};</script>
+
 	<script src="assets/js/plugins.min.js"></script>
 	<script src="assets/js/app.bundle.js"></script>
 </body>
