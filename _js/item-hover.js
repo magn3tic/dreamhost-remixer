@@ -5,8 +5,10 @@ import {$body, $window} from './globals.js';
 const $hovercards = $('[data-hovercard]');
 
 
-const getTransformValue = function(scaleAmount=false) {
-	const maxDeg = 7, $t = $(this);
+
+
+const getTransformValue = function(scaleAmount=false, maxDeg=7) {
+	const $t = $(this);
 	
 	let halfW = ($t.width() / 2),
   		halfH = ($t.height() / 2),
@@ -17,9 +19,11 @@ const getTransformValue = function(scaleAmount=false) {
   
   scaleAmount = scaleAmount ? scaleAmount.toString() : '1.03';
 
-  console.log(scaleAmount);
-
   return `translate3d(0, -2px, 0) scale(${scaleAmount}) rotateX(${degX}) rotateY(${degY})`;
+};
+
+const getMousedownTransform = function() {
+
 };
 
 
@@ -31,7 +35,8 @@ $hovercards.each(function() {
 
 	const $t = $(this),
 				$parent = $t.parent(),
-				scaleVal = $t.data('hovercard-scale') || '';
+				scaleVal = $t.data('hovercard-scale') || '',
+				tiltVal = $t.data('hovercard-tilt') || 7;
 
 	let mousedover = false;
 
@@ -44,12 +49,16 @@ $hovercards.each(function() {
 	});
 
 	$t.mousemove((event) => {
+		let transformValue = getTransformValue.call($t, scaleVal, tiltVal);
 		$t.css({
-			'transform': getTransformValue.call($t, scaleVal)
+			'transform': transformValue,
+			'-ms-transform:': transformValue
 		});
 	});
 
-	$t.mousedown(() => {});
+	$t.mousedown(() => {
+
+	});
 
 	$t.mouseleave(() => $t.attr('style',''));
 });

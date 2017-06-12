@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -105,7 +105,12 @@ var $modaltrigger = $('a[href="#contact"]'),
     $movecontents = $maincontent.add($fixedhero).add(_globals.$sitefooter),
     $modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns, .dhr-contactmodal--social');
 
-//$modalstaggeritems.css({display:'none',opacity:0});
+var $form = $('#dhr-contact-form'),
+    $inputs = {
+	email: $('#dhr-email-input'),
+	firstname: $('#dhr-contact-firstname-input'),
+	lastname: $('#dhr-contact-lastname-input')
+};
 
 //opening
 $modaltrigger.on('click', function (e) {
@@ -248,9 +253,9 @@ var $hovercards = $('[data-hovercard]');
 
 var getTransformValue = function getTransformValue() {
 	var scaleAmount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+	var maxDeg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 7;
 
-	var maxDeg = 7,
-	    $t = $(this);
+	var $t = $(this);
 
 	var halfW = $t.width() / 2,
 	    halfH = $t.height() / 2,
@@ -261,10 +266,10 @@ var getTransformValue = function getTransformValue() {
 
 	scaleAmount = scaleAmount ? scaleAmount.toString() : '1.03';
 
-	console.log(scaleAmount);
-
 	return 'translate3d(0, -2px, 0) scale(' + scaleAmount + ') rotateX(' + degX + ') rotateY(' + degY + ')';
 };
+
+var getMousedownTransform = function getMousedownTransform() {};
 
 $hovercards.each(function () {
 
@@ -272,7 +277,8 @@ $hovercards.each(function () {
 
 	var $t = $(this),
 	    $parent = $t.parent(),
-	    scaleVal = $t.data('hovercard-scale') || '';
+	    scaleVal = $t.data('hovercard-scale') || '',
+	    tiltVal = $t.data('hovercard-tilt') || 7;
 
 	var mousedover = false;
 
@@ -285,8 +291,10 @@ $hovercards.each(function () {
 	});
 
 	$t.mousemove(function (event) {
+		var transformValue = getTransformValue.call($t, scaleVal, tiltVal);
 		$t.css({
-			'transform': getTransformValue.call($t, scaleVal)
+			'transform': transformValue,
+			'-ms-transform:': transformValue
 		});
 	});
 
@@ -306,9 +314,13 @@ $hovercards.each(function () {
 
 var _globals = __webpack_require__(0);
 
+var $top = $('#top'),
+    $loadscreen = $('#dhr-loadscreen'),
+    $homevideo = $('#dhr-home-videoel'),
+    homevideo = $homevideo[0];
+
 var pageOutDuration = 500,
-    $top = $('#top'),
-    $loadscreen = $('#dhr-loadscreen');
+    isHomePage = _globals.$body.hasClass('dhr-currentpage-index');
 
 var $transitionlinks = $('a[data-page-transition]');
 
@@ -326,15 +338,20 @@ $transitionlinks.click(function (event) {
 
 //on page fully loaded
 var onFullPageload = function onFullPageload() {
+
 	_globals.$body.addClass('is-fullyloaded');
 
-	$loadscreen.velocity('transition.fadeOut', { duration: 350 });
+	$loadscreen.velocity('transition.fadeOut', { duration: 350, delay: 150 });
+
+	if (isHomePage) {
+		homevideo.play();
+	}
 };
 
 if (window.Pace) {
 	Pace.on('done', onFullPageload, window);
 } else {
-	//$window.on('load', onFullPageload);
+	_globals.$window.on('load', onFullPageload);
 }
 
 /***/ }),
@@ -463,19 +480,83 @@ $.centeredPopup = function (options) {
 "use strict";
 
 
+var _globals = __webpack_require__(0);
+
+var $homeherotop = $('#dhr-hero-top'),
+    $homeherobot = $('#dhr-hero-bottom'),
+    $episodelist = $('#dhr-episode-list'),
+    $playbtns = $('a[data-video]');
+
+var isHomePage = _globals.$body.hasClass('dhr-currentpage-index'),
+    isPlaying = false;
+
+$playbtns.each(function () {
+
+	var $t = $(this),
+	    $target = $($t.data('video-target')),
+	    $targetparent = $target.parent('.dhr-fluidvideo'),
+	    videopath = $t.data('video'),
+	    $video = $('<video src="' + videopath + '.mp4"></video>');
+
+	$t.on('click', function (e) {
+		e.preventDefault();
+
+		if (isHomePage) {
+			var expectedHeight = $targetparent.width() * 0.525,
+			    isTaller = expectedHeight >= _globals.$window.height();
+
+			$targetparent.velocity('scroll', {
+				offset: !isTaller ? -((_globals.$window.height() - expectedHeight) / 2) : 0,
+				duration: 550,
+				complete: function complete() {
+					return $target.velocity('slideDown', { duration: 650, easing: _globals.easeOutBack });
+				}
+			});
+			//$target.velocity('slideDown', {duration: 1400, easing:'spring', delay: 200});
+		} else {}
+	});
+});
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 __webpack_require__(6);
-
-__webpack_require__(5);
-
-__webpack_require__(2);
 
 __webpack_require__(4);
 
-__webpack_require__(1);
-
 __webpack_require__(3);
 
+__webpack_require__(2);
+
+__webpack_require__(5);
+
+__webpack_require__(1);
+
+__webpack_require__(7);
+
 var _globals = __webpack_require__(0);
+
+var _breakpoints = __webpack_require__(9);
+
+var _breakpoints2 = _interopRequireDefault(_breakpoints);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//polyfills, small jquery plugs, etc... include first
+
+
+var bps = new _breakpoints2.default(); //plugins.min.js is loaded before the webpack bundle
+//it is a bundle of jquery & plugins because some don't yet support es6 module
+
+
+$(window).resize(function () {
+
+	console.log(bps.breakpointDown('md'));
+});
 
 // wtf
 // $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
@@ -484,16 +565,10 @@ var _globals = __webpack_require__(0);
 
 
 // set hero sizes (one fallback / one necessary)
-//polyfills, small jquery plugs, etc... include first
-
-
 var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
     $fixedheroimg = $('.dhr-fixedhero--outer'),
     $heroviewport = $('.dhr-hero'),
-    isFullheightHero = $fixedautoheight.length === 0; //plugins.min.js is loaded before the webpack bundle
-//it is a bundle of jquery & plugins because some don't yet support es6 module
-
-
+    isFullheightHero = $fixedautoheight.length === 0;
 var setHeroSize = function setHeroSize() {
 	var heightToSet = isFullheightHero ? _globals.$window.height() : $heroviewport.outerHeight() + 105;
 	$fixedheroimg.css({ height: heightToSet + 'px' });
@@ -508,13 +583,6 @@ $scrollanchors.click(function (e) {
 	e.preventDefault();
 	$($(this).attr('href')).velocity('scroll', { duration: 750, easing: _globals.easeOutBack });
 });
-
-//skrollr
-// if (!window.Modernizr.touchevents) {
-// 	const skrolz = skrollr.init({forceHeight: false, smoothScrolling: false});
-// 	$window.bind('load resize', () => skrolz.refresh());
-// }
-
 
 // mobile nav toggle
 var $mainnav = $('#dhr-mainnav'),
@@ -547,7 +615,7 @@ var $inviewels = $('[data-inview]'),
     inViewTicker = function inViewTicker() {
 	$inviewels.each(function () {
 		var $t = $(this);
-		if ($t.inView(false)) {
+		if ($t.inView(true)) {
 			$t.addClass('is-inview');
 		} else {
 			$t.removeClass('is-inview');
@@ -615,6 +683,111 @@ _globals.$window.on('resize', $.debounce(300, false, scrollUpdate));
 _globals.$window.scroll(function () {
 	return didScroll = true;
 });
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Breakpoints Class --------------------//
+
+// usage: helper functions to test viewport size @ exact match w/ css
+// window.matchMedia alternative
+//
+// Breakpoints({
+// 	breakpoints: ['sm']
+// })
+//
+
+
+var defaultBreakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
+    defaultElement = document.querySelector('body'),
+    getCurrent = function getCurrent() {
+	return window.getComputedStyle(defaultElement, ':before').getPropertyValue('content').replace(/\"/g, '');
+};
+
+var currentBpIndex = null,
+    initialBp = getCurrent();
+
+var Breakpoints = function () {
+	function Breakpoints(options) {
+		_classCallCheck(this, Breakpoints);
+
+		options = options || {};
+		this.breakpoints = options.breakpoints || defaultBreakpoints;
+		this.element = options.element || defaultElement;
+
+		this.refreshCurrentIndex();
+		this.initbp = this.getCurrent();
+
+		if (options.evented) {
+			//todo: custom event 'breakpoints.xs.down'
+		}
+	}
+
+	//get value of the pseudo-element
+
+
+	_createClass(Breakpoints, [{
+		key: 'getCurrent',
+		value: function getCurrent() {
+			return window.getComputedStyle(this.element, ':before').getPropertyValue('content').replace(/\"/g, '');
+		}
+	}, {
+		key: 'emitEvents',
+		value: function emitEvents() {
+			var newBp = getCurrent(),
+			    currBp = this.initBp;
+
+			if (newBp !== currBp) {
+				$(window).trigger('breakpoints.change');
+				currBp = newBp;
+			}
+		}
+	}, {
+		key: 'refreshCurrentIndex',
+		value: function refreshCurrentIndex() {
+			currentBpIndex = this.breakpoints.indexOf(this.getCurrent());
+		}
+	}, {
+		key: 'breakpointUp',
+		value: function breakpointUp(bp) {
+			this.refreshCurrentIndex();
+			var bpArgIndex = this.breakpoints.indexOf(bp);
+			return currentBpIndex >= bpArgIndex;
+		}
+	}, {
+		key: 'breakpointDown',
+		value: function breakpointDown(bp) {
+			this.refreshCurrentIndex();
+			var bpArgIndex = this.breakpoints.indexOf(bp);
+			return currentBpIndex <= bpArgIndex;
+		}
+	}, {
+		key: 'breakpointBetween',
+		value: function breakpointBetween(min, max) {
+			this.refreshCurrentIndex();
+			var bpMinIndex = this.breakpoints.indexOf(min),
+			    bpMaxIndex = this.breakpoints.indexOf(max);
+			return currentBpIndex >= bpMinIndex && currentBpIndex <= bpMaxIndex;
+		}
+	}]);
+
+	return Breakpoints;
+}();
+
+exports.default = Breakpoints;
+;
 
 /***/ })
 /******/ ]);

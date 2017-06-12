@@ -12,8 +12,9 @@
 
 .pace {
 	width: 100%;
-	margin: 0;
-	background: tint($darkblue,5%);
+	//max-width: $site-outer-max;
+	margin: 0; //auto;
+	background: tint($darkblue,7%);
 	overflow: hidden;
 }
 
@@ -57,6 +58,20 @@ body {
 // 	overflow: hidden;
 // }
 
+
+[data-inview="fade-up-in"] {
+	opacity: 0;
+	transform: translateY(99px);
+	transition: opacity 1s ease, transform 1s $ease-out-quart;
+
+	&.is-inview {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+
 // [data-inview="headline"] {
 
 // 	.dhr-preheadline {
@@ -74,6 +89,8 @@ body {
 // 		}
 // 	}
 // }
+
+
 
 
 // [data-inview="fade"] {

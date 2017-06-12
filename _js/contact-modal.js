@@ -12,7 +12,12 @@ const $modaltrigger = $('a[href="#contact"]'),
 			$movecontents = $maincontent.add($fixedhero).add($sitefooter),
 			$modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns, .dhr-contactmodal--social');
 
-//$modalstaggeritems.css({display:'none',opacity:0});
+const $form = $('#dhr-contact-form'),
+			$inputs = {
+				email: $('#dhr-email-input'),
+				firstname: $('#dhr-contact-firstname-input'),
+				lastname: $('#dhr-contact-lastname-input')
+			};
 
 //opening
 $modaltrigger.on('click', (e) => {

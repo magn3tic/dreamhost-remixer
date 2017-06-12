@@ -62,17 +62,29 @@
 		height: 2em;
 		font-size: 1.2em;
 		color: $white;
-		border-bottom: 2px solid tint($darkblue,10%);
+		border-bottom: 2px solid tint($darkblue,15%);
+		transition: all .35s ease;
+
+		&:hover {
+			border-bottom: 2px solid tint($darkblue,25%);
+			@include placeholder() {
+				color: tint($darkblue,25%);
+			}
+ 		}
 
 		&:focus {
 			+ .dhr-footer--emailborder {
 				transform: scale(1,1);
 				transform-origin: left center;
 			}
+			@include placeholder() {
+				color: tint($darkblue,25%);
+			}
 		}
 
 		@include placeholder() {
 			color: tint($darkblue,15%);
+			transition: all .35s ease;
 		}
 	}
 }

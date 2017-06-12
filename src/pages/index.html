@@ -1,119 +1,122 @@
 
 
-{{> hero-fixedimg imgurl='assets/img/episodes-bg-full.jpg' autoheight=false}}
+<div class="dhr-fixedhero {{#if autoheight}}dhr-fixedhero--autoheight{{/if}} dhr-fixedhero--has-video">
+	<div class="dhr-main">
+		<div class="dhr-fixedhero--outer">
+			<video autoplay loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="">
+				<source src="assets/vid/leathercraft-720.mp4" type="video/mp4">
+			</video>
+		</div>
+	</div>
+</div>
 
 
 <main id="dhr-main" class="dhr-main" role="main">
 
 
-<section class="dhr-hero dhr-homehero">
-	
-	<div class="inner">
+	<section class="dhr-hero dhr-homehero">
 		
-		<div class="dhr-hero--content">
-			<h5 class="dhr-preheadline">Master of Cultural Identity</h5>
-			<h1 class="dhr-mainheadline">Master Your Domain with Remixer by DreamHost.</h1>
-			<div class="dhr-hero--owner">
-				<figure class="dhr-hero--owner-img">
-					<svg x="0px" y="0px"	viewBox="0 0 190 186">
-						<defs>
-							<pattern id="dhr-headshot" patternUnits="userSpaceOnUse" width="190" height="186" viewbox="0 0 190 186">
-  							<image xlink:href="assets/img/headshot.jpg" width="190" height="186" />
-							</pattern>
-						</defs>
-						<g style="fill:url(#dhr-headshot)">
-							<path d="M179.1,136.4c-14,7.8-30.3,12.2-47.7,11.8c-51.1-1-91.6-42.4-90.6-92.4c0.4-17,5.4-32.7,14-46.1C27.5,25,8.8,53.5,8.1,86.6c-1,50,39.6,91.4,90.7,92.4C132.6,179.7,162.4,162.6,179.1,136.4"/>
-							<path d="M130.5,137.5c0.6,0,1.1,0,1.7,0c13.3,0,26.5-3.3,38.2-9.5c6.9-11.8,10.9-25.5,10.9-40.2c0-44.1-35.6-79.8-79.6-79.8c-13.9,0-26.9,3.6-38.2,9.8c-7.3,11.8-11.4,25.4-11.7,39.3C50.9,100.5,86.2,136.6,130.5,137.5"/>
-						<g>
-					</svg>
-				</figure>
-				<div class="dhr-hero--owner-name">
-					<p><strong>Trish Myers</strong> <span>- Owner of Moar Tacos</span></p>
+		<div id="dhr-hero-top" class="inner">
+			<div class="dhr-hero--content">
+				<h5 class="dhr-preheadline">Master of Cultural Identity</h5>
+				<h1 class="dhr-mainheadline">Master Your Domain with Remixer by DreamHost.</h1>
+				<div class="dhr-hero--owner">
+					<figure class="dhr-hero--owner-img">
+						<svg x="0px" y="0px"	viewBox="0 0 190 186">
+							<defs>
+								<pattern id="dhr-headshot" patternUnits="userSpaceOnUse" width="190" height="186" viewbox="0 0 190 186">
+	  							<image xlink:href="assets/img/headshot-master-of-leathercraft.jpg" width="190" height="186" />
+								</pattern>
+							</defs>
+							<g style="fill:url(#dhr-headshot)">
+								<path d="M179.1,136.4c-14,7.8-30.3,12.2-47.7,11.8c-51.1-1-91.6-42.4-90.6-92.4c0.4-17,5.4-32.7,14-46.1C27.5,25,8.8,53.5,8.1,86.6c-1,50,39.6,91.4,90.7,92.4C132.6,179.7,162.4,162.6,179.1,136.4"/>
+								<path d="M130.5,137.5c0.6,0,1.1,0,1.7,0c13.3,0,26.5-3.3,38.2-9.5c6.9-11.8,10.9-25.5,10.9-40.2c0-44.1-35.6-79.8-79.6-79.8c-13.9,0-26.9,3.6-38.2,9.8c-7.3,11.8-11.4,25.4-11.7,39.3C50.9,100.5,86.2,136.6,130.5,137.5"/>
+							<g>
+						</svg>
+					</figure>
+					<div class="dhr-hero--owner-name">
+						<p><strong>Trish Myers</strong> <span>- Owner of Moar Tacos</span></p>
+					</div>
 				</div>
+			</div>
+			<div class="dhr-hero--play">
+				<a href="#0" data-hovercard data-hovercard-scale="1.1" data-hovercard-tilt="15" data-video="assets/vid/leathercraft" data-video-target='#dhr-hero-embedtarget'>
+					{{> play-btn}}
+				</a>
 			</div>
 		</div>
 
-		<div class="dhr-hero--play">
-			<a href="#0" data-hovercard data-hovercard-scale="1.125" data-video-embed=''>
-				{{> play-btn}}
-			</a>
-		</div>
 
-	</div>
-
-
-	<div class="inner">
-		<hr class="dhr-divider">
-		<div class="inner-small dhr-hero--leadin">
-			<p>Remixer brings website building to a whole new level of simple.  In these videos, you'll witness how Remixer helps artists and small business owners like you Master Your Domain by removing the intricacies of web design.</p>
-		</div>
-	</div>
-
-</section>
-
-
-
-
-<section class="dhr-episodelist">
-	<div class="inner">
-		{{#each episodes}}
-		
-		<div class="dhr-episodeitem {{#compare @index 0 operator='>'}}dhr-episodeitem--locked{{/compare}}">
-			<a data-hovercard href="#0" class="dhr-episodeitem--link-{{@index}}">
-				<div class="dhr-episodeitem--content">
-					<div class="dhr-episodeitem--liner">
-						<div data-countdown="{{this.release}}" class="dhr-episodeitem--countdown">
-							<div class="dhr-countdown--outer">
-								<span class="dhr-countdown--span" data-countdown-days>
-									<span class="dhr-countdown--num">00</span>
-									<span class="dhr-countdown--word">Days</span>
-								</span>
-								<span class="dhr-countdown--sep">:</span>
-								<span class="dhr-countdown--span" data-countdown-hours>
-									<span class="dhr-countdown--num">00</span>
-									<span class="dhr-countdown--word">Hours</span>
-								</span>
-								<span class="dhr-countdown--sep">:</span>
-								<span class="dhr-countdown--span" data-countdown-mins>
-									<span class="dhr-countdown--num">00</span>
-									<span class="dhr-countdown--word">Mins</span>
-								</span>
-								<span class="dhr-countdown--sep">:</span>
-								<span class="dhr-countdown--span" data-countdown-sec>
-									<span class="dhr-countdown--num">00</span>
-									<span class="dhr-countdown--word">Sec</span>
-								</span>
-								<span class="dhr-countdown--border"></span>
-							</div>
-						</div>
-						<span class="dhr-episodeitem--icon">
-							<i class="icon-play-1" aria-hidden="true"></i>
-						</span>
-						<h4>{{this.name}}</h4>
-					</div>
+		<div id="dhr-hero-bottom" class="inner">
+			
+			<div class="dhr-fluidvideo">
+				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--inner" data-video="assets/vid/leathercraft.mp4">
+					
 				</div>
+			</div>
 
-				<figure>
-					<img src="assets/img/{{this.image}}" alt="{{this.name}}">
-					<span class="dhr-episodeitem--activeborder"></span>
-				</figure>
-			</a>
+
+			<hr class="dhr-divider">
+			<div class="inner-small dhr-hero--leadin">
+				<p>Remixer brings website building to a whole new level of simple.  In these videos, you'll witness how Remixer helps artists and small business owners like you Master Your Domain by removing the intricacies of web design.</p>
+			</div>
 		</div>
 
-		{{/each}}
-	</div>
-</section>
+	</section>
+
+
+
+
+	<section id="dhr-episodes-list" class="dhr-episodelist">
+		<div class="inner">
+			{{#each episodes}}
+			
+			<div class="dhr-episodeitem {{#compare @index 0 operator='>'}}dhr-episodeitem--locked{{/compare}}">
+				<a data-hovercard href="#0" class="dhr-episodeitem--link-{{@index}}">
+					<div class="dhr-episodeitem--content">
+						<div class="dhr-episodeitem--liner">
+							<div data-countdown="{{this.release}}" class="dhr-episodeitem--countdown">
+								<div class="dhr-countdown--outer">
+									<span class="dhr-countdown--span" data-countdown-days>
+										<span class="dhr-countdown--num">00</span>
+										<span class="dhr-countdown--word">Days</span>
+									</span>
+									<span class="dhr-countdown--sep">:</span>
+									<span class="dhr-countdown--span" data-countdown-hours>
+										<span class="dhr-countdown--num">00</span>
+										<span class="dhr-countdown--word">Hours</span>
+									</span>
+									<span class="dhr-countdown--sep">:</span>
+									<span class="dhr-countdown--span" data-countdown-mins>
+										<span class="dhr-countdown--num">00</span>
+										<span class="dhr-countdown--word">Mins</span>
+									</span>
+									<span class="dhr-countdown--sep">:</span>
+									<span class="dhr-countdown--span" data-countdown-sec>
+										<span class="dhr-countdown--num">00</span>
+										<span class="dhr-countdown--word">Sec</span>
+									</span>
+									<span class="dhr-countdown--border"></span>
+								</div>
+							</div>
+							<span class="dhr-episodeitem--icon">
+								<i class="icon-play-1" aria-hidden="true"></i>
+							</span>
+							<h4>{{this.name}}</h4>
+						</div>
+					</div>
+
+					<figure>
+						<img src="assets/img/{{this.image}}" alt="{{this.name}}">
+						<span class="dhr-episodeitem--activeborder"></span>
+					</figure>
+				</a>
+			</div>
+
+			{{/each}}
+		</div>
+	</section>
 
 
 
 </main>
-
-
-
-
-
-
-
-
-
-

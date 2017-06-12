@@ -22,19 +22,19 @@
 	margin-bottom: 5%;
 
 	transform-style: preserve-3d;
-	perspective: 1450px;
+	perspective: 1300px;
 	transition: transform .5s ease;
 
 	> a {
 		display: block;
 		border-radius: $global-border-radius;
-		transition: transform .7s $ease-out-circ, box-shadow .7s $ease-out-circ;
+		transition: transform .7s $ease-out-circ, box-shadow .7s ease;
 	}
 	
 
 	&.is-hovering {
 		a {
-			box-shadow: rgba(shade($darkblue,75%),0.5) 0 0 2em;
+			box-shadow: rgba(shade($darkblue,90%),0.25) 0 0 1.5em;
 		}
 	}
 	&.is-nothovering {

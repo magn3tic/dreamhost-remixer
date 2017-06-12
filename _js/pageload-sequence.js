@@ -1,10 +1,16 @@
 
-import {$body, $window} from './globals.js';
+import {$body, $window, easeOutBack} from './globals.js';
 
+
+
+const $top = $('#top'),
+			$loadscreen = $('#dhr-loadscreen'),
+
+			$homevideo = $('#dhr-home-videoel'),
+			homevideo = $homevideo[0];
 
 const pageOutDuration = 500,
-			$top = $('#top'),
-			$loadscreen = $('#dhr-loadscreen');
+			isHomePage = $body.hasClass('dhr-currentpage-index');
 
 
 
@@ -23,16 +29,27 @@ $transitionlinks.click(function(event) {
 
 
 
+
+
+
+
+
 //on page fully loaded
 const onFullPageload = () => {
+	
 	$body.addClass('is-fullyloaded');
 
-	$loadscreen.velocity('transition.fadeOut', {duration:350});
+	$loadscreen.velocity('transition.fadeOut', {duration:350, delay:150});
+
+	if (isHomePage) {
+		homevideo.play();
+	}
+
 };
 
 
 if (window.Pace) {
 	Pace.on('done', onFullPageload, window);
 } else {
-	//$window.on('load', onFullPageload);
+	$window.on('load', onFullPageload);
 }

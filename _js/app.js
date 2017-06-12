@@ -5,15 +5,26 @@
 import './utils.js'; //polyfills, small jquery plugs, etc... include first
 
 
-import './sliders.js';
-import './countdown.js';
 import './pageload-sequence.js';
-import './contact-modal.js';
 import './item-hover.js';
+import './countdown.js';
+
+import './sliders.js';
+import './contact-modal.js';
+import './videoplayers.js';
 
 
 import {$body, $window, $siteheader, $sitemain, $sitefooter, easeOutBack} from './globals.js';
 
+import Breakpoints from './breakpoints.js';
+
+
+const bps = new Breakpoints();
+
+$(window).resize(() => {
+
+	console.log(bps.breakpointDown('md'));
+});
 
 // wtf
 // $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
@@ -46,13 +57,6 @@ $scrollanchors.click(function(e) {
 });
 
 
-
-
-//skrollr
-// if (!window.Modernizr.touchevents) {
-// 	const skrolz = skrollr.init({forceHeight: false, smoothScrolling: false});
-// 	$window.bind('load resize', () => skrolz.refresh());
-// }
 
 
 
@@ -91,7 +95,7 @@ const $inviewels = $('[data-inview]'),
 inViewTicker = () => {
 	$inviewels.each(function() {
 		const $t = $(this);
-		if ($t.inView(false)) {
+		if ($t.inView(true)) {
 			$t.addClass('is-inview');
 		} else {
 			$t.removeClass('is-inview');

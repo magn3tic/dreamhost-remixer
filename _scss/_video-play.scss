@@ -20,7 +20,7 @@
 
 		&.dhr-playbtn--circ-back {
 			circle {
-				stroke: rgba($white,0.4);
+				stroke: rgba($white,0.25);
 			}
 		}
 		&.dhr-playbtn--circ-front {
@@ -74,7 +74,7 @@ a {
 		.dhr-playbtn--icon {
 			i { 
 				color: $white; 
-				transition-delay: 0.2s;
+				transform: scale(1.15);
 			}
 		}
 	}

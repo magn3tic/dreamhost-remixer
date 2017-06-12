@@ -118,16 +118,17 @@
 	}
 
 	
-	input[type="text"], input[type="tel"], input[type="email"] {
-		border: 1px solid shade($secondary,8%);
+	input[type="text"], input[type="tel"], input[type="email"], select {
+		border: 2px solid shade($secondary,8%);
 		transition: all .3s ease;
 
 		&:focus {
-			border-color: shade($secondary,35%);
-			//background: $white;
-			@include placeholder() {
-				color: $white;
-			}
+			border-color: shade($secondary,15%);
+			background: shade($secondary,0%);
+			box-shadow: rgba($darkblue,0.15) 0 0 1.5em;
+			// @include placeholder() {
+			// 	color: $white;
+			// }
 		}
 	}
 
@@ -141,6 +142,14 @@
 	display: inline-block;
 	position: relative;
 	width: 12em;
+
+	label {
+		position: absolute;
+		bottom: 100%; left:1.5em;
+		font-size: 0.7em; 
+		font-weight: bold;
+		text-transform: uppercase;
+	}
 }
 
 
