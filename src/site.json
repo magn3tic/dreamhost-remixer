@@ -5,15 +5,15 @@
 	},
 
 	"episodes": [{
-		"name": "Master of Cultural Identity",
+		"name": "Master of Leathercraft",
 		"headline": "Master Your Domain with Remixer by Dreamhost",
-		"image": "ep1-poster.jpg",
+		"image": "ep2-poster.jpg",
 		"video": "",
 		"release": 1499883831519
 	}, {
-		"name": "Master of Leathercraft",
+		"name": "Master of Cultural Identity",
 		"headline": "",
-		"image": "ep2-poster.jpg",
+		"image": "ep1-poster.jpg",
 		"video": "",
 		"release": 1499884841519
 	}, {
