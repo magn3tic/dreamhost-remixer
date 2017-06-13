@@ -2359,24 +2359,69 @@ html.no-generatedcontent a:hover {
 .dhr-next-episode--anchor {
   position: relative;
   overflow: hidden; }
+  .dhr-next-episode--anchor .to-next-ep {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; }
+  .dhr-next-episode--anchor:hover .dark-mark-over {
+    -webkit-animation: rotateLogo 140s infinite;
+            animation: rotateLogo 140s infinite; }
+  .dhr-next-episode--anchor:hover .light-mark-under {
+    -webkit-animation: rotateLogoReverse 190s infinite;
+            animation: rotateLogoReverse 190s infinite; }
   .dhr-next-episode--anchor:hover .next-episode-bg {
-    -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-            transform: scale(1.1); }
+    -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+            transform: scale(1.2); }
+
+@-webkit-keyframes rotateLogo {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg); }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg); } }
+
+@keyframes rotateLogo {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg); }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg); } }
+
+@-webkit-keyframes rotateLogoReverse {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg); }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(-360deg);
+            transform: translate(-50%, -50%) rotate(-360deg); } }
+
+@keyframes rotateLogoReverse {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg); }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(-360deg);
+            transform: translate(-50%, -50%) rotate(-360deg); } }
 
 .next-episode-bg {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: 110%;
+  width: 110%;
   z-index: -3;
   background-image: url("../img/next-episode-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  -webkit-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out; }
+  -webkit-transition: all 8s ease-in-out;
+  -o-transition: all 8s ease-in-out;
+  transition: all 8s ease-in-out; }
 
 .light-mark-under, .dark-mark-over {
   position: absolute;
@@ -2384,7 +2429,10 @@ html.no-generatedcontent a:hover {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%); }
+          transform: translate(-50%, -50%);
+  -webkit-transition: all 8s ease-in-out;
+  -o-transition: all 8s ease-in-out;
+  transition: all 8s ease-in-out; }
 
 .light-mark-under {
   z-index: -2;
@@ -2397,7 +2445,7 @@ html.no-generatedcontent a:hover {
   width: 40%; }
   .dark-mark-over path {
     fill: #2bace9;
-    mix-blend-mode: multiply; }
+    opacity: 0.3; }
 
 .next-episode--content {
   text-align: center; }

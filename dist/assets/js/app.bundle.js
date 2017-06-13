@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -87,6 +87,111 @@ var $body = exports.$body = $('body'),
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Breakpoints Class --------------------//
+
+// usage: helper functions to test viewport size @ exact match w/ css
+// window.matchMedia alternative
+//
+// Breakpoints({
+// 	breakpoints: ['sm']
+// })
+//
+
+
+var defaultBreakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
+    defaultElement = document.querySelector('body'),
+    getCurrent = function getCurrent() {
+	return window.getComputedStyle(defaultElement, ':before').getPropertyValue('content').replace(/\"/g, '');
+};
+
+var currentBpIndex = null,
+    initialBp = getCurrent();
+
+var Breakpoints = function () {
+	function Breakpoints(options) {
+		_classCallCheck(this, Breakpoints);
+
+		options = options || {};
+		this.breakpoints = options.breakpoints || defaultBreakpoints;
+		this.element = options.element || defaultElement;
+
+		this.refreshCurrentIndex();
+		this.initbp = this.getCurrent();
+
+		if (options.evented) {
+			//todo: custom event 'breakpoints.xs.down'
+		}
+	}
+
+	//get value of the pseudo-element
+
+
+	_createClass(Breakpoints, [{
+		key: 'getCurrent',
+		value: function getCurrent() {
+			return window.getComputedStyle(this.element, ':before').getPropertyValue('content').replace(/\"/g, '');
+		}
+	}, {
+		key: 'emitEvents',
+		value: function emitEvents() {
+			var newBp = getCurrent(),
+			    currBp = this.initBp;
+
+			if (newBp !== currBp) {
+				$(window).trigger('breakpoints.change');
+				currBp = newBp;
+			}
+		}
+	}, {
+		key: 'refreshCurrentIndex',
+		value: function refreshCurrentIndex() {
+			currentBpIndex = this.breakpoints.indexOf(this.getCurrent());
+		}
+	}, {
+		key: 'breakpointUp',
+		value: function breakpointUp(bp) {
+			this.refreshCurrentIndex();
+			var bpArgIndex = this.breakpoints.indexOf(bp);
+			return currentBpIndex >= bpArgIndex;
+		}
+	}, {
+		key: 'breakpointDown',
+		value: function breakpointDown(bp) {
+			this.refreshCurrentIndex();
+			var bpArgIndex = this.breakpoints.indexOf(bp);
+			return currentBpIndex <= bpArgIndex;
+		}
+	}, {
+		key: 'breakpointBetween',
+		value: function breakpointBetween(min, max) {
+			this.refreshCurrentIndex();
+			var bpMinIndex = this.breakpoints.indexOf(min),
+			    bpMaxIndex = this.breakpoints.indexOf(max);
+			return currentBpIndex >= bpMinIndex && currentBpIndex <= bpMaxIndex;
+		}
+	}]);
+
+	return Breakpoints;
+}();
+
+exports.default = Breakpoints;
+;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -165,7 +270,7 @@ if (window.location.hash === '#contact') {
 }
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -241,7 +346,7 @@ $lockedepisodes.each(function (index, item) {
 });
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -306,7 +411,7 @@ $hovercards.each(function () {
 });
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -355,7 +460,7 @@ if (window.Pace) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -379,7 +484,7 @@ if ($f.carousel.length) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -474,7 +579,7 @@ $.centeredPopup = function (options) {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -518,29 +623,29 @@ $playbtns.each(function () {
 });
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(6);
+__webpack_require__(7);
+
+__webpack_require__(5);
 
 __webpack_require__(4);
 
 __webpack_require__(3);
 
+__webpack_require__(6);
+
 __webpack_require__(2);
 
-__webpack_require__(5);
-
-__webpack_require__(1);
-
-__webpack_require__(7);
+__webpack_require__(8);
 
 var _globals = __webpack_require__(0);
 
-var _breakpoints = __webpack_require__(9);
+var _breakpoints = __webpack_require__(1);
 
 var _breakpoints2 = _interopRequireDefault(_breakpoints);
 
@@ -683,111 +788,6 @@ _globals.$window.on('resize', $.debounce(300, false, scrollUpdate));
 _globals.$window.scroll(function () {
 	return didScroll = true;
 });
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// Breakpoints Class --------------------//
-
-// usage: helper functions to test viewport size @ exact match w/ css
-// window.matchMedia alternative
-//
-// Breakpoints({
-// 	breakpoints: ['sm']
-// })
-//
-
-
-var defaultBreakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
-    defaultElement = document.querySelector('body'),
-    getCurrent = function getCurrent() {
-	return window.getComputedStyle(defaultElement, ':before').getPropertyValue('content').replace(/\"/g, '');
-};
-
-var currentBpIndex = null,
-    initialBp = getCurrent();
-
-var Breakpoints = function () {
-	function Breakpoints(options) {
-		_classCallCheck(this, Breakpoints);
-
-		options = options || {};
-		this.breakpoints = options.breakpoints || defaultBreakpoints;
-		this.element = options.element || defaultElement;
-
-		this.refreshCurrentIndex();
-		this.initbp = this.getCurrent();
-
-		if (options.evented) {
-			//todo: custom event 'breakpoints.xs.down'
-		}
-	}
-
-	//get value of the pseudo-element
-
-
-	_createClass(Breakpoints, [{
-		key: 'getCurrent',
-		value: function getCurrent() {
-			return window.getComputedStyle(this.element, ':before').getPropertyValue('content').replace(/\"/g, '');
-		}
-	}, {
-		key: 'emitEvents',
-		value: function emitEvents() {
-			var newBp = getCurrent(),
-			    currBp = this.initBp;
-
-			if (newBp !== currBp) {
-				$(window).trigger('breakpoints.change');
-				currBp = newBp;
-			}
-		}
-	}, {
-		key: 'refreshCurrentIndex',
-		value: function refreshCurrentIndex() {
-			currentBpIndex = this.breakpoints.indexOf(this.getCurrent());
-		}
-	}, {
-		key: 'breakpointUp',
-		value: function breakpointUp(bp) {
-			this.refreshCurrentIndex();
-			var bpArgIndex = this.breakpoints.indexOf(bp);
-			return currentBpIndex >= bpArgIndex;
-		}
-	}, {
-		key: 'breakpointDown',
-		value: function breakpointDown(bp) {
-			this.refreshCurrentIndex();
-			var bpArgIndex = this.breakpoints.indexOf(bp);
-			return currentBpIndex <= bpArgIndex;
-		}
-	}, {
-		key: 'breakpointBetween',
-		value: function breakpointBetween(min, max) {
-			this.refreshCurrentIndex();
-			var bpMinIndex = this.breakpoints.indexOf(min),
-			    bpMaxIndex = this.breakpoints.indexOf(max);
-			return currentBpIndex >= bpMinIndex && currentBpIndex <= bpMaxIndex;
-		}
-	}]);
-
-	return Breakpoints;
-}();
-
-exports.default = Breakpoints;
-;
 
 /***/ })
 /******/ ]);
