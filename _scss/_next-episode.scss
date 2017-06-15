@@ -1,23 +1,54 @@
 .dhr-next-episode--anchor {
   position: relative;
   overflow: hidden;
+  .to-next-ep {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+  }
   &:hover {
-    .next-episode-bg {
-      transform: scale(1.1);
+    .dark-mark-over {
+      animation: rotateLogo 140s infinite;
     }
+    .light-mark-under {
+      animation: rotateLogoReverse 190s infinite;
+    }
+    .next-episode-bg {
+      transform: scale(1.2);
+    }
+  }
+}
+
+@keyframes rotateLogo {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes rotateLogoReverse {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
 
 .next-episode-bg {
   position: absolute;
   top: 0; left: 0;
-  height: 100%;
-  width: 100%;
+  height: 110%;
+  width: 110%;
   z-index: -3;
   background-image: url('../img/next-episode-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  transition: all 1s ease-in-out;
+  transition: all 8s ease-in-out;
 }
 
 
@@ -25,7 +56,7 @@
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-
+  transition: all 8s ease-in-out;
 }
 
 .light-mark-under {
@@ -44,7 +75,7 @@
   }
   path {
     fill: $secondary;
-    mix-blend-mode: multiply;
+    opacity: 0.3;
   }
 }
 
