@@ -14,17 +14,40 @@ import './contact-modal.js';
 import './videoplayers.js';
 
 
+
+import SplitText from './splittext.js';
+import Breakpoints from './breakpoints.js';
+import DesignerOptions from './designer-options.js';
+
 import {$body, $window, $siteheader, $sitemain, $sitefooter, easeOutBack} from './globals.js';
 
-import Breakpoints from './breakpoints.js';
+
+
+
+const $spltels = $('.dhr-preheadline, .dhr-sectionheadline, .dhr-mainheadline'),
+			splttxt = new SplitText($spltels, {type:'lines'}),
+			spltlines = splttxt.lines;
+
+
+console.log(spltlines);
+
+
+
+
+
 
 
 const bps = new Breakpoints();
 
-$(window).resize(() => {
 
-	console.log(bps.breakpointDown('md'));
+new DesignerOptions({
+	'blendmoded': 'Blend Mode On/Off',
+	'hovertilt': 'Hover Tilt Effect'
 });
+
+
+
+
 
 // wtf
 // $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
@@ -133,6 +156,11 @@ const ticker = () => {
 		scrollUpdate();
 
 		inViewTicker();
+
+		if (bps.breakpointDown('md')) {
+			$siteheader.attr('style','');
+			return; 
+		} 
 
 		if (scrollCurrent <= 0) {
 			//if back at window top

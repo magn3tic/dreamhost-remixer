@@ -1,5 +1,9 @@
 
 
+//allows designer options to be removed for production
+window.designerOptions = window.designerOptions || {};
+
+
 // in viewport test
 window.$.fn.inView = function(partial) {
   var $t = $(this),

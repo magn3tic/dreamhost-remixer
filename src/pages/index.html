@@ -3,7 +3,7 @@
 <div class="dhr-fixedhero {{#if autoheight}}dhr-fixedhero--autoheight{{/if}} dhr-fixedhero--has-video">
 	<div class="dhr-main">
 		<div class="dhr-fixedhero--outer">
-			<video autoplay loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="">
+			<video autoplay loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="assets/img/poster-master-of-leathercraft.jpg">
 				<source src="assets/vid/leathercraft-720.mp4" type="video/mp4">
 			</video>
 		</div>
@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<div class="dhr-hero--play">
-				<a href="#0" data-hovercard data-hovercard-scale="1.1" data-hovercard-tilt="15" data-video="assets/vid/leathercraft" data-video-target='#dhr-hero-embedtarget'>
+				<a href="#0" data-hovercard data-hovercard-scale="1.1" data-hovercard-tilt="15" data-video="assets/vid/leathercraft" data-video-target="#dhr-hero-embedtarget">
 					{{> play-btn}}
 				</a>
 			</div>
@@ -50,11 +50,8 @@
 		<div id="dhr-hero-bottom" class="inner">
 			
 			<div class="dhr-fluidvideo">
-				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--inner" data-video="assets/vid/leathercraft.mp4">
-					
-				</div>
+				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/leathercraft.mp4"></div>
 			</div>
-
 
 			<hr class="dhr-divider">
 			<div class="inner-small dhr-hero--leadin">
@@ -72,7 +69,7 @@
 			{{#each episodes}}
 			
 			<div class="dhr-episodeitem {{#compare @index 0 operator='>'}}dhr-episodeitem--locked{{/compare}}">
-				<a data-hovercard href="#0" class="dhr-episodeitem--link-{{@index}}">
+				<a data-hovercard data-page-transition href="{{this.url}}" class="dhr-episodeitem--link-{{@index}}">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
 							<div data-countdown="{{this.release}}" class="dhr-episodeitem--countdown">

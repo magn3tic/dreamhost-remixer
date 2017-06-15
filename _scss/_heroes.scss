@@ -25,12 +25,18 @@
 }
 
 .dhr-hero--owner-img {
+	position: relative;
+	line-height:1;
 	display: inline-block;
-	width: 3.7em; height: 3.7em;
-	padding: .2em;
-	background: rgba($white,0.2);
 	border-radius: 50%;
 	margin-right: 0.5em;
+
+	&:before {
+		content:""; display:block; position:absolute;
+		width: 110%; height:110%; top:-8%; left:-4%;
+		background: rgba($white,0.15);
+		border-radius:50%;
+	}
 
 	svg {
 		height: 3.3em; //older ie's
@@ -116,15 +122,28 @@
 
 
 .dhr-fixedhero--has-video {
-	
+
 	.dhr-fixedhero--outer {
 		&:after {
 			content:""; display:block; position:absolute;
 			top:0;left:0; width:100%;height:100%;
-			background: rgba($darkblue,0.3);
+			background: rgba($darkblue,0.55);
+			transition: background .5s ease;
+		}
+	}
+
+	.is-playingtriggered & {
+		.dhr-fixedhero--outer:after {
+			background: rgba($darkblue,0.9);
+		}
+	}
+	
+	.backgroundblendmode .version-blendmoded & {
+	  .dhr-fixedhero--outer:after {
 			mix-blend-mode: multiply;
 		}
 	}
+
 }
 
 
@@ -139,6 +158,11 @@
 	.dhr-divider {
 		display: none;
 	}
+	
+	//plyr videos
+	.dhr-fluidvideo--wrapper > .plyr--video {
+		transform: translateY(120%);
+	}
 }
 
 .dhr-hero--leadin {
@@ -146,6 +170,43 @@
 	text-align: center;
 	color: $white;
 }
+
+
+
+//Home Hero Video Player Overrides
+#dhr-hero-embedtarget {
+	
+	// .plyr__controls {
+	// 	text-align: right;
+	// 	width: 100%;
+	// }
+
+	// .plyr__progress {
+	// 	position: absolute;
+	// 	bottom:0; left:0;
+	// }
+
+	// .plyr__progress--played {
+	// 	background: $secondary;
+	// 	height: 2px;
+	// }
+	// .plyr__progress--buffer {
+	// 	height: 2px;
+	// }
+	
+	button[data-plyr="fullscreen"] {
+		
+	}
+
+}
+
+
+
+
+
+
+
+
 
 
 

@@ -3,7 +3,7 @@ import {$body, $window, easeOutBack} from './globals.js';
 
 
 
-const $top = $('#top'),
+export const $top = $('#top'),
 			$loadscreen = $('#dhr-loadscreen'),
 
 			$homevideo = $('#dhr-home-videoel'),
@@ -21,6 +21,8 @@ $transitionlinks.click(function(event) {
 	event.preventDefault();
 	let href = $(this).attr('href');
 
+	if (href.indexOf('#') === 0) return; 
+
 	$top.velocity('scroll', {duration: pageOutDuration});
 	$body.addClass('is-pagetransitioning').velocity('transition.fadeOut', {duration: pageOutDuration});
 			 
@@ -31,13 +33,12 @@ $transitionlinks.click(function(event) {
 
 
 
-
-
-
 //on page fully loaded
 const onFullPageload = () => {
 	
 	$body.addClass('is-fullyloaded');
+
+	$top.velocity('scroll', {duration:50});
 
 	$loadscreen.velocity('transition.fadeOut', {duration:350, delay:150});
 

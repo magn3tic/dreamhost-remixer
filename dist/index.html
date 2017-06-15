@@ -20,11 +20,14 @@
 
 	<title>Dreamhost Remixer</title>
 	<meta name="description" content="Add your metadescription here...">
+	
+	<!-- PWA Mode -->
+	<!--<link rel="manifest" href="manifest.json">-->
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:500">
 	<link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body class="dhr-currentpage-index">
+<body class="dhr-currentpage-index version-blendmoded">
 
 	<div id="top"></div>
 
@@ -84,7 +87,7 @@
 <div class="dhr-fixedhero  dhr-fixedhero--has-video">
 	<div class="dhr-main">
 		<div class="dhr-fixedhero--outer">
-			<video autoplay loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="">
+			<video autoplay loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="assets/img/poster-master-of-leathercraft.jpg">
 				<source src="assets/vid/leathercraft-720.mp4" type="video/mp4">
 			</video>
 		</div>
@@ -121,7 +124,7 @@
 				</div>
 			</div>
 			<div class="dhr-hero--play">
-				<a href="#0" data-hovercard data-hovercard-scale="1.1" data-hovercard-tilt="15" data-video="assets/vid/leathercraft" data-video-target='#dhr-hero-embedtarget'>
+				<a href="#0" data-hovercard data-hovercard-scale="1.1" data-hovercard-tilt="15" data-video="assets/vid/leathercraft" data-video-target="#dhr-hero-embedtarget">
 					
 					<div class="dhr-playbtn">
 						<svg class="dhr-playbtn--circ-back" viewBox="0 0 200 200">
@@ -142,11 +145,8 @@
 		<div id="dhr-hero-bottom" class="inner">
 			
 			<div class="dhr-fluidvideo">
-				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--inner" data-video="assets/vid/leathercraft.mp4">
-					
-				</div>
+				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/leathercraft.mp4"></div>
 			</div>
-
 
 			<hr class="dhr-divider">
 			<div class="inner-small dhr-hero--leadin">
@@ -163,7 +163,7 @@
 		<div class="inner">
 			
 			<div class="dhr-episodeitem ">
-				<a data-hovercard href="#0" class="dhr-episodeitem--link-0">
+				<a data-hovercard data-page-transition href="master-of-leathercraft.html" class="dhr-episodeitem--link-0">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
 							<div data-countdown="1499883831519" class="dhr-episodeitem--countdown">
@@ -206,7 +206,7 @@
 
 			
 			<div class="dhr-episodeitem dhr-episodeitem--locked">
-				<a data-hovercard href="#0" class="dhr-episodeitem--link-1">
+				<a data-hovercard data-page-transition href="#0" class="dhr-episodeitem--link-1">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
 							<div data-countdown="1499884841519" class="dhr-episodeitem--countdown">
@@ -249,7 +249,7 @@
 
 			
 			<div class="dhr-episodeitem dhr-episodeitem--locked">
-				<a data-hovercard href="#0" class="dhr-episodeitem--link-2">
+				<a data-hovercard data-page-transition href="#0" class="dhr-episodeitem--link-2">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
 							<div data-countdown="1499885851519" class="dhr-episodeitem--countdown">
@@ -292,7 +292,7 @@
 
 			
 			<div class="dhr-episodeitem dhr-episodeitem--locked">
-				<a data-hovercard href="#0" class="dhr-episodeitem--link-3">
+				<a data-hovercard data-page-transition href="#0" class="dhr-episodeitem--link-3">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
 							<div data-countdown="1499886861519" class="dhr-episodeitem--countdown">
@@ -408,7 +408,7 @@
 				
 				<div data-inview="fade" class="dhr-footer--copyright">
 					<h5>Proudly Hosting Over <span>1,500,000</span> Websites Since 1997</h5>
-					<p><span>&copy;</span> 2017 Dreamhost Inc.</p>
+					<p><span>&copy;</span> 2017 DreamHost Inc.</p>
 				</div>
 	
 			</div>
@@ -547,5 +547,7 @@
 
 	<script src="assets/js/plugins.min.js"></script>
 	<script src="assets/js/app.bundle.js"></script>
+
+	<link rel="stylesheet" href="assets/css/designer-options.css">
 </body>
 </html>

@@ -35,7 +35,8 @@ $modaltrigger.on('click', (e) => {
 		translateY: $window.height()
 	}, {
 		easing: easeOutBack,
-		duration: 600
+		duration: 600,
+		complete: () => $inputs.firstname.focus()
 	});
 
 	$body.addClass('is-showing-contactmodal');
