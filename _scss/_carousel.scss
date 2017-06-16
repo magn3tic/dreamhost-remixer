@@ -10,7 +10,7 @@
   position: relative;
   width: auto;
   margin-left: 1.5em;
-  background: $darkblue;
+  background: darken($white, 9%);
   border-radius: $global-border-radius 0 0 $global-border-radius;
   
   .flickity-viewport, .cell-img:first-child img {

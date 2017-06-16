@@ -4,6 +4,7 @@
 
 
 	.dhr-markbg {
+		display: none;
 		svg { 
 			transform: translateY(-66.5%);
 		}
@@ -13,7 +14,7 @@
 
 .dhr-testify--img {
 	position: relative; z-index:199;
-	margin-bottom: 18.5%;
+	margin-bottom: 4em;
 	
 	figure {
 		img {
@@ -24,8 +25,8 @@
 	}
 
 	&-overlay {
-		position: absolute; right: 50%; top:-10%; z-index: -1;
-		width: 150%; height: 120%;
+		position: absolute; right: 50%; top:-2em; bottom:-2em; z-index: -1;
+		width: 150%; height: auto;
 		background: rgba($secondary, 0.95);
 		border-radius: 0 $global-border-radius $global-border-radius 0;
 
@@ -37,9 +38,37 @@
 }
 
 
+
 .dhr-testify--content {
 	blockquote {
 		margin:0 0 1em; padding:0;
+	}
+}
+
+
+
+.dhr-testify--interview-transcript {
+	padding-bottom: 1.5em;
+	h5 {
+		font-family: $body-font-family;
+		font-size: 1.1em;
+	}
+
+	ul {
+		list-style: none;
+		margin: 0; padding:0;
+		li {
+			margin-bottom: 2em;
+		}
+	}
+
+	cite {
+		display: block;
+		text-transform: uppercase;
+		color: $secondary;
+		font-weight: bold;
+		font-size: .8em;
+		font-style: normal;
 	}
 }
 
@@ -80,6 +109,11 @@
 @media (min-width:$bp-md) {
 
 	.dhr-testify {
+		
+		.dhr-markbg {
+			display: block;
+		}
+
 		> .inner {
 			display: flex;
 			align-items: center;

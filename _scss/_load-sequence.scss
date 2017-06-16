@@ -61,7 +61,7 @@ body {
 
 [data-inview="fade-up-in"] {
 	opacity: 0;
-	transform: translateY(99px);
+	transform: translateY(-50px);
 	transition: opacity 1s ease, transform 1s $ease-out-quart;
 
 	&.is-inview {
@@ -69,6 +69,17 @@ body {
 		transform: translateY(0);
 	}
 }
+
+
+
+
+.dhr-splttxt-line {
+	overflow: hidden;
+	position: relative;
+}
+
+
+
 
 
 

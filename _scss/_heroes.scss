@@ -30,15 +30,17 @@
 	display: inline-block;
 	border-radius: 50%;
 	margin-right: 0.5em;
+	height: 3.3em;
 
 	&:before {
 		content:""; display:block; position:absolute;
-		width: 110%; height:110%; top:-8%; left:-4%;
-		background: rgba($white,0.15);
+		width: 114%; height:114%; top:-8%; left:-5%;
+		background: rgba($white,0.1);
 		border-radius:50%;
 	}
 
 	svg {
+		position: relative;
 		height: 3.3em; //older ie's
 	}
 }
@@ -48,7 +50,7 @@
 	position: relative; top: -1.4em;
 	p {
 		color: $primary;
-		font-size: .85em;
+		font-size: .8em;
 		margin: 0;
 		strong {
 			text-transform: uppercase;
@@ -257,6 +259,10 @@
 		text-align: right;
 	}
 	
+	.dhr-hero--owner {
+		padding-top: 0.5em;
+		margin-bottom: 1em;
+	}
 
 	.dhr-homehero {
 		.dhr-divider {
@@ -283,10 +289,10 @@
 
 
 	.dhr-hero--owner {
-		font-size: 135%;
+		font-size: 140%;
 
 		&-name p {
-			font-size: .65em;
+			font-size: .6em;
 		}
 	}
 

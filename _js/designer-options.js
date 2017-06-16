@@ -1,4 +1,6 @@
 
+//Library that provides on/off functionality for designers to preview different "versions" of components
+
 
 window.designerOptions = {};
 
@@ -9,8 +11,10 @@ const isOpen = true,
 export default class DesignerOptions {
 
 	constructor(options) {
-		this.opts = options;
+		this.opts = options.options;
+		this.stylesheet = options.stylesheet || false;
 
+		this.writeStylesheet();
 		$body.prepend(this.buildUI());
 		this.bindUIActions();
 	}
@@ -31,6 +35,11 @@ export default class DesignerOptions {
 		}
 		html += '</ul></div></div>';
 		return html;
+	}
+
+	writeStylesheet() {
+		if (!this.stylesheet) return;
+		$body.prepend('<link rel="stylesheet" href="'+this.stylesheet+'">');
 	}
 
 	togglePluginProp(prop) {

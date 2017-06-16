@@ -4,7 +4,7 @@
 .dhr-header {
 	position: relative;
 	z-index: 1999;
-	background: $darkblue;
+	background: transparent;
 	transition: background 0.5s ease;
 
 	&--outer {
@@ -103,6 +103,7 @@
 	.dhr-header {
 		position: fixed; top:0; left:0; width:100%;
 		padding: 0.8em 0 1.1em;
+		background: $darkblue;
 		.inner {
 			width: 96%;
 		}

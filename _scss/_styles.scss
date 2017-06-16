@@ -55,6 +55,8 @@ body {
 	font-family: $heading-font-family;
 }
 
+
+//pre/blue headline
 .dhr-preheadline {
 	text-transform: uppercase;
 	color: $secondary;
@@ -63,14 +65,28 @@ body {
 	letter-spacing: 0.035em;
 }
 
+
 //main page headline
-.dhr-mainheadline {
+.dhr-mainheadline, .dhr-jumboheadline {
 	color: $white;
 
 	@media (min-width:$bp-lg) {
 		font-size: 2.4em;
 	}
 }
+
+
+//jumbo headline
+.dhr-jumboheadline {
+	
+	@media (min-width:$bp-xl) {
+		font-size: 2.7em;
+	}
+	@media (min-width:$bp-xxl) {
+		font-size: 3.1em;
+	}
+}
+
 
 
 //main page headline
@@ -89,7 +105,7 @@ body {
 // wrapper/container elements
 .inner {
 	width: 90%;
-	max-width: 71.5em;
+	max-width: $grid-outer-max;
 	margin-right: auto;
 	margin-left: auto;
 	@include clearfix();
@@ -101,18 +117,21 @@ body {
 	margin-left: auto;
 }
 
-.inner-small {
+.inner-small, .inner-6 {
 	//width: 60%;
-	max-width: 37.5em;
+	max-width: ($grid-outer-max/12)*6;
 }
-.inner-medium {
-	max-width: 48em;
+.inner-medium, .inner-8 {
+	max-width: ($grid-outer-max/12)*8;
 }
-.inner-large {
-	max-width: 58em;
+.inner-large, .inner-9 {
+	max-width: ($grid-outer-max/12)*9;
 }
 .inner-xlarge {
-	max-width: 64.5em;
+	max-width: ($grid-outer-max/12)*10;
+}
+.inner-xxlarge {
+	max-width: ($grid-outer-max/12)*11;
 }
 
 //site's outer container
@@ -155,7 +174,7 @@ body {
 	}
 
 	&--light {
-		background: shade($white,2.75%);
+		background: shade($white,2%);
 	}
 	&--dark {
 		background: $darkblue;
@@ -314,6 +333,12 @@ a.dhr-button, button.dhr-button {
 
 
 
+
+//lazy-loaded imgs
+
+[data-lazy-bg] {
+	opacity: 0;
+}
 
 
 

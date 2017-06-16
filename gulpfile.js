@@ -156,7 +156,7 @@ gulp.task('debug', () => {
 
 
 // DEFAULT TASK
-gulp.task('default', ['build', 'scss', 'jspriority', 'jslibs', 'webpack', 'server'], () => {
+gulp.task('default', ['build', 'scss', 'jslibs', 'webpack', 'server'], () => {
 	//browsersync will inject changes in compiled css (hot reload)
 	gulp.watch(PATHS.scss, ['scss']);
 	//rebuild on changes to html in /src

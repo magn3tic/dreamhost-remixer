@@ -1,6 +1,6 @@
 
 
-//allows designer options to be removed for production
+//allows designer options to be removed for production w/o error
 window.designerOptions = window.designerOptions || {};
 
 

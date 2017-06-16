@@ -52,30 +52,34 @@
 					<p>
 						<span class="dhr-inlineform--word">I would like to contact</span>
 						<span class="dhr-inlineform--input">
-							<select name="" id="">
+							<select name="" id="dhr-contact-dept-input">
 								<option value="">-- Select One</option>
 								<option value="sales">&nbsp; Sales</option>
 								<option value="support">&nbsp; Support</option>
 							</select>	
+							<label for="dhr-contact-dept-input">Department</label>
 						</span>
 						<span class="dhr-inlineform--word">regarding</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" placeholder="Briefly write your question">
+							<input type="text" id="dhr-contact-question-input" placeholder="Briefly write your question">
+							<label for="dhr-contact-question-input">Question</label>
 						</span>
 					</p>
 					<p>
 						<span class="dhr-inlineform--word">You can reach me at</span>
 						<span class="dhr-inlineform--input">
-							<input type="email" placeholder="Email Address">
+							<input type="email" id="dhr-contact-email-input" placeholder="Email Address">
+							<label for="dhr-contact-email-input">Email Address</label>
 						</span>
 						<span class="dhr-inlineform--word">or call</span>
 						<span class="dhr-inlineform--input">
-							<input type="tel" placeholder="Phone Number">
+							<input type="tel" id="dhr-contact-phone-input" placeholder="Phone Number">
+							<label for="dhr-contact-phone-input">Phone Number</label>
 						</span>
 						<span>Talk to you soon!</span>
 					</p>
 					<div class="dhr-contactmodal--btns">
-						<button type="submit" class="dhr-button">Send Your Question</button>
+						<button type="submit" class="dhr-button" data-text="Send Your Question">Send Your Question</button>
 					</div>
 				</form>
 			</div>

@@ -1,99 +1,151 @@
-.dhr-next-episode--anchor {
-  position: relative;
+
+
+
+
+
+.dhr-nextepisode {
+  position: relative; z-index:599;
   overflow: hidden;
-  .to-next-ep {
+
+  &--content {
+    padding-top: 2.3em;
+    text-align: center;
+  }
+  
+  > a {
     position: absolute;
     top: 0; left: 0;
     width: 100%;
     height: 100%;
     z-index: 9999;
+
+    &:hover {
+      
+      ~ .dhr-coverimg {
+        transform: scale(1.03);
+
+        &:after {
+          opacity: 0.5;
+        }
+      }
+    }
   }
-  &:hover {
-    .dark-mark-over {
-      animation: rotateLogo 140s infinite;
-    }
-    .light-mark-under {
-      animation: rotateLogoReverse 190s infinite;
-    }
-    .next-episode-bg {
-      transform: scale(1.2);
+  
+
+  .dhr-coverimg {
+    background-position: center top;
+    background-repeat: no-repeat;
+    transition: transform .35s $ease-out-back;
+    &:after {
+      content:""; display:block; position:absolute;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba($darkblue, 0.65);
+      mix-blend-mode: multiply;
+      transition: opacity 0.5s ease;
     }
   }
 }
 
-@keyframes rotateLogo {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-@keyframes rotateLogoReverse {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-360deg);
-  }
-}
-
-.next-episode-bg {
-  position: absolute;
-  top: 0; left: 0;
-  height: 110%;
-  width: 110%;
-  z-index: -3;
-  background-image: url('../img/next-episode-bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: all 8s ease-in-out;
-}
 
 
 .light-mark-under, .dark-mark-over {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  transition: all 8s ease-in-out;
+  mix-blend-mode: multiply;
 }
 
 .light-mark-under {
   z-index: -2;
   width: 80%;
   path {
-    fill: rgba(255, 255, 255, 0.1);
+    fill: rgba($white, 0.1);
   }
 }
 
 .dark-mark-over {
   z-index: -1;
   width: 40%;
-  svg {
-    // transform: rotate(180deg);
-  }
   path {
-    fill: $secondary;
-    opacity: 0.3;
+    fill: rgba($secondary,0.5);
   }
 }
 
 
-.next-episode--content {
-  text-align: center;
+
+
+
+
+// PLay Icon Lockup ------------------------//
+
+.dhr-playlockup {
+  position: relative;
+  color: $white;
+  display: inline-block;
+  width:4em; height:4em;
+
+  strong {
+    display: block;
+    line-height: 1;
+    letter-spacing: 0.07em;
+    position: absolute;
+    top:48%; left: 110%;
+    text-transform: uppercase;
+    font-size: .85em;
+    transform: translateY(-50%);
+    transition: transform .45s $ease-out-back;
+
+    &:first-of-type {
+      left:auto; right: 110%;
+    }
+  }
 }
 
-.play-now {
-  color: $white;
-  strong {
-    font-size: .85em;
+
+.dhr-playlockup--icon {
+  position: relative;
+  overflow: hidden;
+  line-height: 2;
+  
+  span {
+    display: block;
+    transition: transform .5s $ease-out-quart, opacity .5s ease;
   }
   i {
-    vertical-align: middle;
     font-size: 2em;
     color: $primary;
-    padding-left: 1em;
-    padding-right: 1em;
+    display: block;
+    margin-right: -2px;
   }
 }
+
+.dhr-playlockup--icon-bot {
+  position: absolute;
+  top:100%; left:0; width:100%; height:100%;
+}
+
+
+//hover states (~ and descendant versions)
+
+.dhr-nextepisode a:hover + .inner {
+  
+  .dhr-playlockup {
+    strong {
+      transform: translate(-10px, -50%);
+      + strong {
+        transform: translate(10px, -50%);
+      }
+    }
+  }
+  .dhr-playlockup--icon-top {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  .dhr-playlockup--icon-bot {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+
+}
+
+
