@@ -88,6 +88,38 @@ a {
 
 
 
+// VIDEO PLAYER MODS --------------------------------------//
+
+button[id^="dhr-videoclose"] {
+	border:none; outline:none; 
+	@include appearance(none); border-radius: 5px;
+	position: absolute; z-index: 999;
+	top: .5em; left: 50%;
+	margin-left: -3.5em;
+	font-size: .8em;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: $bluegray;
+	background: $darkblue;
+	padding: .35em 0;
+	width: 6.5em; text-align: center;
+	transition: all .35s ease;
+
+	i {
+		margin-right: .3em;
+		margin-left: -.25em;
+		font-weight: normal;
+	}
+
+	&:hover {
+		color: $white;
+	}
+}
+
+
+
+
+
 
 
 @media (min-width:$bp-lg) {

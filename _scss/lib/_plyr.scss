@@ -10,7 +10,7 @@ $plyr-touch-action:                     true !default;
 $plyr-sr-only-important:                true !default;
 
 // Colors
-$plyr-color-main:                       #3498db !default;
+$plyr-color-main:                       $secondary !default;
 
 // Font sizes
 $plyr-font-family:                      $body-font-family;
@@ -34,7 +34,7 @@ $plyr-video-control-color-hover:        #fff !default;
 $plyr-video-control-bg-hover:           $plyr-color-main !default;
 $plyr-audio-controls-bg:                #fff !default;
 $plyr-audio-controls-border:            1px solid #dbe3e8 !default;
-$plyr-audio-control-color:              #565D64 !default;
+$plyr-audio-control-color:              $plyr-color-main !default;
 $plyr-audio-control-color-hover:        #fff !default;
 $plyr-audio-control-bg-hover:           $plyr-color-main;
 
@@ -48,7 +48,7 @@ $plyr-tooltip-radius:                   3px !default;
 // Progress
 $plyr-progress-loading-size:            25px !default;
 $plyr-progress-loading-bg:              transparentize(#000, .85) !default;
-$plyr-video-progress-bg:                transparentize(#fff, .75) !default;
+$plyr-video-progress-bg:                transparentize($white, .75) !default;
 $plyr-video-progress-buffered-bg:       $plyr-video-progress-bg !default;
 $plyr-audio-progress-bg:                transparentize(#C6D6DB, .33) !default;
 $plyr-audio-progress-buffered-bg:       $plyr-audio-progress-bg !default;
@@ -57,10 +57,10 @@ $plyr-audio-progress-buffered-bg:       $plyr-audio-progress-bg !default;
 $plyr-range-track-height:               8px !default;
 $plyr-range-thumb-height:               floor($plyr-range-track-height * 2) !default;
 $plyr-range-thumb-width:                floor($plyr-range-track-height * 2) !default;
-$plyr-range-thumb-bg:                   #fff !default;
+$plyr-range-thumb-bg:                   $white !default;
 $plyr-range-thumb-border:               2px solid transparent !default;
 $plyr-range-thumb-shadow:               0 1px 1px transparentize($plyr-video-controls-bg, .85), 0 0 0 1px transparentize(#000, .85) !default;
-$plyr-range-thumb-active-border-color:  #fff !default;
+$plyr-range-thumb-active-border-color:  $white !default;
 $plyr-range-thumb-active-bg:            $plyr-video-control-bg-hover !default;
 $plyr-range-thumb-active-scale:         1.25 !default;
 $plyr-video-range-track-bg:             $plyr-video-progress-buffered-bg !default;

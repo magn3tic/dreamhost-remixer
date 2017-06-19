@@ -34,7 +34,9 @@ const loadLazyBgimages = () => {
 	});
 };
 
-$window.on('load', () => setTimeout(loadLazyBgimages, 500));
+if ($lazybgimgs.length > 0) {
+	$window.on('load', () => setTimeout(loadLazyBgimages, 500));
+}
 
 
 

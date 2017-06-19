@@ -40,8 +40,6 @@ const scrollUpdate = () => {
 	scrollDiff = scrollBefore - scrollCurrent;
 	headertop = parseInt($siteheader.css('top')) + scrollDiff;
 	isSmallScreen = bps.breakpointDown('sm');
-
-	console.log('small screen: ', isSmallScreen);
 },
 
 resizeUpdate = () => {

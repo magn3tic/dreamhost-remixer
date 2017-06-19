@@ -1330,6 +1330,25 @@ a.dhr-button, button.dhr-button {
   text-align: center;
   color: #fff; }
 
+.dhr-currentpage-index #dhr-hero-top, .dhr-currentpage-index .dhr-hero--leadin {
+  -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+  transition: opacity 1s ease, -webkit-transform 1s ease;
+  -o-transition: opacity 1s ease, transform 1s ease;
+  transition: opacity 1s ease, transform 1s ease;
+  transition: opacity 1s ease, transform 1s ease, -webkit-transform 1s ease; }
+
+.dhr-currentpage-index.is-playingtriggered #dhr-hero-top {
+  opacity: 0;
+  -webkit-transform: translateY(-70px);
+      -ms-transform: translateY(-70px);
+          transform: translateY(-70px); }
+
+.dhr-currentpage-index.is-playingtriggered .dhr-hero--leadin {
+  opacity: 0;
+  -webkit-transform: translateY(70px);
+      -ms-transform: translateY(70px);
+          transform: translateY(70px); }
+
 .dhr-currentpage-features .dhr-fixedhero--img:after {
   content: "";
   display: block;
@@ -1482,6 +1501,38 @@ a:active .dhr-playbtn {
   -webkit-transform: scale(0.95);
       -ms-transform: scale(0.95);
           transform: scale(0.95); }
+
+button[id^="dhr-videoclose"] {
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 999;
+  top: .5em;
+  left: 50%;
+  margin-left: -3.5em;
+  font-size: .8em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #91a2b6;
+  background: #292b33;
+  padding: .35em 0;
+  width: 6.5em;
+  text-align: center;
+  -webkit-transition: all .35s ease;
+  -o-transition: all .35s ease;
+  transition: all .35s ease; }
+  button[id^="dhr-videoclose"] i {
+    margin-right: .3em;
+    margin-left: -.25em;
+    font-weight: normal; }
+  button[id^="dhr-videoclose"]:hover {
+    color: #fff; }
 
 @media (min-width: 992px) {
   .dhr-playbtn {
@@ -2788,7 +2839,7 @@ html.no-generatedcontent a:hover {
       border-radius: 4px;
       -ms-user-select: none;
           user-select: none;
-      background: #3498db; }
+      background: #2bace9; }
     .plyr input[type='range']::-ms-thumb {
       position: relative;
       height: 16px;
@@ -2813,16 +2864,16 @@ html.no-generatedcontent a:hover {
     .plyr input[type='range'].tab-focus:focus {
       outline-offset: 3px; }
     .plyr input[type='range']:active::-webkit-slider-thumb {
-      background: #3498db;
+      background: #2bace9;
       border-color: #fff;
       -webkit-transform: scale(1.25);
               transform: scale(1.25); }
     .plyr input[type='range']:active::-moz-range-thumb {
-      background: #3498db;
+      background: #2bace9;
       border-color: #fff;
       transform: scale(1.25); }
     .plyr input[type='range']:active::-ms-thumb {
-      background: #3498db;
+      background: #2bace9;
       border-color: #fff;
       -ms-transform: scale(1.25);
           transform: scale(1.25); }
@@ -2831,7 +2882,7 @@ html.no-generatedcontent a:hover {
   outline: 1px dotted rgba(255, 255, 255, 0.5); }
 
 .plyr--audio input[type='range'].tab-focus:focus {
-  outline: 1px dotted rgba(86, 93, 100, 0.5); }
+  outline: 1px dotted rgba(43, 172, 233, 0.5); }
 
 .plyr__sr-only {
   clip: rect(1px, 1px, 1px, 1px);
@@ -3003,7 +3054,7 @@ html.no-generatedcontent a:hover {
   -o-transition: opacity .3s ease;
   transition: opacity .3s ease; }
   .plyr--video .plyr__controls button.tab-focus:focus, .plyr--video .plyr__controls button:hover {
-    background: #3498db;
+    background: #2bace9;
     color: #fff; }
 
 .plyr--audio .plyr__controls {
@@ -3011,9 +3062,9 @@ html.no-generatedcontent a:hover {
   border-radius: inherit;
   background: #fff;
   border: 1px solid #dbe3e8;
-  color: #565D64; }
+  color: #2bace9; }
   .plyr--audio .plyr__controls button.tab-focus:focus, .plyr--audio .plyr__controls button:hover {
-    background: #3498db;
+    background: #2bace9;
     color: #fff; }
 
 .plyr__play-large {
@@ -3026,7 +3077,7 @@ html.no-generatedcontent a:hover {
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   padding: 10px;
-  background: #3498db;
+  background: #2bace9;
   border: 4px solid currentColor;
   border-radius: 100%;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
@@ -3227,7 +3278,7 @@ html.no-generatedcontent a:hover {
 .plyr__progress--played,
 .plyr__volume--display {
   z-index: 1;
-  color: #3498db;
+  color: #2bace9;
   background: transparent;
   -webkit-transition: none;
   -o-transition: none;

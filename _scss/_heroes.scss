@@ -150,7 +150,9 @@
 
 
 
+//---------------------------------------//
 // HOME SPECIFIC
+
 .dhr-homehero {
 	padding-bottom: 3.5em;
 
@@ -171,6 +173,28 @@
 	padding-top: 1.5em;
 	text-align: center;
 	color: $white;
+}
+
+
+//vide playing state
+.dhr-currentpage-index {
+
+	#dhr-hero-top, .dhr-hero--leadin {
+		transition: opacity 1s ease, transform 1s ease;
+	}
+	
+	&.is-playingtriggered {
+
+		#dhr-hero-top {
+			opacity:0;
+			transform: translateY(-70px);
+		}
+		.dhr-hero--leadin {
+			opacity: 0;
+			transform: translateY(70px);
+		}
+	}
+
 }
 
 

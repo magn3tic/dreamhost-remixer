@@ -25,7 +25,6 @@ import './scroll-ticker.js'; //raf
 // 	stylesheet: 'assets/css/designer-options.css'
 // });
 
-
 // wtf
 // $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
 // 	return [0.175, 0.885, 0.32, 1.275];

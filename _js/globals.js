@@ -2,6 +2,7 @@
 //"globals"
 export const $body = $('body'),
 						 $window = $(window),
+						 $top = $('#top'),
 						 $siteheader = $('#dhr-header'),
 						 $sitemain = $('#dhr-main'),
 						 $sitefooter = $('#dhr-footer'),

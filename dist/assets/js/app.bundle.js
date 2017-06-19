@@ -80,6 +80,7 @@ Object.defineProperty(exports, "__esModule", {
 //"globals"
 var $body = exports.$body = $('body'),
     $window = exports.$window = $(window),
+    $top = exports.$top = $('#top'),
     $siteheader = exports.$siteheader = $('#dhr-header'),
     $sitemain = exports.$sitemain = $('#dhr-main'),
     $sitefooter = exports.$sitefooter = $('#dhr-footer'),
@@ -92,6 +93,11 @@ var $body = exports.$body = $('body'),
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.homevideo = undefined;
+
 var _splittext = __webpack_require__(11);
 
 var _splittext2 = _interopRequireDefault(_splittext);
@@ -102,8 +108,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var $top = $('#top'),
     $loadscreen = $('#dhr-loadscreen'),
-    $homevideo = $('#dhr-home-videoel'),
-    homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
+    $homevideo = $('#dhr-home-videoel');
+
+var homevideo = exports.homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
 
 var pageOutDuration = 500,
     isHomePage = _globals.$body.hasClass('dhr-currentpage-index');
@@ -371,9 +378,11 @@ var loadLazyBgimages = function loadLazyBgimages() {
 	});
 };
 
-_globals.$window.on('load', function () {
-	return setTimeout(loadLazyBgimages, 500);
-});
+if ($lazybgimgs.length > 0) {
+	_globals.$window.on('load', function () {
+		return setTimeout(loadLazyBgimages, 500);
+	});
+}
 
 // set hero sizes (one fallback / one necessary)
 var $fixedautoheight = $('.dhr-fixedhero--autoheight'),
@@ -547,8 +556,6 @@ var scrollUpdate = function scrollUpdate() {
 	exports.scrollDiff = scrollDiff = scrollBefore - scrollCurrent;
 	exports.headertop = headertop = parseInt(_globals.$siteheader.css('top')) + scrollDiff;
 	isSmallScreen = bps.breakpointDown('sm');
-
-	console.log('small screen: ', isSmallScreen);
 },
     resizeUpdate = function resizeUpdate() {
 	//update everything that needs recalc when window resizes
@@ -713,9 +720,10 @@ var $homeherotop = $('#dhr-hero-top'),
     $playbtns = $('a[data-video]');
 
 var isHomePage = _globals.$body.hasClass('dhr-currentpage-index');
+
 var isPlaying = false;
 
-$playbtns.each(function () {
+$playbtns.each(function (index) {
 
 	var $t = $(this),
 	    $target = $($t.data('video-target')),
@@ -723,19 +731,31 @@ $playbtns.each(function () {
 	    videopath = $t.data('video'),
 	    $video = $('<video controls src="' + videopath + '.mp4"></video>');
 
+	var $closebtn = $('<button id="dhr-videoclose-' + index + '"><i class="icon-cancel" aria-hidden="true"></i><span>Close</span></button>'),
+	    firstOpen = true,
+	    isPlayReady = false,
+	    plyrRef = null;
+
+	//Play Button Click -------------------------//
 	$t.on('click', function (e) {
 		e.preventDefault();
 
-		$target.append($video);
+		if (!firstOpen) {
+			$closebtn = $('<button id="dhr-videoclose-' + index + '"><i class="icon-cancel" aria-hidden="true"></i><span>Close</span></button>');
+		}
+
+		$target.append($video).prepend($closebtn);
 		_globals.$body.addClass('is-playingtriggered');
 
+		//home page
 		if (isHomePage) {
+
 			var expectedHeight = $targetparent.width() * 0.525,
 			    isTaller = expectedHeight >= _globals.$window.height();
 
 			$targetparent.velocity('scroll', {
 				offset: !isTaller ? -((_globals.$window.height() - expectedHeight) / 2) : 0,
-				duration: 550,
+				duration: 500,
 				complete: function complete() {
 					return $target.velocity('slideDown', { duration: 650, easing: _globals.easeOutBack });
 				}
@@ -747,25 +767,62 @@ $playbtns.each(function () {
 			}),
 			    $plyrEl = $target.find('.plyr--video');
 
-			vidplyr[0].on('ready', function (event) {
-				isPlaying = true;
+			plyrRef = vidplyr[0];
+
+			plyrRef.on('ready', function (event) {
+				isPlayReady = true;
+				if (!isPlaying) {
+					vidplyr[0].play();
+					isPlaying = true;
+				}
 			});
 
-			$plyrEl.velocity({ translateY: ['0%', '100%'] }, {
-				duration: 1000,
-				delay: 1200,
+			$plyrEl.velocity({
+				translateY: ['0%', '100%']
+			}, {
+				duration: 900,
+				delay: 1150,
 				easing: 'easeOutCirc',
 				begin: function begin() {
-					vidplyr[0].play();
+					if (plyrRef.isReady()) {
+						plyrRef.play();
+						isPlaying = true;
+					}
 				},
 				complete: function complete() {
 					_pageloadSequence.homevideo.pause();
 					_globals.$body.addClass('is-playingvideo');
 				}
 			});
+
+			//single story / features
 		} else {}
+
+		firstOpen = false;
 	});
-});
+
+	$closebtn.on('click', function () {
+		if ($target.hasClass('velocity-animating')) return;
+
+		$target.velocity('slideUp', {
+			duration: 400,
+			easing: 'easeOutCirc',
+			complete: function complete() {
+
+				plyrRef.destroy();
+				$target.find('video').remove();
+				isPlaying = false;
+				plyrRef = null;
+
+				_pageloadSequence.homevideo.play();
+			}
+		});
+
+		_globals.$top.velocity('scroll', { duration: 400 });
+
+		_globals.$body.removeClass('is-playingtriggered is-playingvideo');
+	});
+}); //end each()
 
 /***/ }),
 /* 9 */

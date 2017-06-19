@@ -21,6 +21,7 @@ Destroy surge dev when not needed with - `surge teardown remixer.surge.sh`
 Episode Listing
 - 3d context for card content (play btn, title)
 - adjust gradient edge to be more smooth
+- *** fix known bugs with tilt hover effect
 - *** finish video play mode - allow exit/close, forward to story on video end
 
 Features

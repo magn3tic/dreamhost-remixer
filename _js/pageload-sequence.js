@@ -5,8 +5,9 @@ import {$body, $window, easeOutBack} from './globals.js';
 
 const $top = $('#top'),
 			$loadscreen = $('#dhr-loadscreen'),
-			$homevideo = $('#dhr-home-videoel'),
-			homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
+			$homevideo = $('#dhr-home-videoel');
+
+export const homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
 
 const pageOutDuration = 500,
 			isHomePage = $body.hasClass('dhr-currentpage-index');
