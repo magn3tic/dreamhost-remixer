@@ -90,25 +90,42 @@ a {
 
 // VIDEO PLAYER MODS --------------------------------------//
 
+// .plyr {
+// 	video {
+// 		border-radius: $global-border-radius !important;
+// 	}
+
+// 	.plyr__video-wrapper {
+// 		border-radius: $global-border-radius !important;
+// 	}
+// }
+
+
 button[id^="dhr-videoclose"] {
 	border:none; outline:none; 
-	@include appearance(none); border-radius: 5px;
-	position: absolute; z-index: 999;
-	top: .5em; left: 50%;
-	margin-left: -3.5em;
+	@include appearance(none);
+	position: absolute; z-index: 0;
+	bottom: 100%; left: 50%;
+	margin-left: -2em;
 	font-size: .8em;
 	text-transform: uppercase;
 	font-weight: bold;
-	color: $bluegray;
-	background: $darkblue;
+	color: rgba($white,0.3);
+	background: none;
 	padding: .35em 0;
-	width: 6.5em; text-align: center;
-	transition: all .35s ease;
+	opacity: 0;
+	visibility: hidden;
+	width: 4em; height: 4em;
+	text-align: center;
+	border-radius: 5px 5px 0 0;
+	transform: translateY(2.5em);
+	transition: all .5s ease;
 
 	i {
-		margin-right: .3em;
-		margin-left: -.25em;
+		display: block;
+		font-size: 2em;
 		font-weight: normal;
+		transition: transform .35s $ease-out-circ;
 	}
 
 	&:hover {
@@ -117,6 +134,15 @@ button[id^="dhr-videoclose"] {
 }
 
 
+
+body.is-playingvideo {
+
+	button[id^="dhr-videoclose"] {
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+	}
+}
 
 
 

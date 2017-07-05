@@ -12,8 +12,8 @@
 			</div>
 
 			<div class="dhr-contactmodal--logo">
-				<a href="/">
-					{{> logo-svg id='contactmodal-logo-svg'}}
+				<a href="/" class="dhr-logo--contain">
+					<span>{{> logo-svg id='contactmodal-logo-svg'}}</span>
 				</a>
 			</div>
 		</div>
@@ -35,24 +35,24 @@
 					<p>
 						<span class="dhr-inlineform--word">Hello, my name is</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-firstname-input" placeholder="First Name">
+							<input type="text" id="dhr-contact-firstname-input" name="firstname" placeholder="First Name">
 							<label for="dhr-contact-firstname-input">First Name</label>
 						</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-lastname-input" placeholder="Last Name">
+							<input type="text" id="dhr-contact-lastname-input" name="lastname" placeholder="Last Name">
 							<label for="dhr-contact-lastname-input">Last Name</label>
 						</span>
 						<span class="dhr-inlineform--word">,from</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-company-input" placeholder="Company Name">
+							<input type="text" id="dhr-contact-company-input" name="company" placeholder="Company Name">
 							<label for="dhr-contact-company-input">Company Name</label>
 						</span>
 						<span class="dhr-inlineform--word">.</span>
 					</p>
 					<p>
 						<span class="dhr-inlineform--word">I would like to contact</span>
-						<span class="dhr-inlineform--input">
-							<select name="" id="dhr-contact-dept-input">
+						<span class="dhr-inlineform--input" data-field-type="select">
+							<select name="department" id="dhr-contact-dept-input">
 								<option value="">-- Select One</option>
 								<option value="sales">&nbsp; Sales</option>
 								<option value="support">&nbsp; Support</option>
@@ -61,19 +61,19 @@
 						</span>
 						<span class="dhr-inlineform--word">regarding</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-question-input" placeholder="Briefly write your question">
+							<input type="text" id="dhr-contact-question-input" name="question" placeholder="Briefly write your question">
 							<label for="dhr-contact-question-input">Question</label>
 						</span>
 					</p>
 					<p>
 						<span class="dhr-inlineform--word">You can reach me at</span>
 						<span class="dhr-inlineform--input">
-							<input type="email" id="dhr-contact-email-input" placeholder="Email Address">
+							<input type="email" id="dhr-contact-email-input" name="email" placeholder="Email Address">
 							<label for="dhr-contact-email-input">Email Address</label>
 						</span>
 						<span class="dhr-inlineform--word">or call</span>
 						<span class="dhr-inlineform--input">
-							<input type="tel" id="dhr-contact-phone-input" placeholder="Phone Number">
+							<input type="tel" id="dhr-contact-phone-input" name="phone" placeholder="Phone Number">
 							<label for="dhr-contact-phone-input">Phone Number</label>
 						</span>
 						<span>Talk to you soon!</span>

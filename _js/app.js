@@ -15,6 +15,20 @@ import './videoplayers.js';
 
 import './scroll-ticker.js'; //raf
 
+import './email-subscribe.js';
+import './forms-ui.js';
+
+import {$body} from './globals.js';
+
+
+//chromium detect - something breaks w/ 3d rendering in other engines
+if (window.chrome) {
+	$body.addClass('version-blendmoded is-chromium');
+} else {
+	//not desktop chrome
+}
+
+
 
 // import DesignerOptions from './designer-options.js';
 // const dopts = new DesignerOptions({

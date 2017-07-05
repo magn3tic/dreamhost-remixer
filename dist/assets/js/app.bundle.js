@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -98,7 +98,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.homevideo = undefined;
 
-var _splittext = __webpack_require__(11);
+var _splittext = __webpack_require__(13);
 
 var _splittext2 = _interopRequireDefault(_splittext);
 
@@ -133,6 +133,8 @@ splttxt.lines.forEach(function (item, i) {
 var $transitionlinks = $('a[data-page-transition]');
 
 $transitionlinks.click(function (event) {
+	//if (!window.Modernizr.history) return;
+
 	event.preventDefault();
 	var href = $(this).attr('href');
 
@@ -208,7 +210,7 @@ var $form = $('#dhr-contact-form'),
 //opening
 $modaltrigger.on('click', function (e) {
 	e.preventDefault();
-	$modalbody.css({ height: (_globals.$window.height() - $modaltop.outerHeight()) * 0.87 });
+	$modalbody.css({ height: (_globals.$window.height() - $modaltop.outerHeight()) * 0.9 });
 	$modal.velocity({
 		translateY: ['0%', '-100%']
 	}, {
@@ -343,6 +345,116 @@ $lockedepisodes.each(function (index, item) {
 "use strict";
 
 
+var _globals = __webpack_require__(0);
+
+var $sendgridEmailInput = null,
+    $sendgridEmailLabel = null,
+    $sendgridFormEl = null,
+    $sendgridSubmit = null,
+    $sendgridNewSubmit = null;
+
+var $sendgridForm = $('.sendgrid-subscription-widget'),
+    loadSendgridLib = $.getScript('//s3.amazonaws.com/subscription-cdn/0.2/widget.min.js'),
+    submitBtnHtml = '<span class="sr-only">Submit</span><svg x="0px" y="0px" viewBox="0 0 180 135"><path class="st0" d="M105.5,16.4L105.5,16.4c-3.9,3.9-3.9,10.2,0,14.1L132,57H23.1c-5.5,0-10,4.5-10,10c0,5.5,4.5,10,10,10h108.6l-26.5,26.5c-3.9,3.9-3.9,10.2,0,14.1v0c3.9,3.9,10.2,3.9,14.1,0L163,73.9c3.9-3.9,3.9-10.2,0-14.1l-43.3-43.3C115.8,12.5,109.4,12.5,105.5,16.4"></svg>';
+
+//subscribe form event handlers
+$sendgridForm.on({
+	ready: function ready() {
+		$sendgridFormEl = $sendgridForm.find('form');
+		$sendgridEmailInput = $sendgridForm.find('input[name="email"]');
+		$sendgridEmailLabel = $sendgridEmailInput.parent('label');
+		$sendgridSubmit = $sendgridForm.find('input[type="submit"]');
+
+		$sendgridEmailInput.attr({ placeholder: 'your.name@email.com', autocomplete: 'off', required: 'true' });
+		$sendgridEmailInput.after('<span class="dhr-footer--emailborder"></span>');
+		$sendgridEmailInput.prev('span').addClass('sr-only').wrap('<label></label>');
+
+		$sendgridFormEl.wrapInner('<div class="inner-large"></div>');
+		$sendgridEmailLabel.add($sendgridSubmit).wrapAll('<div class="dhr-formfield"></div>');
+		$sendgridSubmit.wrap('<button class="dhr-footer--submit" type="submit"></button>');
+
+		$sendgridNewSubmit = $sendgridForm.find('.dhr-footer--submit');
+
+		$sendgridEmailLabel.contents().unwrap();
+		$sendgridNewSubmit.html(submitBtnHtml);
+	},
+	sent: function sent(e) {
+		$sendgridForm.removeClass('is-error is-success is-submitted').addClass('is-submitting');
+		$sendgridNewSubmit.attr('disabled', true);
+	},
+	error: function error() {
+		$sendgridNewSubmit.removeAttr('disabled');
+		$sendgridForm.removeClass('is-submitting').addClass('is-submitted is-error');
+	},
+	success: function success() {
+		$sendgridNewSubmit.removeAttr('disabled');
+		$sendgridForm.removeClass('is-error is-submitting').addClass('is-submitted is-success');
+	}
+});
+
+loadSendgridLib.done(function (script, status) {});
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _globals = __webpack_require__(0);
+
+var $form = $('#dhr-contact-form'),
+    $fields = $form.find('input, select');
+
+var filledInCheck = function filledInCheck($field, $outer) {
+	if ($field.val().length > 0) {
+		$outer.addClass('is-filledin');
+	} else {
+		$outer.removeClass('is-filledin');
+	}
+};
+
+$fields.each(function () {
+	var $t = $(this),
+	    $outer = $t.parent('.dhr-inlineform--input'),
+	    isSelect = $outer.data('field-type') === 'select';
+
+	if (isSelect) {
+
+		$t.on('change', function () {
+			return filledInCheck($t, $outer);
+		});
+	} else {
+
+		$t.on('keyup keydown blur', function () {
+			return filledInCheck($t, $outer);
+		});
+	}
+});
+
+$form.on('submit', function (e) {
+
+	e.preventDefault();
+
+	//do validation
+	var formData = $form.serialize();
+	console.log(formData);
+
+	$.ajax({
+		url: 'https://formspree.io/colin@mag.cr',
+		method: 'POST',
+		dataType: 'json',
+		data: formData
+	});
+});
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
@@ -401,7 +513,7 @@ _globals.$window.bind('load', setHeroSize);
 var $scrollanchors = $('a[data-scroll]');
 $scrollanchors.click(function (e) {
 	e.preventDefault();
-	$($(this).attr('href')).velocity('scroll', { duration: 750, easing: 'easeOutCirc' });
+	$($(this).attr('href')).velocity('scroll', { duration: 900, easing: 'easeInOutCirc' });
 });
 
 // mobile nav toggle
@@ -430,7 +542,7 @@ $navtoggle.on('click', function (event) {
 });
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -470,6 +582,8 @@ $hovercards.each(function () {
 	    scaleVal = $t.data('hovercard-scale') || '',
 	    tiltVal = $t.data('hovercard-tilt') || 7;
 
+	if (!window.chrome && isEpisode) return;
+
 	var mousedover = false;
 
 	$t.hover(function () {
@@ -502,7 +616,7 @@ $hovercards.each(function () {
 });
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -515,7 +629,7 @@ exports.didScroll = exports.headerInView = exports.scrollDiff = exports.scrollCu
 
 var _globals = __webpack_require__(0);
 
-var _breakpoints = __webpack_require__(10);
+var _breakpoints = __webpack_require__(12);
 
 var _breakpoints2 = _interopRequireDefault(_breakpoints);
 
@@ -583,14 +697,14 @@ var ticker = function ticker() {
 				_globals.$siteheader.removeClass('at-page-top');
 			}
 		} else if (scrollDiff < 0) {
-			if (scrollCurrent + winheight >= docheight - headerheight) {
-				//just reached page bottom
-				_globals.$siteheader.css('top', (exports.headertop = headertop = scrollCurrent + winheight - docheight) < 0 ? headertop : 0);
-				_globals.$siteheader.removeClass('at-page-top');
-			} else {
-				//$siteheader.removeClass('at-page-top');
-				_globals.$siteheader.css('top', Math.abs(headertop) > headerheight ? -headerheight : headertop);
-			}
+			// if (scrollCurrent + winheight >= docheight - headerheight) {
+			// 	//just reached page bottom
+			// 	$siteheader.css('top', (headertop = scrollCurrent + winheight - docheight ) < 0 ? headertop : 0);
+			// 	$siteheader.removeClass('at-page-top');
+			// } else {
+			//$siteheader.removeClass('at-page-top');
+			_globals.$siteheader.css('top', Math.abs(headertop) > headerheight ? -headerheight : headertop);
+			//}
 		}
 		exports.scrollBefore = scrollBefore = scrollCurrent;
 
@@ -606,7 +720,7 @@ _globals.$window.scroll(function () {
 });
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -704,7 +818,7 @@ $.centeredPopup = function (options) {
 };
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -717,9 +831,8 @@ var _pageloadSequence = __webpack_require__(1);
 var $homeherotop = $('#dhr-hero-top'),
     $homeherobot = $('#dhr-hero-bottom'),
     $episodelist = $('#dhr-episode-list'),
-    $playbtns = $('a[data-video]');
-
-var isHomePage = _globals.$body.hasClass('dhr-currentpage-index');
+    $playbtns = $('a[data-video]'),
+    isHomePage = _globals.$body.hasClass('dhr-currentpage-index');
 
 var isPlaying = false;
 
@@ -728,21 +841,31 @@ $playbtns.each(function (index) {
 	var $t = $(this),
 	    $target = $($t.data('video-target')),
 	    $targetparent = $target.parent('.dhr-fluidvideo'),
-	    videopath = $t.data('video'),
-	    $video = $('<video controls src="' + videopath + '.mp4"></video>');
+	    videopath = $target.data('video'),
+	    pageUrl = $target.data('link');
 
-	var $closebtn = $('<button id="dhr-videoclose-' + index + '"><i class="icon-cancel" aria-hidden="true"></i><span>Close</span></button>'),
+	var $closebtn = $('<button id="dhr-videoclose-' + index + '"><i class="icon-cancel" aria-hidden="true"></i><span class="sr-only">Close</span></button>'),
+	    $video = null,
 	    firstOpen = true,
 	    isPlayReady = false,
 	    plyrRef = null;
 
+	var dismissBeforeEnd = function dismissBeforeEnd($element, callback) {
+		$element.velocity('transition.fadeOut', { duration: 650 });
+		_globals.$body.velocity('transition.fadeOut', {
+			duration: 700,
+			complete: function complete() {
+				return callback();
+			}
+		});
+	};
+
 	//Play Button Click -------------------------//
 	$t.on('click', function (e) {
 		e.preventDefault();
+		if ($target.hasClass('velocity-animating')) return;
 
-		if (!firstOpen) {
-			$closebtn = $('<button id="dhr-videoclose-' + index + '"><i class="icon-cancel" aria-hidden="true"></i><span>Close</span></button>');
-		}
+		$video = $('<video controls src="' + videopath + '"></video>');
 
 		$target.append($video).prepend($closebtn);
 		_globals.$body.addClass('is-playingtriggered');
@@ -762,8 +885,8 @@ $playbtns.each(function (index) {
 			});
 
 			var vidplyr = window.plyr.setup($video[0], {
-				controls: ['progress', 'fullscreen', 'volume', 'mute'],
-				hideControls: false
+				controls: ['play', 'progress', 'mute', 'volume', 'fullscreen'],
+				volume: 7
 			}),
 			    $plyrEl = $target.find('.plyr--video');
 
@@ -777,10 +900,17 @@ $playbtns.each(function (index) {
 				}
 			});
 
+			plyrRef.on('ended', function (event) {
+				//$body.addClass('is-videoended');
+				dismissBeforeEnd($plyrEl, function () {
+					return window.location.replace(pageUrl);
+				});
+			});
+
 			$plyrEl.velocity({
 				translateY: ['0%', '100%']
 			}, {
-				duration: 900,
+				duration: 700,
 				delay: 1150,
 				easing: 'easeOutCirc',
 				begin: function begin() {
@@ -803,52 +933,84 @@ $playbtns.each(function (index) {
 
 	$closebtn.on('click', function () {
 		if ($target.hasClass('velocity-animating')) return;
-
+		plyrRef.pause();
 		$target.velocity('slideUp', {
-			duration: 400,
+			duration: 450,
 			easing: 'easeOutCirc',
 			complete: function complete() {
-
 				plyrRef.destroy();
+				plyrRef = null;
 				$target.find('video').remove();
 				isPlaying = false;
-				plyrRef = null;
-
 				_pageloadSequence.homevideo.play();
 			}
 		});
-
-		_globals.$top.velocity('scroll', { duration: 400 });
-
 		_globals.$body.removeClass('is-playingtriggered is-playingvideo');
+		_globals.$top.velocity('scroll', { duration: 450 });
 	});
 }); //end each()
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(7);
+__webpack_require__(9);
 
-__webpack_require__(4);
+__webpack_require__(6);
 
 __webpack_require__(1);
 
-__webpack_require__(5);
+__webpack_require__(7);
 
 __webpack_require__(3);
 
 __webpack_require__(2);
 
+__webpack_require__(10);
+
 __webpack_require__(8);
 
-__webpack_require__(6);
+__webpack_require__(4);
+
+__webpack_require__(5);
+
+var _globals = __webpack_require__(0);
+
+//chromium detect - something breaks w/ 3d rendering in other engines
+//polyfills, small jquery plugs, etc... include first
+
+
+if (window.chrome) {
+	_globals.$body.addClass('version-blendmoded is-chromium');
+} else {}
+//not desktop chrome
+
+
+// import DesignerOptions from './designer-options.js';
+// const dopts = new DesignerOptions({
+// 	options: {
+// 		'blendmoded': 'Blend Mode On/Off',
+// 		'hovertilt': 'Hover Tilt Effect'
+// 	},
+// 	stylesheet: 'assets/css/designer-options.css'
+// });
+
+// wtf
+// $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
+// 	return [0.175, 0.885, 0.32, 1.275];
+// };
+//raf
+
+//global functionality
+
+//plugins.min.js is loaded before the webpack bundle
+//it is a bundle of jquery & plugins because some don't yet support es6 module
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -953,7 +1115,7 @@ exports.default = Breakpoints;
 ;
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

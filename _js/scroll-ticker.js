@@ -69,14 +69,14 @@ const ticker = () => {
 			}
 
 		} else if (scrollDiff < 0) {
-			if (scrollCurrent + winheight >= docheight - headerheight) {
-				//just reached page bottom
-				$siteheader.css('top', (headertop = scrollCurrent + winheight - docheight ) < 0 ? headertop : 0);
-				$siteheader.removeClass('at-page-top');
-			} else {
+			// if (scrollCurrent + winheight >= docheight - headerheight) {
+			// 	//just reached page bottom
+			// 	$siteheader.css('top', (headertop = scrollCurrent + winheight - docheight ) < 0 ? headertop : 0);
+			// 	$siteheader.removeClass('at-page-top');
+			// } else {
 				//$siteheader.removeClass('at-page-top');
 				$siteheader.css('top', Math.abs(headertop) > headerheight ? -headerheight : headertop );
-			}
+			//}
 		}
 		scrollBefore = scrollCurrent;
 

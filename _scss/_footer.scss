@@ -50,8 +50,51 @@
 
 
 //footer email capture
+.sendgrid-subscription-widget {
+	opacity: 1;
+	transition: all .3s ease;
+
+	&.is-submitting {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+}
+
+
+
+
+
 .dhr-footer--form {
 	padding: 2em 0 3em;
+
+	.inner-large {
+		position: relative;
+	}
+	
+
+	.response {
+		position: absolute;
+		padding-top: .25em;
+		top:100%; left:0; width:100%; text-align: center;
+		font-size: .85em;
+		color: $primary;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(10px);
+		transition: all .3s ease;
+
+		&.error {
+			color: $error_color;
+		}
+	}
+
+
+	.is-submitted .response {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	
 
 	.dhr-formfield {
 		position: relative;
@@ -131,6 +174,14 @@
 	h5 {
 		font-size: 1.2em;
 		margin-bottom: .2em;
+	}
+}
+
+.dhr-footer--logo {
+	margin-top: 3em;
+
+	a {
+		display: block;
 	}
 }
 

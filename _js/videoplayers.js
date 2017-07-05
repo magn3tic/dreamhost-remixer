@@ -7,11 +7,13 @@ import {homevideo} from './pageload-sequence.js';
 const $homeherotop = $('#dhr-hero-top'),
 			$homeherobot = $('#dhr-hero-bottom'),
 			$episodelist = $('#dhr-episode-list'),
-			$playbtns = $('a[data-video]');
+			$playbtns = $('a[data-video]'),
 
-const isHomePage = $body.hasClass('dhr-currentpage-index');
+			isHomePage = $body.hasClass('dhr-currentpage-index');
+
 
 let isPlaying = false;
+
 
 
 
@@ -21,22 +23,31 @@ $playbtns.each(function(index) {
 	const $t = $(this),
 				$target = $($t.data('video-target')),
 				$targetparent = $target.parent('.dhr-fluidvideo'),
-				videopath = $t.data('video'),
-				$video = $('<video controls src="'+videopath+'.mp4"></video>');
+				videopath = $target.data('video'),
+				pageUrl = $target.data('link');
 	
-	let $closebtn = $('<button id="dhr-videoclose-'+index+'"><i class="icon-cancel" aria-hidden="true"></i><span>Close</span></button>'),
+	let $closebtn = $('<button id="dhr-videoclose-'+index+'"><i class="icon-cancel" aria-hidden="true"></i><span class="sr-only">Close</span></button>'),
+			$video = null,
 			firstOpen = true,
 			isPlayReady = false,
 			plyrRef = null;
 
 
+	const dismissBeforeEnd = ($element, callback) => {
+		$element.velocity('transition.fadeOut', {duration:650});
+		$body.velocity('transition.fadeOut', {
+			duration: 700,
+			complete: () => callback()
+		});
+	};
+
+
 	//Play Button Click -------------------------//
 	$t.on('click', (e) => {
 		e.preventDefault();
+		if ($target.hasClass('velocity-animating')) return;
 
-		if (!firstOpen) {
-			$closebtn = $('<button id="dhr-videoclose-'+index+'"><i class="icon-cancel" aria-hidden="true"></i><span>Close</span></button>');
-		}
+		$video = $('<video controls src="'+videopath+'"></video>');
 
 		$target.append($video).prepend($closebtn);
 		$body.addClass('is-playingtriggered');
@@ -54,8 +65,8 @@ $playbtns.each(function(index) {
 			});
 
 			const vidplyr = window.plyr.setup($video[0], {
-				controls: ['progress', 'fullscreen', 'volume', 'mute'],
-				hideControls: false
+				controls: ['play', 'progress', 'mute', 'volume', 'fullscreen'],
+				volume: 7
 			}),
 			$plyrEl = $target.find('.plyr--video');
 
@@ -69,10 +80,15 @@ $playbtns.each(function(index) {
 				}
 			});
 
+			plyrRef.on('ended', (event) => {
+				//$body.addClass('is-videoended');
+				dismissBeforeEnd($plyrEl, () => window.location.replace(pageUrl));
+			});
+
 			$plyrEl.velocity({
 				translateY: ['0%','100%']
 			}, {
-				duration: 900, 
+				duration: 700, 
 				delay: 1150, 
 				easing:'easeOutCirc', 
 				begin: () => {
@@ -87,7 +103,6 @@ $playbtns.each(function(index) {
 				}
 			});
 
-
 		//single story / features
 		} else {
 
@@ -98,27 +113,25 @@ $playbtns.each(function(index) {
 	});
 	
 	
+	
+
+
 	$closebtn.on('click', () => {
 		if ($target.hasClass('velocity-animating')) return;
-
+		plyrRef.pause();
 		$target.velocity('slideUp', {
-			duration: 400, 
+			duration: 450, 
 			easing: 'easeOutCirc',
 			complete: () => {
-
 				plyrRef.destroy();
+				plyrRef = null;
 				$target.find('video').remove();
 				isPlaying = false;
-				plyrRef = null;
-
 				homevideo.play();
 			}
 		});
-
-		$top.velocity('scroll', {duration: 400});
-
 		$body.removeClass('is-playingtriggered is-playingvideo');
-
+		$top.velocity('scroll', {duration: 450});
 	});
 
 

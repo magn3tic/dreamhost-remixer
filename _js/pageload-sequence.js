@@ -34,6 +34,8 @@ splttxt.lines.forEach((item, i) => {
 const $transitionlinks = $('a[data-page-transition]');
 
 $transitionlinks.click(function(event) {
+	//if (!window.Modernizr.history) return;
+	
 	event.preventDefault();
 	let href = $(this).attr('href');
 

@@ -39,6 +39,9 @@ $hovercards.each(function() {
 				scaleVal = $t.data('hovercard-scale') || '',
 				tiltVal = $t.data('hovercard-tilt') || 7;
 
+	
+	if (!window.chrome && isEpisode) return;
+
 	let mousedover = false;
 
 	$t.hover(function() {

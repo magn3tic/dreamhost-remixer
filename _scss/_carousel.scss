@@ -10,7 +10,7 @@
   position: relative;
   width: auto;
   margin-left: 1.5em;
-  background: darken($white, 9%);
+  background: $darkblue;
   border-radius: $global-border-radius 0 0 $global-border-radius;
   
   .flickity-viewport, .cell-img:first-child img {
@@ -19,11 +19,20 @@
 
   figure {
     width: 100%;
+
+    &.is-selected {
+
+      img {
+        opacity: 1;
+      }
+    }
   }
   img {
     display: block;
     width: 100%;
     height: auto;
+    opacity:0.3;
+    transition: opacity 1s ease;
   }
   
   //dot nav

@@ -22,7 +22,7 @@ const $form = $('#dhr-contact-form'),
 //opening
 $modaltrigger.on('click', (e) => {
 	e.preventDefault();
-	$modalbody.css({height: ($window.height()-$modaltop.outerHeight())*0.87 });
+	$modalbody.css({height: ($window.height()-$modaltop.outerHeight())*0.9 });
 	$modal.velocity({
 		translateY: ['0%', '-100%']
 	}, {

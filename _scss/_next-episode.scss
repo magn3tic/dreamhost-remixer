@@ -18,7 +18,7 @@
     &:hover {
       
       ~ .dhr-coverimg {
-        transform: scale(1.03);
+        transform: scale(1.025);
 
         &:after {
           opacity: 0.5;
@@ -26,12 +26,11 @@
       }
     }
   }
-  
 
   .dhr-coverimg {
     background-position: center top;
     background-repeat: no-repeat;
-    transition: transform .35s $ease-out-back;
+    transition: transform 0.8s $ease-out-circ;
     &:after {
       content:""; display:block; position:absolute;
       top:0; left:0; width:100%; height:100%;
@@ -127,9 +126,9 @@
   
   .dhr-playlockup {
     strong {
-      transform: translate(-10px, -50%);
+      transform: translate(-12px, -50%);
       + strong {
-        transform: translate(10px, -50%);
+        transform: translate(12px, -50%);
       }
     }
   }
@@ -143,5 +142,43 @@
   }
 
 }
+
+
+
+
+
+
+
+
+@media (min-width:$bp-md) {
+  
+
+  .dhr-nextepisode--content {
+    padding-top: 3em;
+  }
+}
+
+
+
+
+@media (min-width:$bp-md) {
+  
+}
+
+
+
+
+@media (min-width:$bp-xxl) {
+  
+  .dhr-nextepisode--play {
+    margin-bottom: -.5em;
+  }
+}
+
+
+
+
+
+
 
 

@@ -16,6 +16,8 @@ $bluegray: #91a2b6;
 $primary: #ffa700;
 $secondary: #2bace9;
 
+$error_color: #fc4444;
+
 
 // FONT FAMILY/SIZES/COLORS -----------------//
 $base-font-size: 18px;
@@ -40,11 +42,10 @@ $bp-xxl: 1440px;
 
 
 // OUTER OUTER SITE CONTAINER ---------------//
-$site-outer-max: 1720px;
+$site-outer-max: 1770px;
 
 // OUTER GRID CONTAINER --------------------//
-$grid-outer-max: 71em;
-
+$grid-outer-max: 72em;
 
 //ROUNDING OF IMAGES
 $global-border-radius: 10px;
