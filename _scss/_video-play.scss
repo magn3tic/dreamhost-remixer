@@ -88,6 +88,42 @@ a {
 
 
 
+
+
+// VID PLAYER OVERLAY
+
+.dhr-playeroverlay {
+	position: fixed; top:0; left:0; width:100%; height:100%; z-index: 99998;
+	background: rgba($darkblue, 0.925);
+}
+
+.dhr-playeroverlay--content {
+	position: fixed; top:0; left:0; width:100%; height:100%; z-index: 99999;
+	display: flex;
+	align-items: center;
+}
+
+
+.dhr-fluidvideo {
+	&.is-singlepage-player {
+		width: 100%;
+
+		.dhr-fluidvideo--wrapper {
+			width: 94%;
+			margin-right: auto;
+			margin-left: auto;
+			max-width: $grid-outer-max;
+		}
+		
+	}
+} 
+
+@media (min-width:$bp-xl) {
+
+}
+
+
+
 // VIDEO PLAYER MODS --------------------------------------//
 
 // .plyr {

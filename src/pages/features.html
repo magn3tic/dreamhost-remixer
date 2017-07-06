@@ -15,7 +15,12 @@
 				<p>Master your domain with <a href="#0">Remixer</a></p>
 
 				<div class="dhr-hero--btns">
-					<a href="https://signup.dreamhost.com/remixer/email/" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
+					<a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
+					
+					<button id="dhr-features-vidbtn" class="btn-clear">
+					 {{> play-lockup}}
+					</button>
+
 				</div>
 			</div>
 
@@ -23,21 +28,8 @@
 	</section>
 
 
-
-	<section class="dhr-videocard--outer">
-		<div class="inner">
-			
-			<div class="dhr-videocard">
-				<a href="#0" class="dhr-videocard--link" data-hovercard>
-					<figure>
-						<img src="assets/img/features-video-poster.jpg" alt="">
-					</figure>
-					<div class="dhr-videocard--play">{{> play-btn}}</div>
-				</a>
-			</div>
-
-		</div>
-	</section>
+	
+	{{> video-card img="assets/img/features-video-poster.jpg" target="dhr-features-herovid" videourl=''}}
 
 
 
@@ -120,8 +112,8 @@
 
 			<div class="dhr-testify--content">
 				<h5 class="dhr-preheadline">Testimonials</h5>
-				<h3 class="dhr-sectionheadline">Don't take our word for it. Hear from the Masters, themeselves.</h3>
-				<blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, optio. Quaerat, ut consequuntur ducimus esse aspernatur. Id voluptatum magnam unde ipsa eveniet dicta nobis quis.</blockquote>
+				<h3 class="dhr-sectionheadline">Don't take our word for it. Hear from the Masters, themselves.</h3>
+				<blockquote><em>"</em> Word of mouth can only go so far. As my business grows, I need a place to showcase what I’m doing. Remixer has allowed me to quickly put up a site and share my passion.<em>"</em></blockquote>
 				<div class="dhr-testify--btns">
 					<a href="https://signup.dreamhost.com/remixer/email/" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
 				</div>

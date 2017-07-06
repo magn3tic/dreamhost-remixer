@@ -872,6 +872,16 @@ var $homeherotop = $('#dhr-hero-top'),
     $playbtns = $('a[data-video]'),
     isHomePage = _globals.$body.hasClass('dhr-currentpage-index');
 
+var dismissBeforeEnd = function dismissBeforeEnd($element, callback) {
+	$element.velocity('transition.fadeOut', { duration: 650 });
+	_globals.$body.velocity('transition.fadeOut', {
+		duration: 700,
+		complete: function complete() {
+			return callback();
+		}
+	});
+};
+
 var isPlaying = false;
 
 $playbtns.each(function (index) {
@@ -883,30 +893,49 @@ $playbtns.each(function (index) {
 	    pageUrl = $target.data('link');
 
 	var $closebtn = $('<button id="dhr-videoclose-' + index + '"><i class="icon-cancel" aria-hidden="true"></i><span class="sr-only">Close</span></button>'),
+	    $overlayBg = null,
+	    $overlayContent = null,
+	    $videoParent = null,
 	    $video = null,
 	    firstOpen = true,
 	    isPlayReady = false,
 	    plyrRef = null;
-
-	var dismissBeforeEnd = function dismissBeforeEnd($element, callback) {
-		$element.velocity('transition.fadeOut', { duration: 650 });
-		_globals.$body.velocity('transition.fadeOut', {
-			duration: 700,
-			complete: function complete() {
-				return callback();
-			}
-		});
-	};
 
 	//Play Button Click -------------------------//
 	$t.on('click', function (e) {
 		e.preventDefault();
 		if ($target.hasClass('velocity-animating')) return;
 
+		_globals.$body.addClass('is-playingtriggered');
+
 		$video = $('<video controls src="' + videopath + '"></video>');
 
 		$target.append($video).prepend($closebtn);
-		_globals.$body.addClass('is-playingtriggered');
+
+		//plyr opts/events setup
+		var vidplyr = window.plyr.setup($video[0], {
+			controls: ['play', 'progress', 'mute', 'volume', 'fullscreen'],
+			volume: 8
+		}),
+		    $plyrEl = $target.find('.plyr--video');
+		plyrRef = vidplyr[0];
+		plyrRef.on('ready', function (event) {
+			isPlayReady = true;
+			if (!isPlaying) {
+				vidplyr[0].play();
+				isPlaying = true;
+			}
+		});
+		plyrRef.on('ended', function (event) {
+			_globals.$body.addClass('is-videoended');
+			if (isHomePage) {
+				dismissBeforeEnd($plyrEl, function () {
+					return window.location.replace(pageUrl);
+				});
+			} else {
+				$closebtn.trigger('click');
+			}
+		});
 
 		//home page
 		if (isHomePage) {
@@ -920,29 +949,6 @@ $playbtns.each(function (index) {
 				complete: function complete() {
 					return $target.velocity('slideDown', { duration: 650, easing: _globals.easeOutBack });
 				}
-			});
-
-			var vidplyr = window.plyr.setup($video[0], {
-				controls: ['play', 'progress', 'mute', 'volume', 'fullscreen'],
-				volume: 7
-			}),
-			    $plyrEl = $target.find('.plyr--video');
-
-			plyrRef = vidplyr[0];
-
-			plyrRef.on('ready', function (event) {
-				isPlayReady = true;
-				if (!isPlaying) {
-					vidplyr[0].play();
-					isPlaying = true;
-				}
-			});
-
-			plyrRef.on('ended', function (event) {
-				//$body.addClass('is-videoended');
-				dismissBeforeEnd($plyrEl, function () {
-					return window.location.replace(pageUrl);
-				});
 			});
 
 			$plyrEl.velocity({
@@ -966,74 +972,19 @@ $playbtns.each(function (index) {
 			//single story / features
 		} else {
 
-			$t.parent().hide();
-			var _expectedHeight = $targetparent.width() * 0.525,
-			    _isTaller = _expectedHeight >= _globals.$window.height();
+			$overlayBg = $('<div class="dhr-playeroverlay" style="display:none;"></div>');
+			$overlayContent = $('<div class="dhr-playeroverlay--content"></div>');
+			$videoParent = $target.parent('.dhr-fluidvideo');
 
-			$targetparent.velocity('scroll', {
-				offset: !_isTaller ? -((_globals.$window.height() - _expectedHeight) / 2) : 0,
-				duration: 500,
-				complete: function complete() {
-					return $target.velocity('slideDown', { duration: 650, easing: _globals.easeOutBack });
-				}
-			});
+			_globals.$body.append($overlayBg);
+			$overlayBg.velocity('transition.fadeIn', { duration: 350 });
 
-			var _vidplyr = window.plyr.setup($video[0], {
-				controls: ['play', 'progress', 'mute', 'volume', 'fullscreen'],
-				volume: 7
-			}),
-			    _$plyrEl = $target.find('.plyr--video');
+			_globals.$body.append($overlayContent);
+			$videoParent.addClass('is-singlepage-player').detach().appendTo($overlayContent);
 
-			plyrRef = _vidplyr[0];
-
-			plyrRef.on('ready', function (event) {
-				isPlayReady = true;
-				if (!isPlaying) {
-					_vidplyr[0].play();
-					isPlaying = true;
-				}
-			});
-
-			plyrRef.on('ended', function (event) {
-				//$body.addClass('is-videoended');
-				// dismissBeforeEnd($plyrEl, () => window.location.replace(pageUrl));
-
-				// testing
-				if ($target.hasClass('velocity-animating')) return;
-				plyrRef.pause();
-				$target.velocity('slideUp', {
-					duration: 450,
-					easing: 'easeOutCirc',
-					complete: function complete() {
-						plyrRef.destroy();
-						plyrRef = null;
-						$target.find('video').remove();
-						isPlaying = false;
-						$t.parent().show();
-					}
-				});
-				_globals.$body.removeClass('is-playingtriggered is-playingvideo');
-				_globals.$top.velocity('scroll', { duration: 450 });
-				// end testing
-			});
-
-			_$plyrEl.velocity({
-				translateY: ['0%', '100%']
-			}, {
-				duration: 700,
-				delay: 1150,
-				easing: 'easeOutCirc',
-				begin: function begin() {
-					if (plyrRef.isReady()) {
-						plyrRef.play();
-						isPlaying = true;
-					}
-				},
-				complete: function complete() {
-					// homevideo.pause();
+			$target.velocity('transition.slideUpBigIn', { duration: 700, delay: 55, complete: function complete() {
 					_globals.$body.addClass('is-playingvideo');
-				}
-			});
+				} });
 		}
 
 		firstOpen = false;
@@ -1041,24 +992,40 @@ $playbtns.each(function (index) {
 
 	$closebtn.on('click', function () {
 		if ($target.hasClass('velocity-animating')) return;
+		if ($overlayBg && $overlayBg.hasClass('velocity-animating')) return;
+
 		plyrRef.pause();
-		$target.velocity('slideUp', {
-			duration: 450,
-			easing: 'easeOutCirc',
-			complete: function complete() {
-				plyrRef.destroy();
-				plyrRef = null;
-				$target.find('video').remove();
-				isPlaying = false;
-				if (isHomePage) {
+
+		//home player
+		if (isHomePage) {
+			$target.velocity('slideUp', {
+				duration: 450,
+				easing: 'easeOutCirc',
+				complete: function complete() {
+					plyrRef.destroy();
+					plyrRef = null;
+					$target.find('video').remove();
+					isPlaying = false;
 					_pageloadSequence.homevideo.play();
-				} else {
-					$t.parent().show();
 				}
-			}
-		});
+			});
+
+			_globals.$top.velocity('scroll', { duration: 450 });
+
+			//other pages
+		} else {
+
+			$target.velocity('transition.slideDownBigOut', { duration: 220, complete: function complete() {
+					plyrRef.destroy();
+					plyrRef = null;
+					$target.find('video').remove();
+					isPlaying = false;
+
+					$overlayBg.add($overlayContent).velocity('transition.fadeOut', { duration: 200 });
+				} });
+		}
+
 		_globals.$body.removeClass('is-playingtriggered is-playingvideo');
-		_globals.$top.velocity('scroll', { duration: 450 });
 	});
 }); //end each()
 

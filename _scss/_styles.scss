@@ -236,6 +236,15 @@ body {
 
 
 // BUTTONS
+.btn-clear {
+	line-height:1;
+	border:none; padding:0; margin:0;
+	background:none;
+	outline:none;
+	@include appearance(none);
+}
+
+
 button.dhr-button {
 	border:none;
 }

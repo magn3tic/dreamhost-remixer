@@ -122,13 +122,13 @@
 
 //hover states (~ and descendant versions)
 
-.dhr-nextepisode a:hover + .inner {
+.dhr-nextepisode a:hover + .inner, #dhr-features-vidbtn:hover {
   
   .dhr-playlockup {
     strong {
-      transform: translate(-12px, -50%);
+      transform: translate(-0.2em, -50%);
       + strong {
-        transform: translate(12px, -50%);
+        transform: translate(0.2em, -50%);
       }
     }
   }
