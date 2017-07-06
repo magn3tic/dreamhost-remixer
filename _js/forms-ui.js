@@ -46,7 +46,7 @@ $form.on('submit', (e) => {
 	console.log(formData);
 
 	$.ajax({
-		url: 'https://formspree.io/colin@mag.cr',
+		url: 'https://formspree.io/kenny@mag.cr',
 		method: 'POST',
 		dataType: 'json',
 		data: formData

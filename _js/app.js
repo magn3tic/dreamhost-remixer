@@ -20,7 +20,7 @@ import './forms-ui.js';
 
 import {$body} from './globals.js';
 
-
+import './social-sharing.js'
 //chromium detect - something breaks w/ 3d rendering in other engines
 if (window.chrome) {
 	$body.addClass('version-blendmoded is-chromium');

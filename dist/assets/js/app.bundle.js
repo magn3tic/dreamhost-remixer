@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -98,7 +98,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.homevideo = undefined;
 
-var _splittext = __webpack_require__(13);
+var _splittext = __webpack_require__(14);
 
 var _splittext2 = _interopRequireDefault(_splittext);
 
@@ -441,7 +441,7 @@ $form.on('submit', function (e) {
 	console.log(formData);
 
 	$.ajax({
-		url: 'https://formspree.io/colin@mag.cr',
+		url: 'https://formspree.io/kenny@mag.cr',
 		method: 'POST',
 		dataType: 'json',
 		data: formData
@@ -629,7 +629,7 @@ exports.didScroll = exports.headerInView = exports.scrollDiff = exports.scrollCu
 
 var _globals = __webpack_require__(0);
 
-var _breakpoints = __webpack_require__(12);
+var _breakpoints = __webpack_require__(13);
 
 var _breakpoints2 = _interopRequireDefault(_breakpoints);
 
@@ -721,6 +721,44 @@ _globals.$window.scroll(function () {
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+(function ($) {
+		var $s = {
+				socialBtn: $('.btn-social')
+		};
+		if ($s.socialBtn.length <= 0) return;
+
+		$.centeredPopup = function (options) {
+				var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left,
+				    dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top,
+				    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width,
+				    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height,
+				    left = width / 2 - options.width / 2 + dualScreenLeft,
+				    top = height / 2 - options.height / 2 + dualScreenTop,
+				    newWindow = window.open(options.url, options.title, 'scrollbars=yes, width=' + options.width + ', height=' + options.height + ', top=' + top + ', left=' + left);
+				if (window.focus) {
+						newWindow.focus();
+				}
+		};
+
+		$s.socialBtn.on('click', function (e) {
+				e.preventDefault();
+				var $t = $(this);
+
+				$.centeredPopup({
+						url: $(this).attr('href'),
+						width: 400,
+						height: 400
+				});
+		});
+})(jQuery);
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -818,7 +856,7 @@ $.centeredPopup = function (options) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -951,13 +989,13 @@ $playbtns.each(function (index) {
 }); //end each()
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(9);
+__webpack_require__(10);
 
 __webpack_require__(6);
 
@@ -969,7 +1007,7 @@ __webpack_require__(3);
 
 __webpack_require__(2);
 
-__webpack_require__(10);
+__webpack_require__(11);
 
 __webpack_require__(8);
 
@@ -979,8 +1017,15 @@ __webpack_require__(5);
 
 var _globals = __webpack_require__(0);
 
+__webpack_require__(9);
+
 //chromium detect - something breaks w/ 3d rendering in other engines
-//polyfills, small jquery plugs, etc... include first
+//raf
+
+//global functionality
+
+//plugins.min.js is loaded before the webpack bundle
+//it is a bundle of jquery & plugins because some don't yet support es6 module
 
 
 if (window.chrome) {
@@ -1002,15 +1047,10 @@ if (window.chrome) {
 // $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {
 // 	return [0.175, 0.885, 0.32, 1.275];
 // };
-//raf
-
-//global functionality
-
-//plugins.min.js is loaded before the webpack bundle
-//it is a bundle of jquery & plugins because some don't yet support es6 module
+//polyfills, small jquery plugs, etc... include first
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1115,7 +1155,7 @@ exports.default = Breakpoints;
 ;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
