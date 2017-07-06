@@ -926,7 +926,77 @@ $playbtns.each(function (index) {
 			});
 
 			//single story / features
-		} else {}
+		} else {
+
+			$t.parent().hide();
+			var _expectedHeight = $targetparent.width() * 0.525,
+			    _isTaller = _expectedHeight >= _globals.$window.height();
+
+			$targetparent.velocity('scroll', {
+				offset: !_isTaller ? -((_globals.$window.height() - _expectedHeight) / 2) : 0,
+				duration: 500,
+				complete: function complete() {
+					return $target.velocity('slideDown', { duration: 650, easing: _globals.easeOutBack });
+				}
+			});
+
+			var _vidplyr = window.plyr.setup($video[0], {
+				controls: ['play', 'progress', 'mute', 'volume', 'fullscreen'],
+				volume: 7
+			}),
+			    _$plyrEl = $target.find('.plyr--video');
+
+			plyrRef = _vidplyr[0];
+
+			plyrRef.on('ready', function (event) {
+				isPlayReady = true;
+				if (!isPlaying) {
+					_vidplyr[0].play();
+					isPlaying = true;
+				}
+			});
+
+			plyrRef.on('ended', function (event) {
+				//$body.addClass('is-videoended');
+				// dismissBeforeEnd($plyrEl, () => window.location.replace(pageUrl));
+
+				// testing
+				if ($target.hasClass('velocity-animating')) return;
+				plyrRef.pause();
+				$target.velocity('slideUp', {
+					duration: 450,
+					easing: 'easeOutCirc',
+					complete: function complete() {
+						plyrRef.destroy();
+						plyrRef = null;
+						$target.find('video').remove();
+						isPlaying = false;
+						$t.parent().show();
+					}
+				});
+				_globals.$body.removeClass('is-playingtriggered is-playingvideo');
+				_globals.$top.velocity('scroll', { duration: 450 });
+				// end testing
+			});
+
+			_$plyrEl.velocity({
+				translateY: ['0%', '100%']
+			}, {
+				duration: 700,
+				delay: 1150,
+				easing: 'easeOutCirc',
+				begin: function begin() {
+					if (plyrRef.isReady()) {
+						plyrRef.play();
+						isPlaying = true;
+					}
+				},
+				complete: function complete() {
+					// homevideo.pause();
+					_globals.$body.addClass('is-playingvideo');
+				}
+			});
+		}
 
 		firstOpen = false;
 	});
@@ -942,7 +1012,11 @@ $playbtns.each(function (index) {
 				plyrRef = null;
 				$target.find('video').remove();
 				isPlaying = false;
-				_pageloadSequence.homevideo.play();
+				if (isHomePage) {
+					_pageloadSequence.homevideo.play();
+				} else {
+					$t.parent().show();
+				}
 			}
 		});
 		_globals.$body.removeClass('is-playingtriggered is-playingvideo');
