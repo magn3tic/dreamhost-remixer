@@ -2109,6 +2109,13 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
       -webkit-transition: all .35s ease;
       -o-transition: all .35s ease;
       transition: all .35s ease; }
+  .dhr-footer--form .is-filledin input[type="email"] + .dhr-footer--emailborder, .dhr-footer--form .is-filledin input[type="text"] + .dhr-footer--emailborder {
+    -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+            transform: scale(1, 1);
+    -webkit-transform-origin: left center;
+        -ms-transform-origin: left center;
+            transform-origin: left center; }
 
 .dhr-footer--emailborder {
   display: block;
@@ -2221,6 +2228,10 @@ html.no-generatedcontent a:hover {
       -webkit-transform: translateX(-1em);
           -ms-transform: translateX(-1em);
               transform: translateX(-1em); }
+  .dhr-footer--form .is-filledin .dhr-footer--submit {
+    -webkit-transform: translateX(-1em);
+        -ms-transform: translateX(-1em);
+            transform: translateX(-1em); }
   .dhr-footer--submit {
     padding: .45em; } }
 
@@ -2233,11 +2244,19 @@ html.no-generatedcontent a:hover {
       -webkit-transform: translateX(-1.5em);
           -ms-transform: translateX(-1.5em);
               transform: translateX(-1.5em); }
+  .dhr-footer--form .is-filledin .dhr-footer--submit {
+    -webkit-transform: translateX(-1.5em);
+        -ms-transform: translateX(-1.5em);
+            transform: translateX(-1.5em); }
   .dhr-footer--submit {
     padding: .7em; } }
 
 @media (min-width: 1199px) {
   .dhr-footer--form input[type="text"]:focus ~ .dhr-footer--submit, .dhr-footer--form input[type="email"]:focus ~ .dhr-footer--submit {
+    -webkit-transform: translateX(-2.5em);
+        -ms-transform: translateX(-2.5em);
+            transform: translateX(-2.5em); }
+  .dhr-footer--form .is-filledin .dhr-footer--submit {
     -webkit-transform: translateX(-2.5em);
         -ms-transform: translateX(-2.5em);
             transform: translateX(-2.5em); }

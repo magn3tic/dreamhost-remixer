@@ -357,6 +357,18 @@ var $sendgridForm = $('.sendgrid-subscription-widget'),
     loadSendgridLib = $.getScript('//s3.amazonaws.com/subscription-cdn/0.2/widget.min.js'),
     submitBtnHtml = '<span class="sr-only">Submit</span><svg x="0px" y="0px" viewBox="0 0 180 135"><path class="st0" d="M105.5,16.4L105.5,16.4c-3.9,3.9-3.9,10.2,0,14.1L132,57H23.1c-5.5,0-10,4.5-10,10c0,5.5,4.5,10,10,10h108.6l-26.5,26.5c-3.9,3.9-3.9,10.2,0,14.1v0c3.9,3.9,10.2,3.9,14.1,0L163,73.9c3.9-3.9,3.9-10.2,0-14.1l-43.3-43.3C115.8,12.5,109.4,12.5,105.5,16.4"></svg>';
 
+var setupInputHandlers = function setupInputHandlers($inputs) {
+	$inputs.on('keyup keydown change', function () {
+		var $t = $(this),
+		    $p = $t.parent('.dhr-formfield');
+		if ($t.val().length > 0) {
+			$p.addClass('is-filledin');
+		} else {
+			$p.removeClass('is-filledin');
+		}
+	});
+};
+
 //subscribe form event handlers
 $sendgridForm.on({
 	ready: function ready() {
@@ -364,6 +376,8 @@ $sendgridForm.on({
 		$sendgridEmailInput = $sendgridForm.find('input[name="email"]');
 		$sendgridEmailLabel = $sendgridEmailInput.parent('label');
 		$sendgridSubmit = $sendgridForm.find('input[type="submit"]');
+
+		setupInputHandlers($sendgridEmailInput);
 
 		$sendgridEmailInput.attr({ placeholder: 'your.name@email.com', autocomplete: 'off', required: 'true' });
 		$sendgridEmailInput.after('<span class="dhr-footer--emailborder"></span>');
@@ -582,6 +596,8 @@ $hovercards.each(function () {
 	    scaleVal = $t.data('hovercard-scale') || '',
 	    tiltVal = $t.data('hovercard-tilt') || 7;
 
+	//this 3d tilt thing only really look smooth in chrome
+	//temp fix until we can experiment and see wtf is going on
 	if (!window.chrome && isEpisode) return;
 
 	var mousedover = false;
@@ -606,7 +622,7 @@ $hovercards.each(function () {
 
 	$t.mousedown(function () {
 		if (mousedover) {
-			//do a push-down effect
+			$t.css({ transform: getTransformValue.call($t, '0.98', tiltVal) });
 		}
 	});
 
@@ -1070,7 +1086,7 @@ __webpack_require__(9);
 
 
 if (window.chrome) {
-	_globals.$body.addClass('version-blendmoded is-chromium');
+	_globals.$body.addClass('is-chromium');
 } else {}
 //not desktop chrome
 
@@ -1083,6 +1099,7 @@ if (window.chrome) {
 // 	},
 // 	stylesheet: 'assets/css/designer-options.css'
 // });
+
 
 // wtf
 // $.Velocity.Easings.sitedefault = function(p, opts, tweenDelta) {

@@ -40,6 +40,8 @@ $hovercards.each(function() {
 				tiltVal = $t.data('hovercard-tilt') || 7;
 
 	
+	//this 3d tilt thing only really look smooth in chrome
+	//temp fix until we can experiment and see wtf is going on
 	if (!window.chrome && isEpisode) return;
 
 	let mousedover = false;
@@ -64,7 +66,7 @@ $hovercards.each(function() {
 
 	$t.mousedown(() => {
 		if (mousedover) {
-			//do a push-down effect
+			$t.css({transform: getTransformValue.call($t, '0.98', tiltVal)});
 		}
 	});
 

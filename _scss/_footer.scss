@@ -130,6 +130,15 @@
 			transition: all .35s ease;
 		}
 	}
+
+	.is-filledin {
+		input[type="email"], input[type="text"] {
+			+ .dhr-footer--emailborder {
+				transform: scale(1,1);
+				transform-origin: left center;
+			}
+		}
+	}
 }
 .dhr-footer--emailborder {
 	display: block; position:absolute;
@@ -239,6 +248,12 @@ html.no-generatedcontent a:hover {
 				}
 			}
 		}
+
+		.is-filledin {
+			.dhr-footer--submit {
+				transform: translateX(-1em);
+			}
+		}
 	}
 
 	.dhr-footer--submit {
@@ -265,6 +280,12 @@ html.no-generatedcontent a:hover {
 				}
 			}
 		}
+
+		.is-filledin {
+			.dhr-footer--submit {
+				transform: translateX(-1.5em);
+			}
+		}
 	}
 
 	.dhr-footer--submit {
@@ -284,6 +305,12 @@ html.no-generatedcontent a:hover {
 				~ .dhr-footer--submit {
 					transform: translateX(-2.5em);
 				}
+			}
+		}
+
+		.is-filledin {
+			.dhr-footer--submit {
+				transform: translateX(-2.5em);
 			}
 		}
 	}

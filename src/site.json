@@ -11,7 +11,19 @@
 		"image": "ep2-poster.jpg",
 		"video": "",
 		"url": "master-of-leathercraft.html",
-		"release": 1499883831519
+		"release": 1499883831519,
+		"social": {
+			"facebook": "",
+			"twitter": "",
+			"instagram": "https://www.instagram.com/174leatherworks/"
+		}
+	}, {
+		"name": "Master of Perseverance",
+		"headline": "",
+		"image": "ep4-poster.jpg",
+		"video": "",
+		"url": "#0",
+		"release": 1500620400000
 	}, {
 		"name": "Master of Cultural Identity",
 		"headline": "",
@@ -26,51 +38,33 @@
 		"video": "",
 		"url": "#0",
 		"release": 1503039600000
-	}, {
-		"name": "Master of Perseverance",
-		"headline": "",
-		"image": "ep4-poster.jpg",
-		"video": "",
-		"url": "#0",
-		"release": 1500620400000
 	}],
 
+	
 	"features": [{
 		"subtitle": "Feature One",
 		"title": "Begin with a responsive, professionally-designed theme.",
 		"body": "All Remixer themes are built to look beautiful on desktops and mobile devices. They’re so easy, you can begin swapping out content immediately, or use Remixer’s drag and drop functionality to reorder sections throughout your theme.",
 		"btntext": "Browse Our Themes",
-		"link": "https://signup.dreamhost.com/remixer/email/",
-		"begin": "22em",
-		"end": "-2em",
-		"percent": "50p"
+		"link": "https://signup.dreamhost.com/remixer/email/"
 	}, {
 		"subtitle": "Feature Two",
 		"title": "Import your own content or browse our royalty-free image library.",
 		"body": "Add and manage content directly from your computer, existing websites or popular social media platforms. You’ll also have access to over 600,000 high-quality images and graphics to help bring your site to life.",
 		"btntext": "Import Your Gallery",
-		"link": "https://signup.dreamhost.com/remixer/email/",
-		"begin": "9em",
-		"end": "-2em",
-		"percent": "50p"
+		"link": "https://signup.dreamhost.com/remixer/email/"
 	}, {
 		"subtitle": "Feature Three",
 		"title": "Make each site your own with customizeable click-to-edit themes.",
 		"body": "Remixer’s simple click-to-edit interface lets you change fonts and colors with ease. Choose from 70+ content sections, including contact forms, maps, galleries, and more.",
 		"btntext": "Try Remixer for Free",
-		"link": "https://signup.dreamhost.com/remixer/email/",
-		"begin": "15em",
-		"end": "2em",
-		"percent": "100p"
+		"link": "https://signup.dreamhost.com/remixer/email/"
 	}, {
 		"subtitle": "Feature Four",
 		"title": "Publish your site with a single click.",
 		"body": "Just click the publish button and it’s live! Upgrade to a hosting plan and you can assign custom domains and email to your site.",
 		"btntext": "Remix Your Site",
-		"link": "https://signup.dreamhost.com/remixer/email/",
-		"begin": "9em",
-		"end": "-1em",
-		"percent": "100p"
+		"link": "https://signup.dreamhost.com/remixer/email/"
 	}]
 
 }
