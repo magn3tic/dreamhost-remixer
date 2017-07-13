@@ -1,6 +1,7 @@
 
-import SplitText from './splittext.js';
+//import SplitText from './splittext.js';
 import {$body, $window, easeOutBack} from './globals.js';
+import {inViewTicker, ticker} from './scroll-ticker.js';
 
 
 const $top = $('#top'),
@@ -15,16 +16,16 @@ const pageOutDuration = 500,
 
 
 //animation prep stuff / on domready
-const $spltels = $('.dhr-preheadline, .dhr-sectionheadline, .dhr-mainheadline'),
-			splttxt = new SplitText($spltels, {type:'lines'});
+// const $spltels = $('.dhr-preheadline, .dhr-sectionheadline, .dhr-mainheadline'),
+// 			splttxt = new SplitText($spltels, {type:'lines'});
 
-const unwrapSplitText = (elements) => {
-	elements.forEach((item, i) => $(item).unwrap());
-};
+// const unwrapSplitText = (elements) => {
+// 	elements.forEach((item, i) => $(item).unwrap());
+// };
 
-splttxt.lines.forEach((item, i) => {
-	$(item).wrap('<div class="dhr-splttxt-line"></div>').css({opacity:0});
-});
+// splttxt.lines.forEach((item, i) => {
+// 	$(item).wrap('<div class="dhr-splttxt-line"></div>').css({opacity:0});
+// });
 	
 
 
@@ -51,6 +52,8 @@ $transitionlinks.click(function(event) {
 
 
 
+
+
 //on page fully loaded
 const onFullPageload = () => {
 	
@@ -59,27 +62,33 @@ const onFullPageload = () => {
 	$top.velocity('scroll', {duration:50});
 
 
-	splttxt.lines.forEach((item, index) => {
-		$(item).velocity({
-			translateY:['0px', '50px'], 
-			opacity:[1, 0]
-		}, {
-			easing:'easeOutQaurt', 
-			duration:500, 
-			delay:100*index,
-			complete: () => {
-			}
-		});
-	});
+	// splttxt.lines.forEach((item, index) => {
+	// 	$(item).velocity({
+	// 		translateY:['0px', '50px'], 
+	// 		opacity:[1, 0]
+	// 	}, {
+	// 		easing:'easeOutQaurt', 
+	// 		duration:500, 
+	// 		delay:100*index,
+	// 		complete: () => {
+	// 			if (index === splttxt.lines.length-1) {
+	// 				unwrapSplitText(splttxt.lines);
+	// 				splttxt.revert();
+	// 			}
+	// 		}
+	// 	});
+	// });
 
 
-	$loadscreen.velocity('transition.fadeOut', {duration:330, delay:100});
+	$loadscreen.velocity('transition.fadeOut', {duration:250, delay:20, complete: () => {
+		inViewTicker.call();
+		ticker.call();
+	}});
 
 	
 	if (isHomePage) {
 		homevideo.play();
 	}
-
 };
 
 

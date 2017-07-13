@@ -57,13 +57,37 @@
 
 		a {
 			display: inline-block;
+			position: relative;
 			color: $heading-font-color;
-			transition: color .5s ease;
-			&:after {
+			transition: color .025s ease;
+			
+			&:before {
+				content: attr(data-text); display:block;
+				position: absolute; top:0; left:0;
+				color: $primary;
+				white-space: nowrap;
+				width:0px; overflow:hidden;
+				transition: width 0.05s ease;
+			}
 
+			&:after {
+				content:""; display:block; position:absolute;
+				bottom: .1em; left:0; width: 100%;
+				height:0;
+				border-bottom: 1px dashed darken($white,15%);
 			}
 			&:hover {
-				color: $secondary;
+				color: $white;
+				transition: color .25s ease;
+
+				&:after {
+					border-bottom: 1px solid darken($white,15%);
+				}
+
+				&:before {
+					width: 100%;
+					transition: width .35s $ease-out-quart;
+				}
 			}
 		}
 	}
@@ -138,6 +162,7 @@
 
 		img {
 			display:block; width: 100%;
+			border-radius:6px;
 		}
 	}
 }

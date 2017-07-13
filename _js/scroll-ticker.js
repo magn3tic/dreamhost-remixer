@@ -7,14 +7,14 @@ const bps = new Breakpoints();
 
 
 //inview class toggling
-const $inviewels = $('[data-inview]'),
-inViewTicker = () => {
+const $inviewels = $('[data-inview]');
+
+
+export  const inViewTicker = () => {
 	$inviewels.each(function() {
 		const $t = $(this);
 		if ($t.inView(true)) {
 			$t.addClass('is-inview');
-		} else {
-			$t.removeClass('is-inview');
 		}
 	});
 };
@@ -34,6 +34,7 @@ export let headerheight = $siteheader.outerHeight(),
 let isSmallScreen = bps.breakpointDown('sm');
 
 const scrollUpdate = () => {
+	if (!$siteheader.length) return;
 	headerheight = $siteheader.outerHeight().toFixed(2);
 	winheight = $window.height();
 	scrollCurrent = $(window).scrollTop();
@@ -46,11 +47,13 @@ resizeUpdate = () => {
 	//update everything that needs recalc when window resizes
 };
 
-const ticker = () => {
+export const ticker = () => {
 	if (didScroll) {
 		scrollUpdate();
 
 		inViewTicker();
+
+		if (!$siteheader.length) return;
 
 		if (isSmallScreen) {
 			$siteheader.attr('style','');
@@ -85,7 +88,6 @@ const ticker = () => {
 	requestAnimationFrame(ticker);
 };
 
-ticker.call();
 $window.on('resize', $.debounce(300, false, scrollUpdate));
 $window.scroll(() => didScroll = true);
 

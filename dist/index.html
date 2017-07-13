@@ -13,10 +13,27 @@
 
 	<script>
 	//surge protector...getit?
-	if (window.location.hostname.indexOf('surge') > -1) {
-		var pw = prompt('Enter the password:');
-		if (pw !== 'mag') {window.location.replace('https://magneticcreative.com');}
-	}
+	(function(win, ss) {
+		if (win.location.hostname.indexOf('surge') > -1 && ss && !ss['unlocked']) {
+			var pw = prompt('Enter the password:');
+			if (pw !== 'mag') { window.location.replace('https://magneticcreative.com'); }
+			if (ss) {ss['unlocked'] = 'yes';}
+		}
+	})(window, sessionStorage);
+	</script>
+
+	<script>
+	//GetDrip JS Setup - https://www.getdrip.com/docs/js-api
+	var _dcq = _dcq || [];
+  var _dcs = _dcs || {}; 
+  _dcs.account = '8667489';
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true; 
+    dc.src = '//tag.getdrip.com/8667489.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
 	</script>
 
 	<meta name="robots" content="noindex">
@@ -35,56 +52,55 @@
 <body class="dhr-currentpage-index version-blendmoded">
 	<div id="top"></div>
 
-	
-	<section id="dhr-loadscreen" class="dhr-loadscreen">
 		
-	</section>
-
-	
-	<header id="dhr-header" class="dhr-header at-page-top">
-		<div class="dhr-header--outer dhr-main">
-			<div class="inner">
-				
-				<div class="dhr-header--brand">
-					<a data-page-transition href="/" class="dhr-logo--contain">
-						<span class="site-header--logo"><svg id="dhr-logosvg" x="0px" y="0px" viewBox="0 0 365.2 51.1">
-	<path fill="#ffffff" d="M66.6,6.8h13.6c13.2,0,24.3,5.6,24.3,20.6c0,13.3-10.8,20.4-23,20.4H66.6V6.8z M75.6,39.4h4.7  c8.4,0,14.7-3.2,14.7-12.5c0-8-6.4-11.8-14.1-11.8h-5.3V39.4z"/>
-	<path fill="#ffffff" d="M109.1,19.6h8.7v4.5h0.1c1.9-3.4,4.3-5.2,8.1-5.2c1,0,2.1,0.1,2.9,0.3v7.9c-1.2-0.3-2.4-0.6-3.7-0.6  c-6.6,0-7.4,3.8-7.4,9.4v11.8h-8.7C109.1,47.8,109.1,19.6,109.1,19.6z"/>
-	<path fill="#ffffff" d="M158.4,42.9c-2.8,3.5-7.4,5.6-11.9,5.6c-8.7,0-15.6-5.8-15.6-14.8c0-9,6.9-14.8,15.6-14.8  c8.1,0,13.2,5.8,13.2,14.8v2.7h-20.2c0.7,3.3,3.2,5.4,6.5,5.4c2.8,0,4.7-1.4,6.2-3.4L158.4,42.9z M151.1,30.5  c0.1-2.9-2.2-5.3-5.3-5.3c-3.8,0-5.9,2.6-6.1,5.3H151.1z"/>
-	<path fill="#ffffff" d="M181.7,44.2h-0.1c-1.9,3-5.4,4.2-8.9,4.2c-5.3,0-10-3-10-8.7c0-9.7,11.8-9.9,19.1-9.9c0-3.1-2.5-5-5.6-5  c-2.8,0-5.2,1.3-7.1,3.4l-4.6-4.7c3.2-3,7.8-4.5,12.4-4.5c10.1,0,12.9,5.2,12.9,14.5v14.3h-8V44.2z M179.5,35.4  c-2.7,0-8.6,0.2-8.6,4.1c0,2.1,2.2,3.1,4.1,3.1c3.4,0,6.6-1.8,6.6-5.3v-1.9L179.5,35.4L179.5,35.4z"/>
-	<path fill="#ffffff" d="M195.1,19.6h8.3v3.8h0.1c1.2-2.2,4-4.5,8.2-4.5c3.9,0,7.2,1.6,8.7,5c2-3.6,4.7-5,8.9-5c7.6,0,10,5.4,10,12.2  v16.6h-8.7V31.4c0-2.6-1-4.8-3.8-4.8c-4,0-5.3,2.8-5.3,6.3v14.9h-8.7V32.9c0-2.1,0.1-6.3-3.9-6.3c-4.5,0-5.2,3.5-5.2,7.2v14h-8.7  L195.1,19.6L195.1,19.6z"/>
-	<polygon fill="#ffffff" points="244.8,6.8 253.9,6.8 253.9,22.1 271.4,22.1 271.4,6.8 280.5,6.8 280.5,47.8 271.4,47.8 271.4,30.1   253.9,30.1 253.9,47.8 244.8,47.8 "/>
-	<path fill="#ffffff" d="M300,18.9c8.7,0,15.6,5.8,15.6,14.8s-6.9,14.8-15.6,14.8c-8.7,0-15.6-5.8-15.6-14.8S291.3,18.9,300,18.9   M300,40.8c4.3,0,7-2.9,7-7.1c0-4.2-2.6-7.1-7-7.1c-4.3,0-7,2.9-7,7.1C293,37.9,295.6,40.8,300,40.8"/>
-	<path fill="#ffffff" d="M335.5,27.9c-1.3-1.6-3-2.4-5-2.4c-1.4,0-3.2,0.6-3.2,2.3c0,4.2,14.7,0.6,14.7,11.4c0,7.2-6.9,9.3-13,9.3  c-3.9,0-8.3-1-11.1-3.8l5.3-5.8c1.6,2,3.5,3.1,6.1,3.1c2,0,3.9-0.5,3.9-2c0-4.5-14.7-0.7-14.7-11.4c0-6.6,5.9-9.5,11.8-9.5  c3.7,0,7.8,0.9,10.4,3.7L335.5,27.9z"/>
-	<path fill="#ffffff" d="M365.2,26.6h-7.6V36c0,3,0.3,5.2,4.1,5.2c0.9,0,2.8-0.1,3.5-0.8v7.2c-1.9,0.7-4.1,0.9-6.1,0.9  c-5.8,0-10.2-2.4-10.2-8.5V26.6h-5.6v-7h5.6v-8.3h8.7v8.3h7.6V26.6z"/>
-	<path fill="#ffffff" d="M51.1,38.4c-4.2,2.3-9.1,3.6-14.2,3.5C21.6,41.6,9.5,29.2,9.8,14.3C9.9,9.2,11.4,4.5,14,0.5  C5.8,5.1,0.2,13.6,0,23.5c-0.3,14.9,11.8,27.3,27.1,27.6C37.2,51.3,46.1,46.2,51.1,38.4"/>
-	<path fill="#2bace9" d="M36.6,38.7c0.2,0,0.3,0,0.5,0c4,0,7.9-1,11.4-2.8c2.1-3.5,3.3-7.6,3.3-12C51.7,10.7,41.1,0,28,0  c-4.1,0-8,1.1-11.4,2.9c-2.2,3.5-3.4,7.6-3.5,11.7C12.8,27.6,23.3,38.4,36.6,38.7"/>
-	</svg>
-	</span>
-					</a>
-					<div class="dhr-header--navtoggle">
-						<button id="dhr-menu-toggle">Menu</button>
+		<section id="dhr-loadscreen" class="dhr-loadscreen">
+			
+		</section>
+		
+		<header id="dhr-header" class="dhr-header at-page-top">
+			<div class="dhr-header--outer dhr-main">
+				<div class="inner">
+					
+					<div class="dhr-header--brand">
+						<a data-page-transition href="/" class="dhr-logo--contain">
+							<span class="site-header--logo"><svg id="dhr-logosvg" x="0px" y="0px" viewBox="0 0 365.2 51.1">
+		<path fill="#ffffff" d="M66.6,6.8h13.6c13.2,0,24.3,5.6,24.3,20.6c0,13.3-10.8,20.4-23,20.4H66.6V6.8z M75.6,39.4h4.7  c8.4,0,14.7-3.2,14.7-12.5c0-8-6.4-11.8-14.1-11.8h-5.3V39.4z"/>
+		<path fill="#ffffff" d="M109.1,19.6h8.7v4.5h0.1c1.9-3.4,4.3-5.2,8.1-5.2c1,0,2.1,0.1,2.9,0.3v7.9c-1.2-0.3-2.4-0.6-3.7-0.6  c-6.6,0-7.4,3.8-7.4,9.4v11.8h-8.7C109.1,47.8,109.1,19.6,109.1,19.6z"/>
+		<path fill="#ffffff" d="M158.4,42.9c-2.8,3.5-7.4,5.6-11.9,5.6c-8.7,0-15.6-5.8-15.6-14.8c0-9,6.9-14.8,15.6-14.8  c8.1,0,13.2,5.8,13.2,14.8v2.7h-20.2c0.7,3.3,3.2,5.4,6.5,5.4c2.8,0,4.7-1.4,6.2-3.4L158.4,42.9z M151.1,30.5  c0.1-2.9-2.2-5.3-5.3-5.3c-3.8,0-5.9,2.6-6.1,5.3H151.1z"/>
+		<path fill="#ffffff" d="M181.7,44.2h-0.1c-1.9,3-5.4,4.2-8.9,4.2c-5.3,0-10-3-10-8.7c0-9.7,11.8-9.9,19.1-9.9c0-3.1-2.5-5-5.6-5  c-2.8,0-5.2,1.3-7.1,3.4l-4.6-4.7c3.2-3,7.8-4.5,12.4-4.5c10.1,0,12.9,5.2,12.9,14.5v14.3h-8V44.2z M179.5,35.4  c-2.7,0-8.6,0.2-8.6,4.1c0,2.1,2.2,3.1,4.1,3.1c3.4,0,6.6-1.8,6.6-5.3v-1.9L179.5,35.4L179.5,35.4z"/>
+		<path fill="#ffffff" d="M195.1,19.6h8.3v3.8h0.1c1.2-2.2,4-4.5,8.2-4.5c3.9,0,7.2,1.6,8.7,5c2-3.6,4.7-5,8.9-5c7.6,0,10,5.4,10,12.2  v16.6h-8.7V31.4c0-2.6-1-4.8-3.8-4.8c-4,0-5.3,2.8-5.3,6.3v14.9h-8.7V32.9c0-2.1,0.1-6.3-3.9-6.3c-4.5,0-5.2,3.5-5.2,7.2v14h-8.7  L195.1,19.6L195.1,19.6z"/>
+		<polygon fill="#ffffff" points="244.8,6.8 253.9,6.8 253.9,22.1 271.4,22.1 271.4,6.8 280.5,6.8 280.5,47.8 271.4,47.8 271.4,30.1   253.9,30.1 253.9,47.8 244.8,47.8 "/>
+		<path fill="#ffffff" d="M300,18.9c8.7,0,15.6,5.8,15.6,14.8s-6.9,14.8-15.6,14.8c-8.7,0-15.6-5.8-15.6-14.8S291.3,18.9,300,18.9   M300,40.8c4.3,0,7-2.9,7-7.1c0-4.2-2.6-7.1-7-7.1c-4.3,0-7,2.9-7,7.1C293,37.9,295.6,40.8,300,40.8"/>
+		<path fill="#ffffff" d="M335.5,27.9c-1.3-1.6-3-2.4-5-2.4c-1.4,0-3.2,0.6-3.2,2.3c0,4.2,14.7,0.6,14.7,11.4c0,7.2-6.9,9.3-13,9.3  c-3.9,0-8.3-1-11.1-3.8l5.3-5.8c1.6,2,3.5,3.1,6.1,3.1c2,0,3.9-0.5,3.9-2c0-4.5-14.7-0.7-14.7-11.4c0-6.6,5.9-9.5,11.8-9.5  c3.7,0,7.8,0.9,10.4,3.7L335.5,27.9z"/>
+		<path fill="#ffffff" d="M365.2,26.6h-7.6V36c0,3,0.3,5.2,4.1,5.2c0.9,0,2.8-0.1,3.5-0.8v7.2c-1.9,0.7-4.1,0.9-6.1,0.9  c-5.8,0-10.2-2.4-10.2-8.5V26.6h-5.6v-7h5.6v-8.3h8.7v8.3h7.6V26.6z"/>
+		<path fill="#ffffff" d="M51.1,38.4c-4.2,2.3-9.1,3.6-14.2,3.5C21.6,41.6,9.5,29.2,9.8,14.3C9.9,9.2,11.4,4.5,14,0.5  C5.8,5.1,0.2,13.6,0,23.5c-0.3,14.9,11.8,27.3,27.1,27.6C37.2,51.3,46.1,46.2,51.1,38.4"/>
+		<path fill="#2bace9" d="M36.6,38.7c0.2,0,0.3,0,0.5,0c4,0,7.9-1,11.4-2.8c2.1-3.5,3.3-7.6,3.3-12C51.7,10.7,41.1,0,28,0  c-4.1,0-8,1.1-11.4,2.9c-2.2,3.5-3.4,7.6-3.5,11.7C12.8,27.6,23.3,38.4,36.6,38.7"/>
+		</svg>
+		</span>
+						</a>
+						<div class="dhr-header--navtoggle">
+							<button id="dhr-menu-toggle">Menu</button>
+						</div>
 					</div>
+		
+					<nav id="dhr-mainnav" class="dhr-header--menu">
+						<ul>
+							<li class="is-currentpage">
+								<a data-page-transition href="/">Episodes</a>
+							</li>
+							<li class="">
+								<a data-page-transition href="/features.html">Features</a>
+							</li>
+							<li>
+								<a href="#contact">Contact</a>
+							</li>
+						</ul>
+						<a class="dhr-button" href="https://signup.dreamhost.com/remixer/email/" data-text="Try Remixer For Free">Try Remixer For Free</a>
+					</nav>
+		
 				</div>
-	
-				<nav id="dhr-mainnav" class="dhr-header--menu">
-					<ul>
-						<li class="is-currentpage">
-							<a data-page-transition href="/">Episodes</a>
-						</li>
-						<li class="">
-							<a data-page-transition href="/features.html">Features</a>
-						</li>
-						<li>
-							<a href="#contact">Contact</a>
-						</li>
-					</ul>
-					<a class="dhr-button" href="#0" data-text="Try Remixer For Free">Try Remixer For Free</a>
-				</nav>
-	
 			</div>
-		</div>
-	</header>
+		</header>
 
 	
 
@@ -92,7 +108,9 @@
 	<div class="dhr-main">
 		<div class="dhr-fixedhero--outer">
 			<video autoplay loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="assets/img/poster-master-of-leathercraft.jpg">
-				<source src="assets/vid/leathercraft-720.mp4" type="video/mp4">
+				<source src="assets/vid/leathercraft-background.webm" type="video/webm">
+				<source src="assets/vid/leathercraft-background.mp4" type="video/mp4">
+				<source src="assets/vid/leathercraft-background.ogv" type="video/ogg">
 			</video>
 		</div>
 	</div>
@@ -105,7 +123,7 @@
 	<section class="dhr-hero dhr-homehero">
 		
 		<div id="dhr-hero-top" class="inner">
-			<div class="dhr-hero--content">
+			<div class="dhr-hero--content" data-inview="children">
 				<h5 class="dhr-preheadline">Master of Leathercraft</h5>
 				<h1 class="dhr-mainheadline">Master Your Domain with Remixer by DreamHost.</h1>
 				<div class="dhr-hero--owner">
@@ -123,11 +141,12 @@
 						</svg>
 					</figure>
 					<div class="dhr-hero--owner-name">
-						<p><strong>Jess Etchemendy</strong> <span>- Owner of 174 Leatherworks</span></p>
+						<p><strong>Jess Etchemendy</strong> <span>- 174 Leatherworks</span></p>
 					</div>
 				</div>
+				<a href="/master-of-leathercraft.html" class="dhr-hero--link"></a>
 			</div>
-			<div class="dhr-hero--play">
+			<div class="dhr-hero--play" data-inview="fade-up-in">
 				<a href="#0" data-hovercard data-hovercard-scale="1.1" data-hovercard-tilt="15" data-video data-video-target="#dhr-hero-embedtarget">
 					
 					<div class="dhr-playbtn">
@@ -148,13 +167,18 @@
 
 		<div id="dhr-hero-bottom" class="inner">
 			
-			<div class="dhr-fluidvideo">
-				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/leathercraft-full-720.mp4" data-link="master-of-leathercraft.html"></div>
+			<div data-inview="fade-up-in">
+				<hr class="dhr-divider">
 			</div>
-
-			<hr class="dhr-divider">
-			<div class="inner-small dhr-hero--leadin">
-				<p>Remixer brings website building to a whole new level of simple.  In these videos, you'll witness how Remixer helps artists and small business owners like you Master Your Domain by removing the intricacies of web design.</p>
+			
+			<div class="dhr-fluidvideo">
+				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/leathercraft-full" data-link="master-of-leathercraft.html"></div>
+			</div>
+			
+			<div data-inview="children">
+				<div class="inner-small dhr-hero--leadin">
+					<p>Remixer brings website building to a whole new level of simple.  In these videos, you'll witness how Remixer helps artists and small business owners like you Master Your Domain by removing the intricacies of web design.</p>
+				</div>
 			</div>
 		</div>
 
@@ -164,13 +188,13 @@
 
 
 	<section id="dhr-episodes-list" class="dhr-episodelist">
-		<div class="inner">
+		<div class="inner" data-inview="fade-up-in">
 			
-			<div class="dhr-episodeitem ">
+			<div class="dhr-episodeitem">
 				<a data-hovercard data-page-transition href="master-of-leathercraft.html" class="dhr-episodeitem--link-0">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
-							<div data-countdown="1499883831519" class="dhr-episodeitem--countdown">
+							<div data-countdown="1499450569674" class="dhr-episodeitem--countdown">
 								<div class="dhr-countdown--outer">
 									<span class="dhr-countdown--span" data-countdown-days>
 										<span class="dhr-countdown--num">00</span>
@@ -202,61 +226,18 @@
 					</div>
 
 					<figure>
-						<img src="assets/img/ep2-poster.jpg" alt="Master of Leathercraft">
+						<img src="assets/img/episode-poster-leathercraft.jpg" alt="Master of Leathercraft">
 						<span class="dhr-episodeitem--activeborder"></span>
 					</figure>
 				</a>
 			</div>
 
 			
-			<div class="dhr-episodeitem dhr-episodeitem--locked">
+			<div class="dhr-episodeitem">
 				<a  data-page-transition href="#0" class="dhr-episodeitem--link-1">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
-							<div data-countdown="1500620400000" class="dhr-episodeitem--countdown">
-								<div class="dhr-countdown--outer">
-									<span class="dhr-countdown--span" data-countdown-days>
-										<span class="dhr-countdown--num">00</span>
-										<span class="dhr-countdown--word">Days</span>
-									</span>
-									<span class="dhr-countdown--sep">:</span>
-									<span class="dhr-countdown--span" data-countdown-hours>
-										<span class="dhr-countdown--num">00</span>
-										<span class="dhr-countdown--word">Hours</span>
-									</span>
-									<span class="dhr-countdown--sep">:</span>
-									<span class="dhr-countdown--span" data-countdown-mins>
-										<span class="dhr-countdown--num">00</span>
-										<span class="dhr-countdown--word">Mins</span>
-									</span>
-									<span class="dhr-countdown--sep">:</span>
-									<span class="dhr-countdown--span" data-countdown-sec>
-										<span class="dhr-countdown--num">00</span>
-										<span class="dhr-countdown--word">Sec</span>
-									</span>
-									<span class="dhr-countdown--border"></span>
-								</div>
-							</div>
-							<span class="dhr-episodeitem--icon">
-								<i class="icon-play-1" aria-hidden="true"></i>
-							</span>
-							<h4>Master of Perseverance</h4>
-						</div>
-					</div>
-
-					<figure>
-						<img src="assets/img/ep4-poster.jpg" alt="Master of Perseverance">
-						<span class="dhr-episodeitem--activeborder"></span>
-					</figure>
-				</a>
-			</div>
-
-			
-			<div class="dhr-episodeitem dhr-episodeitem--locked">
-				<a  data-page-transition href="#0" class="dhr-episodeitem--link-2">
-					<div class="dhr-episodeitem--content">
-						<div class="dhr-episodeitem--liner">
-							<div data-countdown="1501830000000" class="dhr-episodeitem--countdown">
+							<div data-countdown="1501157759350" class="dhr-episodeitem--countdown">
 								<div class="dhr-countdown--outer">
 									<span class="dhr-countdown--span" data-countdown-days>
 										<span class="dhr-countdown--num">00</span>
@@ -288,18 +269,18 @@
 					</div>
 
 					<figure>
-						<img src="assets/img/ep1-poster.jpg" alt="Master of Cultural Identity">
+						<img src="assets/img/episode-poster-culturalidentity.jpg" alt="Master of Cultural Identity">
 						<span class="dhr-episodeitem--activeborder"></span>
 					</figure>
 				</a>
 			</div>
 
 			
-			<div class="dhr-episodeitem dhr-episodeitem--locked">
-				<a  data-page-transition href="#0" class="dhr-episodeitem--link-3">
+			<div class="dhr-episodeitem">
+				<a  data-page-transition href="#0" class="dhr-episodeitem--link-2">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
-							<div data-countdown="1503039600000" class="dhr-episodeitem--countdown">
+							<div data-countdown="1502367359710" class="dhr-episodeitem--countdown">
 								<div class="dhr-countdown--outer">
 									<span class="dhr-countdown--span" data-countdown-days>
 										<span class="dhr-countdown--num">00</span>
@@ -326,12 +307,55 @@
 							<span class="dhr-episodeitem--icon">
 								<i class="icon-play-1" aria-hidden="true"></i>
 							</span>
-							<h4>Master of Legacy</h4>
+							<h4>Master of Perseverance</h4>
 						</div>
 					</div>
 
 					<figure>
-						<img src="assets/img/ep3-poster.jpg" alt="Master of Legacy">
+						<img src="assets/img/episode-poster-perseverance.jpg" alt="Master of Perseverance">
+						<span class="dhr-episodeitem--activeborder"></span>
+					</figure>
+				</a>
+			</div>
+
+			
+			<div class="dhr-episodeitem">
+				<a  data-page-transition href="#0" class="dhr-episodeitem--link-3">
+					<div class="dhr-episodeitem--content">
+						<div class="dhr-episodeitem--liner">
+							<div data-countdown="1503576959000" class="dhr-episodeitem--countdown">
+								<div class="dhr-countdown--outer">
+									<span class="dhr-countdown--span" data-countdown-days>
+										<span class="dhr-countdown--num">00</span>
+										<span class="dhr-countdown--word">Days</span>
+									</span>
+									<span class="dhr-countdown--sep">:</span>
+									<span class="dhr-countdown--span" data-countdown-hours>
+										<span class="dhr-countdown--num">00</span>
+										<span class="dhr-countdown--word">Hours</span>
+									</span>
+									<span class="dhr-countdown--sep">:</span>
+									<span class="dhr-countdown--span" data-countdown-mins>
+										<span class="dhr-countdown--num">00</span>
+										<span class="dhr-countdown--word">Mins</span>
+									</span>
+									<span class="dhr-countdown--sep">:</span>
+									<span class="dhr-countdown--span" data-countdown-sec>
+										<span class="dhr-countdown--num">00</span>
+										<span class="dhr-countdown--word">Sec</span>
+									</span>
+									<span class="dhr-countdown--border"></span>
+								</div>
+							</div>
+							<span class="dhr-episodeitem--icon">
+								<i class="icon-play-1" aria-hidden="true"></i>
+							</span>
+							<h4>Master of Dexterity</h4>
+						</div>
+					</div>
+
+					<figure>
+						<img src="assets/img/episode-poster-dexterity.jpg" alt="Master of Dexterity">
 						<span class="dhr-episodeitem--activeborder"></span>
 					</figure>
 				</a>
@@ -343,269 +367,260 @@
 
 
 </main>
-
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	<footer id="dhr-footer" class="dhr-footer" role="contentInfo">
-		<div class="inner">
-			
-			<div class="dhr-footer--content">
+		
+		
+		<footer id="dhr-footer" class="dhr-footer" role="contentInfo">
+			<div class="inner">
 				
-				<div data-inview="headline" class="dhr-footer--headline">
-					<h4 class="dhr-preheadline">People are doing amazing things with Remixer</h4>
-					<h2 class="dhr-sectionheadline">Sign up to be the first to hear their stories</h2>
-				</div>
-	
-				<div data-inview="fade" class="dhr-footer--form">
+				<div class="dhr-footer--content">
 					
-					<!-- <form action="">
-						<div class="inner-large">
-							<div class="dhr-formfield">
-								<label for="dhr-footer-emailinput" class="sr-only">Email Address</label>
-								<input type="email" id="dhr-footer-emailinput" placeholder="your.name@email.com">
-								<span class="dhr-footer--emailborder"></span>
-								<button id="dhr-footer-submit" class="dhr-footer--submit" type="submit">
-									<span class="sr-only">Submit</span>
-									<svg x="0px" y="0px" viewBox="0 0 180 135">
-										<path class="st0" d="M105.5,16.4L105.5,16.4c-3.9,3.9-3.9,10.2,0,14.1L132,57H23.1c-5.5,0-10,4.5-10,10c0,5.5,4.5,10,10,10h108.6l-26.5,26.5c-3.9,3.9-3.9,10.2,0,14.1v0c3.9,3.9,10.2,3.9,14.1,0L163,73.9c3.9-3.9,3.9-10.2,0-14.1l-43.3-43.3C115.8,12.5,109.4,12.5,105.5,16.4">
-										</svg>
-								</button>
+					<div data-inview="children" class="dhr-footer--headline">
+						<h4 class="dhr-preheadline">People are doing amazing things with Remixer</h4>
+						<h2 class="dhr-sectionheadline">Sign up to be the first to hear their stories</h2>
+					</div>
+		
+		
+					<div data-inview="children" class="dhr-footer--form">
+		
+						<form id="dhr-footer-form" action="">
+							<div class="inner-large">
+								
+								<div class="dhr-formfield">
+									<label for="dhr-footer-emailinput" class="sr-only">Email Address</label>
+									<input type="email" id="dhr-footer-emailinput" placeholder="your.name@email.com" autocomplete="off" required>
+									<span class="dhr-footer--emailborder"></span>
+									<button id="dhr-footer-submit" class="dhr-footer--submit" type="submit">
+										<span class="sr-only">Submit</span>
+										<svg x="0px" y="0px" viewBox="0 0 180 135">
+											<path class="st0" d="M105.5,16.4L105.5,16.4c-3.9,3.9-3.9,10.2,0,14.1L132,57H23.1c-5.5,0-10,4.5-10,10c0,5.5,4.5,10,10,10h108.6l-26.5,26.5c-3.9,3.9-3.9,10.2,0,14.1v0c3.9,3.9,10.2,3.9,14.1,0L163,73.9c3.9-3.9,3.9-10.2,0-14.1l-43.3-43.3C115.8,12.5,109.4,12.5,105.5,16.4">
+											</svg>
+									</button>
+								</div>
+		
+								<div class="dhr-formmsg dhr-formmsg--success">
+									<p>You Have Been Subscribed, Thank You!</p>
+								</div>
+								<div class="dhr-formmsg dhr-formmsg--error">
+									<p>Something went wrong, unable to subscribe.</p>
+								</div>
 							</div>
-						</div>
-					</form>  -->
-					
-					<div class="sendgrid-subscription-widget" data-token="v%2Fbhq5X%2FilgUJlyNDRC0KnkkPdlJ%2B8t2fFYnCCNmDca7ujzlpc1W%2BilefIBO7v5NU2lKFD5Lzb%2FKm4AfPFGjxQ%3D%3D" data-css="false" data-submit-text="Subscribe"></div>
-	
-				</div>
-	
-				<div data-inview="fade" class="dhr-footer--social">
-					<ul>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Dreamhost on Facebook</span>
-								<i class="icon-facebook" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Dreamhost on Twitter</span>
-								<i class="icon-twitter" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Dreamhost on Instagram</span>
-								<i class="icon-instagram" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Dreamhost on Youtube</span>
-								<i class="icon-youtube-play" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							
-						</li>
-					</ul>
-				</div>
-	
-				<div data-inview="fade" class="dhr-footer--backtop">
-					<a data-scroll href="#top" data-text="Back To Top">Back To Top</a>
-				</div>
-				
-				<div data-inview="fade" class="dhr-footer--copyright">
-					<h5>Proudly Hosting Over <span>1,500,000</span> Websites Since 1997</h5>
-	
-					<div class="dhr-footer--logo">
+						</form>
+		
+					</div>
+		
+		
+					<div class="dhr-footer--logo" data-inview="children">
 						<a href="https://www.dreamhost.com/" class="dhr-logo--contain">
 							<span><svg id="footer-logo-svg" x="0px" y="0px" viewBox="0 0 365.2 51.1">
-	<path fill="#ffffff" d="M66.6,6.8h13.6c13.2,0,24.3,5.6,24.3,20.6c0,13.3-10.8,20.4-23,20.4H66.6V6.8z M75.6,39.4h4.7  c8.4,0,14.7-3.2,14.7-12.5c0-8-6.4-11.8-14.1-11.8h-5.3V39.4z"/>
-	<path fill="#ffffff" d="M109.1,19.6h8.7v4.5h0.1c1.9-3.4,4.3-5.2,8.1-5.2c1,0,2.1,0.1,2.9,0.3v7.9c-1.2-0.3-2.4-0.6-3.7-0.6  c-6.6,0-7.4,3.8-7.4,9.4v11.8h-8.7C109.1,47.8,109.1,19.6,109.1,19.6z"/>
-	<path fill="#ffffff" d="M158.4,42.9c-2.8,3.5-7.4,5.6-11.9,5.6c-8.7,0-15.6-5.8-15.6-14.8c0-9,6.9-14.8,15.6-14.8  c8.1,0,13.2,5.8,13.2,14.8v2.7h-20.2c0.7,3.3,3.2,5.4,6.5,5.4c2.8,0,4.7-1.4,6.2-3.4L158.4,42.9z M151.1,30.5  c0.1-2.9-2.2-5.3-5.3-5.3c-3.8,0-5.9,2.6-6.1,5.3H151.1z"/>
-	<path fill="#ffffff" d="M181.7,44.2h-0.1c-1.9,3-5.4,4.2-8.9,4.2c-5.3,0-10-3-10-8.7c0-9.7,11.8-9.9,19.1-9.9c0-3.1-2.5-5-5.6-5  c-2.8,0-5.2,1.3-7.1,3.4l-4.6-4.7c3.2-3,7.8-4.5,12.4-4.5c10.1,0,12.9,5.2,12.9,14.5v14.3h-8V44.2z M179.5,35.4  c-2.7,0-8.6,0.2-8.6,4.1c0,2.1,2.2,3.1,4.1,3.1c3.4,0,6.6-1.8,6.6-5.3v-1.9L179.5,35.4L179.5,35.4z"/>
-	<path fill="#ffffff" d="M195.1,19.6h8.3v3.8h0.1c1.2-2.2,4-4.5,8.2-4.5c3.9,0,7.2,1.6,8.7,5c2-3.6,4.7-5,8.9-5c7.6,0,10,5.4,10,12.2  v16.6h-8.7V31.4c0-2.6-1-4.8-3.8-4.8c-4,0-5.3,2.8-5.3,6.3v14.9h-8.7V32.9c0-2.1,0.1-6.3-3.9-6.3c-4.5,0-5.2,3.5-5.2,7.2v14h-8.7  L195.1,19.6L195.1,19.6z"/>
-	<polygon fill="#ffffff" points="244.8,6.8 253.9,6.8 253.9,22.1 271.4,22.1 271.4,6.8 280.5,6.8 280.5,47.8 271.4,47.8 271.4,30.1   253.9,30.1 253.9,47.8 244.8,47.8 "/>
-	<path fill="#ffffff" d="M300,18.9c8.7,0,15.6,5.8,15.6,14.8s-6.9,14.8-15.6,14.8c-8.7,0-15.6-5.8-15.6-14.8S291.3,18.9,300,18.9   M300,40.8c4.3,0,7-2.9,7-7.1c0-4.2-2.6-7.1-7-7.1c-4.3,0-7,2.9-7,7.1C293,37.9,295.6,40.8,300,40.8"/>
-	<path fill="#ffffff" d="M335.5,27.9c-1.3-1.6-3-2.4-5-2.4c-1.4,0-3.2,0.6-3.2,2.3c0,4.2,14.7,0.6,14.7,11.4c0,7.2-6.9,9.3-13,9.3  c-3.9,0-8.3-1-11.1-3.8l5.3-5.8c1.6,2,3.5,3.1,6.1,3.1c2,0,3.9-0.5,3.9-2c0-4.5-14.7-0.7-14.7-11.4c0-6.6,5.9-9.5,11.8-9.5  c3.7,0,7.8,0.9,10.4,3.7L335.5,27.9z"/>
-	<path fill="#ffffff" d="M365.2,26.6h-7.6V36c0,3,0.3,5.2,4.1,5.2c0.9,0,2.8-0.1,3.5-0.8v7.2c-1.9,0.7-4.1,0.9-6.1,0.9  c-5.8,0-10.2-2.4-10.2-8.5V26.6h-5.6v-7h5.6v-8.3h8.7v8.3h7.6V26.6z"/>
-	<path fill="#ffffff" d="M51.1,38.4c-4.2,2.3-9.1,3.6-14.2,3.5C21.6,41.6,9.5,29.2,9.8,14.3C9.9,9.2,11.4,4.5,14,0.5  C5.8,5.1,0.2,13.6,0,23.5c-0.3,14.9,11.8,27.3,27.1,27.6C37.2,51.3,46.1,46.2,51.1,38.4"/>
-	<path fill="#2bace9" d="M36.6,38.7c0.2,0,0.3,0,0.5,0c4,0,7.9-1,11.4-2.8c2.1-3.5,3.3-7.6,3.3-12C51.7,10.7,41.1,0,28,0  c-4.1,0-8,1.1-11.4,2.9c-2.2,3.5-3.4,7.6-3.5,11.7C12.8,27.6,23.3,38.4,36.6,38.7"/>
-	</svg>
-	</span>
+		<path fill="#ffffff" d="M66.6,6.8h13.6c13.2,0,24.3,5.6,24.3,20.6c0,13.3-10.8,20.4-23,20.4H66.6V6.8z M75.6,39.4h4.7  c8.4,0,14.7-3.2,14.7-12.5c0-8-6.4-11.8-14.1-11.8h-5.3V39.4z"/>
+		<path fill="#ffffff" d="M109.1,19.6h8.7v4.5h0.1c1.9-3.4,4.3-5.2,8.1-5.2c1,0,2.1,0.1,2.9,0.3v7.9c-1.2-0.3-2.4-0.6-3.7-0.6  c-6.6,0-7.4,3.8-7.4,9.4v11.8h-8.7C109.1,47.8,109.1,19.6,109.1,19.6z"/>
+		<path fill="#ffffff" d="M158.4,42.9c-2.8,3.5-7.4,5.6-11.9,5.6c-8.7,0-15.6-5.8-15.6-14.8c0-9,6.9-14.8,15.6-14.8  c8.1,0,13.2,5.8,13.2,14.8v2.7h-20.2c0.7,3.3,3.2,5.4,6.5,5.4c2.8,0,4.7-1.4,6.2-3.4L158.4,42.9z M151.1,30.5  c0.1-2.9-2.2-5.3-5.3-5.3c-3.8,0-5.9,2.6-6.1,5.3H151.1z"/>
+		<path fill="#ffffff" d="M181.7,44.2h-0.1c-1.9,3-5.4,4.2-8.9,4.2c-5.3,0-10-3-10-8.7c0-9.7,11.8-9.9,19.1-9.9c0-3.1-2.5-5-5.6-5  c-2.8,0-5.2,1.3-7.1,3.4l-4.6-4.7c3.2-3,7.8-4.5,12.4-4.5c10.1,0,12.9,5.2,12.9,14.5v14.3h-8V44.2z M179.5,35.4  c-2.7,0-8.6,0.2-8.6,4.1c0,2.1,2.2,3.1,4.1,3.1c3.4,0,6.6-1.8,6.6-5.3v-1.9L179.5,35.4L179.5,35.4z"/>
+		<path fill="#ffffff" d="M195.1,19.6h8.3v3.8h0.1c1.2-2.2,4-4.5,8.2-4.5c3.9,0,7.2,1.6,8.7,5c2-3.6,4.7-5,8.9-5c7.6,0,10,5.4,10,12.2  v16.6h-8.7V31.4c0-2.6-1-4.8-3.8-4.8c-4,0-5.3,2.8-5.3,6.3v14.9h-8.7V32.9c0-2.1,0.1-6.3-3.9-6.3c-4.5,0-5.2,3.5-5.2,7.2v14h-8.7  L195.1,19.6L195.1,19.6z"/>
+		<polygon fill="#ffffff" points="244.8,6.8 253.9,6.8 253.9,22.1 271.4,22.1 271.4,6.8 280.5,6.8 280.5,47.8 271.4,47.8 271.4,30.1   253.9,30.1 253.9,47.8 244.8,47.8 "/>
+		<path fill="#ffffff" d="M300,18.9c8.7,0,15.6,5.8,15.6,14.8s-6.9,14.8-15.6,14.8c-8.7,0-15.6-5.8-15.6-14.8S291.3,18.9,300,18.9   M300,40.8c4.3,0,7-2.9,7-7.1c0-4.2-2.6-7.1-7-7.1c-4.3,0-7,2.9-7,7.1C293,37.9,295.6,40.8,300,40.8"/>
+		<path fill="#ffffff" d="M335.5,27.9c-1.3-1.6-3-2.4-5-2.4c-1.4,0-3.2,0.6-3.2,2.3c0,4.2,14.7,0.6,14.7,11.4c0,7.2-6.9,9.3-13,9.3  c-3.9,0-8.3-1-11.1-3.8l5.3-5.8c1.6,2,3.5,3.1,6.1,3.1c2,0,3.9-0.5,3.9-2c0-4.5-14.7-0.7-14.7-11.4c0-6.6,5.9-9.5,11.8-9.5  c3.7,0,7.8,0.9,10.4,3.7L335.5,27.9z"/>
+		<path fill="#ffffff" d="M365.2,26.6h-7.6V36c0,3,0.3,5.2,4.1,5.2c0.9,0,2.8-0.1,3.5-0.8v7.2c-1.9,0.7-4.1,0.9-6.1,0.9  c-5.8,0-10.2-2.4-10.2-8.5V26.6h-5.6v-7h5.6v-8.3h8.7v8.3h7.6V26.6z"/>
+		<path fill="#ffffff" d="M51.1,38.4c-4.2,2.3-9.1,3.6-14.2,3.5C21.6,41.6,9.5,29.2,9.8,14.3C9.9,9.2,11.4,4.5,14,0.5  C5.8,5.1,0.2,13.6,0,23.5c-0.3,14.9,11.8,27.3,27.1,27.6C37.2,51.3,46.1,46.2,51.1,38.4"/>
+		<path fill="#2bace9" d="M36.6,38.7c0.2,0,0.3,0,0.5,0c4,0,7.9-1,11.4-2.8c2.1-3.5,3.3-7.6,3.3-12C51.7,10.7,41.1,0,28,0  c-4.1,0-8,1.1-11.4,2.9c-2.2,3.5-3.4,7.6-3.5,11.7C12.8,27.6,23.3,38.4,36.6,38.7"/>
+		</svg>
+		</span>
 						</a>
 					</div>
-	
-					<p><span>&copy;</span> 2017 DreamHost Inc.</p>
-				</div>
-	
-			</div>
-	
-		</div>
-	</footer>
-
-	
-	
-	<section id="dhr-contactmodal" class="dhr-contactmodal">
 		
-		<div class="dhr-contactmodal--top">
-			<div class="inner">
-				<div class="dhr-contactomodal--close">
-					<button id="dhr-modalclose">
-						<span class="sr-only">Close</span>
-						<i class="icon-cancel" aria-hidden="true"></i>
-					</button>
-				</div>
-	
-				<div class="dhr-contactmodal--logo">
-					<a href="/" class="dhr-logo--contain">
-						<span><svg id="contactmodal-logo-svg" x="0px" y="0px" viewBox="0 0 365.2 51.1">
-	<path fill="#ffffff" d="M66.6,6.8h13.6c13.2,0,24.3,5.6,24.3,20.6c0,13.3-10.8,20.4-23,20.4H66.6V6.8z M75.6,39.4h4.7  c8.4,0,14.7-3.2,14.7-12.5c0-8-6.4-11.8-14.1-11.8h-5.3V39.4z"/>
-	<path fill="#ffffff" d="M109.1,19.6h8.7v4.5h0.1c1.9-3.4,4.3-5.2,8.1-5.2c1,0,2.1,0.1,2.9,0.3v7.9c-1.2-0.3-2.4-0.6-3.7-0.6  c-6.6,0-7.4,3.8-7.4,9.4v11.8h-8.7C109.1,47.8,109.1,19.6,109.1,19.6z"/>
-	<path fill="#ffffff" d="M158.4,42.9c-2.8,3.5-7.4,5.6-11.9,5.6c-8.7,0-15.6-5.8-15.6-14.8c0-9,6.9-14.8,15.6-14.8  c8.1,0,13.2,5.8,13.2,14.8v2.7h-20.2c0.7,3.3,3.2,5.4,6.5,5.4c2.8,0,4.7-1.4,6.2-3.4L158.4,42.9z M151.1,30.5  c0.1-2.9-2.2-5.3-5.3-5.3c-3.8,0-5.9,2.6-6.1,5.3H151.1z"/>
-	<path fill="#ffffff" d="M181.7,44.2h-0.1c-1.9,3-5.4,4.2-8.9,4.2c-5.3,0-10-3-10-8.7c0-9.7,11.8-9.9,19.1-9.9c0-3.1-2.5-5-5.6-5  c-2.8,0-5.2,1.3-7.1,3.4l-4.6-4.7c3.2-3,7.8-4.5,12.4-4.5c10.1,0,12.9,5.2,12.9,14.5v14.3h-8V44.2z M179.5,35.4  c-2.7,0-8.6,0.2-8.6,4.1c0,2.1,2.2,3.1,4.1,3.1c3.4,0,6.6-1.8,6.6-5.3v-1.9L179.5,35.4L179.5,35.4z"/>
-	<path fill="#ffffff" d="M195.1,19.6h8.3v3.8h0.1c1.2-2.2,4-4.5,8.2-4.5c3.9,0,7.2,1.6,8.7,5c2-3.6,4.7-5,8.9-5c7.6,0,10,5.4,10,12.2  v16.6h-8.7V31.4c0-2.6-1-4.8-3.8-4.8c-4,0-5.3,2.8-5.3,6.3v14.9h-8.7V32.9c0-2.1,0.1-6.3-3.9-6.3c-4.5,0-5.2,3.5-5.2,7.2v14h-8.7  L195.1,19.6L195.1,19.6z"/>
-	<polygon fill="#ffffff" points="244.8,6.8 253.9,6.8 253.9,22.1 271.4,22.1 271.4,6.8 280.5,6.8 280.5,47.8 271.4,47.8 271.4,30.1   253.9,30.1 253.9,47.8 244.8,47.8 "/>
-	<path fill="#ffffff" d="M300,18.9c8.7,0,15.6,5.8,15.6,14.8s-6.9,14.8-15.6,14.8c-8.7,0-15.6-5.8-15.6-14.8S291.3,18.9,300,18.9   M300,40.8c4.3,0,7-2.9,7-7.1c0-4.2-2.6-7.1-7-7.1c-4.3,0-7,2.9-7,7.1C293,37.9,295.6,40.8,300,40.8"/>
-	<path fill="#ffffff" d="M335.5,27.9c-1.3-1.6-3-2.4-5-2.4c-1.4,0-3.2,0.6-3.2,2.3c0,4.2,14.7,0.6,14.7,11.4c0,7.2-6.9,9.3-13,9.3  c-3.9,0-8.3-1-11.1-3.8l5.3-5.8c1.6,2,3.5,3.1,6.1,3.1c2,0,3.9-0.5,3.9-2c0-4.5-14.7-0.7-14.7-11.4c0-6.6,5.9-9.5,11.8-9.5  c3.7,0,7.8,0.9,10.4,3.7L335.5,27.9z"/>
-	<path fill="#ffffff" d="M365.2,26.6h-7.6V36c0,3,0.3,5.2,4.1,5.2c0.9,0,2.8-0.1,3.5-0.8v7.2c-1.9,0.7-4.1,0.9-6.1,0.9  c-5.8,0-10.2-2.4-10.2-8.5V26.6h-5.6v-7h5.6v-8.3h8.7v8.3h7.6V26.6z"/>
-	<path fill="#ffffff" d="M51.1,38.4c-4.2,2.3-9.1,3.6-14.2,3.5C21.6,41.6,9.5,29.2,9.8,14.3C9.9,9.2,11.4,4.5,14,0.5  C5.8,5.1,0.2,13.6,0,23.5c-0.3,14.9,11.8,27.3,27.1,27.6C37.2,51.3,46.1,46.2,51.1,38.4"/>
-	<path fill="#2bace9" d="M36.6,38.7c0.2,0,0.3,0,0.5,0c4,0,7.9-1,11.4-2.8c2.1-3.5,3.3-7.6,3.3-12C51.7,10.7,41.1,0,28,0  c-4.1,0-8,1.1-11.4,2.9c-2.2,3.5-3.4,7.6-3.5,11.7C12.8,27.6,23.3,38.4,36.6,38.7"/>
-	</svg>
-	</span>
-					</a>
-				</div>
-			</div>
-		</div>
+					<div data-inview="children" class="dhr-footer--backtop">
+						<div><a data-scroll href="#top" data-text="Back To Top">Back To Top</a></div>
+					</div>
+					
+					<div class="dhr-footer--copyright" data-inview="children">
+						<h5>Proudly Hosting Over <span>1,500,000</span> Websites Since 1997</h5>
+						<p><span>&copy;</span> 2017 DreamHost Inc.</p>
+					</div>
 		
-		<div class="dhr-contactmodal--body">
-			<div class="inner">
-	
-				<div class="dhr-contactmodal--intro">
-					<div class="inner-small">
-						<h5 class="dhr-preheadline">Contact Us</h5>
-						<h2 class="dhr-sectionheadline">Help is just a click away</h2>
-						<p>We don't outsource. DreamHost employees are...DreamHost employees!  If you're already a customer, contact support through your <a href="#0">control panel</a>.</p>
+					<div class="dhr-footer--social" data-inview="children">
+						
+						<ul>
+							<li>
+								<a href="https://facebook.com/dreamhost">
+									<span class="sr-only">Dreamhost on Facebook</span>
+									<i class="icon-facebook" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://twitter.com/dreamhost">
+									<span class="sr-only">Dreamhost on Twitter</span>
+									<i class="icon-twitter" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://instagram.com/dreamhost">
+									<span class="sr-only">Dreamhost on Instagram</span>
+									<i class="icon-instagram" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://youtube.com/user/dreamhostusa">
+									<span class="sr-only">Dreamhost on Youtube</span>
+									<i class="icon-youtube-play" aria-hidden="true"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+		
+				</div>
+		
+			</div>
+		</footer>
+		
+		
+		<section id="dhr-contactmodal" class="dhr-contactmodal">
+			
+			<div class="dhr-contactmodal--top">
+				<div class="inner">
+					<div class="dhr-contactomodal--close">
+						<button id="dhr-modalclose">
+							<span class="sr-only">Close</span>
+							<i class="icon-cancel" aria-hidden="true"></i>
+						</button>
+					</div>
+		
+					<div class="dhr-contactmodal--logo">
+						<a href="/" class="dhr-logo--contain">
+							<span><svg id="contactmodal-logo-svg" x="0px" y="0px" viewBox="0 0 365.2 51.1">
+		<path fill="#ffffff" d="M66.6,6.8h13.6c13.2,0,24.3,5.6,24.3,20.6c0,13.3-10.8,20.4-23,20.4H66.6V6.8z M75.6,39.4h4.7  c8.4,0,14.7-3.2,14.7-12.5c0-8-6.4-11.8-14.1-11.8h-5.3V39.4z"/>
+		<path fill="#ffffff" d="M109.1,19.6h8.7v4.5h0.1c1.9-3.4,4.3-5.2,8.1-5.2c1,0,2.1,0.1,2.9,0.3v7.9c-1.2-0.3-2.4-0.6-3.7-0.6  c-6.6,0-7.4,3.8-7.4,9.4v11.8h-8.7C109.1,47.8,109.1,19.6,109.1,19.6z"/>
+		<path fill="#ffffff" d="M158.4,42.9c-2.8,3.5-7.4,5.6-11.9,5.6c-8.7,0-15.6-5.8-15.6-14.8c0-9,6.9-14.8,15.6-14.8  c8.1,0,13.2,5.8,13.2,14.8v2.7h-20.2c0.7,3.3,3.2,5.4,6.5,5.4c2.8,0,4.7-1.4,6.2-3.4L158.4,42.9z M151.1,30.5  c0.1-2.9-2.2-5.3-5.3-5.3c-3.8,0-5.9,2.6-6.1,5.3H151.1z"/>
+		<path fill="#ffffff" d="M181.7,44.2h-0.1c-1.9,3-5.4,4.2-8.9,4.2c-5.3,0-10-3-10-8.7c0-9.7,11.8-9.9,19.1-9.9c0-3.1-2.5-5-5.6-5  c-2.8,0-5.2,1.3-7.1,3.4l-4.6-4.7c3.2-3,7.8-4.5,12.4-4.5c10.1,0,12.9,5.2,12.9,14.5v14.3h-8V44.2z M179.5,35.4  c-2.7,0-8.6,0.2-8.6,4.1c0,2.1,2.2,3.1,4.1,3.1c3.4,0,6.6-1.8,6.6-5.3v-1.9L179.5,35.4L179.5,35.4z"/>
+		<path fill="#ffffff" d="M195.1,19.6h8.3v3.8h0.1c1.2-2.2,4-4.5,8.2-4.5c3.9,0,7.2,1.6,8.7,5c2-3.6,4.7-5,8.9-5c7.6,0,10,5.4,10,12.2  v16.6h-8.7V31.4c0-2.6-1-4.8-3.8-4.8c-4,0-5.3,2.8-5.3,6.3v14.9h-8.7V32.9c0-2.1,0.1-6.3-3.9-6.3c-4.5,0-5.2,3.5-5.2,7.2v14h-8.7  L195.1,19.6L195.1,19.6z"/>
+		<polygon fill="#ffffff" points="244.8,6.8 253.9,6.8 253.9,22.1 271.4,22.1 271.4,6.8 280.5,6.8 280.5,47.8 271.4,47.8 271.4,30.1   253.9,30.1 253.9,47.8 244.8,47.8 "/>
+		<path fill="#ffffff" d="M300,18.9c8.7,0,15.6,5.8,15.6,14.8s-6.9,14.8-15.6,14.8c-8.7,0-15.6-5.8-15.6-14.8S291.3,18.9,300,18.9   M300,40.8c4.3,0,7-2.9,7-7.1c0-4.2-2.6-7.1-7-7.1c-4.3,0-7,2.9-7,7.1C293,37.9,295.6,40.8,300,40.8"/>
+		<path fill="#ffffff" d="M335.5,27.9c-1.3-1.6-3-2.4-5-2.4c-1.4,0-3.2,0.6-3.2,2.3c0,4.2,14.7,0.6,14.7,11.4c0,7.2-6.9,9.3-13,9.3  c-3.9,0-8.3-1-11.1-3.8l5.3-5.8c1.6,2,3.5,3.1,6.1,3.1c2,0,3.9-0.5,3.9-2c0-4.5-14.7-0.7-14.7-11.4c0-6.6,5.9-9.5,11.8-9.5  c3.7,0,7.8,0.9,10.4,3.7L335.5,27.9z"/>
+		<path fill="#ffffff" d="M365.2,26.6h-7.6V36c0,3,0.3,5.2,4.1,5.2c0.9,0,2.8-0.1,3.5-0.8v7.2c-1.9,0.7-4.1,0.9-6.1,0.9  c-5.8,0-10.2-2.4-10.2-8.5V26.6h-5.6v-7h5.6v-8.3h8.7v8.3h7.6V26.6z"/>
+		<path fill="#ffffff" d="M51.1,38.4c-4.2,2.3-9.1,3.6-14.2,3.5C21.6,41.6,9.5,29.2,9.8,14.3C9.9,9.2,11.4,4.5,14,0.5  C5.8,5.1,0.2,13.6,0,23.5c-0.3,14.9,11.8,27.3,27.1,27.6C37.2,51.3,46.1,46.2,51.1,38.4"/>
+		<path fill="#2bace9" d="M36.6,38.7c0.2,0,0.3,0,0.5,0c4,0,7.9-1,11.4-2.8c2.1-3.5,3.3-7.6,3.3-12C51.7,10.7,41.1,0,28,0  c-4.1,0-8,1.1-11.4,2.9c-2.2,3.5-3.4,7.6-3.5,11.7C12.8,27.6,23.3,38.4,36.6,38.7"/>
+		</svg>
+		</span>
+						</a>
 					</div>
 				</div>
-				
-				<div class="dhr-contactmodal--form">
-					<form id="dhr-contact-form" class="dhr-inlineform" action="">
-						<p>
-							<span class="dhr-inlineform--word">Hello, my name is</span>
-							<span class="dhr-inlineform--input">
-								<input type="text" id="dhr-contact-firstname-input" name="firstname" placeholder="First Name">
-								<label for="dhr-contact-firstname-input">First Name</label>
-							</span>
-							<span class="dhr-inlineform--input">
-								<input type="text" id="dhr-contact-lastname-input" name="lastname" placeholder="Last Name">
-								<label for="dhr-contact-lastname-input">Last Name</label>
-							</span>
-							<span class="dhr-inlineform--word">,from</span>
-							<span class="dhr-inlineform--input">
-								<input type="text" id="dhr-contact-company-input" name="company" placeholder="Company Name">
-								<label for="dhr-contact-company-input">Company Name</label>
-							</span>
-							<span class="dhr-inlineform--word">.</span>
-						</p>
-						<p>
-							<span class="dhr-inlineform--word">I would like to contact</span>
-							<span class="dhr-inlineform--input" data-field-type="select">
-								<select name="department" id="dhr-contact-dept-input">
-									<option value="">-- Select One</option>
-									<option value="sales">&nbsp; Sales</option>
-									<option value="support">&nbsp; Support</option>
-								</select>	
-								<label for="dhr-contact-dept-input">Department</label>
-							</span>
-							<span class="dhr-inlineform--word">regarding</span>
-							<span class="dhr-inlineform--input">
-								<input type="text" id="dhr-contact-question-input" name="question" placeholder="Briefly write your question">
-								<label for="dhr-contact-question-input">Question</label>
-							</span>
-						</p>
-						<p>
-							<span class="dhr-inlineform--word">You can reach me at</span>
-							<span class="dhr-inlineform--input">
-								<input type="email" id="dhr-contact-email-input" name="email" placeholder="Email Address">
-								<label for="dhr-contact-email-input">Email Address</label>
-							</span>
-							<span class="dhr-inlineform--word">or call</span>
-							<span class="dhr-inlineform--input">
-								<input type="tel" id="dhr-contact-phone-input" name="phone" placeholder="Phone Number">
-								<label for="dhr-contact-phone-input">Phone Number</label>
-							</span>
-							<span>Talk to you soon!</span>
-						</p>
-						<div class="dhr-contactmodal--btns">
-							<button type="submit" class="dhr-button" data-text="Send Your Question">Send Your Question</button>
+			</div>
+			
+			<div class="dhr-contactmodal--body">
+				<div class="dhr-contactmodal--body-liner">
+		
+				<div class="inner">
+		
+					<div class="dhr-contactmodal--intro">
+						<div class="inner-small">
+							<h5 class="dhr-preheadline">Contact Us</h5>
+							<h2 class="dhr-sectionheadline">Help is just a click away</h2>
+							<p>We don't outsource. DreamHost employees are...DreamHost employees!  If you're already a customer, contact support through your <a href="#0">control panel</a>.</p>
 						</div>
-					</form>
-				</div>
-	
-				<div class="dhr-contactmodal--social">
+					</div>
 					
-					<ul>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Dreamhost on Facebook</span>
-								<i class="icon-facebook" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Dreamhost on Twitter</span>
-								<i class="icon-twitter" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Dreamhost on Instagram</span>
-								<i class="icon-instagram" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Dreamhost on Youtube</span>
-								<i class="icon-youtube-play" aria-hidden="true"></i>
-							</a>
-						</li>
-					</ul>
+					<div class="dhr-contactmodal--form">
+		
+						
+						<form id="dhr-contact-form" class="dhr-inlineform" method="POST" action="">
+							<p>
+								<span class="dhr-inlineform--word">Hello, my name is</span>
+								<span class="dhr-inlineform--input">
+									<input type="text" id="dhr-contact-firstname-input" name="fields[first_name]" placeholder="First Name">
+									<label for="dhr-contact-firstname-input">First Name</label>
+								</span>
+								<span class="dhr-inlineform--input">
+									<input type="text" id="dhr-contact-lastname-input" name="fields[last_name]" placeholder="Last Name">
+									<label for="dhr-contact-lastname-input">Last Name</label>
+								</span>
+								<span class="dhr-inlineform--word">,from</span>
+								<span class="dhr-inlineform--input">
+									<input type="text" id="dhr-contact-company-input" name="fields[company_name]" placeholder="Company Name">
+									<label for="dhr-contact-company-input">Company Name</label>
+								</span>
+								<span class="dhr-inlineform--word">.</span>
+							</p>
+							<p>
+								<span class="dhr-inlineform--word">I would like to contact</span>
+								<span class="dhr-inlineform--input" data-field-type="select">
+									<select name="fields[department]" id="dhr-contact-dept-input">
+										<option value="">-- Select One</option>
+										<option value="sales">&nbsp; Sales</option>
+										<option value="support">&nbsp; Support</option>
+									</select>	
+									<label for="dhr-contact-dept-input">Department</label>
+								</span>
+								<span class="dhr-inlineform--word">regarding</span>
+								<span class="dhr-inlineform--input dhr-inlineform--input-question">
+									<input type="text" id="dhr-contact-question-input" name="fields[question]" placeholder="Briefly write your question">
+									<label for="dhr-contact-question-input">Question</label>
+								</span>
+							</p>
+							<p>
+								<span class="dhr-inlineform--word">You can reach me at</span>
+								<span class="dhr-inlineform--input">
+									<input type="email" id="dhr-contact-email-input" name="fields[email]" placeholder="Email Address">
+									<label for="dhr-contact-email-input">Email Address</label>
+								</span>
+								<span class="dhr-inlineform--word">or call</span>
+								<span class="dhr-inlineform--input">
+									<input type="tel" id="dhr-contact-phone-input" name="fields[phone_number]" placeholder="Phone Number">
+									<label for="dhr-contact-phone-input">Phone Number</label>
+								</span>
+								<span class="dhr-inlineform--word">Talk to you soon!</span>
+							</p>
+							<div class="dhr-contactmodal--btns">
+								<div class="dhr-inline">
+									<button type="submit" class="dhr-button" data-text="Send Your Question">Send Your Question</button>
+		
+									<div class="dhr-form--spinner">
+										<span><i class="icon-spin4" aria-hidden="true"></i></span>
+									</div>
+								</div>
+							</div>
+							<div class="dhr-contactmodal--notice">
+								<p>Please fill out the highlighted missing fields.</p>
+							</div>
+						</form>
+		
+					</div>
+		
+					<!--<div class="dhr-contactmodal--social">
+						
+						<ul>
+							<li>
+								<a href="https://facebook.com/dreamhost">
+									<span class="sr-only">Dreamhost on Facebook</span>
+									<i class="icon-facebook" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://twitter.com/dreamhost">
+									<span class="sr-only">Dreamhost on Twitter</span>
+									<i class="icon-twitter" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://instagram.com/dreamhost">
+									<span class="sr-only">Dreamhost on Instagram</span>
+									<i class="icon-instagram" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://youtube.com/user/dreamhostusa">
+									<span class="sr-only">Dreamhost on Youtube</span>
+									<i class="icon-youtube-play" aria-hidden="true"></i>
+								</a>
+							</li>
+						</ul>
+					</div>-->
+		
 				</div>
-	
+		
 			</div>
-		</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	 <!-- CONTACT FORM SUBMISSION END -->
-		<div class="contact-form-sub">
-			<div class="inner-contact-liner">
-				<div class="the-form-checker"></div>
-	
-				<div class="successfull-form-sub">
-					<h1>WE GOT YOUR SUBMISSION!</h1>
-					<p>We will get back to you as soon as possible!</p>
-					<a class="dhr-button" href="#0">Continue Viewing Site</a>
-				</div>
-	
 			</div>
-		</div>
-	
-	
-	</section>
+		
+		</section>
 
 	<script src="assets/js/plugins.min.js"></script>
 	<script src="assets/js/app.bundle.js"></script>

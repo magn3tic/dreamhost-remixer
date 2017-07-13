@@ -1,6 +1,6 @@
 
 
-import {$body, $window} from './globals.js';
+import {$body, $window, $sitefooter} from './globals.js';
 
 
 //single episode carousels
@@ -14,6 +14,28 @@ if ($carousel.length) {
 		lazyLoad: true
 	}).data('flickity');
 }
+
+
+
+
+
+//next episode blocks
+const $nextEpBlock = $('.dhr-nextepisode');
+const $nextEpAnchor = $('.dhr-nextepisode > a');
+
+$nextEpAnchor.on('click', (event) => {
+	event.preventDefault();
+	if ($nextEpBlock.hasClass('is-comingsoon')) {
+		$sitefooter.velocity('scroll', {duration:400, easing:'easeOutQuart', offset:100, complete: () => {
+			$sitefooter.find('input[type="email"]').focus();
+		}});
+	}
+});
+
+
+//features page video play btn
+const $featuresVideoBtn = $('#dhr-features-vidbtn');
+$featuresVideoBtn.on('click', () => $('.dhr-videocard--link').trigger('click'));
 
 
 

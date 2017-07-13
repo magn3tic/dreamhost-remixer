@@ -1,37 +1,30 @@
 
-(function($){
-	var $s = {
-		socialBtn : $('.btn-social')
-	}
-	if($s.socialBtn.length <= 0) return;
 
 
 
-	$.centeredPopup = function(options) {
-	  var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left,
-	  dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top,
-	  width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width,
-	  height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height,
-	  left = ((width / 2) - (options.width / 2)) + dualScreenLeft,
-	  top = ((height / 2) - (options.height / 2)) + dualScreenTop,
-	  newWindow = window.open(options.url, options.title, 'scrollbars=yes, width='+options.width+', height='+options.height+', top=' + top + ', left=' + left);
-	  if (window.focus) { newWindow.focus(); }
-	};
+const $socialLinks = $('[data-social-links]');
+const $socialAnchors = $socialLinks.find('a:not([href^="mailto:"])');
+const $mailtoAnchors = $socialLinks.find('a[href^="mailto"]');
 
 
 
- $s.socialBtn.on('click', function(e) {
-    e.preventDefault();
-    var $t = $(this);
-    
-    $.centeredPopup({
-      url: $(this).attr('href'),
-      width: 400,
-      height: 400
-    });
+$mailtoAnchors.each(function() {
+	const $t = $(this);
+	$t.attr('href', $t.attr('href').replace('%%url%%', window.location.href));
+});
+
+
+
+
+$socialAnchors.on('click', function(e) {
+  e.preventDefault();
+  
+  const $t = $(this);
+  const shareUrl = $t.attr('href').replace('%%url%%', window.location.href);
+  
+  $.centeredPopup({
+    url: shareUrl,
+    width: 400,
+    height: 400
   });
-
-
-
-
-})(jQuery)
+});

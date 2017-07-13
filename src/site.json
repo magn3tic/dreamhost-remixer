@@ -7,37 +7,38 @@
 
 	"episodes": [{
 		"name": "Master of Leathercraft",
+		"company_name": "174 Leatherworks",
 		"headline": "Master Your Domain with Remixer by Dreamhost",
-		"image": "ep2-poster.jpg",
+		"image": "episode-poster-leathercraft.jpg",
 		"video": "",
 		"url": "master-of-leathercraft.html",
-		"release": 1499883831519,
+		"release": 1499450569674,
 		"social": {
 			"facebook": "",
 			"twitter": "",
 			"instagram": "https://www.instagram.com/174leatherworks/"
 		}
 	}, {
-		"name": "Master of Perseverance",
-		"headline": "",
-		"image": "ep4-poster.jpg",
-		"video": "",
-		"url": "#0",
-		"release": 1500620400000
-	}, {
 		"name": "Master of Cultural Identity",
 		"headline": "",
-		"image": "ep1-poster.jpg",
+		"image": "episode-poster-culturalidentity.jpg",
 		"video": "",
 		"url": "#0",
-		"release": 1501830000000
+		"release": 1501157759350
 	}, {
-		"name": "Master of Legacy",
+		"name": "Master of Perseverance",
 		"headline": "",
-		"image": "ep3-poster.jpg",
+		"image": "episode-poster-perseverance.jpg",
 		"video": "",
 		"url": "#0",
-		"release": 1503039600000
+		"release": 1502367359710
+	},  {
+		"name": "Master of Dexterity",
+		"headline": "",
+		"image": "episode-poster-dexterity.jpg",
+		"video": "",
+		"url": "#0",
+		"release": 1503576959000
 	}],
 
 	

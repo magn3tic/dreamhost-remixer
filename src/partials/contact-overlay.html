@@ -20,6 +20,8 @@
 	</div>
 	
 	<div class="dhr-contactmodal--body">
+		<div class="dhr-contactmodal--body-liner">
+
 		<div class="inner">
 
 			<div class="dhr-contactmodal--intro">
@@ -31,20 +33,22 @@
 			</div>
 			
 			<div class="dhr-contactmodal--form">
-				<form id="dhr-contact-form" class="dhr-inlineform" action="">
+
+				
+				<form id="dhr-contact-form" class="dhr-inlineform" method="POST" action="">
 					<p>
 						<span class="dhr-inlineform--word">Hello, my name is</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-firstname-input" name="firstname" placeholder="First Name">
+							<input type="text" id="dhr-contact-firstname-input" name="fields[first_name]" placeholder="First Name">
 							<label for="dhr-contact-firstname-input">First Name</label>
 						</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-lastname-input" name="lastname" placeholder="Last Name">
+							<input type="text" id="dhr-contact-lastname-input" name="fields[last_name]" placeholder="Last Name">
 							<label for="dhr-contact-lastname-input">Last Name</label>
 						</span>
 						<span class="dhr-inlineform--word">,from</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-company-input" name="company" placeholder="Company Name">
+							<input type="text" id="dhr-contact-company-input" name="fields[company_name]" placeholder="Company Name">
 							<label for="dhr-contact-company-input">Company Name</label>
 						</span>
 						<span class="dhr-inlineform--word">.</span>
@@ -52,7 +56,7 @@
 					<p>
 						<span class="dhr-inlineform--word">I would like to contact</span>
 						<span class="dhr-inlineform--input" data-field-type="select">
-							<select name="department" id="dhr-contact-dept-input">
+							<select name="fields[department]" id="dhr-contact-dept-input">
 								<option value="">-- Select One</option>
 								<option value="sales">&nbsp; Sales</option>
 								<option value="support">&nbsp; Support</option>
@@ -60,57 +64,47 @@
 							<label for="dhr-contact-dept-input">Department</label>
 						</span>
 						<span class="dhr-inlineform--word">regarding</span>
-						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-question-input" name="question" placeholder="Briefly write your question">
+						<span class="dhr-inlineform--input dhr-inlineform--input-question">
+							<input type="text" id="dhr-contact-question-input" name="fields[question]" placeholder="Briefly write your question">
 							<label for="dhr-contact-question-input">Question</label>
 						</span>
 					</p>
 					<p>
 						<span class="dhr-inlineform--word">You can reach me at</span>
 						<span class="dhr-inlineform--input">
-							<input type="email" id="dhr-contact-email-input" name="email" placeholder="Email Address">
+							<input type="email" id="dhr-contact-email-input" name="fields[email]" placeholder="Email Address">
 							<label for="dhr-contact-email-input">Email Address</label>
 						</span>
 						<span class="dhr-inlineform--word">or call</span>
 						<span class="dhr-inlineform--input">
-							<input type="tel" id="dhr-contact-phone-input" name="phone" placeholder="Phone Number">
+							<input type="tel" id="dhr-contact-phone-input" name="fields[phone_number]" placeholder="Phone Number">
 							<label for="dhr-contact-phone-input">Phone Number</label>
 						</span>
-						<span>Talk to you soon!</span>
+						<span class="dhr-inlineform--word">Talk to you soon!</span>
 					</p>
 					<div class="dhr-contactmodal--btns">
-						<button type="submit" class="dhr-button" data-text="Send Your Question">Send Your Question</button>
+						<div class="dhr-inline">
+							<button type="submit" class="dhr-button" data-text="Send Your Question">Send Your Question</button>
+
+							<div class="dhr-form--spinner">
+								<span><i class="icon-spin4" aria-hidden="true"></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="dhr-contactmodal--notice">
+						<p>Please fill out the highlighted missing fields.</p>
 					</div>
 				</form>
+
 			</div>
 
-			<div class="dhr-contactmodal--social">
+			<!--<div class="dhr-contactmodal--social">
 				{{> social-icons}}
-			</div>
+			</div>-->
 
 		</div>
+
 	</div>
-
-
-
-
-
-
-
-
- <!-- CONTACT FORM SUBMISSION END -->
-	<div class="contact-form-sub">
-		<div class="inner-contact-liner">
-			<div class="the-form-checker"></div>
-
-			<div class="successfull-form-sub">
-				<h1>WE GOT YOUR SUBMISSION!</h1>
-				<p>We will get back to you as soon as possible!</p>
-				<a class="dhr-button" href="#0">Continue Viewing Site</a>
-			</div>
-
-		</div>
 	</div>
-
 
 </section>

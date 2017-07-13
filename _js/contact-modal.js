@@ -1,16 +1,18 @@
 
-import {$body, $sitefooter, $window, easeOutBack} from './globals.js';
+import {$body, $sitefooter, $siteheader, $window, easeOutBack} from './globals.js';
 
 // Contact Modal
 const $modaltrigger = $('a[href="#contact"]'),
 			$modalclose = $('#dhr-modalclose'),
 			$modal = $('#dhr-contactmodal'),
 			$modalbody = $('.dhr-contactmodal--body'),
+			$modalbodyInner = $modalbody.find('.inner'),
 			$modaltop = $('.dhr-contactmodal--top'),
 			$maincontent = $('#dhr-main'),
 			$fixedhero = $('.dhr-fixedhero'),
 			$movecontents = $maincontent.add($fixedhero).add($sitefooter),
 			$modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns, .dhr-contactmodal--social');
+
 
 const $form = $('#dhr-contact-form'),
 			$inputs = {
@@ -19,10 +21,17 @@ const $form = $('#dhr-contact-form'),
 				lastname: $('#dhr-contact-lastname-input')
 			};
 
+
 //opening
 $modaltrigger.on('click', (e) => {
 	e.preventDefault();
-	$modalbody.css({height: ($window.height()-$modaltop.outerHeight())*0.9 });
+
+	if ($modal.hasClass('velocity-animating')) return;
+	
+	$modalbody.css({
+		height: ($window.height()-$siteheader.outerHeight())*0.925
+	});
+
 	$modal.velocity({
 		translateY: ['0%', '-100%']
 	}, {
@@ -30,7 +39,17 @@ $modaltrigger.on('click', (e) => {
 		display: 'block',
 		easing: easeOutBack
 	});
-	$modalstaggeritems.velocity('transition.fadeIn', {stagger:130, drag:true, duration:350});
+
+	$modalstaggeritems.velocity('transition.slideDownIn', {
+		stagger:150, 
+		drag:true, 
+		duration:900,
+		complete: () => {
+			$modalbody.css({minHeight: $modalbodyInner.outerHeight()+30 });
+			$body.addClass('is-ready-contactmodal');
+		}
+	});
+
 	$movecontents.velocity({
 		translateY: $window.height()
 	}, {
@@ -51,8 +70,10 @@ $modalclose.on('click', () => {
 		display: 'none',
 		easing:'easeOutCirc',
 		complete: () => { 
-			$body.removeClass('is-showing-contactmodal');
-			//$modalstaggeritems.css({display:'none'});
+			$body.removeClass('is-showing-contactmodal is-ready-contactmodal');
+			$modalstaggeritems.css({opacity:0});
+
+			$(document).trigger('dhr.contactmodal.closed');
 		}
 	});
 	//$modalstaggeritems.velocity('transition.fadeOut', {duration:100})
@@ -64,7 +85,17 @@ $modalclose.on('click', () => {
 	});
 });
 
-$window.resize(() => $modalbody.css({height:$window.height()-$modaltop.outerHeight()-5}));
+
+$window.resize(() => {
+	$modalbody.css({height: ($window.height()-$siteheader.outerHeight())*0.925 });
+});
+
+// $window.on('load', () => {
+// 	$modalbody.css({minHeight: $modalbodyInner.outerHeight()});
+// });
+
+
+
 
 if (window.location.hash === '#contact') {
 	$modaltrigger.trigger('click');

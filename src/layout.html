@@ -8,10 +8,27 @@
 
 	<script>
 	//surge protector...getit?
-	if (window.location.hostname.indexOf('surge') > -1) {
-		var pw = prompt('Enter the password:');
-		if (pw !== 'mag') {window.location.replace('https://magneticcreative.com');}
-	}
+	(function(win, ss) {
+		if (win.location.hostname.indexOf('surge') > -1 && ss && !ss['unlocked']) {
+			var pw = prompt('Enter the password:');
+			if (pw !== 'mag') { window.location.replace('https://magneticcreative.com'); }
+			if (ss) {ss['unlocked'] = 'yes';}
+		}
+	})(window, sessionStorage);
+	</script>
+
+	<script>
+	//GetDrip JS Setup - https://www.getdrip.com/docs/js-api
+	var _dcq = _dcq || [];
+  var _dcs = _dcs || {}; 
+  _dcs.account = '8667489';
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true; 
+    dc.src = '//tag.getdrip.com/8667489.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
 	</script>
 
 	<meta name="robots" content="noindex">
@@ -30,15 +47,19 @@
 <body class="dhr-currentpage-{{current_page_name}} version-blendmoded">
 	<div id="top"></div>
 
-	{{> pageload-overlay}}
-
-	{{> header}}
+	{{#if debug}}
+	{{else}}
+		{{> pageload-overlay}}
+		{{> header}}
+	{{/if}}
 
 	<page>
-
-	{{> footer}}
-
-	{{> contact-overlay}}
+	
+	{{#if debug}}
+	{{else}}
+		{{> footer}}
+		{{> contact-overlay}}
+	{{/if}}
 
 	<script src="assets/js/plugins.min.js"></script>
 	<script src="assets/js/app.bundle.js"></script>

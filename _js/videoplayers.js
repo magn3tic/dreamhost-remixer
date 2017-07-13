@@ -46,10 +46,14 @@ $playbtns.each(function(index) {
 		e.preventDefault();
 		if ($target.hasClass('velocity-animating')) return;
 
+		const videoHtml = `<video>
+			<source src="${videopath}.webm" type="video/webm">
+			<source src="${videopath}.mp4" type="video/mp4">
+			<source src="${videopath}.ogv" type="video/ogg">
+		</video>`;
+
 		$body.addClass('is-playingtriggered');
-
-		$video = $('<video controls src="'+videopath+'"></video>');
-
+		$video = $(videoHtml);
 		$target.append($video).prepend($closebtn);
 
 
@@ -80,17 +84,24 @@ $playbtns.each(function(index) {
 		//home page
 		if (isHomePage) {
 
-			let expectedHeight = $targetparent.width() * 0.525,
+			let expectedHeight = $targetparent.width() * 0.565,
 					isTaller = expectedHeight >= $window.height();
-		
+
+			console.log('expected: ', expectedHeight);
+			console.log('window:   ', $window.height());
+
+			if (isTaller) {
+				$body.addClass('is-tallervideo');
+			}
+			
 			$targetparent.velocity('scroll', {
 				offset: !isTaller ? -(($window.height() - expectedHeight) / 2) : 0,
 				duration: 500,
-				complete: () => $target.velocity('slideDown', {duration: 650, easing: easeOutBack})
+				complete: () => $target.velocity('slideDown', {duration: 1000, easing: 'easeOutQuart'})
 			});
 
 			$plyrEl.velocity({
-				translateY: ['0%','100%']
+				translateY: ['0%']
 			}, {
 				duration: 700, 
 				delay: 1150, 
@@ -120,7 +131,7 @@ $playbtns.each(function(index) {
 			$body.append($overlayContent);
 			$videoParent.addClass('is-singlepage-player').detach().appendTo($overlayContent);
 			
-			$target.velocity('transition.slideUpBigIn', {duration:700, delay:55, complete: () => {
+			$target.velocity('transition.slideUpBigIn', {duration:700, delay:90, complete: () => {
 				$body.addClass('is-playingvideo');
 			}});
 		}
@@ -141,7 +152,7 @@ $playbtns.each(function(index) {
 		//home player
 		if (isHomePage) {
 			$target.velocity('slideUp', {
-				duration: 450, 
+				duration: 750, 
 				easing: 'easeOutCirc',
 				complete: () => {
 					plyrRef.destroy();
@@ -152,23 +163,27 @@ $playbtns.each(function(index) {
 				}
 			});
 
-			$top.velocity('scroll', {duration: 450});
+			$top.velocity('scroll', {duration: 450, delay: 300});
 
 		//other pages
 		} else {
 
-			$target.velocity('transition.slideDownBigOut', {duration:220, complete: () => {
+			const $modals = $overlayBg.add($overlayContent);
+			
+			$target.velocity('transition.slideDownBigOut', {duration:120, complete: () => {
 				plyrRef.destroy();
 				plyrRef = null;
 				$target.find('video').remove();
 				isPlaying = false;
+			}});
 
-				$overlayBg.add($overlayContent).velocity('transition.fadeOut', {duration: 200});
+			$modals.velocity('transition.fadeOut', {duration: 220, complete: () => {
+				$modals.detach();
 			}});
 
 		}
 
-		$body.removeClass('is-playingtriggered is-playingvideo');
+		$body.removeClass('is-playingtriggered is-playingvideo is-tallervideo');
 	});
 
 

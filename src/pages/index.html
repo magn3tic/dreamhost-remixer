@@ -4,7 +4,9 @@
 	<div class="dhr-main">
 		<div class="dhr-fixedhero--outer">
 			<video autoplay loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="assets/img/poster-master-of-leathercraft.jpg">
-				<source src="assets/vid/leathercraft-720.mp4" type="video/mp4">
+				<source src="assets/vid/leathercraft-background.webm" type="video/webm">
+				<source src="assets/vid/leathercraft-background.mp4" type="video/mp4">
+				<source src="assets/vid/leathercraft-background.ogv" type="video/ogg">
 			</video>
 		</div>
 	</div>
@@ -17,7 +19,7 @@
 	<section class="dhr-hero dhr-homehero">
 		
 		<div id="dhr-hero-top" class="inner">
-			<div class="dhr-hero--content">
+			<div class="dhr-hero--content" data-inview="children">
 				<h5 class="dhr-preheadline">Master of Leathercraft</h5>
 				<h1 class="dhr-mainheadline">Master Your Domain with Remixer by DreamHost.</h1>
 				<div class="dhr-hero--owner">
@@ -35,11 +37,12 @@
 						</svg>
 					</figure>
 					<div class="dhr-hero--owner-name">
-						<p><strong>Jess Etchemendy</strong> <span>- Owner of 174 Leatherworks</span></p>
+						<p><strong>Jess Etchemendy</strong> <span>- 174 Leatherworks</span></p>
 					</div>
 				</div>
+				<a href="/master-of-leathercraft.html" class="dhr-hero--link"></a>
 			</div>
-			<div class="dhr-hero--play">
+			<div class="dhr-hero--play" data-inview="fade-up-in">
 				<a href="#0" data-hovercard data-hovercard-scale="1.1" data-hovercard-tilt="15" data-video data-video-target="#dhr-hero-embedtarget">
 					{{> play-btn}}
 				</a>
@@ -49,13 +52,18 @@
 
 		<div id="dhr-hero-bottom" class="inner">
 			
-			<div class="dhr-fluidvideo">
-				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/leathercraft-full-720.mp4" data-link="master-of-leathercraft.html"></div>
+			<div data-inview="fade-up-in">
+				<hr class="dhr-divider">
 			</div>
-
-			<hr class="dhr-divider">
-			<div class="inner-small dhr-hero--leadin">
-				<p>Remixer brings website building to a whole new level of simple.  In these videos, you'll witness how Remixer helps artists and small business owners like you Master Your Domain by removing the intricacies of web design.</p>
+			
+			<div class="dhr-fluidvideo">
+				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/leathercraft-full" data-link="master-of-leathercraft.html"></div>
+			</div>
+			
+			<div data-inview="children">
+				<div class="inner-small dhr-hero--leadin">
+					<p>Remixer brings website building to a whole new level of simple.  In these videos, you'll witness how Remixer helps artists and small business owners like you Master Your Domain by removing the intricacies of web design.</p>
+				</div>
 			</div>
 		</div>
 
@@ -65,10 +73,10 @@
 
 
 	<section id="dhr-episodes-list" class="dhr-episodelist">
-		<div class="inner">
+		<div class="inner" data-inview="fade-up-in">
 			{{#each episodes}}
 			
-			<div class="dhr-episodeitem {{#compare @index 0 operator='>'}}dhr-episodeitem--locked{{/compare}}">
+			<div class="dhr-episodeitem">
 				<a {{#compare @index 0 operator='==='}}data-hovercard{{/compare}} data-page-transition href="{{this.url}}" class="dhr-episodeitem--link-{{@index}}">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">

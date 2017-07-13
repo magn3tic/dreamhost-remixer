@@ -19,6 +19,16 @@
 	}
 }
 
+
+.dhr-hero--content {
+	position: relative;
+}
+.dhr-hero--link {
+	position: absolute; z-index:399;
+	top:0; left:0;
+	width: 100%; height:90%;
+}
+
 .dhr-hero--owner {
 	margin-bottom: 2em;
 	font-size: 80%;
@@ -166,7 +176,7 @@
 	
 	//plyr videos
 	.dhr-fluidvideo--wrapper > .plyr--video {
-		transform: translateY(120%);
+		//transform: translateY(120%);
 	}
 }
 
@@ -174,6 +184,9 @@
 	padding-top: 1.5em;
 	text-align: center;
 	color: $white;
+	p {
+		margin: 0;
+	}
 }
 
 
@@ -323,9 +336,10 @@
 
 
 	#dhr-features-vidbtn {
+		position: relative; top: .5em;
 		display: inline-block;
 		width: 10em;
-		height: 2em;
+		//height: 2em;
 		margin-left: 1em;
 		margin-right: 0;
 		font-size: 90%;
@@ -383,7 +397,7 @@
 		width: 50%; 
 
 		.dhr-preheadline {
-			margin-bottom: 1em;
+			//margin-bottom: 1em;
 		}
 	}
 
@@ -393,12 +407,13 @@
 		}
 	}
 
+
+	.dhr-hero--owner-img {
+		margin-right: 1em;
+	}
+
 	.dhr-hero--play {
 		width: 40%; 
-
-		a {
-			margin-top: -1em;
-		}
 	}
 
 	.dhr-homehero {
@@ -422,11 +437,50 @@
 	}
 
 
+	.dhr-hero--owner {
+
+		&-name p {
+			font-size: .625em;
+		}
+	}
+	
+
+	.dhr-hero--play {
+		a {
+			margin-top: -0.85em;
+		}
+	}
+
 	.dhr-homehero {
 		padding-bottom: 5.5em;
 	}
 	
 }
+
+
+
+
+// HEIGHT MEDIA QUERIES --------------------------------------//
+
+@media (max-height:800px) {
+
+	
+	// #dhr-hero-bottom {
+	// 	transition: width 1s ease;
+
+	// 	.is-playingtriggered & {
+	// 		width: 80%;
+	// 	}
+	// }
+
+}
+
+
+
+
+
+
+
 
 
 

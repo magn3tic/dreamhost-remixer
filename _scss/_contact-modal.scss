@@ -5,7 +5,10 @@
 	position: fixed; z-index: 99999;
 	top:0; left:0; width:100%; height:100%;
 	background: $secondary;
-
+	
+	.is-ready-contactmodal & {
+		//overflow: scroll;
+	}
 
 	&--top {
 		padding: 1.4em 0;
@@ -25,10 +28,22 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		min-height: 650px;
 		overflow: scroll;
 	}
 }
+
+
+
+
+
+.dhr-contactmodal--body-liner {
+	padding-top: 2em;
+	padding-bottom: 2.5em;
+}
+
+
+
+
 
 .dhr-contactomodal--close {
 	position: absolute;
@@ -93,6 +108,7 @@
 
 
 .dhr-contactmodal--form {
+	position: relative;
 	text-align: center;
 	color: $white;
 
@@ -109,14 +125,17 @@
 		background-color: shade($secondary,8%);
 		width:100%; display:block;
 		height: 2.5em;
-		padding-right: 1em;
-		padding-left: 1em;
+		padding: 0 1em;
 		border-radius: 4px;
 		font-weight: bold;
 		@include placeholder() {
 			font-weight: normal;
 			color: shade($secondary,35%);
 			transition: color .5s ease;
+		}
+
+		@media (min-width:$bp-xl) {
+			height: 2.8em;
 		}
 	}
 
@@ -126,16 +145,13 @@
 
 	
 	input[type="text"], input[type="tel"], input[type="email"], select {
-		border: 2px solid shade($secondary,8%);
+		border: 1px solid shade($secondary,8%);
 		transition: all .3s ease;
 
 		&:focus{
+			background-color: shade($secondary,5%);
+			//background-color: transparent;
 			border-color: shade($secondary,15%);
-			background: shade($secondary,0%);
-
-			// @include placeholder() {
-			// 	color: $white;
-			// }
 		}
 	}
 
@@ -144,6 +160,8 @@
 .dhr-contactmodal--btns {
 	padding-top: 1em;
 }
+
+
 
 .dhr-inlineform--input {
 	display: inline-block;
@@ -154,8 +172,8 @@
 	&.is-filledin {
 		
 		input[type="text"], input[type="tel"], input[type="email"], select {
-			border-color: shade($secondary,15%);
-			background: shade($secondary,0%);
+			//border-color: shade($secondary,15%);
+			//background: shade($secondary,0%);
 			font-weight: bold;
 			color: $white;
 		}
@@ -163,6 +181,14 @@
 		label {
 			visibility: visible;
 			opacity:1;
+		}
+	}
+
+
+	&.is-fieldinvalid {
+
+		input[type="text"], input[type="tel"], input[type="email"], select {
+			border-color: $error_color;
 		}
 	}
 	
@@ -179,6 +205,11 @@
 		opacity:0;
 		transition: all .25s ease;
 	}
+
+
+	&-question {
+		width: 14em;
+	}
 }
 
 
@@ -187,6 +218,64 @@
 
 	&--word {
 		font-size: .9em;
+	}
+}
+
+
+//error notice
+.dhr-contactmodal--notice {
+	position: absolute;
+	bottom:-2.5em; left:0;
+	width:100%;
+	padding-top: .5em;
+
+	opacity:0;
+	visibility:hidden;
+	transition: opacity 1s ease, transform 1s $ease-out-quart, visibility 1s ease;
+
+	p {
+		margin:0 !important; 
+		font-size: .85em;
+		font-weight: bold;
+	}
+
+	.is-forminvalid & {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+
+
+@include keyframes(spinner) {
+	0% {
+		@include transform(rotate(0deg));
+	}
+	100% {
+		@include transform(rotate(360deg));
+	}
+}
+
+//spinner
+.dhr-inline {
+	display: inline-block;
+	position: relative;
+}
+.dhr-form--spinner {
+	position: absolute;
+	line-height:1;
+	left: 110%; top:50%;
+	opacity: 0;
+	transform: translate(0, -50%);
+	transition: all .2s ease;
+
+	span {
+		display: block;
+		@include animation(spinner .55s ease infinite);
+	}
+
+	.is-submitting & {
+		opacity: 1;
 	}
 }
 
@@ -224,8 +313,6 @@
 
 
 @media (min-width:$bp-md) {
-	
-	
 
 }
 
@@ -242,6 +329,13 @@
 			margin-bottom: 1.35em;
 		}
 	}
+
+
+	.dhr-contactmodal--social {
+		li {
+			margin-left: 1.25em;
+		}
+	}
 	
 
 }
@@ -253,8 +347,20 @@
 		padding: 1.7em 0;
 	}
 
+	.dhr-inlineform {
+
+		&--word {
+			font-size: 1em;
+		}
+	}
+
 
 }
+
+
+
+
+
 
 
 
@@ -262,5 +368,56 @@
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+// SMALL SCREEN VIEW --------------------------------------//
+
+@media (max-width:$bp-lg) {
+
+	.dhr-inlineform--input {
+		display: block;
+		margin-bottom: .5em;
+		width: 100%;
+		max-width: 24em;
+		margin-left: auto;
+		margin-right: auto;
+
+		label {
+			@include sr-only();
+		}
+	}
+	.dhr-inlineform--word {
+		display: none;
+	}
+
+
+	.dhr-inlineform {
+		> p {
+			margin: 0;
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 

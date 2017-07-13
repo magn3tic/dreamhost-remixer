@@ -4,9 +4,11 @@
 
 <main id="dhr-main" class="dhr-main dhr-main--single" role="main">
 
-	{{> hero-viewport preheadline='Master of Leathercraft' headline='Watch How Jess <br>Masters His Domain' name='Jess Etchemendy' title='Owner of 174 Leatherworks' headshot='assets/img/headshot-master-of-leathercraft.jpg'}}
+	
+	{{> hero-viewport preheadline='Master of Leathercraft' headline='Watch How Jess <br>Masters His Domain' name='Jess Etchemendy' title='174 Leatherworks' headshot='assets/img/headshot-master-of-leathercraft.jpg'}}
 
-	{{> video-card img='assets/img/videocard-master-of-leathercraft.jpg' videourl='assets/vid/leathercraft-full-720.mp4' target='dhr-episode-video'}}
+	
+	{{> video-card img='assets/img/videocard-master-of-leathercraft.jpg' videourl='assets/vid/leathercraft-full' target='dhr-episode-video' alt='Master of Leathercraft - Jess Etchemendy'}}
 
 
 
@@ -14,7 +16,7 @@
 
 		<div class="inner inner-xxlarge inner--singleintro">
 			
-			<div class="dhr-block--content">
+			<div class="dhr-block--content" data-inview="children">
 				<h5 class="dhr-preheadline">Master of Leathercraft</h5>
 				<h3 class="dhr-sectionheadline">Handmade Belts, Wallets, &amp; Websites.</h3>
 				<p>Jess Etchemendy crafts premium-grade leather accessories out of his garage. To showcase his work online, he didn’t need to study coding or web design. He just chose DreamHost’s Remixer.</p>
@@ -22,7 +24,7 @@
 			</div>
 			
 			<div class="dhr-introblock--details">
-				<ul>
+				<ul data-inview="children">
 					<li>
 						<h5>Business Name</h5>
 						<p>174 Leatherworks</p>
@@ -33,13 +35,13 @@
 					</li>
 					<li>
 						<h5>Website</h5>
-						<p><a target="_blank" href="http://174leatherworks.com">174 Leatherworks</a></p>
+						<p><a target="_blank" href="http://174leatherworks.com" data-text="174 Leatherworks">174 Leatherworks</a></p>
 					</li>
 					<li>
 						<h5>Follow</h5>
-						<p><a href="#0">Facebook</a></p>
-						<p><a href="#0">Twitter</a></p>
-						<p><a href="#0">Instagram</a></p>
+						<!-- <p><a href="#0" data-text="Facebook">Facebook</a></p>
+						<p><a href="#0" data-text="Twitter">Twitter</a></p> -->
+						<p><a href="https://www.instagram.com/174leatherworks/" data-text="Instagram">Instagram</a></p>
 					</li>
 				</ul>
 			</div>
@@ -65,16 +67,16 @@
 
 			<div class="dhr-episode-carousel">
 				<figure class="cell-img">
-					<img src="assets/img/leathercraft-slide-1.jpg" alt="">
+					<img src="assets/img/leathercraft-slide-1.jpg" alt="leather goods on table">
 				</figure>
 				<figure class="cell-img">
-					<img data-flickity-lazyload="assets/img/leathercraft-slide-2.jpg" alt="">
+					<img data-flickity-lazyload="assets/img/leathercraft-slide-2.jpg" alt="metal stamps for leatherworking">
 				</figure>
 				<figure class="cell-img">
-					<img data-flickity-lazyload="assets/img/leathercraft-slide-3.jpg" alt="">
+					<img data-flickity-lazyload="assets/img/leathercraft-slide-3.jpg" alt="hand crafted leather">
 				</figure>
 				<figure class="cell-img">
-					<img data-flickity-lazyload="assets/img/leathercraft-slide-4.jpg" alt="">
+					<img data-flickity-lazyload="assets/img/leathercraft-slide-4.jpg" alt="leather keychain">
 				</figure>
 			</div>
 
@@ -129,7 +131,7 @@
 				</div>
 				
 				<figure class="dhr-oneimg--fig">
-					<img src="assets/img/video-poster-leathercraft.jpg" alt="">
+					<img src="assets/img/video-poster-leathercraft.jpg" alt="dreamhost remix customer">
 					<span class="dhr-baseplate dhr-baseplate--blue"></span>
 				</figure>
 
@@ -155,13 +157,13 @@
 			
 			<div class="dhr-testify--img dhr-testify--img-multi">
 				<figure>
-					<img src="assets/img/leathercraft-interview-1.jpg" alt="">
+					<img src="assets/img/leathercraft-interview-1.jpg" alt="hand-stitched leather products">
 				</figure>
 				<figure>
-					<img src="assets/img/leathercraft-interview-2.jpg" alt="">
+					<img src="assets/img/leathercraft-interview-2.jpg" alt="174 Leatherworks products">
 				</figure>
 				<figure>
-					<img src="assets/img/leathercraft-interview-3.jpg" alt="">
+					<img src="assets/img/leathercraft-interview-3.jpg" alt="pressed leather goods website">
 				</figure>
 				<div class="dhr-testify--img-overlay"></div>
 			</div>
@@ -170,54 +172,55 @@
 				<div class="dhr-testify--interview-transcript">
 					<ul>
 						<li>
-							<h5>Does leatherworking run in the family?</h5>
+							<h5>How long did it take you to create your Remixer site?</h5>
 							<cite>Jess</cite>
-							<blockquote>Apparently my grandfather made his own saddle. People would go up to him and ask if he’s a saddle maker and he’d be like, ‘No! I made one saddle!’ We were going through his stuff after he’d died and found all these leatherworking tools. I still have his swivel knife.</blockquote>
+							<blockquote>“I spent a couple of hours a day for three days before I was ready to hit publish, but I took my time with it.”</blockquote>
 						</li>
 						<li>
-							<h5>Is 174 Leatherworks a single-man operation? Who helps you out?</h5>
+							<h5>Have you tried other website builders before?</h5>
 							<cite>Jess</cite>
-							<blockquote>My dad does all the stitching. I think it’s so cool that my dad &amp; I get to continue my brother’s legacy like this. He and I will come back here, throw on some music, kick back a couple beers, and just talk &amp; hang out. Sometimes it’s about Tim—sometimes it’s not.</blockquote>
+							<blockquote>“Yes, and none are as intuitive as Remixer. It’s crazy how easy they make it to go in and create a website that looks professionally done.”</blockquote>
 						</li>
 						<li>
-							<h5>It’s clear you place value on things that are hand-made. What else have you made by hand?</h5>
+							<h5>What was something that surprised you about Remixer?</h5>
 							<cite>Jess</cite>
-							<blockquote>I made my own surfboard. It was pretty cool to take it out in the ocean and be able to ride it.</blockquote>
+							<blockquote>“How customizable everything is. They have a library of content sections that allows you to lay out your page however you want.” </blockquote>
+						</li>
+						<li>
+							<h5>What’s your favorite aspect of your Remixer site?</h5>
+							<cite>Jess</cite>
+							<blockquote>“It’s really cool how easily it links out to all of my social media—including my Etsy page.”</blockquote>
 						</li>
 					</ul>
 				</div>
 				
 				<div class="dhr-testify--btns">
-					<a href="#0" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
+					<a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
 				</div>
 
 				<div class="dhr-testify--social">
-					<h5>Share // Follow</h5>
-					<ul>
+					<h5>Share</h5>
+					<ul data-social-links>
+
 						<li>
-							<a href="#0">
+							<a href="mailto:?subject=Dreamhost Remixer&body=%%url%%">
+								<span class="sr-only">Share via Email</span>
+								<i class="icon-mail" aria-hidden="true"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.facebook.com/sharer/sharer.php?u=%%url%%">
 								<span class="sr-only">Share on Facebook</span>
 								<i class="icon-facebook" aria-hidden="true"></i>
 							</a>
 						</li>
 						<li>
-							<a href="#0">
+							<a href="http://twitter.com/share?url=%%url%%">
 								<span class="sr-only">Share on Twitter</span>
 								<i class="icon-twitter" aria-hidden="true"></i>
 							</a>
 						</li>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Share on Instagram</span>
-								<i class="icon-instagram" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#0">
-								<span class="sr-only">Share on Youtube</span>
-								<i class="icon-youtube-play" aria-hidden="true"></i>
-							</a>
-						</li>
+					
 					</ul>
 				</div>
 			</div>
@@ -236,7 +239,7 @@
 
 
 
-	{{> next-episode img='assets/img/episodes-bg-full.jpg' subheadline='Master of Cultural Identity' mainheadline='Trish grew up in a Korean-American household. Now she makes tacos.' link='#0'}}
+	{{> next-episode img='assets/img/episodes-bg-full.jpg' subheadline='Master of Cultural Identity' mainheadline='Trish grew up in a Korean-American household. Now she makes tacos.' link='#0' comingsoon=true leftword='Coming' rightword='Soon'}}
 
 </main>
 

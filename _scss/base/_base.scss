@@ -16,7 +16,7 @@ $bluegray: #91a2b6;
 $primary: #ffa700;
 $secondary: #2bace9;
 
-$error_color: #fc4444;
+$error_color: $primary;
 
 
 // FONT FAMILY/SIZES/COLORS -----------------//
@@ -42,7 +42,7 @@ $bp-xxl: 1440px;
 
 
 // OUTER OUTER SITE CONTAINER ---------------//
-$site-outer-max: 1770px;
+$site-outer-max: 1720px;
 
 // OUTER GRID CONTAINER --------------------//
 $grid-outer-max: 72em;

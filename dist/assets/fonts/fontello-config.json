@@ -101,6 +101,12 @@
       "css": "lock",
       "code": 59399,
       "src": "fontawesome"
+    },
+    {
+      "uid": "937f4db8b6ff3348a1d9fcd5e12fd2fe",
+      "css": "mail",
+      "code": 59400,
+      "src": "iconic"
     }
   ]
 }

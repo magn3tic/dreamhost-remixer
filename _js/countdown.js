@@ -1,13 +1,14 @@
 
 
-const $lockedepisodes = $('.dhr-episodeitem--locked'),
+const $allepisodes = $('.dhr-episodeitem'),
 			cdSec = 1000,
 	    cdMin = cdSec * 60,
 	    cdHr = cdMin * 60,
 	    cdDay = cdHr * 24;
 
 let currentdate = new Date(),
-		currentepoch = currentdate.getTime();
+		currentepoch = currentdate.getTime(),
+		$lockedepisodes = $('.dhr-episodeitem--locked');
 
 
 //new time every second
@@ -34,7 +35,22 @@ const digitPrefixer = (digit) => {
 
 
 
+//go through once to determine which items need countdowns
+$allepisodes.each(function() {
+	const $t = $(this),
+				$countdown = $t.find('[data-countdown]'),
+				unlockepoch = parseInt($countdown.data('countdown'));
+	if (unlockepoch - currentepoch > 0) {
+		$t.addClass('dhr-episodeitem--locked');
+	} else {
+		$countdown.remove();
+	}
+});
+
+
+
 //go through each locked episode
+$lockedepisodes = $('.dhr-episodeitem--locked');
 $lockedepisodes.each((index, item) => {
 
 	const $this = $(item),
@@ -55,6 +71,8 @@ $lockedepisodes.each((index, item) => {
 				mins: digitPrefixer(Math.floor((timeDiff%cdHr)/cdMin)),
 				sec: digitPrefixer(Math.floor((timeDiff%cdMin)/cdSec))
 			};
+	//console.log(timeDiff);
+
 
 	doHtmlUpdate($html, until);
 

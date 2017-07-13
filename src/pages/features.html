@@ -9,17 +9,17 @@
 	<section class="dhr-hero dhr-featureshero">
 		<div class="inner">
 		
-			<div class="dhr-hero--content">
+			<div class="dhr-hero--content" data-inview="children">
 				<h5 class="dhr-preheadline">Remixer by Dreamhost</h5>
 				<h1 class="dhr-mainheadline">Build Your Own Professional Website in Just Minutes.</h1>
-				<p>Master your domain with <a href="#0">Remixer</a></p>
+				<p>Master your domain with <a href="{{globals.remixer_signup_url}}">Remixer</a></p>
 
 				<div class="dhr-hero--btns">
 					<a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
 					
-					<button id="dhr-features-vidbtn" class="btn-clear">
+					<!-- <button id="dhr-features-vidbtn" class="btn-clear">
 					 {{> play-lockup}}
-					</button>
+					</button> -->
 
 				</div>
 			</div>
@@ -29,7 +29,7 @@
 
 
 	
-	{{> video-card img="assets/img/features-video-poster.jpg" target="dhr-features-herovid" videourl=''}}
+	{{> video-card img="assets/img/features-video-poster.jpg" target="dhr-features-herovid" videourl='assets/vid/remixer-features'}}
 
 
 
@@ -37,11 +37,11 @@
 
 		<div class="inner">
 			
-			<div class="inner-medium dhr-block--content">
+			<div class="inner-medium dhr-block--content" data-inview="children">
 				<h5 class="dhr-preheadline">Remixer by Dreamhost</h5>
 				<h3 class="dhr-sectionheadline">Building your professional site has never been so simple.</h3>
-				<p>If you’re anything like us, you’re tired of all the frustrations and complexities of website-builders. That’s why we built Remixer. Remixer uses an intuitive click-to-edit interface that helps you build your site in a quick and painless manner. Watch the tutorial above to see <a href="#0">Remixer</a> in action.</p>
-				<a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
+				<p>If you’re anything like us, you’re tired of all the frustrations and complexities of website-builders. That’s why we built Remixer. Remixer uses an intuitive click-to-edit interface that helps you build your site in a quick and painless manner. Watch the tutorial above to see <a href="{{globals.remixer_signup_url}}">Remixer</a> in action.</p>
+				<div><a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a></div>
 			</div>
 		</div>
 
@@ -65,7 +65,7 @@
 			<div class="inner-large">
 				
 				<figure class="dhr-oneimg--fig">
-					<img src="assets/img/login-screenshot.jpg" alt="">
+					<img src="assets/img/login-screenshot.jpg" alt="dreamhost remixer features">
 					<span class="dhr-baseplate dhr-baseplate--blue"></span>
 				</figure>
 
@@ -99,52 +99,48 @@
 	</section>
 
 
-	<section class="dhr-block dhr-block--light dhr-testify dhr-testify--wider">
+	<section class="dhr-block dhr-block--light dhr-testify dhr-testify--narrow">
 		
 		<div class="inner">
 			
-			<div class="dhr-testify--img">
+			<div class="dhr-testify--img" data-inview="imgoverlay">
 				<figure>
-					<img src="assets/img/features-testimonial.jpg" alt="">
+					<img src="assets/img/trish-testimonial.jpg" alt="">
 				</figure>
 				<div class="dhr-testify--img-overlay"></div>
 			</div>
 
-			<div class="dhr-testify--content">
+			<div class="dhr-testify--content" data-inview="children">
 				<h5 class="dhr-preheadline">Testimonials</h5>
 				<h3 class="dhr-sectionheadline">Don't take our word for it. Hear from the Masters, themselves.</h3>
 				<blockquote><em>"</em> Word of mouth can only go so far. As my business grows, I need a place to showcase what I’m doing. Remixer has allowed me to quickly put up a site and share my passion.<em>"</em></blockquote>
 				<div class="dhr-testify--btns">
-					<a href="https://signup.dreamhost.com/remixer/email/" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
+					<a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
 				</div>
 
 				<div class="dhr-testify--social">
-					<h5>Share // Follow</h5>
-					<ul>
+					<h5>Share</h5>
+					<ul data-social-links>
+
 						<li>
-							<a href="https://www.facebook.com/sharer/sharer.php?u=http://www.localhost:3000/features.html/" class="btn-social">
+							<a href="mailto:?subject=Dreamhost Remixer&body=%%url%%" class="btn-social">
+								<span class="sr-only">Share via Email</span>
+								<i class="icon-mail" aria-hidden="true"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.facebook.com/sharer/sharer.php?u=%%url%%">
 								<span class="sr-only">Share on Facebook</span>
 								<i class="icon-facebook" aria-hidden="true"></i>
 							</a>
 						</li>
 						<li>
-							<a href="http://twitter.com/share?url=http://www.localhost:3000/features.html/" class="btn-social">
+							<a href="http://twitter.com/share?url=%%url%%">
 								<span class="sr-only">Share on Twitter</span>
 								<i class="icon-twitter" aria-hidden="true"></i>
 							</a>
 						</li>
-						<li>
-							<a href="#0" class="btn-social">
-								<span class="sr-only">Share on Instagram</span>
-								<i class="icon-instagram" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#0" class="btn-social">
-								<span class="sr-only">Share on Youtube</span>
-								<i class="icon-youtube-play" aria-hidden="true"></i>
-							</a>
-						</li>
+						
 					</ul>
 				</div>
 			</div>

@@ -28,6 +28,9 @@ loadPages = function(dir) {
 		
 		siteData.current_page_file = pages[i];
 		siteData.current_page_name = name;
+		siteData.debug = name === 'debug' ? true : false;
+
+		console.log(siteData.debug);
 		
 		var html = template(siteData);
 		fs.writeFile('dist/'+name+'.html', html, function(err) {

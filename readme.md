@@ -67,3 +67,46 @@ Also - Can we please be sure that we implement the following notes from Invision
 I've added some share functionality underneath Trish's content section.
 I've also added some link dest inside of the anhor tags across the features page. 
 I added the release date countdown time for the upcoming videos on the home page. 
+
+
+
+
+
+## TODO'S TO FINISH:
+
+-Trish (cooking) - July 27th
+-Mika (yoga) - Aug 10th
+-Chase (barber) - Aug 24th
+
+- form validation & sending
+
+- features video - covert and link up
+
+- fix countdown logic to not depend on build XXXdone
+- form small/mobile breakdown XXXdone
+
+
+
+
+
+
+## FINAL DETAILS
+
+- fade down in on load/scroll
+- stagger launch times
+- make instagram icon font
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

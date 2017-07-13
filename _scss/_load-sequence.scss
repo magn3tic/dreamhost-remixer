@@ -1,5 +1,6 @@
 
 
+
 // loading screen / pace
 .dhr-loadscreen {
 	position: fixed; z-index: 999999;
@@ -51,51 +52,46 @@ body {
 
 
 
-// inview transitions
 
-// .dhr-headline--sleeve {
-// 	position: relative; 
-// 	overflow: hidden;
+// inview transitions
+//-----------------------------------------------------------//
+
+$inview_transition_duration: 1.2s;
+$inview_transition_delay: 0.15s;
+$inview_transition_ease: $ease-out-quart;
+
+// [data-inview="fade-up-in"] {
+// 	opacity: 0;
+// 	transform: translateY(-50px);
+// 	transform: translateY(-3em);
+// 	transition: opacity $inview_transition_duration linear, transform $inview_transition_duration $inview_transition_ease;
+// 	transition-delay: $inview_transition_delay;
+
+// 	&.is-inview {
+// 		opacity: 1;
+// 		transform: translateY(0);
+// 	}
 // }
 
 
-[data-inview="fade-up-in"] {
-	opacity: 0;
-	transform: translateY(-50px);
-	transition: opacity 1s ease, transform 1s $ease-out-quart;
 
-	&.is-inview {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
+// [data-inview="children"] {
+// 	> * {
+// 		opacity: 0;
+// 		transform: translateY(-50px);
+// 		transform: translateY(-3rem);
+// 		transition: opacity $inview_transition_duration ease, transform $inview_transition_duration $ease-out-quart;
 
-
-
-
-.dhr-splttxt-line {
-	overflow: hidden;
-	position: relative;
-}
-
-
-
-
-
-
-// [data-inview="headline"] {
-
-// 	.dhr-preheadline {
-// 		transform: translateY(200%);
-// 		transition: transform 1s $ease-out-circ;
-// 	}
-// 	.dhr-sectionheadline {
-// 		transform: translateY(200%);
-// 		transition: transform 1s $ease-out-circ 0.15s;
+// 		@for $i from 1 through 7 {
+// 			&:nth-child(#{$i}) {
+// 				transition-delay: $inview_transition_delay*$i;
+// 			}
+// 		}
 // 	}
 
 // 	&.is-inview {
-// 		.dhr-sectionheadline, .dhr-preheadline {
+// 		> * {
+// 			opacity: 1;
 // 			transform: translateY(0);
 // 		}
 // 	}
@@ -103,17 +99,38 @@ body {
 
 
 
+// [data-inview="imgoverlay"] {
+	
+// 	> figure {
+// 		opacity: 0;
+// 		transform: translateX(-20%);
+// 		transition: transform 1.5s $ease-out-quart;
+// 	}
 
-// [data-inview="fade"] {
-// 	opacity: 0;
-// 	transform: translateY(20px);
-// 	transition: opacity 1s ease, transform 1s $ease-out-circ;
+
+// 	.dhr-testify--img-overlay {
+// 		opacity: 0;
+// 		transform: translateX(-100%);
+// 		transition: transform 1.9s $ease-out-quart;
+// 	}
+
 
 // 	&.is-inview {
-// 		transform: translateY(0);
-// 		opacity: 1;
+		
+// 		.dhr-testify--img-overlay, figure {
+// 			opacity: 1;
+// 			transform: translateX(0);
+// 		}
+
 // 	}
+
 // }
+
+
+
+
+
+
 
 
 

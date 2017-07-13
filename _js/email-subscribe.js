@@ -1,67 +1,57 @@
 
 import {$body, $window} from './globals.js';
 
-let $sendgridEmailInput = null,
-		$sendgridEmailLabel = null,
-		$sendgridFormEl = null,
-		$sendgridSubmit = null,
-		$sendgridNewSubmit = null;
-
-const $sendgridForm = $('.sendgrid-subscription-widget'),
-			loadSendgridLib = $.getScript('//s3.amazonaws.com/subscription-cdn/0.2/widget.min.js'),
-
-			submitBtnHtml = '<span class="sr-only">Submit</span><svg x="0px" y="0px" viewBox="0 0 180 135"><path class="st0" d="M105.5,16.4L105.5,16.4c-3.9,3.9-3.9,10.2,0,14.1L132,57H23.1c-5.5,0-10,4.5-10,10c0,5.5,4.5,10,10,10h108.6l-26.5,26.5c-3.9,3.9-3.9,10.2,0,14.1v0c3.9,3.9,10.2,3.9,14.1,0L163,73.9c3.9-3.9,3.9-10.2,0-14.1l-43.3-43.3C115.8,12.5,109.4,12.5,105.5,16.4"></svg>';
 
 
+export const pushToDrip = (obj) => {
+	if (window._dcq && window._dcs) {
+		obj.tags = ['remixer_microsite'];
+		window._dcq.push(['identify', obj]);
+	} else {
+		console.error('The getdrip.com js snippet is not installed!');
+	}
+};
 
-const setupInputHandlers = ($inputs) => {
-	$inputs.on('keyup keydown change', function() {
-		const $t = $(this), $p = $t.parent('.dhr-formfield');
-		if ($t.val().length > 0) {
-			$p.addClass('is-filledin');
-		} else {
-			$p.removeClass('is-filledin');
-		}
-	});
+const dripSuccessCallback = (event) => {
+	$footerForm.removeClass('is-submitting');
+	$footerForm.addClass('is-submitted-success');
+};
+const dripFailureCallback = (event) => {
+	$footerForm.addClass('is-submitted-error');
 };
 
 
-//subscribe form event handlers
-$sendgridForm.on({
-	ready: () => {
-		$sendgridFormEl = $sendgridForm.find('form');
-		$sendgridEmailInput = $sendgridForm.find('input[name="email"]');
-		$sendgridEmailLabel = $sendgridEmailInput.parent('label');
-		$sendgridSubmit = $sendgridForm.find('input[type="submit"]');
+const $footerForm = $('#dhr-footer-form');
+const $emailInput = $('#dhr-footer-emailinput');
+const $emailParent = $emailInput.parent('.dhr-formfield');
 
-		setupInputHandlers($sendgridEmailInput);
-		
-		$sendgridEmailInput.attr({placeholder:'your.name@email.com',autocomplete:'off',required:'true'});
-		$sendgridEmailInput.after('<span class="dhr-footer--emailborder"></span>');
-		$sendgridEmailInput.prev('span').addClass('sr-only').wrap('<label></label>');
 
-		$sendgridFormEl.wrapInner('<div class="inner-large"></div>');
-		$sendgridEmailLabel.add($sendgridSubmit).wrapAll('<div class="dhr-formfield"></div>');
-		$sendgridSubmit.wrap('<button class="dhr-footer--submit" type="submit"></button>');
 
-		$sendgridNewSubmit = $sendgridForm.find('.dhr-footer--submit');
-
-		$sendgridEmailLabel.contents().unwrap();
-		$sendgridNewSubmit.html(submitBtnHtml);
-	},
-	sent: (e) => {
-		$sendgridForm.removeClass('is-error is-success is-submitted').addClass('is-submitting');
-		$sendgridNewSubmit.attr('disabled', true);
-	},
-	error: () => {
-		$sendgridNewSubmit.removeAttr('disabled');
-		$sendgridForm.removeClass('is-submitting').addClass('is-submitted is-error');
-	},
-	success: () => {
-		$sendgridNewSubmit.removeAttr('disabled');
-		$sendgridForm.removeClass('is-error is-submitting').addClass('is-submitted is-success');
+$emailInput.on('keyup blur', function() {
+	if ($(this).val().length > 0) {
+		$emailParent.addClass('is-filledin');
+	} else {
+		$emailParent.removeClass('is-filledin');
 	}
 });
 
 
-loadSendgridLib.done((script, status) => {});
+$footerForm.submit((e) => {
+	e.preventDefault();
+	const emailVal = $emailInput.val();
+
+	$footerForm.addClass('is-submitting');
+
+	if (emailVal.length > 3 && emailVal.indexOf('@') > 0) {
+
+		pushToDrip({
+			email: emailVal,
+			success: dripSuccessCallback,
+			failure: dripFailureCallback
+		});
+	
+	} else {
+
+		$footerForm.addClass('is-submitted-error');
+	}
+});

@@ -1,29 +1,24 @@
 
 
-
-
-
-
-
-
-
 <footer id="dhr-footer" class="dhr-footer" role="contentInfo">
 	<div class="inner">
 		
 		<div class="dhr-footer--content">
 			
-			<div data-inview="headline" class="dhr-footer--headline">
+			<div data-inview="children" class="dhr-footer--headline">
 				<h4 class="dhr-preheadline">People are doing amazing things with Remixer</h4>
 				<h2 class="dhr-sectionheadline">Sign up to be the first to hear their stories</h2>
 			</div>
 
-			<div data-inview="fade" class="dhr-footer--form">
-				
-				<!-- <form action="">
+
+			<div data-inview="children" class="dhr-footer--form">
+
+				<form id="dhr-footer-form" action="">
 					<div class="inner-large">
+						
 						<div class="dhr-formfield">
 							<label for="dhr-footer-emailinput" class="sr-only">Email Address</label>
-							<input type="email" id="dhr-footer-emailinput" placeholder="your.name@email.com">
+							<input type="email" id="dhr-footer-emailinput" placeholder="your.name@email.com" autocomplete="off" required>
 							<span class="dhr-footer--emailborder"></span>
 							<button id="dhr-footer-submit" class="dhr-footer--submit" type="submit">
 								<span class="sr-only">Submit</span>
@@ -32,59 +27,36 @@
 									</svg>
 							</button>
 						</div>
+
+						<div class="dhr-formmsg dhr-formmsg--success">
+							<p>You Have Been Subscribed, Thank You!</p>
+						</div>
+						<div class="dhr-formmsg dhr-formmsg--error">
+							<p>Something went wrong, unable to subscribe.</p>
+						</div>
 					</div>
-				</form>  -->
-				
-				<div class="sendgrid-subscription-widget" data-token="v%2Fbhq5X%2FilgUJlyNDRC0KnkkPdlJ%2B8t2fFYnCCNmDca7ujzlpc1W%2BilefIBO7v5NU2lKFD5Lzb%2FKm4AfPFGjxQ%3D%3D" data-css="false" data-submit-text="Subscribe"></div>
+				</form>
 
 			</div>
 
-			<div data-inview="fade" class="dhr-footer--social">
-				<ul>
-					<li>
-						<a href="#0">
-							<span class="sr-only">Dreamhost on Facebook</span>
-							<i class="icon-facebook" aria-hidden="true"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#0">
-							<span class="sr-only">Dreamhost on Twitter</span>
-							<i class="icon-twitter" aria-hidden="true"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#0">
-							<span class="sr-only">Dreamhost on Instagram</span>
-							<i class="icon-instagram" aria-hidden="true"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#0">
-							<span class="sr-only">Dreamhost on Youtube</span>
-							<i class="icon-youtube-play" aria-hidden="true"></i>
-						</a>
-					</li>
-					<li>
-						
-					</li>
-				</ul>
+
+			<div class="dhr-footer--logo" data-inview="children">
+				<a href="{{globals.dreamhost_main}}" class="dhr-logo--contain">
+					<span>{{> logo-svg id='footer-logo-svg'}}</span>
+				</a>
 			</div>
 
-			<div data-inview="fade" class="dhr-footer--backtop">
-				<a data-scroll href="#top" data-text="Back To Top">Back To Top</a>
+			<div data-inview="children" class="dhr-footer--backtop">
+				<div><a data-scroll href="#top" data-text="Back To Top">Back To Top</a></div>
 			</div>
 			
-			<div data-inview="fade" class="dhr-footer--copyright">
+			<div class="dhr-footer--copyright" data-inview="children">
 				<h5>Proudly Hosting Over <span>1,500,000</span> Websites Since 1997</h5>
-
-				<div class="dhr-footer--logo">
-					<a href="{{globals.dreamhost_main}}" class="dhr-logo--contain">
-						<span>{{> logo-svg id='footer-logo-svg'}}</span>
-					</a>
-				</div>
-
 				<p><span>&copy;</span> 2017 DreamHost Inc.</p>
+			</div>
+
+			<div class="dhr-footer--social" data-inview="children">
+				{{> social-icons}}
 			</div>
 
 		</div>

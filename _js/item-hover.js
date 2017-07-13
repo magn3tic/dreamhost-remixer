@@ -44,6 +44,7 @@ $hovercards.each(function() {
 	//temp fix until we can experiment and see wtf is going on
 	if (!window.chrome && isEpisode) return;
 
+	
 	let mousedover = false;
 
 	$t.hover(function() {

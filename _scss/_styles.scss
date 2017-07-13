@@ -35,7 +35,7 @@ body {
 		}
 	}
 	@media (min-width:$bp-xxl) {
-		font-size: 128.5%;
+		font-size: 127.5%;
 		&:before {
 			content:'xxl';
 		}
@@ -250,6 +250,8 @@ button.dhr-button {
 }
 
 a.dhr-button, button.dhr-button {
+	//outline:none;
+	@include appearance(none);
 	position: relative; overflow:hidden;
 	display: inline-block;
 	text-align: center;
@@ -261,11 +263,14 @@ a.dhr-button, button.dhr-button {
 	font-weight: bold;
 	transition: background .3s ease, color .3s ease;
 
-	&:hover {
-		background: shade($primary, 10%);
+	&:hover, &:focus {
+		//background: lighten($primary, 3%);
 	}
-	&:active {
+	&:active, &:focus {
 		transform: translateY(1px);
+	}
+	&:focus {
+		//box-shadow: rgba($primary,0.5) 0 0 1em;
 	}
 
 	
@@ -287,8 +292,8 @@ a.dhr-button, button.dhr-button {
 			transform: translateY(100%);
 		}
 		
-		&:hover {
-			color: shade($primary,10%);
+		&:hover, &:focus {
+			//color: shade($primary,10%);
 
 			&:before {
 				opacity:0;

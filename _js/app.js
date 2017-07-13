@@ -16,11 +16,13 @@ import './videoplayers.js';
 import './scroll-ticker.js'; //raf
 
 import './email-subscribe.js';
+
 import './forms-ui.js';
+
+import './social-sharing.js';
 
 import {$body} from './globals.js';
 
-import './social-sharing.js'
 
 //chromium detect - something breaks w/ 3d rendering in other engines
 if (window.chrome) {
@@ -39,6 +41,8 @@ if (window.chrome) {
 // 	},
 // 	stylesheet: 'assets/css/designer-options.css'
 // });
+
+// console.log(dopts);
 
 
 // wtf
