@@ -39,6 +39,10 @@
 .dhr-contactmodal--body-liner {
 	padding-top: 2em;
 	padding-bottom: 2.5em;
+
+	> .inner {
+		position: relative;
+	}
 }
 
 
@@ -90,10 +94,16 @@
 		font-weight: bold;
 		color: $darkblue;
 		position: relative;
+		transition: opacity .3s ease;
+
 		&:after {
 			content:""; display:block; position:absolute;
 			bottom:0; left:0; width:100%; height:1px;
 			background: darken($secondary,15%);
+		}
+
+		&:hover {
+			opacity: 0.5;
 		}
 	}
 
@@ -223,26 +233,48 @@
 
 
 //error notice
-.dhr-contactmodal--notice {
+.dhr-contactmodal--notice, .dhr-contactmodal--error {
 	position: absolute;
 	bottom:-2.5em; left:0;
 	width:100%;
 	padding-top: .5em;
-
+	
+	transform: translateY(10px);
 	opacity:0;
 	visibility:hidden;
-	transition: opacity 1s ease, transform 1s $ease-out-quart, visibility 1s ease;
+	transition: opacity 0.35s ease, transform 0.35s $ease-out-quart, visibility 0.35s ease;
 
 	p {
 		margin:0 !important; 
 		font-size: .85em;
 		font-weight: bold;
-	}
 
-	.is-forminvalid & {
-		opacity: 1;
-		visibility: visible;
+		a {
+			color: $darkblue;
+			position: relative;
+			&:after {
+				content:""; display:block; position:absolute;
+				bottom:0; left:0; width:100%; height:1px;
+				background: darken($secondary,15%);
+			}
+		}
+
+		span {
+			display: inline-block;
+			position: relative;
+
+			&:after {
+
+			}
+		}
 	}
+}
+
+.is-forminvalid .dhr-contactmodal--notice,
+.is-formerror .dhr-contactmodal--error {
+	transform: translateY(0);
+	opacity: 1;
+	visibility: visible;
 }
 
 
@@ -281,8 +313,39 @@
 
 
 
+.dhr-contactmodal--success {
+	position: absolute;
+	top:0; left:0;
+	width: 100%; height:100%;
+	text-align: center;
+	display: none;
+	color: $white;
+
+	align-items: center;
+
+
+	&-msg {
+		p {
+			margin:0;
+		}
+	}
+	
+	.dhr-preheadline {
+		color: $darkblue;
+	}
+	.dhr-sectionheadline {
+		color: $white;
+	}
+}
+
+
+#secondary-modal-close {
+
+}
+
+
 .dhr-contactmodal--social {
-	padding: 3.5em 0 1em;
+	padding: 2em 0 2em;
 	text-align: center;
 
 	ul {

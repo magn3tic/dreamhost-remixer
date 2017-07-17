@@ -35,7 +35,7 @@ const pageOutDuration = 500,
 const $transitionlinks = $('a[data-page-transition]');
 
 $transitionlinks.click(function(event) {
-	//if (!window.Modernizr.history) return;
+	if (!window.Modernizr.history) return;
 	
 	event.preventDefault();
 	let href = $(this).attr('href');
@@ -45,7 +45,10 @@ $transitionlinks.click(function(event) {
 	$top.velocity('scroll', {duration: pageOutDuration});
 	$body.addClass('is-pagetransitioning').velocity('transition.fadeOut', {duration: pageOutDuration});
 			 
-	setTimeout(() => window.location.replace(href), pageOutDuration);
+	setTimeout(() => {
+
+		window.location.replace(href);
+	}, pageOutDuration);
 });
 
 

@@ -10,8 +10,9 @@ const $modaltrigger = $('a[href="#contact"]'),
 			$modaltop = $('.dhr-contactmodal--top'),
 			$maincontent = $('#dhr-main'),
 			$fixedhero = $('.dhr-fixedhero'),
-			$movecontents = $maincontent.add($fixedhero).add($sitefooter),
-			$modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns, .dhr-contactmodal--social');
+			$movecontents = $maincontent.add($fixedhero).add($sitefooter);
+			
+export const $modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns');
 
 
 const $form = $('#dhr-contact-form'),

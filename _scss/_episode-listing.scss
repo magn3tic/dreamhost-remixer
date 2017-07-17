@@ -145,7 +145,13 @@
 		}
 
 		a {
-			cursor: default; //not-allowed
+			//cursor: default; //not-allowed
+
+			&:hover {
+				figure:after {
+					opacity: 0.75;
+				}
+			}
 		}
 		.dhr-episodeitem--countdown {
 			display: block;

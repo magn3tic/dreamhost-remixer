@@ -1,4 +1,6 @@
 
+import {$sitefooter} from './globals.js';
+import {$emailInput} from './email-subscribe.js';
 
 const $allepisodes = $('.dhr-episodeitem'),
 			cdSec = 1000,
@@ -87,8 +89,12 @@ $lockedepisodes.each((index, item) => {
 	});
 
 
-	$this.click((event) => event.preventDefault())
-			 .addClass('is-countdownstarted');
+	$this.addClass('is-countdownstarted')
+	  .children('a[class*="--link"]').click((e) => {
+	  	$sitefooter.velocity('scroll', {duration:550, easing:'easeOutCirc', complete: () => {
+	  		$emailInput.focus();
+	  	}});
+	  })
 });
 
 

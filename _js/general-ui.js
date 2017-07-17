@@ -82,7 +82,7 @@ $window.bind('load', setHeroSize);
 const $scrollanchors = $('a[data-scroll]');
 $scrollanchors.click(function(e) {
 	e.preventDefault();
-	$($(this).attr('href')).velocity('scroll', {duration: 900, easing:'easeInOutCirc'});
+	$($(this).attr('href')).velocity('scroll', {duration: 900, easing:'easeOutQuart'});
 });
 
 

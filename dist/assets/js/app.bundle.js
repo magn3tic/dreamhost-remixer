@@ -84,6 +84,7 @@ var $body = exports.$body = $('body'),
     $siteheader = exports.$siteheader = $('#dhr-header'),
     $sitemain = exports.$sitemain = $('#dhr-main'),
     $sitefooter = exports.$sitefooter = $('#dhr-footer'),
+    isDev = exports.isDev = window.location.hostname === 'localhost',
     easeOutBack = exports.easeOutBack = [0.0755, 0.985, 0.325, 1.07];
 
 /***/ }),
@@ -96,9 +97,12 @@ var $body = exports.$body = $('body'),
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.pushToDrip = undefined;
+exports.$emailInput = exports.pushToDrip = undefined;
 
 var _globals = __webpack_require__(0);
+
+var lastSubscriber = false;
+var isSubmitting = false;
 
 var pushToDrip = exports.pushToDrip = function pushToDrip(obj) {
 	if (window._dcq && window._dcs) {
@@ -110,30 +114,39 @@ var pushToDrip = exports.pushToDrip = function pushToDrip(obj) {
 };
 
 var dripSuccessCallback = function dripSuccessCallback(event) {
-	$footerForm.removeClass('is-submitting');
-	$footerForm.addClass('is-submitted-success');
+	if (_globals.isDev) {
+		console.log(event);
+	}
+	if (event && event.success) {
+		$footerForm.removeClass('is-submitting is-submitted-invalid is-submitted-error').addClass('is-submitted-success');
+		$submitBtn.removeAttr('disabled');
+
+		lastSubscriber = event.email;
+
+		$(document).one('click', function () {
+			$footerForm.removeClass('is-submitted-success');
+			$emailInput.val('').parent('.is-filledin').removeClass('is-filledin');
+		});
+	} else {
+		dripFailureCallback.call();
+	}
+	isSubmitting = false;
 };
+
 var dripFailureCallback = function dripFailureCallback(event) {
-	$footerForm.addClass('is-submitted-error');
+	$footerForm.removeClass('is-submitted-invalid').addClass('is-submitted-error');
+	$emailInput.focus();
+	isSubmitting = false;
 };
 
 var $footerForm = $('#dhr-footer-form');
-var $emailInput = $('#dhr-footer-emailinput');
+var $submitBtn = $('#dhr-footer-submit');
+var $emailInput = exports.$emailInput = $('#dhr-footer-emailinput');
 var $emailParent = $emailInput.parent('.dhr-formfield');
 
-$emailInput.on('keyup blur', function () {
-	if ($(this).val().length > 0) {
-		$emailParent.addClass('is-filledin');
-	} else {
-		$emailParent.removeClass('is-filledin');
-	}
-});
-
-$footerForm.submit(function (e) {
-	e.preventDefault();
+//form submit handler
+var onEmailFormSubmit = function onEmailFormSubmit() {
 	var emailVal = $emailInput.val();
-
-	$footerForm.addClass('is-submitting');
 
 	if (emailVal.length > 3 && emailVal.indexOf('@') > 0) {
 
@@ -144,8 +157,40 @@ $footerForm.submit(function (e) {
 		});
 	} else {
 
-		$footerForm.addClass('is-submitted-error');
+		$footerForm.addClass('is-submitted-invalid');
+		$emailInput.focus();
+
+		$footerForm.removeClass('is-submitting');
+		$submitBtn.removeAttr('disabled');
+		isSubmitting = false;
 	}
+};
+
+$emailInput.on('keyup blur', function () {
+	if ($(this).val().length > 0) {
+		$emailParent.addClass('is-filledin');
+	} else {
+		$emailParent.removeClass('is-filledin');
+	}
+});
+
+$submitBtn.on('mousedown touchstart', function () {
+	$footerForm.trigger('submit');
+});
+
+$footerForm.submit(function (e) {
+	e.preventDefault();
+
+	if (isSubmitting) return;
+
+	isSubmitting = true;
+
+	$footerForm.addClass('is-submitting').removeClass('is-submitted-invalid is-submitted-error');
+	$submitBtn.attr('disabled', true);
+
+	window.setTimeout(function () {
+		return onEmailFormSubmit();
+	}, 0);
 });
 
 /***/ }),
@@ -158,11 +203,123 @@ $footerForm.submit(function (e) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.$modalstaggeritems = undefined;
+
+var _globals = __webpack_require__(0);
+
+// Contact Modal
+var $modaltrigger = $('a[href="#contact"]'),
+    $modalclose = $('#dhr-modalclose'),
+    $modal = $('#dhr-contactmodal'),
+    $modalbody = $('.dhr-contactmodal--body'),
+    $modalbodyInner = $modalbody.find('.inner'),
+    $modaltop = $('.dhr-contactmodal--top'),
+    $maincontent = $('#dhr-main'),
+    $fixedhero = $('.dhr-fixedhero'),
+    $movecontents = $maincontent.add($fixedhero).add(_globals.$sitefooter);
+
+var $modalstaggeritems = exports.$modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns');
+
+var $form = $('#dhr-contact-form'),
+    $inputs = {
+	email: $('#dhr-email-input'),
+	firstname: $('#dhr-contact-firstname-input'),
+	lastname: $('#dhr-contact-lastname-input')
+};
+
+//opening
+$modaltrigger.on('click', function (e) {
+	e.preventDefault();
+
+	if ($modal.hasClass('velocity-animating')) return;
+
+	$modalbody.css({
+		height: (_globals.$window.height() - _globals.$siteheader.outerHeight()) * 0.925
+	});
+
+	$modal.velocity({
+		translateY: ['0%', '-100%']
+	}, {
+		duration: 600,
+		display: 'block',
+		easing: _globals.easeOutBack
+	});
+
+	$modalstaggeritems.velocity('transition.slideDownIn', {
+		stagger: 150,
+		drag: true,
+		duration: 900,
+		complete: function complete() {
+			$modalbody.css({ minHeight: $modalbodyInner.outerHeight() + 30 });
+			_globals.$body.addClass('is-ready-contactmodal');
+		}
+	});
+
+	$movecontents.velocity({
+		translateY: _globals.$window.height()
+	}, {
+		easing: _globals.easeOutBack,
+		duration: 600,
+		complete: function complete() {
+			return $inputs.firstname.focus();
+		}
+	});
+
+	_globals.$body.addClass('is-showing-contactmodal');
+});
+
+//closing
+$modalclose.on('click', function () {
+	$modal.velocity({
+		translateY: ['-100%', '0%']
+	}, {
+		duration: 350,
+		display: 'none',
+		easing: 'easeOutCirc',
+		complete: function complete() {
+			_globals.$body.removeClass('is-showing-contactmodal is-ready-contactmodal');
+			$modalstaggeritems.css({ opacity: 0 });
+
+			$(document).trigger('dhr.contactmodal.closed');
+		}
+	});
+	//$modalstaggeritems.velocity('transition.fadeOut', {duration:100})
+	$movecontents.velocity({
+		translateY: 0
+	}, {
+		easing: 'easeOutCirc',
+		duration: 350
+	});
+});
+
+_globals.$window.resize(function () {
+	$modalbody.css({ height: (_globals.$window.height() - _globals.$siteheader.outerHeight()) * 0.925 });
+});
+
+// $window.on('load', () => {
+// 	$modalbody.css({minHeight: $modalbodyInner.outerHeight()});
+// });
+
+
+if (window.location.hash === '#contact') {
+	$modaltrigger.trigger('click');
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 exports.homevideo = undefined;
 
 var _globals = __webpack_require__(0);
 
-var _scrollTicker = __webpack_require__(3);
+var _scrollTicker = __webpack_require__(4);
 
 //import SplitText from './splittext.js';
 var $top = $('#top'),
@@ -191,7 +348,7 @@ var pageOutDuration = 500,
 var $transitionlinks = $('a[data-page-transition]');
 
 $transitionlinks.click(function (event) {
-	//if (!window.Modernizr.history) return;
+	if (!window.Modernizr.history) return;
 
 	event.preventDefault();
 	var href = $(this).attr('href');
@@ -202,7 +359,8 @@ $transitionlinks.click(function (event) {
 	_globals.$body.addClass('is-pagetransitioning').velocity('transition.fadeOut', { duration: pageOutDuration });
 
 	setTimeout(function () {
-		return window.location.replace(href);
+
+		window.location.replace(href);
 	}, pageOutDuration);
 });
 
@@ -248,7 +406,7 @@ if (window.Pace) {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -353,7 +511,7 @@ _globals.$window.scroll(function () {
 });
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -361,109 +519,7 @@ _globals.$window.scroll(function () {
 
 var _globals = __webpack_require__(0);
 
-// Contact Modal
-var $modaltrigger = $('a[href="#contact"]'),
-    $modalclose = $('#dhr-modalclose'),
-    $modal = $('#dhr-contactmodal'),
-    $modalbody = $('.dhr-contactmodal--body'),
-    $modalbodyInner = $modalbody.find('.inner'),
-    $modaltop = $('.dhr-contactmodal--top'),
-    $maincontent = $('#dhr-main'),
-    $fixedhero = $('.dhr-fixedhero'),
-    $movecontents = $maincontent.add($fixedhero).add(_globals.$sitefooter),
-    $modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns, .dhr-contactmodal--social');
-
-var $form = $('#dhr-contact-form'),
-    $inputs = {
-	email: $('#dhr-email-input'),
-	firstname: $('#dhr-contact-firstname-input'),
-	lastname: $('#dhr-contact-lastname-input')
-};
-
-//opening
-$modaltrigger.on('click', function (e) {
-	e.preventDefault();
-
-	if ($modal.hasClass('velocity-animating')) return;
-
-	$modalbody.css({
-		height: (_globals.$window.height() - _globals.$siteheader.outerHeight()) * 0.925
-	});
-
-	$modal.velocity({
-		translateY: ['0%', '-100%']
-	}, {
-		duration: 600,
-		display: 'block',
-		easing: _globals.easeOutBack
-	});
-
-	$modalstaggeritems.velocity('transition.slideDownIn', {
-		stagger: 150,
-		drag: true,
-		duration: 900,
-		complete: function complete() {
-			$modalbody.css({ minHeight: $modalbodyInner.outerHeight() + 30 });
-			_globals.$body.addClass('is-ready-contactmodal');
-		}
-	});
-
-	$movecontents.velocity({
-		translateY: _globals.$window.height()
-	}, {
-		easing: _globals.easeOutBack,
-		duration: 600,
-		complete: function complete() {
-			return $inputs.firstname.focus();
-		}
-	});
-
-	_globals.$body.addClass('is-showing-contactmodal');
-});
-
-//closing
-$modalclose.on('click', function () {
-	$modal.velocity({
-		translateY: ['-100%', '0%']
-	}, {
-		duration: 350,
-		display: 'none',
-		easing: 'easeOutCirc',
-		complete: function complete() {
-			_globals.$body.removeClass('is-showing-contactmodal is-ready-contactmodal');
-			$modalstaggeritems.css({ opacity: 0 });
-
-			$(document).trigger('dhr.contactmodal.closed');
-		}
-	});
-	//$modalstaggeritems.velocity('transition.fadeOut', {duration:100})
-	$movecontents.velocity({
-		translateY: 0
-	}, {
-		easing: 'easeOutCirc',
-		duration: 350
-	});
-});
-
-_globals.$window.resize(function () {
-	$modalbody.css({ height: (_globals.$window.height() - _globals.$siteheader.outerHeight()) * 0.925 });
-});
-
-// $window.on('load', () => {
-// 	$modalbody.css({minHeight: $modalbodyInner.outerHeight()});
-// });
-
-
-if (window.location.hash === '#contact') {
-	$modaltrigger.trigger('click');
-}
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+var _emailSubscribe = __webpack_require__(1);
 
 var $allepisodes = $('.dhr-episodeitem'),
     cdSec = 1000,
@@ -545,9 +601,11 @@ $lockedepisodes.each(function (index, item) {
 		doHtmlUpdate($html, until);
 	});
 
-	$this.click(function (event) {
-		return event.preventDefault();
-	}).addClass('is-countdownstarted');
+	$this.addClass('is-countdownstarted').children('a[class*="--link"]').click(function (e) {
+		_globals.$sitefooter.velocity('scroll', { duration: 550, easing: 'easeOutCirc', complete: function complete() {
+				_emailSubscribe.$emailInput.focus();
+			} });
+	});
 });
 
 /***/ }),
@@ -561,17 +619,19 @@ var _globals = __webpack_require__(0);
 
 var _emailSubscribe = __webpack_require__(1);
 
+var _contactModal = __webpack_require__(2);
+
 var $form = $('#dhr-contact-form');
 var $fields = $form.find('[name^="fields["]');
-
 var $emailInput = $('#dhr-contact-email-input');
 var $submitBtn = $form.find('[type="submit"]');
+var $finalSuccessMsg = $('.dhr-contactmodal--success');
+var $finalSuccessClose = $('#secondary-modal-close');
+var $modalContentsLiner = $('.dhr-contactmodal--body-liner > .inner');
 
-var formData = {
-	success: function success() {},
-	failure: function failure() {}
-};
+var hasBeenSubmitted = false;
 
+//general validation
 var validationCheck = function validationCheck() {
 	var filled = [];
 	var emailVal = $emailInput.val();
@@ -579,7 +639,6 @@ var validationCheck = function validationCheck() {
 	$fields.each(function (index) {
 		var $t = $(this);
 		var $parent = $t.parent('.dhr-inlineform--input');
-
 		if ($t.val().length) {
 			filled.push(index);
 			$parent.removeClass('is-fieldinvalid');
@@ -587,10 +646,8 @@ var validationCheck = function validationCheck() {
 			$parent.addClass('is-fieldinvalid');
 		}
 	});
-
 	return filled.length === $fields.length && emailVal.indexOf('@') > 0;
 };
-
 var filledInCheck = function filledInCheck($field, $outer) {
 	if ($field.val().length > 0) {
 		$outer.removeClass('is-fieldinvalid').addClass('is-filledin');
@@ -599,23 +656,54 @@ var filledInCheck = function filledInCheck($field, $outer) {
 	}
 };
 
+//form final success
+var formSuccessFinal = function formSuccessFinal() {
+	$modalContentsLiner.css({ height: $modalContentsLiner.outerHeight() });
+	_contactModal.$modalstaggeritems.velocity('transition.slideUpOut', { stagger: 100, drag: true, duration: 550 });
+	$finalSuccessMsg.velocity('transition.slideUpIn', { duration: 600, delay: 500, display: 'flex' });
+};
+
+//drip failure callback
+var dripOnFail = function dripOnFail(e) {
+	$form.removeClass('is-submitting').addClass('is-formerror');
+	$submitBtn.removeAttr('disabled');
+};
+
+//obj to send to drip
+var dripData = {
+	success: function success(event) {
+		if (_globals.isDev) console.log(event);
+		if (event && event.success) {
+			$submitBtn.removeAttr('disabled');
+			$form.removeClass('is-submitting');
+			hasBeenSubmitted = true;
+
+			formSuccessFinal();
+		} else {
+			dripOnFail.call(event);
+		}
+	},
+	failure: dripOnFail
+};
+
 var onFormSubmit = function onFormSubmit(dripObject) {
-	$form.removeClass('is-submitting');
-
 	if (validationCheck()) {
+		if (_globals.isDev) console.log(dripObject);
 
-		$submitBtn.removeAttr('disabled');
-		$form.removeClass('is-invalid').addClass('is-formvalid');
+		//testing failure / success msg
+		//dripOnFail();
+		$form.removeClass('is-submitting');
+		hasBeenSubmitted = true;
+		formSuccessFinal();
 		return;
 
 		(0, _emailSubscribe.pushToDrip)(dripObject);
 	} else {
 
-		$form.addClass('is-forminvalid');
-		$form.find('.is-fieldinvalid').first().trigger('focus');
+		$submitBtn.removeAttr('disabled');
+		$form.removeClass('is-submitting').addClass('is-forminvalid');
+		$form.find('.is-fieldinvalid [name^="fields"]').first().trigger('focus');
 	}
-
-	$submitBtn.removeAttr('disabled');
 };
 
 $fields.each(function () {
@@ -626,7 +714,7 @@ $fields.each(function () {
 	var name = $t.attr('name');
 	name = name.replace('fields[', '');
 	name = name.replace(']', '');
-	formData[name] = null;
+	dripData[name] = null;
 
 	if (isSelect) {
 		$t.on('change', function () {
@@ -641,19 +729,51 @@ $fields.each(function () {
 
 $form.on('submit', function (event) {
 	event.preventDefault();
-	$form.addClass('is-submitting');
+	$form.removeClass('is-forminvalid is-formerror').addClass('is-submitting').find('.is-fieldinvalid').removeClass('is-fieldinvalid');
 	$submitBtn.attr('disabled', true);
 
-	for (var prop in formData) {
-		formData[prop] = $form.find('[name="fields[' + name + ']"]').val();
+	for (var prop in dripData) {
+		if (prop !== 'success' && prop !== 'failure') {
+			var $field = $form.find('[name="fields[' + prop + ']"]');
+			dripData[prop] = $field.val();
+		}
 	}
-
 	setTimeout(function () {
-		return onFormSubmit();
-	}, 1000);
+		return onFormSubmit(dripData);
+	}, 500);
 });
 
-$(document).on('dhr.contactmodal.closed', function () {});
+//hack to allow user to navigate to drip's hosted form (must POST not GET)
+$('.dhr-contactmodal--error').find('a').on('click', function (e) {
+	e.preventDefault();
+	var $hiddenform = $('#dhr-hidden-post-form');
+	for (var prop in dripData) {
+		if (prop && prop !== 'failure' && prop !== 'success') {
+			console.log(prop);
+			$hiddenform.find('input[name="fields[' + prop + ']"]').val(dripData[prop]);
+		}
+	}
+	$hiddenform.trigger('submit');
+});
+
+//when contact modal is closed
+$(document).on('dhr.contactmodal.closed', function () {
+	if (hasBeenSubmitted) {
+		if (_globals.isDev) {
+			console.log('contact is closed');
+		}
+
+		$fields.val('');
+		$('.dhr-inlineform--input.is-filledin').removeClass('is-filledin');
+		$modalContentsLiner.removeAttr('style');
+		$finalSuccessMsg.removeAttr('style');
+	}
+});
+
+$finalSuccessClose.on('click', function (e) {
+	e.preventDefault();
+	$('#dhr-modalclose').trigger('click');
+});
 
 /***/ }),
 /* 7 */
@@ -739,7 +859,7 @@ _globals.$window.bind('load', setHeroSize);
 var $scrollanchors = $('a[data-scroll]');
 $scrollanchors.click(function (e) {
 	e.preventDefault();
-	$($(this).attr('href')).velocity('scroll', { duration: 900, easing: 'easeInOutCirc' });
+	$($(this).attr('href')).velocity('scroll', { duration: 900, easing: 'easeOutQuart' });
 });
 
 // mobile nav toggle
@@ -993,7 +1113,7 @@ $.centeredPopup = function (options) {
 
 var _globals = __webpack_require__(0);
 
-var _pageloadSequence = __webpack_require__(2);
+var _pageloadSequence = __webpack_require__(3);
 
 var $homeherotop = $('#dhr-hero-top'),
     $homeherobot = $('#dhr-hero-bottom'),
@@ -1180,17 +1300,17 @@ __webpack_require__(10);
 
 __webpack_require__(7);
 
-__webpack_require__(2);
+__webpack_require__(3);
 
 __webpack_require__(8);
 
 __webpack_require__(5);
 
-__webpack_require__(4);
+__webpack_require__(2);
 
 __webpack_require__(11);
 
-__webpack_require__(3);
+__webpack_require__(4);
 
 __webpack_require__(1);
 

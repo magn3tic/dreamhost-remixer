@@ -33,9 +33,7 @@
 			</div>
 			
 			<div class="dhr-contactmodal--form">
-
-				
-				<form id="dhr-contact-form" class="dhr-inlineform" method="POST" action="">
+				<form id="dhr-contact-form" class="dhr-inlineform" method="POST" action="https://www.getdrip.com/forms/58648395/submissions">
 					<p>
 						<span class="dhr-inlineform--word">Hello, my name is</span>
 						<span class="dhr-inlineform--input">
@@ -91,20 +89,48 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="dhr-contactmodal--notice">
-						<p>Please fill out the highlighted missing fields.</p>
+						<p id="dhr-modal-notice-text">Please fill out the highlighted missing fields.</p>
+					</div>
+					<div class="dhr-contactmodal--error">
+						<p>Unable to send your question, <a href="#0">try another form</a>.</p>
 					</div>
 				</form>
-
+				
+				<form id="dhr-hidden-post-form" method="POST" action="https://www.getdrip.com/forms/58648395/submissions">
+					<input type="hidden" name="fields[email]" value="">
+					<input type="hidden" name="fields[first_name]" value="">
+					<input type="hidden" name="fields[last_name]" value="">
+					<input type="hidden" name="fields[company_name]" value="">
+					<input type="hidden" name="fields[question]" value="">
+					<input type="hidden" name="fields[department]" value="">
+					<input type="hidden" name="fields[phone_number]" value="">
+					<input type="submit" class="sr-only">
+				</form>
 			</div>
-
-			<!--<div class="dhr-contactmodal--social">
-				{{> social-icons}}
-			</div>-->
+			
+			<div class="dhr-contactmodal--success">
+				<div class="inner-small">
+					<div class="dhr-contactmodal--success-msg">
+						<h5 class="dhr-preheadline">Your Info Has Been Sent</h5>
+						<h3 class="dhr-sectionheadline">Thank You!</h3>
+						<p>We'll be in touch very soon.</br>In the meantime, you can follow our social accounts.</p>
+					</div>
+					<div class="dhr-contactmodal--social">
+						{{> social-icons}}
+					</div>
+					<div class="dhr-contactmodal--success-close">
+						<a href="#0" id="secondary-modal-close" class="dhr-button" data-text="Back to Site">Back to Site</a>
+					</div>
+				</div>
+			</div>
 
 		</div>
 
 	</div>
 	</div>
+
+	<div class="t"></div>
 
 </section>

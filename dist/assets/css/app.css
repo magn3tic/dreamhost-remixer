@@ -1806,8 +1806,8 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
     opacity: 0.75; }
   .dhr-episodeitem--locked .dhr-episodeitem--icon, .dhr-episodeitem--locked .dhr-episodeitem--activeborder {
     display: none; }
-  .dhr-episodeitem--locked a {
-    cursor: default; }
+  .dhr-episodeitem--locked a:hover figure:after {
+    opacity: 0.75; }
   .dhr-episodeitem--locked .dhr-episodeitem--countdown {
     display: block; }
 
@@ -2061,17 +2061,27 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
 .dhr-footer--headline h2 {
   color: #fff; }
 
-.sendgrid-subscription-widget {
+#dhr-footer-form {
   opacity: 1;
   -webkit-transition: all .3s ease;
   -o-transition: all .3s ease;
   transition: all .3s ease; }
-  .sendgrid-subscription-widget.is-submitting {
+  #dhr-footer-form.is-submitting {
     cursor: not-allowed;
     opacity: 0.5; }
+    #dhr-footer-form.is-submitting input[type="email"]:hover, #dhr-footer-form.is-submitting input[type="text"]:hover {
+      border-bottom: 2px solid #494b52; }
+      #dhr-footer-form.is-submitting input[type="email"]:hover::-webkit-input-placeholder, #dhr-footer-form.is-submitting input[type="text"]:hover::-webkit-input-placeholder {
+        color: #494b52; }
+      #dhr-footer-form.is-submitting input[type="email"]:hover::-moz-placeholder, #dhr-footer-form.is-submitting input[type="text"]:hover::-moz-placeholder {
+        color: #494b52; }
+      #dhr-footer-form.is-submitting input[type="email"]:hover:-ms-input-placeholder, #dhr-footer-form.is-submitting input[type="text"]:hover:-ms-input-placeholder {
+        color: #494b52; }
+      #dhr-footer-form.is-submitting input[type="email"]:hover:-moz-placeholder, #dhr-footer-form.is-submitting input[type="text"]:hover:-moz-placeholder {
+        color: #494b52; }
 
 .dhr-footer--form {
-  padding: 2em 0 3em; }
+  padding: 2em 0 5em; }
   .dhr-footer--form .inner-large {
     position: relative; }
   .dhr-footer--form .dhr-formfield {
@@ -2160,7 +2170,8 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
     color: #ffa700; }
 
 .is-submitted-success .dhr-formmsg--success,
-.is-submitted-error .dhr-formmsg--error {
+.is-submitted-error .dhr-formmsg--error,
+.is-submitted-invalid .dhr-formmsg--invalid {
   opacity: 1;
   visibility: visible;
   -webkit-transform: translateY(0);
@@ -2308,14 +2319,16 @@ html.no-generatedcontent a:hover {
     margin-right: 1em; } }
 
 @media (min-width: 1199px) {
-  .dhr-footer--form input[type="text"]:focus ~ .dhr-footer--submit, .dhr-footer--form input[type="email"]:focus ~ .dhr-footer--submit {
-    -webkit-transform: translateX(-2.5em);
-        -ms-transform: translateX(-2.5em);
-            transform: translateX(-2.5em); }
-  .dhr-footer--form .is-filledin .dhr-footer--submit {
-    -webkit-transform: translateX(-2.5em);
-        -ms-transform: translateX(-2.5em);
-            transform: translateX(-2.5em); }
+  .dhr-footer--form {
+    padding-bottom: 7em; }
+    .dhr-footer--form input[type="text"]:focus ~ .dhr-footer--submit, .dhr-footer--form input[type="email"]:focus ~ .dhr-footer--submit {
+      -webkit-transform: translateX(-2.5em);
+          -ms-transform: translateX(-2.5em);
+              transform: translateX(-2.5em); }
+    .dhr-footer--form .is-filledin .dhr-footer--submit {
+      -webkit-transform: translateX(-2.5em);
+          -ms-transform: translateX(-2.5em);
+              transform: translateX(-2.5em); }
   .dhr-footer--copyright h5 {
     font-size: 1.45em; } }
 
@@ -2330,7 +2343,9 @@ html.no-generatedcontent a:hover {
   .dhr-footer--social {
     padding-top: 2em; }
   .dhr-footer--logo {
-    margin-bottom: 1.5em; } }
+    margin-bottom: 1.5em; }
+  .dhr-footer--form {
+    padding-bottom: 8em; } }
 
 .dhr-contactmodal {
   display: none;
@@ -2374,6 +2389,8 @@ html.no-generatedcontent a:hover {
 .dhr-contactmodal--body-liner {
   padding-top: 2em;
   padding-bottom: 2.5em; }
+  .dhr-contactmodal--body-liner > .inner {
+    position: relative; }
 
 .dhr-contactomodal--close {
   position: absolute;
@@ -2420,7 +2437,10 @@ html.no-generatedcontent a:hover {
   .dhr-contactmodal--intro p a {
     font-weight: bold;
     color: #292b33;
-    position: relative; }
+    position: relative;
+    -webkit-transition: opacity .3s ease;
+    -o-transition: opacity .3s ease;
+    transition: opacity .3s ease; }
     .dhr-contactmodal--intro p a:after {
       content: "";
       display: block;
@@ -2430,6 +2450,8 @@ html.no-generatedcontent a:hover {
       width: 100%;
       height: 1px;
       background: #1381b5; }
+    .dhr-contactmodal--intro p a:hover {
+      opacity: 0.5; }
   .dhr-contactmodal--intro .dhr-preheadline {
     color: #292b33; }
   .dhr-contactmodal--intro .dhr-sectionheadline {
@@ -2528,26 +2550,49 @@ html.no-generatedcontent a:hover {
 .dhr-inlineform--word {
   font-size: .9em; }
 
-.dhr-contactmodal--notice {
+.dhr-contactmodal--notice, .dhr-contactmodal--error {
   position: absolute;
   bottom: -2.5em;
   left: 0;
   width: 100%;
   padding-top: .5em;
+  -webkit-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+          transform: translateY(10px);
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: opacity 1s ease, visibility 1s ease, -webkit-transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: opacity 1s ease, visibility 1s ease, -webkit-transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-  -o-transition: opacity 1s ease, transform 1s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 1s ease;
-  transition: opacity 1s ease, transform 1s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 1s ease;
-  transition: opacity 1s ease, transform 1s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 1s ease, -webkit-transform 1s cubic-bezier(0.165, 0.84, 0.44, 1); }
-  .dhr-contactmodal--notice p {
+  -webkit-transition: opacity 0.35s ease, visibility 0.35s ease, -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 0.35s ease, visibility 0.35s ease, -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.35s ease;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.35s ease;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.35s ease, -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); }
+  .dhr-contactmodal--notice p, .dhr-contactmodal--error p {
     margin: 0 !important;
     font-size: .85em;
     font-weight: bold; }
-  .is-forminvalid .dhr-contactmodal--notice {
-    opacity: 1;
-    visibility: visible; }
+    .dhr-contactmodal--notice p a, .dhr-contactmodal--error p a {
+      color: #292b33;
+      position: relative; }
+      .dhr-contactmodal--notice p a:after, .dhr-contactmodal--error p a:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #1381b5; }
+    .dhr-contactmodal--notice p span, .dhr-contactmodal--error p span {
+      display: inline-block;
+      position: relative; }
+
+.is-forminvalid .dhr-contactmodal--notice,
+.is-formerror .dhr-contactmodal--error {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+  visibility: visible; }
 
 @-webkit-keyframes spinner {
   0% {
@@ -2588,8 +2633,28 @@ html.no-generatedcontent a:hover {
   .is-submitting .dhr-form--spinner {
     opacity: 1; }
 
+.dhr-contactmodal--success {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: none;
+  color: #fff;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .dhr-contactmodal--success-msg p {
+    margin: 0; }
+  .dhr-contactmodal--success .dhr-preheadline {
+    color: #292b33; }
+  .dhr-contactmodal--success .dhr-sectionheadline {
+    color: #fff; }
+
 .dhr-contactmodal--social {
-  padding: 3.5em 0 1em;
+  padding: 2em 0 2em;
   text-align: center; }
   .dhr-contactmodal--social ul {
     list-style: none;

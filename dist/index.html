@@ -388,7 +388,7 @@
 								
 								<div class="dhr-formfield">
 									<label for="dhr-footer-emailinput" class="sr-only">Email Address</label>
-									<input type="email" id="dhr-footer-emailinput" placeholder="your.name@email.com" autocomplete="off" required>
+									<input type="email" id="dhr-footer-emailinput" placeholder="your.name@email.com" autocomplete="off">
 									<span class="dhr-footer--emailborder"></span>
 									<button id="dhr-footer-submit" class="dhr-footer--submit" type="submit">
 										<span class="sr-only">Submit</span>
@@ -399,10 +399,13 @@
 								</div>
 		
 								<div class="dhr-formmsg dhr-formmsg--success">
-									<p>You Have Been Subscribed, Thank You!</p>
+									<p>You have been subscribed, thank you!</p>
+								</div>
+								<div class="dhr-formmsg dhr-formmsg--invalid">
+									<p>Please add a valid email address.</p>
 								</div>
 								<div class="dhr-formmsg dhr-formmsg--error">
-									<p>Something went wrong, unable to subscribe.</p>
+									<p>Something went wrong, unable to subsribe.</p>
 								</div>
 							</div>
 						</form>
@@ -520,9 +523,7 @@
 					</div>
 					
 					<div class="dhr-contactmodal--form">
-		
-						
-						<form id="dhr-contact-form" class="dhr-inlineform" method="POST" action="">
+						<form id="dhr-contact-form" class="dhr-inlineform" method="POST" action="https://www.getdrip.com/forms/58648395/submissions">
 							<p>
 								<span class="dhr-inlineform--word">Hello, my name is</span>
 								<span class="dhr-inlineform--input">
@@ -578,47 +579,75 @@
 									</div>
 								</div>
 							</div>
+		
 							<div class="dhr-contactmodal--notice">
-								<p>Please fill out the highlighted missing fields.</p>
+								<p id="dhr-modal-notice-text">Please fill out the highlighted missing fields.</p>
+							</div>
+							<div class="dhr-contactmodal--error">
+								<p>Unable to send your question, <a href="#0">try another form</a>.</p>
 							</div>
 						</form>
-		
-					</div>
-		
-					<!--<div class="dhr-contactmodal--social">
 						
-						<ul>
-							<li>
-								<a href="https://facebook.com/dreamhost">
-									<span class="sr-only">Dreamhost on Facebook</span>
-									<i class="icon-facebook" aria-hidden="true"></i>
-								</a>
-							</li>
-							<li>
-								<a href="https://twitter.com/dreamhost">
-									<span class="sr-only">Dreamhost on Twitter</span>
-									<i class="icon-twitter" aria-hidden="true"></i>
-								</a>
-							</li>
-							<li>
-								<a href="https://instagram.com/dreamhost">
-									<span class="sr-only">Dreamhost on Instagram</span>
-									<i class="icon-instagram" aria-hidden="true"></i>
-								</a>
-							</li>
-							<li>
-								<a href="https://youtube.com/user/dreamhostusa">
-									<span class="sr-only">Dreamhost on Youtube</span>
-									<i class="icon-youtube-play" aria-hidden="true"></i>
-								</a>
-							</li>
-						</ul>
-					</div>-->
+						<form id="dhr-hidden-post-form" method="POST" action="https://www.getdrip.com/forms/58648395/submissions">
+							<input type="hidden" name="fields[email]" value="">
+							<input type="hidden" name="fields[first_name]" value="">
+							<input type="hidden" name="fields[last_name]" value="">
+							<input type="hidden" name="fields[company_name]" value="">
+							<input type="hidden" name="fields[question]" value="">
+							<input type="hidden" name="fields[department]" value="">
+							<input type="hidden" name="fields[phone_number]" value="">
+							<input type="submit" class="sr-only">
+						</form>
+					</div>
+					
+					<div class="dhr-contactmodal--success">
+						<div class="inner-small">
+							<div class="dhr-contactmodal--success-msg">
+								<h5 class="dhr-preheadline">Your Info Has Been Sent</h5>
+								<h3 class="dhr-sectionheadline">Thank You!</h3>
+								<p>We'll be in touch very soon.</br>In the meantime, you can follow our social accounts.</p>
+							</div>
+							<div class="dhr-contactmodal--social">
+								
+								<ul>
+									<li>
+										<a href="https://facebook.com/dreamhost">
+											<span class="sr-only">Dreamhost on Facebook</span>
+											<i class="icon-facebook" aria-hidden="true"></i>
+										</a>
+									</li>
+									<li>
+										<a href="https://twitter.com/dreamhost">
+											<span class="sr-only">Dreamhost on Twitter</span>
+											<i class="icon-twitter" aria-hidden="true"></i>
+										</a>
+									</li>
+									<li>
+										<a href="https://instagram.com/dreamhost">
+											<span class="sr-only">Dreamhost on Instagram</span>
+											<i class="icon-instagram" aria-hidden="true"></i>
+										</a>
+									</li>
+									<li>
+										<a href="https://youtube.com/user/dreamhostusa">
+											<span class="sr-only">Dreamhost on Youtube</span>
+											<i class="icon-youtube-play" aria-hidden="true"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="dhr-contactmodal--success-close">
+								<a href="#0" id="secondary-modal-close" class="dhr-button" data-text="Back to Site">Back to Site</a>
+							</div>
+						</div>
+					</div>
 		
 				</div>
 		
 			</div>
 			</div>
+		
+			<div class="t"></div>
 		
 		</section>
 

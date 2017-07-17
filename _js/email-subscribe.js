@@ -1,7 +1,9 @@
 
-import {$body, $window} from './globals.js';
+import {$body, $window, isDev} from './globals.js';
 
 
+let lastSubscriber = false;
+let isSubmitting = false;
 
 export const pushToDrip = (obj) => {
 	if (window._dcq && window._dcs) {
@@ -13,34 +15,41 @@ export const pushToDrip = (obj) => {
 };
 
 const dripSuccessCallback = (event) => {
-	$footerForm.removeClass('is-submitting');
-	$footerForm.addClass('is-submitted-success');
+	if (isDev) { console.log(event); }
+	if (event && event.success) {
+		$footerForm
+			.removeClass('is-submitting is-submitted-invalid is-submitted-error')
+			.addClass('is-submitted-success');
+		$submitBtn.removeAttr('disabled');
+
+		lastSubscriber = event.email;
+
+		$(document).one('click', () => {
+			$footerForm.removeClass('is-submitted-success');
+			$emailInput.val('').parent('.is-filledin').removeClass('is-filledin');
+		});
+	} else {
+		dripFailureCallback.call();
+	}
+	isSubmitting = false;
 };
+
 const dripFailureCallback = (event) => {
-	$footerForm.addClass('is-submitted-error');
+	$footerForm.removeClass('is-submitted-invalid').addClass('is-submitted-error');
+	$emailInput.focus();
+	isSubmitting = false;
 };
 
 
 const $footerForm = $('#dhr-footer-form');
-const $emailInput = $('#dhr-footer-emailinput');
+const $submitBtn = $('#dhr-footer-submit');
+export const $emailInput = $('#dhr-footer-emailinput');
 const $emailParent = $emailInput.parent('.dhr-formfield');
 
 
-
-$emailInput.on('keyup blur', function() {
-	if ($(this).val().length > 0) {
-		$emailParent.addClass('is-filledin');
-	} else {
-		$emailParent.removeClass('is-filledin');
-	}
-});
-
-
-$footerForm.submit((e) => {
-	e.preventDefault();
+//form submit handler
+const onEmailFormSubmit = () => {
 	const emailVal = $emailInput.val();
-
-	$footerForm.addClass('is-submitting');
 
 	if (emailVal.length > 3 && emailVal.indexOf('@') > 0) {
 
@@ -52,6 +61,40 @@ $footerForm.submit((e) => {
 	
 	} else {
 
-		$footerForm.addClass('is-submitted-error');
+		$footerForm.addClass('is-submitted-invalid');
+		$emailInput.focus();
+
+		$footerForm.removeClass('is-submitting');
+		$submitBtn.removeAttr('disabled');
+		isSubmitting = false;
 	}
+
+};
+
+
+$emailInput.on('keyup blur', function() {
+	if ($(this).val().length > 0) {
+		$emailParent.addClass('is-filledin');
+	} else {
+		$emailParent.removeClass('is-filledin');
+	}
+});
+
+
+$submitBtn.on('mousedown touchstart', () => {
+	$footerForm.trigger('submit');
+});
+
+
+$footerForm.submit((e) => {
+	e.preventDefault();
+
+	if (isSubmitting) return;
+
+	isSubmitting = true;
+
+	$footerForm.addClass('is-submitting').removeClass('is-submitted-invalid is-submitted-error');
+	$submitBtn.attr('disabled', true);
+
+	window.setTimeout(() => onEmailFormSubmit(), 0);
 });
