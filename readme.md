@@ -6,8 +6,8 @@
 
 
 Run `gulp` to start browsersync server, asset watching, site generating, etc.
-Run `gulp --production` to minify/uglify CSS & JS.
 
+Run `gulp --production` to minify/uglify CSS & JS.
 
 
 
