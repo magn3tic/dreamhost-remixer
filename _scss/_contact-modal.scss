@@ -416,13 +416,28 @@
 @media (min-width:$bp-xl) {
 
 	.dhr-contactmodal--top {
-		padding: 1.7em 0;
+		padding: 1.5em 0;
 	}
 
 	.dhr-inlineform {
 
 		&--word {
 			font-size: 1em;
+		}
+	}
+
+
+
+	.dhr-inlineform {
+		p > .dhr-inlineform--word {
+			margin-left: .5em;
+			margin-right: .5em;
+			&:first-child {
+				margin-left: 0;
+			}
+			&:last-child {
+				margin-right: 0;
+			}
 		}
 	}
 

@@ -2696,9 +2696,16 @@ html.no-generatedcontent a:hover {
 
 @media (min-width: 1199px) {
   .dhr-contactmodal--top {
-    padding: 1.7em 0; }
+    padding: 1.5em 0; }
   .dhr-inlineform--word {
-    font-size: 1em; } }
+    font-size: 1em; }
+  .dhr-inlineform p > .dhr-inlineform--word {
+    margin-left: .5em;
+    margin-right: .5em; }
+    .dhr-inlineform p > .dhr-inlineform--word:first-child {
+      margin-left: 0; }
+    .dhr-inlineform p > .dhr-inlineform--word:last-child {
+      margin-right: 0; } }
 
 @media (max-width: 992px) {
   .dhr-inlineform--input {
