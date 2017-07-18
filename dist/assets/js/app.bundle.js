@@ -212,45 +212,50 @@ var $modaltrigger = $('a[href="#contact"]'),
     $modalclose = $('#dhr-modalclose'),
     $modal = $('#dhr-contactmodal'),
     $modalbody = $('.dhr-contactmodal--body'),
+    $modalbodyLiner = $('.dhr-contactmodal--body-liner'),
     $modalbodyInner = $modalbody.find('.inner'),
     $modaltop = $('.dhr-contactmodal--top'),
     $maincontent = $('#dhr-main'),
     $fixedhero = $('.dhr-fixedhero'),
+    $firstname = $('#dhr-contact-firstname-input'),
     $movecontents = $maincontent.add($fixedhero).add(_globals.$sitefooter);
 
 var $modalstaggeritems = exports.$modalstaggeritems = $('.dhr-contactmodal--intro, .dhr-contactmodal--form, .dhr-contactmodal--btns');
 
-var $form = $('#dhr-contact-form'),
-    $inputs = {
-	email: $('#dhr-email-input'),
-	firstname: $('#dhr-contact-firstname-input'),
-	lastname: $('#dhr-contact-lastname-input')
-};
+var isOpen = false;
+var isTaller = false;
+var modaltopHeight = $modaltop.outerHeight();
 
 //opening
 $modaltrigger.on('click', function (e) {
 	e.preventDefault();
-
 	if ($modal.hasClass('velocity-animating')) return;
-
-	$modalbody.css({
-		height: (_globals.$window.height() - _globals.$siteheader.outerHeight()) * 0.925
-	});
 
 	$modal.velocity({
 		translateY: ['0%', '-100%']
 	}, {
 		duration: 600,
-		display: 'block',
+		visibility: 'visible',
 		easing: _globals.easeOutBack
 	});
+
+	modaltopHeight = $modaltop.outerHeight();
+	isTaller = $modalbodyInner.outerHeight() + modaltopHeight > _globals.$window.height();
+
+	$modalbody.css({
+		height: _globals.$window.height() - modaltopHeight - 5
+		//minHeight: $modalbodyInner.outerHeight()
+	});
+
+	if (isTaller) {
+		$modalbody.addClass('is-taller');
+	}
 
 	$modalstaggeritems.velocity('transition.slideDownIn', {
 		stagger: 150,
 		drag: true,
 		duration: 900,
 		complete: function complete() {
-			$modalbody.css({ minHeight: $modalbodyInner.outerHeight() + 30 });
 			_globals.$body.addClass('is-ready-contactmodal');
 		}
 	});
@@ -261,11 +266,12 @@ $modaltrigger.on('click', function (e) {
 		easing: _globals.easeOutBack,
 		duration: 600,
 		complete: function complete() {
-			return $inputs.firstname.focus();
+			return $firstname.focus();
 		}
 	});
 
 	_globals.$body.addClass('is-showing-contactmodal');
+	isOpen = true;
 });
 
 //closing
@@ -274,13 +280,13 @@ $modalclose.on('click', function () {
 		translateY: ['-100%', '0%']
 	}, {
 		duration: 350,
-		display: 'none',
+		visibility: 'hidden',
 		easing: 'easeOutCirc',
 		complete: function complete() {
 			_globals.$body.removeClass('is-showing-contactmodal is-ready-contactmodal');
 			$modalstaggeritems.css({ opacity: 0 });
-
 			$(document).trigger('dhr.contactmodal.closed');
+			isOpen = false;
 		}
 	});
 	//$modalstaggeritems.velocity('transition.fadeOut', {duration:100})
@@ -293,13 +299,15 @@ $modalclose.on('click', function () {
 });
 
 _globals.$window.resize(function () {
-	$modalbody.css({ height: (_globals.$window.height() - _globals.$siteheader.outerHeight()) * 0.925 });
+	isTaller = $modalbodyInner.outerHeight() + modaltopHeight > _globals.$window.height();
+
+	if (isTaller) {
+		$modalbody.addClass('is-taller');
+	} else {
+		$modalbody.removeClass('is-taller');
+	}
+	$modalbody.css({ height: _globals.$window.height() - $modaltop.outerHeight() });
 });
-
-// $window.on('load', () => {
-// 	$modalbody.css({minHeight: $modalbodyInner.outerHeight()});
-// });
-
 
 if (window.location.hash === '#contact') {
 	$modaltrigger.trigger('click');
@@ -348,7 +356,8 @@ var pageOutDuration = 500,
 var $transitionlinks = $('a[data-page-transition]');
 
 $transitionlinks.click(function (event) {
-	if (!window.Modernizr.history) return;
+	return;
+	if (!window.Modernizr.history || !window.Modernizr.localstorage) return;
 
 	event.preventDefault();
 	var href = $(this).attr('href');
@@ -358,11 +367,20 @@ $transitionlinks.click(function (event) {
 	$top.velocity('scroll', { duration: pageOutDuration });
 	_globals.$body.addClass('is-pagetransitioning').velocity('transition.fadeOut', { duration: pageOutDuration });
 
-	setTimeout(function () {
+	//window.history.pushState({}, '', href);
 
+	setTimeout(function () {
 		window.location.replace(href);
 	}, pageOutDuration);
 });
+
+// $window.on('popstate', (e) => {
+// 	e.preventDefault();
+// 	if (window.Modernizr.history) {
+// 		window.history.back();
+// 	}
+// });
+
 
 //on page fully loaded
 var onFullPageload = function onFullPageload() {

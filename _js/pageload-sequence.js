@@ -35,7 +35,8 @@ const pageOutDuration = 500,
 const $transitionlinks = $('a[data-page-transition]');
 
 $transitionlinks.click(function(event) {
-	if (!window.Modernizr.history) return;
+	return;
+	if (!window.Modernizr.history || !window.Modernizr.localstorage) return;
 	
 	event.preventDefault();
 	let href = $(this).attr('href');
@@ -44,13 +45,21 @@ $transitionlinks.click(function(event) {
 
 	$top.velocity('scroll', {duration: pageOutDuration});
 	$body.addClass('is-pagetransitioning').velocity('transition.fadeOut', {duration: pageOutDuration});
+
+	//window.history.pushState({}, '', href);
 			 
 	setTimeout(() => {
-
 		window.location.replace(href);
 	}, pageOutDuration);
 });
 
+
+// $window.on('popstate', (e) => {
+// 	e.preventDefault();
+// 	if (window.Modernizr.history) {
+// 		window.history.back();
+// 	}
+// });
 
 
 

@@ -1,10 +1,12 @@
 
 
 .dhr-contactmodal {
-	display: none;
 	position: fixed; z-index: 99999;
 	top:0; left:0; width:100%; height:100%;
 	background: $secondary;
+
+	visibility:hidden;
+	transform: translateY(-100%);
 	
 	.is-ready-contactmodal & {
 		//overflow: scroll;
@@ -13,6 +15,8 @@
 	&--top {
 		padding: 1.4em 0;
 		background: shade($secondary,15%);
+		overflow: scroll;
+
 		&:before {
 			content:""; display:block; position:absolute;
 			top:-10em; left:0; height:10em; width:100%;
@@ -23,23 +27,28 @@
 			position: relative;
 		}
 	}
+}
 
-	&--body {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+
+.dhr-contactmodal--contents {
+	padding-top: 1em;
+	padding-bottom: 2em;
+}
+
+
+.dhr-contactmodal--body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	&.is-taller {
+		display: block;
 		overflow: scroll;
 	}
 }
 
 
-
-
-
 .dhr-contactmodal--body-liner {
-	padding-top: 2em;
-	padding-bottom: 2.5em;
-
 	> .inner {
 		position: relative;
 	}

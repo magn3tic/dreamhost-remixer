@@ -98,6 +98,8 @@
 }
 
 
+
+
 @media (min-width:$bp-md) {
 
 	.dhr-header {
@@ -159,6 +161,25 @@
 
 
 
+
+
+@media (min-width:820px) {
+	
+	.dhr-header--menu {
+		ul > li {
+			margin-left: .5em;
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+
+}
+
+
+
+
+
 @media (min-width:$bp-lg) {
 
 	.dhr-header {
@@ -178,9 +199,7 @@
 		}
 		ul > li {
 			margin-left: 1em;
-			&:first-child {
-				margin-right: 0;
-			}
+			
 		}
 	}
 

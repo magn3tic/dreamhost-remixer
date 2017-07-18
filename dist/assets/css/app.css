@@ -1204,6 +1204,12 @@ a.dhr-button, button.dhr-button {
       top: 0;
       border-radius: 5px; } }
 
+@media (min-width: 820px) {
+  .dhr-header--menu ul > li {
+    margin-left: .5em; }
+    .dhr-header--menu ul > li:first-child {
+      margin-left: 0; } }
+
 @media (min-width: 992px) {
   .dhr-header {
     padding: 1.2em 0; }
@@ -1214,9 +1220,7 @@ a.dhr-button, button.dhr-button {
   .dhr-header--menu ul {
     padding-right: 13em; }
   .dhr-header--menu ul > li {
-    margin-left: 1em; }
-    .dhr-header--menu ul > li:first-child {
-      margin-right: 0; } }
+    margin-left: 1em; } }
 
 @media (min-width: 1199px) {
   .dhr-header {
@@ -2348,17 +2352,21 @@ html.no-generatedcontent a:hover {
     padding-bottom: 8em; } }
 
 .dhr-contactmodal {
-  display: none;
   position: fixed;
   z-index: 99999;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #2bace9; }
+  background: #2bace9;
+  visibility: hidden;
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%); }
   .dhr-contactmodal--top {
     padding: 1.4em 0;
-    background: #2592c6; }
+    background: #2592c6;
+    overflow: scroll; }
     .dhr-contactmodal--top:before {
       content: "";
       display: block;
@@ -2370,27 +2378,31 @@ html.no-generatedcontent a:hover {
       background: #2592c6; }
     .dhr-contactmodal--top > .inner {
       position: relative; }
-  .dhr-contactmodal--body {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+
+.dhr-contactmodal--contents {
+  padding-top: 1em;
+  padding-bottom: 2em; }
+
+.dhr-contactmodal--body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .dhr-contactmodal--body.is-taller {
+    display: block;
     overflow: scroll; }
 
-.dhr-contactmodal--body-liner {
-  padding-top: 2em;
-  padding-bottom: 2.5em; }
-  .dhr-contactmodal--body-liner > .inner {
-    position: relative; }
+.dhr-contactmodal--body-liner > .inner {
+  position: relative; }
 
 .dhr-contactomodal--close {
   position: absolute;
@@ -2847,6 +2859,10 @@ html.no-generatedcontent a:hover {
               transform: scale(1.03); }
       .dhr-nextepisode > a:hover ~ .dhr-coverimg:after {
         opacity: 0.5; }
+    .dhr-nextepisode > a:hover ~ .dark-mark-over svg {
+      -webkit-transform: scale(0.97);
+          -ms-transform: scale(0.97);
+              transform: scale(0.97); }
   .dhr-nextepisode .dhr-coverimg {
     background-position: center top;
     background-repeat: no-repeat;
@@ -2877,6 +2893,12 @@ html.no-generatedcontent a:hover {
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
+  .light-mark-under svg, .dark-mark-over svg {
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: -webkit-transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -o-transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), -webkit-transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 .light-mark-under {
   width: 80%; }
@@ -2884,7 +2906,7 @@ html.no-generatedcontent a:hover {
     fill: rgba(255, 255, 255, 0.05); }
 
 .dark-mark-over {
-  width: 40%;
+  width: 42.5%;
   mix-blend-mode: multiply; }
   .dark-mark-over path {
     fill: rgba(43, 172, 233, 0.6); }
