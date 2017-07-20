@@ -1640,8 +1640,8 @@ button[id^="dhr-videoclose"] {
   position: absolute;
   z-index: 0;
   bottom: 100%;
-  left: 50%;
-  margin-left: -2em;
+  right: 0;
+  margin-right: -1em;
   font-size: .8em;
   text-transform: uppercase;
   font-weight: bold;
@@ -1653,31 +1653,30 @@ button[id^="dhr-videoclose"] {
   width: 4em;
   height: 4em;
   text-align: center;
-  border-radius: 5px 5px 0 0;
-  -webkit-transform: translateY(2.5em);
-      -ms-transform: translateY(2.5em);
-          transform: translateY(2.5em);
-  -webkit-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease; }
+  border-radius: 50%;
+  -webkit-transform: translateY(2.5em) rotate(-180deg);
+      -ms-transform: translateY(2.5em) rotate(-180deg);
+          transform: translateY(2.5em) rotate(-180deg);
+  -webkit-transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  -o-transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
   button[id^="dhr-videoclose"] i {
     display: block;
     font-size: 2em;
-    font-weight: normal;
-    -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition: -webkit-transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1);
-    -o-transition: transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition: transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition: transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1), -webkit-transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1); }
+    font-weight: normal; }
   button[id^="dhr-videoclose"]:hover {
     color: #fff; }
 
 body.is-playingvideo button[id^="dhr-videoclose"] {
-  -webkit-transform: translateY(0);
-      -ms-transform: translateY(0);
-          transform: translateY(0);
+  -webkit-transform: translateY(0) rotate(0deg);
+      -ms-transform: translateY(0) rotate(0deg);
+          transform: translateY(0) rotate(0deg);
   opacity: 1;
   visibility: visible; }
+  body.is-playingvideo button[id^="dhr-videoclose"]:hover {
+    -webkit-transform: translateY(0) rotate(180deg);
+        -ms-transform: translateY(0) rotate(180deg);
+            transform: translateY(0) rotate(180deg); }
 
 @media (min-width: 992px) {
   .dhr-playbtn {

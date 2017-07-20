@@ -1172,6 +1172,10 @@ $playbtns.each(function (index) {
 	    isPlayReady = false,
 	    plyrRef = null;
 
+	$target.on('click', function (event) {
+		return event.stopPropagation();
+	});
+
 	//Play Button Click -------------------------//
 	$t.on('click', function (e) {
 		e.preventDefault();
@@ -1179,7 +1183,7 @@ $playbtns.each(function (index) {
 
 		var videoHtml = '<video>\n\t\t\t<source src="' + videopath + '.webm" type="video/webm">\n\t\t\t<source src="' + videopath + '.mp4" type="video/mp4">\n\t\t\t<source src="' + videopath + '.ogv" type="video/ogg">\n\t\t</video>';
 
-		_globals.$body.addClass('is-playingtriggered');
+		_globals.$body.removeClass('is-videoended').addClass('is-playingtriggered');
 		$video = $(videoHtml);
 		$target.append($video).prepend($closebtn);
 
@@ -1208,18 +1212,13 @@ $playbtns.each(function (index) {
 			}
 		});
 
+		//measure to determine video height relative to window
+		var expectedHeight = $targetparent.width() * 0.565,
+		    heightThreshold = _globals.$window.height() - 80,
+		    isTaller = expectedHeight >= heightThreshold;
+
 		//home page
 		if (isHomePage) {
-
-			var expectedHeight = $targetparent.width() * 0.565,
-			    isTaller = expectedHeight >= _globals.$window.height();
-
-			console.log('expected: ', expectedHeight);
-			console.log('window:   ', _globals.$window.height());
-
-			if (isTaller) {
-				_globals.$body.addClass('is-tallervideo');
-			}
 
 			$targetparent.velocity('scroll', {
 				offset: !isTaller ? -((_globals.$window.height() - expectedHeight) / 2) : 0,
@@ -1252,17 +1251,34 @@ $playbtns.each(function (index) {
 
 			$overlayBg = $('<div class="dhr-playeroverlay" style="display:none;"></div>');
 			$overlayContent = $('<div class="dhr-playeroverlay--content"></div>');
-			$videoParent = $target.parent('.dhr-fluidvideo');
 
 			_globals.$body.append($overlayBg);
 			$overlayBg.velocity('transition.fadeIn', { duration: 350 });
 
 			_globals.$body.append($overlayContent);
-			$videoParent.addClass('is-singlepage-player').detach().appendTo($overlayContent);
+			$targetparent.addClass('is-singlepage-player').detach().appendTo($overlayContent);
 
 			$target.velocity('transition.slideUpBigIn', { duration: 700, delay: 90, complete: function complete() {
 					_globals.$body.addClass('is-playingvideo');
+					isPlaying = true;
 				} });
+		}
+
+		//handle cases where video is taller than window
+		if (isTaller) {
+			var heightDiff = expectedHeight - heightThreshold;
+			var sizeUpdate = 100 - Math.round(heightDiff / $targetparent.width() * 100);
+
+			console.log('Height Diff:', heightDiff);
+			console.log(sizeUpdate);
+
+			if (isHomePage) {
+				$targetparent.css({ width: sizeUpdate + '%', marginLeft: 'auto', marginRight: 'auto' });
+			} else {
+				$target.css({ width: sizeUpdate + '%', marginLeft: 'auto', marginRight: 'auto' });
+			}
+
+			_globals.$body.addClass('is-tallervideo');
 		}
 
 		firstOpen = false;
@@ -1271,6 +1287,7 @@ $playbtns.each(function (index) {
 	$closebtn.on('click', function () {
 		if ($target.hasClass('velocity-animating')) return;
 		if ($overlayBg && $overlayBg.hasClass('velocity-animating')) return;
+		if (!isPlaying) return;
 
 		plyrRef.pause();
 
@@ -1290,6 +1307,8 @@ $playbtns.each(function (index) {
 
 			_globals.$top.velocity('scroll', { duration: 450, delay: 300 });
 
+			$targetparent.removeAttr('style');
+
 			//other pages
 		} else {
 
@@ -1305,11 +1324,19 @@ $playbtns.each(function (index) {
 			$modals.velocity('transition.fadeOut', { duration: 220, complete: function complete() {
 					$modals.detach();
 				} });
+
+			$target.removeAttr('style');
 		}
 
 		_globals.$body.removeClass('is-playingtriggered is-playingvideo is-tallervideo');
 	});
 }); //end each()
+
+
+$(document).on('click', function () {
+	if (!isPlaying) return;
+	$('button[id^="dhr-videoclose-"]').trigger('click');
+});
 
 /***/ }),
 /* 12 */

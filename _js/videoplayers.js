@@ -41,6 +41,9 @@ $playbtns.each(function(index) {
 			plyrRef = null;
 
 
+	$target.on('click', (event) => event.stopPropagation());
+
+
 	//Play Button Click -------------------------//
 	$t.on('click', (e) => {
 		e.preventDefault();
@@ -52,7 +55,7 @@ $playbtns.each(function(index) {
 			<source src="${videopath}.ogv" type="video/ogg">
 		</video>`;
 
-		$body.addClass('is-playingtriggered');
+		$body.removeClass('is-videoended').addClass('is-playingtriggered');
 		$video = $(videoHtml);
 		$target.append($video).prepend($closebtn);
 
@@ -79,20 +82,17 @@ $playbtns.each(function(index) {
 				$closebtn.trigger('click');
 			}
 		});
-		
+
+
+
+		//measure to determine video height relative to window
+		let expectedHeight = $targetparent.width() * 0.565,
+				heightThreshold = $window.height()-80,
+				isTaller = expectedHeight >= heightThreshold;
+
 
 		//home page
 		if (isHomePage) {
-
-			let expectedHeight = $targetparent.width() * 0.565,
-					isTaller = expectedHeight >= $window.height();
-
-			console.log('expected: ', expectedHeight);
-			console.log('window:   ', $window.height());
-
-			if (isTaller) {
-				$body.addClass('is-tallervideo');
-			}
 			
 			$targetparent.velocity('scroll', {
 				offset: !isTaller ? -(($window.height() - expectedHeight) / 2) : 0,
@@ -123,22 +123,39 @@ $playbtns.each(function(index) {
 
 			$overlayBg = $('<div class="dhr-playeroverlay" style="display:none;"></div>');
 			$overlayContent = $('<div class="dhr-playeroverlay--content"></div>');
-			$videoParent = $target.parent('.dhr-fluidvideo');
 
 			$body.append($overlayBg);
 			$overlayBg.velocity('transition.fadeIn', {duration:350});
 			
 			$body.append($overlayContent);
-			$videoParent.addClass('is-singlepage-player').detach().appendTo($overlayContent);
+			$targetparent.addClass('is-singlepage-player').detach().appendTo($overlayContent);
 			
 			$target.velocity('transition.slideUpBigIn', {duration:700, delay:90, complete: () => {
 				$body.addClass('is-playingvideo');
+				isPlaying = true;
 			}});
+		}
+
+
+		//handle cases where video is taller than window
+		if (isTaller) {
+			let heightDiff = expectedHeight - heightThreshold;
+			let sizeUpdate = 100 - Math.round((heightDiff / $targetparent.width())*100);
+			
+			console.log('Height Diff:', heightDiff);
+			console.log(sizeUpdate);
+
+			if (isHomePage) {
+				$targetparent.css({width:sizeUpdate+'%', marginLeft:'auto', marginRight:'auto'});
+			} else {
+				$target.css({width:sizeUpdate+'%', marginLeft:'auto', marginRight:'auto'});
+			}
+
+			$body.addClass('is-tallervideo');
 		}
 
 		firstOpen = false;
 	});
-	
 	
 	
 
@@ -146,6 +163,7 @@ $playbtns.each(function(index) {
 	$closebtn.on('click', () => {
 		if ($target.hasClass('velocity-animating')) return;
 		if ($overlayBg && $overlayBg.hasClass('velocity-animating')) return;
+		if (!isPlaying) return;
 
 		plyrRef.pause();
 		
@@ -165,6 +183,8 @@ $playbtns.each(function(index) {
 
 			$top.velocity('scroll', {duration: 450, delay: 300});
 
+			$targetparent.removeAttr('style');
+
 		//other pages
 		} else {
 
@@ -181,13 +201,20 @@ $playbtns.each(function(index) {
 				$modals.detach();
 			}});
 
+			$target.removeAttr('style');
 		}
 
+		
 		$body.removeClass('is-playingtriggered is-playingvideo is-tallervideo');
 	});
-
 
 }); //end each()
 
 
+
+
+$(document).on('click', () => {
+	if (!isPlaying) return;
+	$('button[id^="dhr-videoclose-"]').trigger('click');
+});
 
