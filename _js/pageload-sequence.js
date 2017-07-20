@@ -35,7 +35,10 @@ const pageOutDuration = 500,
 const $transitionlinks = $('a[data-page-transition]');
 
 $transitionlinks.click(function(event) {
+
+	//disabling for now - need to keep browser history intact
 	return;
+
 	if (!window.Modernizr.history || !window.Modernizr.localstorage) return;
 	
 	event.preventDefault();

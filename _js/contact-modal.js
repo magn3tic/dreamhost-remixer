@@ -44,8 +44,7 @@ $modaltrigger.on('click', (e) => {
 
 	if (isTaller) {
 		$modalbody.addClass('is-taller');
-	}
-
+	} 
 
 	$modalstaggeritems.velocity('transition.slideDownIn', {
 		stagger:150, 
@@ -96,6 +95,7 @@ $modalclose.on('click', () => {
 
 
 $window.resize(() => {
+	modaltopHeight = $modaltop.outerHeight();
 	isTaller = ($modalbodyInner.outerHeight()+modaltopHeight) > $window.height();
 
 	if (isTaller) {

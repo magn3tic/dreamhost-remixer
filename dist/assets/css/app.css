@@ -632,7 +632,7 @@ http://flickity.metafizzy.co
 
 @font-face {
   font-family: 'Proxima Nova';
-  src: url("../fonts/ProximaNovaA-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/ProximaNovaA-Regular.woff") format("woff"), url("../fonts/ProximaNovaA-Regular.ttf") format("truetype"), url("../fonts/ProximaNovaA-Regular.svg#ProximaNovaA-Regular") format("svg");
+  src: url("../fonts/ProximaNova-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/ProximaNova-Regular.woff") format("woff"), url("../fonts/ProximaNova-Regular.ttf") format("truetype"), url("../fonts/ProximaNova-Regular.svg#ProximaNovaA-Regular") format("svg");
   font-weight: normal;
   font-style: normal; }
 

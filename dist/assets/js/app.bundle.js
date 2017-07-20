@@ -299,6 +299,7 @@ $modalclose.on('click', function () {
 });
 
 _globals.$window.resize(function () {
+	modaltopHeight = $modaltop.outerHeight();
 	isTaller = $modalbodyInner.outerHeight() + modaltopHeight > _globals.$window.height();
 
 	if (isTaller) {
@@ -356,7 +357,10 @@ var pageOutDuration = 500,
 var $transitionlinks = $('a[data-page-transition]');
 
 $transitionlinks.click(function (event) {
+
+	//disabling for now - need to keep browser history intact
 	return;
+
 	if (!window.Modernizr.history || !window.Modernizr.localstorage) return;
 
 	event.preventDefault();
