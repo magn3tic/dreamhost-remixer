@@ -135,6 +135,15 @@ gulp.task('jspriority', () => {
 		.pipe(gulp.dest(PATHS.dest.js));
 });
 
+// build webpack once, without watching
+gulp.task('webpackonce', () => {
+    webpack(webpackConfig, (err, stats) => {
+        if (err) {
+            throw new gutil.PluginError('webpack', err);
+        }
+        gutil.log('[webpack]', stats.toString({chunks: false}));
+    });
+});
 
 //WEBPACK
 gulp.task('webpack', () => {
@@ -164,3 +173,5 @@ gulp.task('default', ['build', 'scss', 'jslibs', 'webpack', 'server'], () => {
 	//reload browser after rebuild occurs
 	gulp.watch(PATHS.distfiles).on('change', browsersync.reload);
 });
+
+gulp.task('build-dist', ['build', 'scss', 'jslibs', 'webpackonce']);
