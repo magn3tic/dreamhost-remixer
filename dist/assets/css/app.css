@@ -1945,6 +1945,13 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
   margin: 0 0 1em;
   padding: 0; }
 
+.dhr-testify--content cite {
+  display: block;
+  line-height: 1;
+  font-style: italic;
+  font-size: 0.85em;
+  margin-bottom: 2em; }
+
 .dhr-testify--interview-transcript {
   padding-bottom: 1.5em; }
   .dhr-testify--interview-transcript h5 {
