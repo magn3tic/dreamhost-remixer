@@ -12,7 +12,7 @@
 		"image": "episode-poster-leathercraft.jpg",
 		"video": "",
 		"url": "master-of-leathercraft.html",
-		"release": 1499450569674,
+		"release": "07/21/17",
 		"social": {
 			"facebook": "",
 			"twitter": "",
@@ -23,22 +23,22 @@
 		"headline": "",
 		"image": "episode-poster-culturalidentity.jpg",
 		"video": "",
-		"url": "#0",
-		"release": 1501157759350
+		"url": "master-of-cultural-identity.html",
+		"release": "08/10/17"
 	}, {
 		"name": "Master of Perseverance",
 		"headline": "",
 		"image": "episode-poster-perseverance.jpg",
 		"video": "",
 		"url": "#0",
-		"release": 1502367359710
+		"release": "08/24/17"
 	},  {
 		"name": "Master of Dexterity",
 		"headline": "",
 		"image": "episode-poster-dexterity.jpg",
 		"video": "",
 		"url": "#0",
-		"release": 1503576959000
+		"release": "09/03/17"
 	}],
 
 	

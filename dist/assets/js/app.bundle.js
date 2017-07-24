@@ -551,7 +551,7 @@ var $allepisodes = $('.dhr-episodeitem'),
 
 var currentdate = new Date(),
     currentepoch = currentdate.getTime(),
-    $lockedepisodes = $('.dhr-episodeitem--locked');
+    $lockedepisodes = null;
 
 //new time every second
 window.setInterval(function () {
@@ -570,7 +570,6 @@ var doHtmlUpdate = function doHtmlUpdate($html, until) {
 var digitPrefixer = function digitPrefixer(digit) {
 	var strdigit = digit.toString(),
 	    result = strdigit.length > 1 ? strdigit : '0' + strdigit;
-	//console.log(result);
 	return result;
 };
 
@@ -578,7 +577,8 @@ var digitPrefixer = function digitPrefixer(digit) {
 $allepisodes.each(function () {
 	var $t = $(this),
 	    $countdown = $t.find('[data-countdown]'),
-	    unlockepoch = parseInt($countdown.data('countdown'));
+	    unlockepoch = new Date($countdown.data('countdown')).getTime();
+
 	if (unlockepoch - currentepoch > 0) {
 		$t.addClass('dhr-episodeitem--locked');
 	} else {
@@ -592,8 +592,7 @@ $lockedepisodes.each(function (index, item) {
 
 	var $this = $(item),
 	    $countdown = $this.find('[data-countdown]'),
-	    unlockepoch = parseInt($countdown.data('countdown')),
-	    unlocktime = new Date(unlockepoch),
+	    unlockepoch = new Date($countdown.data('countdown')).getTime(),
 	    $html = {
 		days: $countdown.find('[data-countdown-days] .dhr-countdown--num'),
 		hours: $countdown.find('[data-countdown-hours] .dhr-countdown--num'),
@@ -608,26 +607,40 @@ $lockedepisodes.each(function (index, item) {
 		mins: digitPrefixer(Math.floor(timeDiff % cdHr / cdMin)),
 		sec: digitPrefixer(Math.floor(timeDiff % cdMin / cdSec))
 	};
-	//console.log(timeDiff);
 
+	if (timeDiff >= 0) {
 
-	doHtmlUpdate($html, until);
+		window.setTimeout(function () {
+			return doHtmlUpdate($html, until);
+		}, 150 * index);
 
-	//every second
-	$(document).on('clocktick', function () {
-		timeDiff = unlockepoch - currentepoch;
-		until.days = digitPrefixer(Math.floor(timeDiff / cdDay));
-		until.hours = digitPrefixer(Math.floor(timeDiff % cdDay / cdHr));
-		until.mins = digitPrefixer(Math.floor(timeDiff % cdHr / cdMin));
-		until.sec = digitPrefixer(Math.floor(timeDiff % cdMin / cdSec));
-		doHtmlUpdate($html, until);
-	});
+		$(document).on('clocktick', function () {
+			timeDiff = unlockepoch - currentepoch;
+			until.days = digitPrefixer(Math.floor(timeDiff / cdDay));
+			until.hours = digitPrefixer(Math.floor(timeDiff % cdDay / cdHr));
+			until.mins = digitPrefixer(Math.floor(timeDiff % cdHr / cdMin));
+			until.sec = digitPrefixer(Math.floor(timeDiff % cdMin / cdSec));
 
-	$this.addClass('is-countdownstarted').children('a[class*="--link"]').click(function (e) {
-		_globals.$sitefooter.velocity('scroll', { duration: 550, easing: 'easeOutCirc', complete: function complete() {
-				_emailSubscribe.$emailInput.focus();
-			} });
-	});
+			if (timeDiff >= 0) {
+				window.setTimeout(function () {
+					return doHtmlUpdate($html, until);
+				}, 150 * index);
+			} else {
+				$countdown.remove();
+			}
+		});
+
+		$this.addClass('is-countdownstarted').children('a[class*="--link"]').click(function (e) {
+			e.preventDefault();
+			_globals.$sitefooter.velocity('scroll', { duration: 550, easing: 'easeOutCirc', complete: function complete() {
+					_emailSubscribe.$emailInput.focus();
+				} });
+		});
+	} else {
+
+		$this.removeClass('dhr-episodeitem--locked');
+		$countdown.remove();
+	}
 });
 
 /***/ }),
@@ -821,6 +834,10 @@ if ($carousel.length) {
 		contain: true,
 		lazyLoad: true
 	}).data('flickity');
+
+	_globals.$window.on('load', function () {
+		return flkty.reloadCells();
+	});
 }
 
 //next episode blocks
@@ -938,50 +955,53 @@ var getTransformValue = function getTransformValue() {
 	return 'translateY(-2px) scale(' + scaleAmount + ') rotateX(' + degX + ') rotateY(' + degY + ')';
 };
 
-var getMousedownTransform = function getMousedownTransform() {};
+$(document).ready(function () {
 
-$hovercards.each(function () {
+	$hovercards.each(function () {
+		if (Modernizr.touchevents) return;
 
-	if (Modernizr.touchevents) return;
+		var $t = $(this),
+		    $parent = $t.parent(),
+		    isEpisode = $parent.hasClass('dhr-episodeitem'),
+		    scaleVal = $t.data('hovercard-scale') || '',
+		    tiltVal = $t.data('hovercard-tilt') || 7;
 
-	var $t = $(this),
-	    $parent = $t.parent(),
-	    isEpisode = $parent.hasClass('dhr-episodeitem'),
-	    scaleVal = $t.data('hovercard-scale') || '',
-	    tiltVal = $t.data('hovercard-tilt') || 7;
+		//don't tilt locked episode items
+		if ($parent.hasClass('dhr-episodeitem--locked')) return;
 
-	//this 3d tilt thing only really look smooth in chrome
-	//temp fix until we can experiment and see wtf is going on
-	if (!window.chrome && isEpisode) return;
+		//this 3d tilt thing only really look smooth in chrome
+		//temp fix until we can experiment and see wtf is going on
+		if (!window.chrome && isEpisode) return;
 
-	var mousedover = false;
+		var mousedover = false;
 
-	$t.hover(function () {
-		$parent.addClass('is-hovering');
-		if (isEpisode) {
-			$parent.siblings().addClass('is-nothovering');
-		}
-		mousedover = true;
-	}, function () {
-		$parent.removeClass('is-hovering');
-		if (isEpisode) {
-			$parent.siblings().removeClass('is-nothovering');
-		}
-		mousedover = false;
-	});
+		$t.hover(function () {
+			$parent.addClass('is-hovering');
+			if (isEpisode) {
+				$parent.siblings().addClass('is-nothovering');
+			}
+			mousedover = true;
+		}, function () {
+			$parent.removeClass('is-hovering');
+			if (isEpisode) {
+				$parent.siblings().removeClass('is-nothovering');
+			}
+			mousedover = false;
+		});
 
-	$t.on('mousemove', function (event) {
-		$t.css({ transform: getTransformValue.call($t, scaleVal, tiltVal) });
-	});
+		$t.on('mousemove', function (event) {
+			$t.css({ transform: getTransformValue.call($t, scaleVal, tiltVal) });
+		});
 
-	$t.mousedown(function () {
-		if (mousedover) {
-			$t.css({ transform: getTransformValue.call($t, '0.98', tiltVal) });
-		}
-	});
+		$t.mousedown(function () {
+			if (mousedover) {
+				$t.css({ transform: getTransformValue.call($t, '0.98', tiltVal) });
+			}
+		});
 
-	$t.mouseleave(function () {
-		return $t.attr('style', '');
+		$t.mouseleave(function () {
+			return $t.attr('style', '');
+		});
 	});
 });
 

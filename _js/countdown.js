@@ -10,7 +10,7 @@ const $allepisodes = $('.dhr-episodeitem'),
 
 let currentdate = new Date(),
 		currentepoch = currentdate.getTime(),
-		$lockedepisodes = $('.dhr-episodeitem--locked');
+		$lockedepisodes = null;
 
 
 //new time every second
@@ -19,7 +19,6 @@ window.setInterval(() => {
 	currentepoch = currentdate.getTime();
 	$(document).trigger('clocktick');
 }, 1000);
-
 
 //helpers
 const doHtmlUpdate = ($html, until) => { 
@@ -31,7 +30,6 @@ const doHtmlUpdate = ($html, until) => {
 const digitPrefixer = (digit) => {
 	let strdigit = digit.toString(),
 			result = strdigit.length > 1 ? strdigit : '0'+strdigit;
-	//console.log(result);
 	return result;
 };
 
@@ -41,7 +39,8 @@ const digitPrefixer = (digit) => {
 $allepisodes.each(function() {
 	const $t = $(this),
 				$countdown = $t.find('[data-countdown]'),
-				unlockepoch = parseInt($countdown.data('countdown'));
+				unlockepoch = new Date($countdown.data('countdown')).getTime();
+
 	if (unlockepoch - currentepoch > 0) {
 		$t.addClass('dhr-episodeitem--locked');
 	} else {
@@ -57,8 +56,7 @@ $lockedepisodes.each((index, item) => {
 
 	const $this = $(item),
 				$countdown = $this.find('[data-countdown]'),
-				unlockepoch = parseInt($countdown.data('countdown')),
-				unlocktime = new Date(unlockepoch),
+				unlockepoch = new Date($countdown.data('countdown')).getTime(),
 				$html = {
 					days: $countdown.find('[data-countdown-days] .dhr-countdown--num'),
 					hours: $countdown.find('[data-countdown-hours] .dhr-countdown--num'),
@@ -73,28 +71,40 @@ $lockedepisodes.each((index, item) => {
 				mins: digitPrefixer(Math.floor((timeDiff%cdHr)/cdMin)),
 				sec: digitPrefixer(Math.floor((timeDiff%cdMin)/cdSec))
 			};
-	//console.log(timeDiff);
 
+	if (timeDiff >= 0) {
+		
+		window.setTimeout(() => doHtmlUpdate($html, until), 150*index);
 
-	doHtmlUpdate($html, until);
+		$(document).on('clocktick', () => {
+			timeDiff = unlockepoch - currentepoch;
+			until.days = digitPrefixer(Math.floor(timeDiff/cdDay));
+			until.hours = digitPrefixer(Math.floor((timeDiff % cdDay) / cdHr));
+			until.mins = digitPrefixer(Math.floor((timeDiff%cdHr)/cdMin));
+			until.sec = digitPrefixer(Math.floor((timeDiff%cdMin)/cdSec));
 
-	//every second
-	$(document).on('clocktick', () => {
-		timeDiff = unlockepoch - currentepoch;
-		until.days = digitPrefixer(Math.floor(timeDiff/cdDay));
-		until.hours = digitPrefixer(Math.floor((timeDiff % cdDay) / cdHr));
-		until.mins = digitPrefixer(Math.floor((timeDiff%cdHr)/cdMin));
-		until.sec = digitPrefixer(Math.floor((timeDiff%cdMin)/cdSec));
-		doHtmlUpdate($html, until);
-	});
+			if (timeDiff >= 0) {
+				window.setTimeout(() => doHtmlUpdate($html, until), 150*index);
+			} else {
+				$countdown.remove()
+			}
+		});
 
+		$this.addClass('is-countdownstarted')
+		  .children('a[class*="--link"]').click((e) => {
+		  	e.preventDefault();
+		  	$sitefooter.velocity('scroll', {duration:550, easing:'easeOutCirc', complete: () => {
+		  		$emailInput.focus();
+		  	}});
+		  });
+		
+	} else {
+			
+		$this.removeClass('dhr-episodeitem--locked');
+		$countdown.remove();
+		
+	}
 
-	$this.addClass('is-countdownstarted')
-	  .children('a[class*="--link"]').click((e) => {
-	  	$sitefooter.velocity('scroll', {duration:550, easing:'easeOutCirc', complete: () => {
-	  		$emailInput.focus();
-	  	}});
-	  })
 });
 
 

@@ -13,6 +13,8 @@ if ($carousel.length) {
 		contain: true,
 		lazyLoad: true
 	}).data('flickity');
+
+	$window.on('load', () => flkty.reloadCells());
 }
 
 

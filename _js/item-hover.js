@@ -22,56 +22,54 @@ const getTransformValue = function(scaleAmount=false, maxDeg=5) {
   return `translateY(-2px) scale(${scaleAmount}) rotateX(${degX}) rotateY(${degY})`;
 };
 
-const getMousedownTransform = function() {
-
-};
 
 
+$(document).ready(() => { 
 
+	$hovercards.each(function() {
+		if (Modernizr.touchevents) return;
 
-$hovercards.each(function() {
-	
-	if (Modernizr.touchevents) return;
+		const $t = $(this),
+					$parent = $t.parent(),
+					isEpisode = $parent.hasClass('dhr-episodeitem'),
+					scaleVal = $t.data('hovercard-scale') || '',
+					tiltVal = $t.data('hovercard-tilt') || 7;
 
-	const $t = $(this),
-				$parent = $t.parent(),
-				isEpisode = $parent.hasClass('dhr-episodeitem'),
-				scaleVal = $t.data('hovercard-scale') || '',
-				tiltVal = $t.data('hovercard-tilt') || 7;
+		//don't tilt locked episode items
+		if ($parent.hasClass('dhr-episodeitem--locked')) return;
 
-	
-	//this 3d tilt thing only really look smooth in chrome
-	//temp fix until we can experiment and see wtf is going on
-	if (!window.chrome && isEpisode) return;
+		//this 3d tilt thing only really look smooth in chrome
+		//temp fix until we can experiment and see wtf is going on
+		if (!window.chrome && isEpisode) return;
 
-	
-	let mousedover = false;
+		
+		let mousedover = false;
 
-	$t.hover(function() {
-		$parent.addClass('is-hovering');
-		if (isEpisode) {
-			$parent.siblings().addClass('is-nothovering');
-		}
-		mousedover = true;
-	}, function() {
-		$parent.removeClass('is-hovering');
-		if (isEpisode) {
-			$parent.siblings().removeClass('is-nothovering');
-		}
-		mousedover = false;
+		$t.hover(function() {
+			$parent.addClass('is-hovering');
+			if (isEpisode) {
+				$parent.siblings().addClass('is-nothovering');
+			}
+			mousedover = true;
+		}, function() {
+			$parent.removeClass('is-hovering');
+			if (isEpisode) {
+				$parent.siblings().removeClass('is-nothovering');
+			}
+			mousedover = false;
+		});
+
+		$t.on('mousemove', (event) => {
+			$t.css({transform: getTransformValue.call($t, scaleVal, tiltVal)});
+		});
+
+		$t.mousedown(() => {
+			if (mousedover) {
+				$t.css({transform: getTransformValue.call($t, '0.98', tiltVal)});
+			}
+		});
+
+		$t.mouseleave(() => $t.attr('style',''));
 	});
 
-	$t.on('mousemove', (event) => {
-		$t.css({transform: getTransformValue.call($t, scaleVal, tiltVal)});
-	});
-
-	$t.mousedown(() => {
-		if (mousedover) {
-			$t.css({transform: getTransformValue.call($t, '0.98', tiltVal)});
-		}
-	});
-
-	$t.mouseleave(() => $t.attr('style',''));
 });
-
-
