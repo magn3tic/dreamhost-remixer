@@ -2,6 +2,7 @@
 	"globals": {
 		"name": "DreamHost Remixer",
 		"remixer_signup_url": "https://signup.dreamhost.com/remixer/email/",
+		"panel_url": "https://panel.dreamhost.com/",
 		"dreamhost_main": "https://www.dreamhost.com/"
 	},
 
@@ -15,7 +16,12 @@
 			"desc": ""
 		},
 		"master-of-leathercraft": {
-			"title": "Master of Leathercraft"
+			"title": "Master of Leathercraft",
+			"desc": ""
+		},
+		"master-of-cultural-identity": {
+			"title": "Master of Cultural Identity",
+			"desc": ""
 		}
 	},
 
@@ -57,7 +63,7 @@
 		"image": "episode-poster-dexterity.jpg",
 		"video": "",
 		"url": "#0",
-		"release": "09/03/17 12:00 PM"
+		"release": "09/07/17 12:00 PM"
 	}
 	],
 

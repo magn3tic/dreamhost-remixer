@@ -29,7 +29,7 @@
 				<div class="inner-small">
 					<h5 class="dhr-preheadline">Contact Us</h5>
 					<h2 class="dhr-sectionheadline">Help is just a click away</h2>
-					<p>We don't outsource. DreamHost employees are...DreamHost employees!  If you're already a customer, contact support through your <a href="#0">control panel</a>.</p>
+					<p>We don't outsource. DreamHost employees are...DreamHost employees!  If you're already a customer, contact support through your <a href="{{globals.panel_url}}" target="_blank">control panel</a>.</p>
 				</div>
 			</div>
 			
@@ -38,14 +38,14 @@
 					<p>
 						<span class="dhr-inlineform--word">Hello, my name is</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-firstname-input" name="fields[first_name]" placeholder="First Name">
+							<input type="text" id="dhr-contact-firstname-input" name="fields[first_name]" placeholder="First Name *" data-required>
 							<label for="dhr-contact-firstname-input">First Name</label>
 						</span>
 						<span class="dhr-inlineform--input">
-							<input type="text" id="dhr-contact-lastname-input" name="fields[last_name]" placeholder="Last Name">
+							<input type="text" id="dhr-contact-lastname-input" name="fields[last_name]" placeholder="Last Name *" data-required>
 							<label for="dhr-contact-lastname-input">Last Name</label>
 						</span>
-						<span class="dhr-inlineform--word">,from</span>
+						<span class="dhr-inlineform--word">, from</span>
 						<span class="dhr-inlineform--input">
 							<input type="text" id="dhr-contact-company-input" name="fields[company_name]" placeholder="Company Name">
 							<label for="dhr-contact-company-input">Company Name</label>
@@ -55,8 +55,8 @@
 					<p>
 						<span class="dhr-inlineform--word">I would like to contact</span>
 						<span class="dhr-inlineform--input" data-field-type="select">
-							<select name="fields[department]" id="dhr-contact-dept-input">
-								<option value="">-- Select One</option>
+							<select name="fields[department]" id="dhr-contact-dept-input" data-required>
+								<option value="">-- Select One *</option>
 								<option value="sales">&nbsp; Sales</option>
 								<option value="support">&nbsp; Support</option>
 							</select>	
@@ -64,14 +64,14 @@
 						</span>
 						<span class="dhr-inlineform--word">regarding</span>
 						<span class="dhr-inlineform--input dhr-inlineform--input-question">
-							<input type="text" id="dhr-contact-question-input" name="fields[question]" placeholder="Briefly write your question">
+							<input type="text" id="dhr-contact-question-input" name="fields[question]" placeholder="Briefly write your question *" data-required>
 							<label for="dhr-contact-question-input">Question</label>
 						</span>
 					</p>
 					<p>
 						<span class="dhr-inlineform--word">You can reach me at</span>
 						<span class="dhr-inlineform--input">
-							<input type="email" id="dhr-contact-email-input" name="fields[email]" placeholder="Email Address">
+							<input type="email" id="dhr-contact-email-input" name="fields[email]" placeholder="Email Address *" data-required>
 							<label for="dhr-contact-email-input">Email Address</label>
 						</span>
 						<span class="dhr-inlineform--word">or call</span>

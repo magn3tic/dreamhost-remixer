@@ -6,7 +6,9 @@ import {$modalstaggeritems} from './contact-modal.js';
 
 
 const $form = $('#dhr-contact-form');
-const $fields = $form.find('[name^="fields["]');
+
+const $fields = $form.find('[data-required]');
+
 const $emailInput = $('#dhr-contact-email-input');
 const $submitBtn = $form.find('[type="submit"]');
 const $finalSuccessMsg = $('.dhr-contactmodal--success');

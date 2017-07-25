@@ -79,12 +79,13 @@ Object.defineProperty(exports, "__esModule", {
 
 //"globals"
 var $body = exports.$body = $('body'),
+    $head = exports.$head = $('head'),
     $window = exports.$window = $(window),
     $top = exports.$top = $('#top'),
     $siteheader = exports.$siteheader = $('#dhr-header'),
     $sitemain = exports.$sitemain = $('#dhr-main'),
     $sitefooter = exports.$sitefooter = $('#dhr-footer'),
-    fadeIn = exports.fadeIn = window.location.hash = '#fademode',
+    fadeIn = exports.fadeIn = window.location.hash === '#fademode',
     isDev = exports.isDev = window.location.hostname === 'localhost',
     easeOutBack = exports.easeOutBack = [0.0755, 0.985, 0.325, 1.07];
 
@@ -339,20 +340,7 @@ var $top = $('#top'),
 var homevideo = exports.homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
 
 var pageOutDuration = 500,
-    isHomePage = _globals.$body.hasClass('dhr-currentpage-index');
-
-//animation prep stuff / on domready
-// const $spltels = $('.dhr-preheadline, .dhr-sectionheadline, .dhr-mainheadline'),
-// 			splttxt = new SplitText($spltels, {type:'lines'});
-
-// const unwrapSplitText = (elements) => {
-// 	elements.forEach((item, i) => $(item).unwrap());
-// };
-
-// splttxt.lines.forEach((item, i) => {
-// 	$(item).wrap('<div class="dhr-splttxt-line"></div>').css({opacity:0});
-// });
-
+    isHomePage = _globals.$body.hasClass('dhr-currentpage-index') || $('#dhr-episodes-list').length;
 
 //internal links - on navigate away
 var $transitionlinks = $('a[data-page-transition]');
@@ -379,37 +367,11 @@ $transitionlinks.click(function (event) {
 	}, pageOutDuration);
 });
 
-// $window.on('popstate', (e) => {
-// 	e.preventDefault();
-// 	if (window.Modernizr.history) {
-// 		window.history.back();
-// 	}
-// });
-
-
 //on page fully loaded
 var onFullPageload = function onFullPageload() {
 
 	_globals.$body.addClass('is-fullyloaded');
 	$top.velocity('scroll', { duration: 50 });
-
-	// splttxt.lines.forEach((item, index) => {
-	// 	$(item).velocity({
-	// 		translateY:['0px', '50px'], 
-	// 		opacity:[1, 0]
-	// 	}, {
-	// 		easing:'easeOutQaurt', 
-	// 		duration:500, 
-	// 		delay:100*index,
-	// 		complete: () => {
-	// 			if (index === splttxt.lines.length-1) {
-	// 				unwrapSplitText(splttxt.lines);
-	// 				splttxt.revert();
-	// 			}
-	// 		}
-	// 	});
-	// });
-
 
 	$loadscreen.velocity('transition.fadeOut', { duration: 400, delay: 20, complete: function complete() {} });
 
@@ -670,7 +632,9 @@ var _emailSubscribe = __webpack_require__(1);
 var _contactModal = __webpack_require__(2);
 
 var $form = $('#dhr-contact-form');
-var $fields = $form.find('[name^="fields["]');
+
+var $fields = $form.find('[data-required]');
+
 var $emailInput = $('#dhr-contact-email-input');
 var $submitBtn = $form.find('[type="submit"]');
 var $finalSuccessMsg = $('.dhr-contactmodal--success');
