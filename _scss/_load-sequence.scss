@@ -62,8 +62,7 @@ $inview_transition_ease: $ease-out-quart;
 
 // [data-inview="fade-up-in"] {
 // 	opacity: 0;
-// 	transform: translateY(-50px);
-// 	transform: translateY(-3em);
+// 	transform: translateY(-40px);
 // 	transition: opacity $inview_transition_duration linear, transform $inview_transition_duration $inview_transition_ease;
 // 	transition-delay: $inview_transition_delay;
 

@@ -84,6 +84,7 @@ var $body = exports.$body = $('body'),
     $siteheader = exports.$siteheader = $('#dhr-header'),
     $sitemain = exports.$sitemain = $('#dhr-main'),
     $sitefooter = exports.$sitefooter = $('#dhr-footer'),
+    fadeIn = exports.fadeIn = window.location.hash = '#fademode',
     isDev = exports.isDev = window.location.hostname === 'localhost',
     easeOutBack = exports.easeOutBack = [0.0755, 0.985, 0.325, 1.07];
 
@@ -390,7 +391,6 @@ $transitionlinks.click(function (event) {
 var onFullPageload = function onFullPageload() {
 
 	_globals.$body.addClass('is-fullyloaded');
-
 	$top.velocity('scroll', { duration: 50 });
 
 	// splttxt.lines.forEach((item, index) => {
@@ -411,10 +411,12 @@ var onFullPageload = function onFullPageload() {
 	// });
 
 
-	$loadscreen.velocity('transition.fadeOut', { duration: 250, delay: 20, complete: function complete() {
-			_scrollTicker.inViewTicker.call();
-			_scrollTicker.ticker.call();
-		} });
+	$loadscreen.velocity('transition.fadeOut', { duration: 400, delay: 20, complete: function complete() {} });
+
+	window.setTimeout(function () {
+		_scrollTicker.inViewTicker.call();
+		_scrollTicker.ticker.call();
+	}, 150);
 
 	if (isHomePage) {
 		homevideo.play();
@@ -451,6 +453,7 @@ var bps = new _breakpoints2.default();
 
 //inview class toggling
 var $inviewels = $('[data-inview]');
+var $footerForm = $('.dhr-footer--form');
 
 var inViewTicker = exports.inViewTicker = function inViewTicker() {
 	$inviewels.each(function () {
@@ -459,6 +462,14 @@ var inViewTicker = exports.inViewTicker = function inViewTicker() {
 			$t.addClass('is-inview');
 		}
 	});
+};
+
+//footer form
+var formInView = null;
+var footerFormFocused = null;
+
+var footerInView = function footerInView() {
+	if ($footerForm.inView()) {} else {}
 };
 
 // header behavior
@@ -608,11 +619,13 @@ $lockedepisodes.each(function (index, item) {
 		sec: digitPrefixer(Math.floor(timeDiff % cdMin / cdSec))
 	};
 
+	var timeoutVal = 1000 / $lockedepisodes.length * index;
+
 	if (timeDiff >= 0) {
 
 		window.setTimeout(function () {
 			return doHtmlUpdate($html, until);
-		}, 150 * index);
+		}, timeoutVal);
 
 		$(document).on('clocktick', function () {
 			timeDiff = unlockepoch - currentepoch;
@@ -624,7 +637,7 @@ $lockedepisodes.each(function (index, item) {
 			if (timeDiff >= 0) {
 				window.setTimeout(function () {
 					return doHtmlUpdate($html, until);
-				}, 150 * index);
+				}, timeoutVal);
 			} else {
 				$countdown.remove();
 			}
@@ -712,7 +725,6 @@ var dripData = {
 			$submitBtn.removeAttr('disabled');
 			$form.removeClass('is-submitting');
 			hasBeenSubmitted = true;
-
 			formSuccessFinal();
 		} else {
 			dripOnFail.call(event);
@@ -729,8 +741,6 @@ var onFormSubmit = function onFormSubmit(dripObject) {
 		//dripOnFail();
 		$form.removeClass('is-submitting');
 		hasBeenSubmitted = true;
-		formSuccessFinal();
-		return;
 
 		(0, _emailSubscribe.pushToDrip)(dripObject);
 	} else {
@@ -832,7 +842,8 @@ if ($carousel.length) {
 		cellSelector: ".cell-img",
 		prevNextButtons: false,
 		contain: true,
-		lazyLoad: true
+		lazyLoad: true,
+		imagesLoaded: true
 	}).data('flickity');
 
 	_globals.$window.on('load', function () {
@@ -845,8 +856,8 @@ var $nextEpBlock = $('.dhr-nextepisode');
 var $nextEpAnchor = $('.dhr-nextepisode > a');
 
 $nextEpAnchor.on('click', function (event) {
-	event.preventDefault();
 	if ($nextEpBlock.hasClass('is-comingsoon')) {
+		event.preventDefault();
 		_globals.$sitefooter.velocity('scroll', { duration: 400, easing: 'easeOutQuart', offset: 100, complete: function complete() {
 				_globals.$sitefooter.find('input[type="email"]').focus();
 			} });

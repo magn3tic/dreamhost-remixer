@@ -26,7 +26,8 @@
       }
 
       ~ .dark-mark-over svg {
-        transform: scale(0.98);
+        transform: scale(0.95) rotate(9deg);
+        opacity: 0.65;
       }
     }
   }
@@ -53,14 +54,19 @@
   transform: translate(-50%, -50%);
 
   svg {
-    transition: transform .5s $ease-out-circ;
+    transition: all .5s $ease-out-circ;
   }
 }
 
 .light-mark-under {
   width: 80%;
   path {
-    fill: rgba($white, 0.05);
+    fill: rgba($white, 0.035);
+  }
+  .no-backgroundblendmode & {
+    path {
+      fill: rgba($white,0.1);
+    }
   }
 }
 

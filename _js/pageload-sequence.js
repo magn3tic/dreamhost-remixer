@@ -73,9 +73,7 @@ $transitionlinks.click(function(event) {
 const onFullPageload = () => {
 	
 	$body.addClass('is-fullyloaded');
-
 	$top.velocity('scroll', {duration:50});
-
 
 	// splttxt.lines.forEach((item, index) => {
 	// 	$(item).velocity({
@@ -95,10 +93,12 @@ const onFullPageload = () => {
 	// });
 
 
-	$loadscreen.velocity('transition.fadeOut', {duration:250, delay:20, complete: () => {
+	$loadscreen.velocity('transition.fadeOut', {duration:400, delay:20, complete: () => {}});
+
+	window.setTimeout(() => {
 		inViewTicker.call();
 		ticker.call();
-	}});
+	}, 150);
 
 	
 	if (isHomePage) {

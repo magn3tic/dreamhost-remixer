@@ -34,13 +34,12 @@
 
 
 	<section class="dhr-block dhr-introblock dhr-block--light">
-
 		<div class="inner">
 			
 			<div class="inner-medium dhr-block--content" data-inview="children">
 				<h5 class="dhr-preheadline">Remixer by Dreamhost</h5>
 				<h3 class="dhr-sectionheadline">Building your professional site has never been so simple.</h3>
-				<p>If you’re anything like us, you’re tired of all the frustrations and complexities of website-builders. That’s why we built Remixer. Remixer uses an intuitive click-to-edit interface that helps you build your site quickly and easily. Watch the tutorial above to see <a href="{{globals.remixer_signup_url}}">Remixer</a> in action.</p>
+				<p>If you’re anything like us, you’re tired of all the frustrations and complexities of website builders. That’s why we built Remixer. Remixer uses an intuitive click-to-edit interface that helps you build your site quickly and easily. Watch the tutorial above to see <a href="{{globals.remixer_signup_url}}">Remixer</a> in action.</p>
 				<div><a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a></div>
 			</div>
 		</div>
@@ -64,7 +63,7 @@
 		<div class="inner">
 			<div class="inner-large">
 				
-				<figure class="dhr-oneimg--fig">
+				<figure class="dhr-oneimg--fig" data-inview="children">
 					<img src="assets/img/login-screenshot.jpg" alt="dreamhost remixer features">
 					<span class="dhr-baseplate dhr-baseplate--blue"></span>
 				</figure>
@@ -84,11 +83,10 @@
 					<img src="assets/img/feature-item-{{@index}}.jpg" alt="{{this.subtitle}}">
 					<span class="dhr-baseplate dhr-baseplate--dark"></span>
 				</figure>
-				<div class="dhr-featureitem--content">
-					<h5 data-inview="fade-up-in" class="dhr-preheadline">{{this.subtitle}}</h5>
-					<h3 data-inview="fade-up-in" class="dhr-sectionheadline">{{this.title}}</h3>
-					<p data-inview="fade-up-in">{{this.body}}</p>
-					<div data-inview="fade-up-in" class="dhr-featureitem--btn">
+				<div class="dhr-featureitem--content" data-inview="children">
+					<h3 class="dhr-sectionheadline">{{this.title}}</h3>
+					<p>{{this.body}}</p>
+					<div class="dhr-featureitem--btn">
 						<a class="dhr-button" href="{{this.link}}" data-text="{{this.btntext}}">{{this.btntext}}</a>
 					</div>
 				</div>
@@ -115,7 +113,7 @@
 				<h3 class="dhr-sectionheadline">Don't take our word for it. Hear from the "Masters" themselves.</h3>
 
 				<blockquote>"Word of mouth can only go so far. As my business grows, I need a place to showcase what I’m doing. Remixer has allowed me to quickly put up a site and share my passion."</blockquote>
-				<cite>Trish Myers - Freelance Chef</cite>
+				<cite>- Trish Myers, Freelance Chef</cite>
 				<div class="dhr-testify--btns">
 					<a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
 				</div>
@@ -125,7 +123,7 @@
 					<ul data-social-links>
 
 						<li>
-							<a href="mailto:?subject=Dreamhost Remixer&body=%%url%%" class="btn-social">
+							<a href="mailto:?subject=Dreamhost Remixer&body=%%url%%"s>
 								<span class="sr-only">Share via Email</span>
 								<i class="icon-mail" aria-hidden="true"></i>
 							</a>

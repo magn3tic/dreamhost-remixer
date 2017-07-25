@@ -72,9 +72,11 @@ $lockedepisodes.each((index, item) => {
 				sec: digitPrefixer(Math.floor((timeDiff%cdMin)/cdSec))
 			};
 
+	const timeoutVal = (1000/$lockedepisodes.length)*index;
+
 	if (timeDiff >= 0) {
 		
-		window.setTimeout(() => doHtmlUpdate($html, until), 150*index);
+		window.setTimeout(() => doHtmlUpdate($html, until), timeoutVal);
 
 		$(document).on('clocktick', () => {
 			timeDiff = unlockepoch - currentepoch;
@@ -84,7 +86,7 @@ $lockedepisodes.each((index, item) => {
 			until.sec = digitPrefixer(Math.floor((timeDiff%cdMin)/cdSec));
 
 			if (timeDiff >= 0) {
-				window.setTimeout(() => doHtmlUpdate($html, until), 150*index);
+				window.setTimeout(() => doHtmlUpdate($html, until), timeoutVal);
 			} else {
 				$countdown.remove()
 			}
@@ -102,7 +104,7 @@ $lockedepisodes.each((index, item) => {
 			
 		$this.removeClass('dhr-episodeitem--locked');
 		$countdown.remove();
-		
+
 	}
 
 });

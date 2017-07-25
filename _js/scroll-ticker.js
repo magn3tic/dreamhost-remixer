@@ -8,15 +8,30 @@ const bps = new Breakpoints();
 
 //inview class toggling
 const $inviewels = $('[data-inview]');
+const $footerForm = $('.dhr-footer--form');
 
 
-export  const inViewTicker = () => {
+export const inViewTicker = () => {
 	$inviewels.each(function() {
 		const $t = $(this);
 		if ($t.inView(true)) {
 			$t.addClass('is-inview');
 		}
 	});
+};
+
+
+
+
+
+//footer form
+const formInView = null;
+const footerFormFocused = null;
+
+const footerInView = () => {
+	if ($footerForm.inView()) {	
+	} else {
+	}
 };
 
 

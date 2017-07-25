@@ -11,12 +11,12 @@ if ($carousel.length) {
 		cellSelector: ".cell-img",
 		prevNextButtons: false,
 		contain: true,
-		lazyLoad: true
+		lazyLoad: true,
+		imagesLoaded: true
 	}).data('flickity');
 
 	$window.on('load', () => flkty.reloadCells());
 }
-
 
 
 
@@ -26,8 +26,8 @@ const $nextEpBlock = $('.dhr-nextepisode');
 const $nextEpAnchor = $('.dhr-nextepisode > a');
 
 $nextEpAnchor.on('click', (event) => {
-	event.preventDefault();
 	if ($nextEpBlock.hasClass('is-comingsoon')) {
+		event.preventDefault();
 		$sitefooter.velocity('scroll', {duration:400, easing:'easeOutQuart', offset:100, complete: () => {
 			$sitefooter.find('input[type="email"]').focus();
 		}});

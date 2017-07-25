@@ -65,7 +65,6 @@ const dripData = {
 			$submitBtn.removeAttr('disabled');
 			$form.removeClass('is-submitting');
 			hasBeenSubmitted = true;
-
 			formSuccessFinal();
 			
 		} else {
@@ -86,8 +85,6 @@ const onFormSubmit = (dripObject) => {
 		//dripOnFail();
 		$form.removeClass('is-submitting');
 		hasBeenSubmitted = true;
-		formSuccessFinal();
-		return;
 
 		pushToDrip(dripObject);
 
