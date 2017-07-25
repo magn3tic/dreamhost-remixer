@@ -6,7 +6,7 @@
 		"dreamhost_main": "https://www.dreamhost.com/"
 	},
 
-	"seo": {
+	"_seo": {
 		"features": {
 			"title": "Features",
 			"desc": ""

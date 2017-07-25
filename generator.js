@@ -29,12 +29,7 @@ loadPages = function(dir) {
 		siteData.current_page_file = pages[i];
 		siteData.current_page_name = name;
 		siteData.debug = name === 'debug' ? true : false;
-
-		console.log(name);
-
-		console.log(siteData.seo[name]);
-
-		siteData.seo = siteData.seo[name] ? siteData.seo[name] : '';
+		siteData.seo = siteData._seo[name] ? siteData._seo[name] : '';
 		
 		var html = template(siteData);
 		fs.writeFile('dist/'+name+'.html', html, function(err) {
