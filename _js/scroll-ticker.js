@@ -10,13 +10,28 @@ const bps = new Breakpoints();
 const $inviewels = $('[data-inview]');
 const $footerForm = $('.dhr-footer--form');
 
+let elsInView = [],
+		inviewFinished = false;
 
 export const inViewTicker = () => {
-	$inviewels.each(function() {
+	if (inviewFinished) {
+		return false;
+	}
+
+	$inviewels.each(function(index) {
 		const $t = $(this);
+		
 		if ($t.inView(true)) {
 			$t.addClass('is-inview');
-		}
+			
+			if (elsInView.indexOf(index) === -1) {
+				elsInView.push(index);
+			}
+
+			if (elsInView.length === $inviewels.length) {
+				inviewFinished = true;
+			}
+		} 
 	});
 };
 

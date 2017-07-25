@@ -417,11 +417,27 @@ var bps = new _breakpoints2.default();
 var $inviewels = $('[data-inview]');
 var $footerForm = $('.dhr-footer--form');
 
+var elsInView = [],
+    inviewFinished = false;
+
 var inViewTicker = exports.inViewTicker = function inViewTicker() {
-	$inviewels.each(function () {
+	if (inviewFinished) {
+		return false;
+	}
+
+	$inviewels.each(function (index) {
 		var $t = $(this);
+
 		if ($t.inView(true)) {
 			$t.addClass('is-inview');
+
+			if (elsInView.indexOf(index) === -1) {
+				elsInView.push(index);
+			}
+
+			if (elsInView.length === $inviewels.length) {
+				inviewFinished = true;
+			}
 		}
 	});
 };
