@@ -179,11 +179,12 @@
 .dhr-single--imagegroup-bg {
 	position: absolute; z-index: -1;
 	top:50%; left:-50%; width:200%;
-	background-size: 100% auto;
 	transform: translateY(-50%);
 
 	&img {
-		display:block;
+		display:block !important; //override velocity's inline-block default
+		background-size: 100% auto;
+		background-position: center center;
 		height:0;
 		padding-bottom: (101/1397)*100%;
 	}

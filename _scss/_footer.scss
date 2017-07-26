@@ -340,6 +340,18 @@ html.no-generatedcontent a:hover {
 			margin-right: 1em;
 		}
 	}
+
+	.dhr-footer--logo {
+		margin-bottom: 1.5em;
+	}
+
+
+	.dhr-footer--backtop {
+		margin: 0;
+		position: absolute; z-index:299;
+		right:0;
+	}
+
 }
 
 
@@ -384,11 +396,7 @@ html.no-generatedcontent a:hover {
 		padding: 10em 0 5em;
 	}
 	
-	.dhr-footer--backtop {
-		margin: 0;
-		position: absolute; z-index:299;
-		right:0;
-	}
+	
 	.dhr-footer--social {
 		padding-top: 2em;
 	}
