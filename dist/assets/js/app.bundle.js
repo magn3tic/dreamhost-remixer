@@ -829,15 +829,29 @@ var _pageloadSequence = __webpack_require__(2);
 var _emailSubscribe = __webpack_require__(1);
 
 //background video hero video fallback
-$(document).ready(function () {
-	if (!window.Modernizr.videoautoplay) {
-		var $bgvideo = $('#dhr-home-videoel');
-		var bgimg = $bgvideo.attr('poster');
+var backgroundVideoFallback = function backgroundVideoFallback() {
+	var $bgvideo = $('#dhr-home-videoel');
+	var bgimg = $bgvideo.attr('poster');
+	$bgvideo.parent('.dhr-fixedhero--outer').html('').css({
+		backgroundImage: 'url(' + bgimg + ')'
+	}).addClass('is-fallback');
+};
 
-		$bgvideo.parent('.dhr-fixedhero--outer').html('').css({
-			backgroundImage: 'url(' + bgimg + ')'
-		}).addClass('is-fallback');
-	}
+var videoFallbackRan = false;
+var mdzChecker = null;
+if (Modernizr.videoautoplay === false) {
+	backgroundVideoFallback();
+} else if (Modernizr.videoautoplay === undefined) {
+	mdzChecker = setInterval(function () {
+		if (Modernizr.videoautoplay !== undefined && Modernizr.videoautoplay !== true && !videoFallbackRan) {
+			backgroundVideoFallback();
+			$(undefined).trigger('modernizr.finished');
+			videoFallbackRan = true;
+		}
+	}, 5);
+}
+$(document).on('modernizr.finished', function () {
+	clearInterval(mdzChecker);
 });
 
 //fallback for html5/plyr videos (force the native player)
@@ -1446,7 +1460,6 @@ var _globals = __webpack_require__(0);
 
 //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
-
 
 // simulate ios safari's autoplay disability:
 // window.Modernizr.videoautoplay = false;

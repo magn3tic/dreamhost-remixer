@@ -7,15 +7,29 @@ import {trackFacebookEvent} from './email-subscribe.js';
 
 
 //background video hero video fallback
-$(document).ready(() => {
-	 if (!window.Modernizr.videoautoplay) {
-		const $bgvideo = $('#dhr-home-videoel');
-		const bgimg = $bgvideo.attr('poster');
+const backgroundVideoFallback = () => {
+	const $bgvideo = $('#dhr-home-videoel');
+	const bgimg = $bgvideo.attr('poster');
+	$bgvideo.parent('.dhr-fixedhero--outer').html('').css({
+		backgroundImage: 'url('+bgimg+')'
+	}).addClass('is-fallback');
+};
 
-		$bgvideo.parent('.dhr-fixedhero--outer').html('').css({
-			backgroundImage: 'url('+bgimg+')'
-		}).addClass('is-fallback');
-	}
+let videoFallbackRan = false;
+let mdzChecker = null;
+if (Modernizr.videoautoplay === false) {
+ 	backgroundVideoFallback();
+} else if (Modernizr.videoautoplay === undefined) {
+	mdzChecker = setInterval(() => {
+		if (Modernizr.videoautoplay !== undefined && Modernizr.videoautoplay !== true && !videoFallbackRan) {
+			backgroundVideoFallback();
+			$(this).trigger('modernizr.finished');
+			videoFallbackRan = true;
+		}
+	}, 5);
+}
+$(document).on('modernizr.finished', () => {
+	clearInterval(mdzChecker);
 });
 
 

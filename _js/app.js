@@ -1,7 +1,6 @@
 //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
 
-
 // simulate ios safari's autoplay disability:
 // window.Modernizr.videoautoplay = false;
 // $('html').addClass('no-videoautoplay');

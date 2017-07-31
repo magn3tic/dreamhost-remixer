@@ -1370,10 +1370,6 @@ a.dhr-button, button.dhr-button {
   margin-right: auto;
   width: 10em; }
 
-@media (max-width: 581px) {
-  .dhr-currentpage-features .dhr-fixedhero--img {
-    background-position: center center; } }
-
 @media (min-width: 580px) {
   .dhr-hero--owner {
     font-size: 100%; } }
