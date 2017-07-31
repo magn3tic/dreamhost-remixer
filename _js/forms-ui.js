@@ -1,7 +1,7 @@
 
 
 import {$window, $body, isDev} from './globals.js';
-import {pushToDrip} from './email-subscribe.js';
+import {pushToDrip, trackFacebookEvent} from './email-subscribe.js';
 import {$modalstaggeritems} from './contact-modal.js';
 
 
@@ -69,6 +69,8 @@ const dripData = {
 			hasBeenSubmitted = true;
 			formSuccessFinal();
 			
+			trackFacebookEvent('ContactUs_Form');
+
 		} else {
 			dripOnFail.call(event);
 		}

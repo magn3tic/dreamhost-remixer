@@ -87,7 +87,12 @@ var $body = exports.$body = $('body'),
     $sitefooter = exports.$sitefooter = $('#dhr-footer'),
     fadeIn = exports.fadeIn = window.location.hash === '#fademode',
     isDev = exports.isDev = window.location.hostname === 'localhost',
+    needsVideoSwap = exports.needsVideoSwap = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
     easeOutBack = exports.easeOutBack = [0.0755, 0.985, 0.325, 1.07];
+
+var getVideoHtml = exports.getVideoHtml = function getVideoHtml(poster, videopath) {
+						return '<video class="dhr-native-video" poster="' + poster + '" controls>\n\t\t\t\t    <source src="' + videopath + '.webm" type="video/webm">\n\t\t\t\t\t\t<source src="' + videopath + '.mp4" type="video/mp4">\n\t\t\t\t\t\t<source src="' + videopath + '.ogv" type="video/ogg">\n\t\t\t\t\t</video>';
+};
 
 /***/ }),
 /* 1 */
@@ -99,12 +104,28 @@ var $body = exports.$body = $('body'),
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.$emailInput = exports.pushToDrip = undefined;
+exports.$emailInput = exports.pushToDrip = exports.trackFacebookEvent = undefined;
 
 var _globals = __webpack_require__(0);
 
 var lastSubscriber = false;
 var isSubmitting = false;
+
+var trackFacebookEvent = exports.trackFacebookEvent = function trackFacebookEvent(eventname) {
+	var val = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1.00;
+	var currency = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'USD';
+
+	if (eventname.length > 0) {
+		if (window.fbq) {
+			fbq('trackCustom', eventname, {
+				value: val,
+				currency: currency
+			});
+		} else {
+			console.error('The Facebook (fbq) tracking library isn not installed!');
+		}
+	}
+};
 
 var pushToDrip = exports.pushToDrip = function pushToDrip(obj) {
 	if (window._dcq && window._dcs) {
@@ -124,6 +145,8 @@ var dripSuccessCallback = function dripSuccessCallback(event) {
 		$submitBtn.removeAttr('disabled');
 
 		lastSubscriber = event.email;
+
+		trackFacebookEvent('Signup_Stories');
 
 		$(document).one('click', function () {
 			$footerForm.removeClass('is-submitted-success');
@@ -326,7 +349,7 @@ if (window.location.hash === '#contact') {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.homevideo = undefined;
+exports.isHomePage = exports.homevideo = undefined;
 
 var _globals = __webpack_require__(0);
 
@@ -339,8 +362,9 @@ var $top = $('#top'),
 
 var homevideo = exports.homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
 
-var pageOutDuration = 500,
-    isHomePage = _globals.$body.hasClass('dhr-currentpage-index') || $('#dhr-episodes-list').length;
+var pageOutDuration = 500;
+
+var isHomePage = exports.isHomePage = _globals.$body.hasClass('dhr-currentpage-index') || $('#dhr-episodes-list').length;
 
 //internal links - on navigate away
 var $transitionlinks = $('a[data-page-transition]');
@@ -690,6 +714,8 @@ var dripData = {
 			$form.removeClass('is-submitting');
 			hasBeenSubmitted = true;
 			formSuccessFinal();
+
+			(0, _emailSubscribe.trackFacebookEvent)('ContactUs_Form');
 		} else {
 			dripOnFail.call(event);
 		}
@@ -797,6 +823,47 @@ Object.defineProperty(exports, "__esModule", {
 exports.mainNavOpen = undefined;
 
 var _globals = __webpack_require__(0);
+
+var _pageloadSequence = __webpack_require__(3);
+
+var _emailSubscribe = __webpack_require__(1);
+
+//background video hero video fallback
+$(document).ready(function () {
+	if (!window.Modernizr.videoautoplay) {
+		var $bgvideo = $('#dhr-home-videoel');
+		var bgimg = $bgvideo.attr('poster');
+
+		$bgvideo.parent('.dhr-fixedhero--outer').html('').css({
+			backgroundImage: 'url(' + bgimg + ')'
+		}).addClass('is-fallback');
+	}
+});
+
+//fallback for html5/plyr videos (force the native player)
+if (_globals.needsVideoSwap) {
+	_globals.$body.addClass('has-mobile-ua');
+
+	if (_pageloadSequence.isHomePage) {
+		var $el = $('#dhr-hero-embedtarget');
+		var videoHtml = '<div>' + (0, _globals.getVideoHtml)($el.data('poster'), $el.data('video')) + '</div>';
+		var $heroplay = $('.dhr-hero--play');
+
+		$heroplay.addClass('has-fallback').html(videoHtml).find('video').on('click', function () {
+			return (0, _emailSubscribe.trackFacebookEvent)($el.data('facebook-event'));
+		});
+	} else {
+		var $vidcard = $('.dhr-videocard');
+		var $vidlink = $vidcard.find('a[data-video]');
+		var _$el = $($vidlink.data('video-target'));
+		var vidcardimg = $vidcard.find('img').attr('src');
+		var _videoHtml = '<div style="background-image:url(' + vidcardimg + ')">' + (0, _globals.getVideoHtml)(_$el.data('poster'), _$el.data('video')) + '</div>';
+
+		$vidcard.addClass('has-fallback').html(_videoHtml).find('video').on('click', function () {
+			return (0, _emailSubscribe.trackFacebookEvent)(_$el.data('facebook-event'));
+		});
+	}
+}
 
 //single episode carousels
 var $carousel = $('.dhr-episode-carousel');
@@ -1130,13 +1197,14 @@ $.centeredPopup = function (options) {
 
 var _globals = __webpack_require__(0);
 
+var _emailSubscribe = __webpack_require__(1);
+
 var _pageloadSequence = __webpack_require__(3);
 
 var $homeherotop = $('#dhr-hero-top'),
     $homeherobot = $('#dhr-hero-bottom'),
     $episodelist = $('#dhr-episode-list'),
-    $playbtns = $('a[data-video]'),
-    isHomePage = _globals.$body.hasClass('dhr-currentpage-index');
+    $playbtns = $('a[data-video]');
 
 var dismissBeforeEnd = function dismissBeforeEnd($element, callback) {
 	$element.velocity('transition.fadeOut', { duration: 650 });
@@ -1152,10 +1220,13 @@ var isPlaying = false;
 
 $playbtns.each(function (index) {
 
+	if (_globals.needsVideoSwap) return;
+
 	var $t = $(this),
 	    $target = $($t.data('video-target')),
 	    $targetparent = $target.parent('.dhr-fluidvideo'),
 	    videopath = $target.data('video'),
+	    posterImg = $target.data('poster'),
 	    pageUrl = $target.data('link');
 
 	var $closebtn = $('<button id="dhr-videoclose-' + index + '"><i class="icon-cancel" aria-hidden="true"></i><span class="sr-only">Close</span></button>'),
@@ -1176,7 +1247,7 @@ $playbtns.each(function (index) {
 		e.preventDefault();
 		if ($target.hasClass('velocity-animating')) return;
 
-		var videoHtml = '<video>\n\t\t\t<source src="' + videopath + '.webm" type="video/webm">\n\t\t\t<source src="' + videopath + '.mp4" type="video/mp4">\n\t\t\t<source src="' + videopath + '.ogv" type="video/ogg">\n\t\t</video>';
+		var videoHtml = '<video width="1600" height="900" controls poster="' + posterImg + '">\n\t\t\t<source src="' + videopath + '.webm" type="video/webm">\n\t\t\t<source src="' + videopath + '.mp4" type="video/mp4">\n\t\t\t<source src="' + videopath + '.ogv" type="video/ogg">\n\t\t</video>';
 
 		_globals.$body.removeClass('is-videoended').addClass('is-playingtriggered');
 		$video = $(videoHtml);
@@ -1184,11 +1255,11 @@ $playbtns.each(function (index) {
 
 		//plyr opts/events setup
 		var vidplyr = window.plyr.setup($video[0], {
-			controls: ['play', 'progress', 'mute', 'volume', 'fullscreen'],
-			volume: 8
+			controls: ['play', 'progress', 'mute', 'volume', 'fullscreen']
 		}),
 		    $plyrEl = $target.find('.plyr--video');
 		plyrRef = vidplyr[0];
+
 		plyrRef.on('ready', function (event) {
 			isPlayReady = true;
 			if (!isPlaying) {
@@ -1196,9 +1267,10 @@ $playbtns.each(function (index) {
 				isPlaying = true;
 			}
 		});
+
 		plyrRef.on('ended', function (event) {
 			_globals.$body.addClass('is-videoended');
-			if (isHomePage) {
+			if (_pageloadSequence.isHomePage) {
 				dismissBeforeEnd($plyrEl, function () {
 					return window.location.replace(pageUrl);
 				});
@@ -1213,31 +1285,28 @@ $playbtns.each(function (index) {
 		    isTaller = expectedHeight >= heightThreshold;
 
 		//home page
-		if (isHomePage) {
+		if (_pageloadSequence.isHomePage) {
 
 			$targetparent.velocity('scroll', {
 				offset: !isTaller ? -((_globals.$window.height() - expectedHeight) / 2) : 0,
 				duration: 500,
 				complete: function complete() {
-					return $target.velocity('slideDown', { duration: 1000, easing: 'easeOutQuart' });
-				}
-			});
-
-			$plyrEl.velocity({
-				translateY: ['0%']
-			}, {
-				duration: 700,
-				delay: 1150,
-				easing: 'easeOutCirc',
-				begin: function begin() {
-					if (plyrRef.isReady()) {
-						plyrRef.play();
-						isPlaying = true;
-					}
-				},
-				complete: function complete() {
-					_pageloadSequence.homevideo.pause();
-					_globals.$body.addClass('is-playingvideo');
+					$target.velocity('slideDown', {
+						duration: 1000,
+						easing: 'easeOutQuart',
+						begin: function begin() {
+							if (plyrRef && plyrRef.isReady()) {
+								plyrRef.play();
+								isPlaying = true;
+							}
+						},
+						complete: function complete() {
+							if (Modernizr.videoautoplay) {
+								_pageloadSequence.homevideo.pause();
+							}
+							_globals.$body.addClass('is-playingvideo');
+						}
+					});
 				}
 			});
 
@@ -1267,7 +1336,7 @@ $playbtns.each(function (index) {
 			console.log('Height Diff:', heightDiff);
 			console.log(sizeUpdate);
 
-			if (isHomePage) {
+			if (_pageloadSequence.isHomePage) {
 				$targetparent.css({ width: sizeUpdate + '%', marginLeft: 'auto', marginRight: 'auto' });
 			} else {
 				$target.css({ width: sizeUpdate + '%', marginLeft: 'auto', marginRight: 'auto' });
@@ -1277,6 +1346,9 @@ $playbtns.each(function (index) {
 		}
 
 		firstOpen = false;
+
+		//this will need to be dynamic (data-attr in dom)
+		(0, _emailSubscribe.trackFacebookEvent)('Jess_Leather');
 	});
 
 	$closebtn.on('click', function () {
@@ -1287,7 +1359,7 @@ $playbtns.each(function (index) {
 		plyrRef.pause();
 
 		//home player
-		if (isHomePage) {
+		if (_pageloadSequence.isHomePage) {
 			$target.velocity('slideUp', {
 				duration: 750,
 				easing: 'easeOutCirc',
@@ -1296,7 +1368,10 @@ $playbtns.each(function (index) {
 					plyrRef = null;
 					$target.find('video').remove();
 					isPlaying = false;
-					_pageloadSequence.homevideo.play();
+
+					if (Modernizr.videoautoplay) {
+						_pageloadSequence.homevideo.play();
+					}
 				}
 			});
 
@@ -1329,7 +1404,7 @@ $playbtns.each(function (index) {
 
 
 $(document).on('click', function () {
-	if (!isPlaying) return;
+	if (!isPlaying || _globals.needsVideoSwap) return;
 	$('button[id^="dhr-videoclose-"]').trigger('click');
 });
 
@@ -1371,6 +1446,11 @@ var _globals = __webpack_require__(0);
 
 //plugins.min.js is loaded before the webpack bundle
 //it is a bundle of jquery & plugins because some don't yet support es6 module
+
+
+// simulate ios safari's autoplay disability:
+// window.Modernizr.videoautoplay = false;
+// $('html').addClass('no-videoautoplay');
 
 
 if (window.chrome) {

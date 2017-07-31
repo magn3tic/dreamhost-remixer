@@ -113,7 +113,7 @@
 	
 	.dhr-header--brand {
 		padding: .35em 0 0;
-		width: 35%;
+		width: 30%;
 		float: left;
 		a {
 			width: 12em;
@@ -127,7 +127,7 @@
 	.dhr-header--menu {
 		background: transparent;
 		position: relative;
-		width: 65%;
+		width: 70%;
 		float: right;
 		text-align: right;
 		display: block !important;
@@ -137,6 +137,7 @@
 		}
 		ul > li {
 			display: inline-block;
+			font-size: .9em;
 
 			a {
 				padding: .2em;
@@ -199,7 +200,7 @@
 		}
 		ul > li {
 			margin-left: 1em;
-			
+			font-size: 1em;
 		}
 	}
 

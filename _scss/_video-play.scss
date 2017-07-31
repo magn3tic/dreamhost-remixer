@@ -137,16 +137,24 @@ a {
 
 // VIDEO PLAYER MODS --------------------------------------//
 
-// .plyr {
-// 	video {
-// 		border-radius: $global-border-radius !important;
-// 	}
+.plyr {
+	video {
+		border-radius: 4px !important;
+	}
 
-// 	.plyr__video-wrapper {
-// 		border-radius: $global-border-radius !important;
-// 	}
-// }
+	.plyr__video-wrapper {
+		border-radius: 4px !important;
+	}
+}
 
+html.no-videoautoplay {
+	.plyr video {
+		display: block;
+		width: 100% !important;
+		max-width:100%;
+		height: auto !important;
+	}
+}
 
 button[id^="dhr-videoclose"] {
 	border:none; outline:none; 

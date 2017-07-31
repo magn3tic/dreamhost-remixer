@@ -3,10 +3,10 @@
 <div class="dhr-fixedhero {{#if autoheight}}dhr-fixedhero--autoheight{{/if}} dhr-fixedhero--has-video">
 	<div class="dhr-main">
 		<div class="dhr-fixedhero--outer">
-			<video autoplay loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="assets/img/poster-master-of-leathercraft.jpg">
-				<source src="assets/vid/leathercraft-background.webm" type="video/webm">
-				<source src="assets/vid/leathercraft-background.mp4" type="video/mp4">
-				<source src="assets/vid/leathercraft-background.ogv" type="video/ogg">
+			<video preload loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="assets/img/poster-master-of-leathercraft.jpg">
+				<source src="/assets/vid/leathercraft-background.webm" type="video/webm">
+				<source src="/assets/vid/leathercraft-background.mp4" type="video/mp4">
+				<source src="/assets/vid/leathercraft-background.ogv" type="video/ogg">
 			</video>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
 			</div>
 			
 			<div class="dhr-fluidvideo">
-				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/leathercraft-full" data-link="master-of-leathercraft.html"></div>
+				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/leathercraft-full" data-poster="assets/img/nothing.gif" data-link="master-of-leathercraft.html" data-facebook-event="Jess_Leather"></div>
 			</div>
 			
 
@@ -104,9 +104,9 @@
 									<span class="dhr-countdown--border"></span>
 								</div>
 							</div>
-							<span class="dhr-episodeitem--icon">
+							<!--<span class="dhr-episodeitem--icon">
 								<i class="icon-play-1" aria-hidden="true"></i>
-							</span>
+							</span>-->
 							<h4>{{this.name}}</h4>
 						</div>
 					</div>

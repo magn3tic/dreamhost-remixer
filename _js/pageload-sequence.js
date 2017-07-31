@@ -1,6 +1,6 @@
 
 //import SplitText from './splittext.js';
-import {$body, $window, easeOutBack, fadeIn} from './globals.js';
+import {$body, $window, easeOutBack, fadeIn, needsVideoSwap} from './globals.js';
 import {inViewTicker, ticker} from './scroll-ticker.js';
 
 
@@ -10,8 +10,9 @@ const $top = $('#top'),
 
 export const homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
 
-const pageOutDuration = 500,
-			isHomePage = $body.hasClass('dhr-currentpage-index') || $('#dhr-episodes-list').length;
+const pageOutDuration = 500;
+
+export const isHomePage = $body.hasClass('dhr-currentpage-index') || $('#dhr-episodes-list').length;
 	
 
 

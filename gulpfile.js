@@ -9,6 +9,7 @@ const gulp = require('gulp'),
 			argv = require('yargs').argv,
 			_if = require('gulp-if'),
 			del = require('del'),
+			qrcode = require('qrcode-terminal'),
 			browsersync = require('browser-sync').create();
 
 const ssg = require('./generator.js');
@@ -93,7 +94,10 @@ const webpackConfig = {
 gulp.task('server', () => {
 	browsersync.init({
 		server: 'dist',
-		files: PATHS.inject
+		files: PATHS.inject,
+		ghostMode: false
+	}, (err, bs) => {
+		qrcode.generate('http://'+bs.utils.devIp[0]+':3000');
 	});
 });
 

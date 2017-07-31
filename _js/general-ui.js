@@ -1,6 +1,49 @@
 
 
-import {$body, $window, $sitefooter} from './globals.js';
+import {$body, $window, $sitefooter, needsVideoSwap, getVideoHtml} from './globals.js';
+import {isHomePage} from './pageload-sequence.js';
+import {trackFacebookEvent} from './email-subscribe.js';
+
+
+
+//background video hero video fallback
+$(document).ready(() => {
+	 if (!window.Modernizr.videoautoplay) {
+		const $bgvideo = $('#dhr-home-videoel');
+		const bgimg = $bgvideo.attr('poster');
+
+		$bgvideo.parent('.dhr-fixedhero--outer').html('').css({
+			backgroundImage: 'url('+bgimg+')'
+		}).addClass('is-fallback');
+	}
+});
+
+
+
+//fallback for html5/plyr videos (force the native player)
+if (needsVideoSwap) {
+	$body.addClass('has-mobile-ua');
+
+	if (isHomePage) {
+		const $el = $('#dhr-hero-embedtarget');
+		const videoHtml = '<div>'+getVideoHtml($el.data('poster'), $el.data('video'))+'</div>';
+		const $heroplay = $('.dhr-hero--play');
+
+		$heroplay.addClass('has-fallback').html(videoHtml)
+			.find('video').on('click', () => trackFacebookEvent($el.data('facebook-event')));
+
+	} else {
+		const $vidcard = $('.dhr-videocard');
+		const $vidlink = $vidcard.find('a[data-video]');
+		const $el = $($vidlink.data('video-target'));
+		const vidcardimg = $vidcard.find('img').attr('src');
+		const videoHtml = '<div style="background-image:url('+vidcardimg+')">'+getVideoHtml($el.data('poster'), $el.data('video'))+'</div>';
+
+		$vidcard.addClass('has-fallback').html(videoHtml)
+			.find('video').on('click', () => trackFacebookEvent($el.data('facebook-event')));
+	}
+}
+
 
 
 //single episode carousels
@@ -17,8 +60,6 @@ if ($carousel.length) {
 
 	$window.on('load', () => flkty.reloadCells());
 }
-
-
 
 
 //next episode blocks

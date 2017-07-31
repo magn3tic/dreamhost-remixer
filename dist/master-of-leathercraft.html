@@ -48,6 +48,17 @@
 	<meta property="og:url" content="">
 	<meta property="og:site_name" content="DreamHost Remixer">
 
+	<script>
+	//facebook tracking js
+	!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+	n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+	document,'script','https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '629608764097562'); // Insert your pixel ID here.
+	fbq('track', 'PageView');
+	</script>
+
 </head>
 <body class="dhr-currentpage-master-of-leathercraft version-blendmoded">
 	<div id="top"></div>
@@ -93,6 +104,9 @@
 							</li>
 							<li>
 								<a href="#contact">Contact</a>
+							</li>
+							<li>
+								<a href="#0">Log In</a>
 							</li>
 						</ul>
 						<a class="dhr-button" href="https://signup.dreamhost.com/remixer/email/" data-text="Try Remixer For Free">Try Remixer For Free</a>
@@ -155,7 +169,7 @@
 		<div class="inner" data-inview="fade-up-in">
 	
 			<div class="dhr-fluidvideo">
-				<div class="dhr-fluidvideo--wrapper" id="dhr-episode-video" data-video="assets/vid/leathercraft-full"></div>
+				<div class="dhr-fluidvideo--wrapper" id="dhr-episode-video" data-video="assets/vid/leathercraft-full" data-poster="/assets/img/nothing.gif" data-facebook-event="Jess_Leather"></div>
 			</div>
 			
 			<div class="dhr-videocard">

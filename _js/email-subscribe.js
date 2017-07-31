@@ -5,6 +5,21 @@ import {$body, $window, isDev} from './globals.js';
 let lastSubscriber = false;
 let isSubmitting = false;
 
+
+export const trackFacebookEvent = (eventname, val=1.00, currency='USD') => {
+	if (eventname.length > 0) {
+		if (window.fbq) {
+			fbq('trackCustom', eventname, {
+		    value: val,
+		    currency: currency
+		  });
+		} else {
+			console.error('The Facebook (fbq) tracking library isn not installed!');
+		}
+	}
+};
+
+
 export const pushToDrip = (obj) => {
 	if (window._dcq && window._dcs) {
 		obj.tags = ['remixer_microsite'];
@@ -23,6 +38,8 @@ const dripSuccessCallback = (event) => {
 		$submitBtn.removeAttr('disabled');
 
 		lastSubscriber = event.email;
+
+		trackFacebookEvent('Signup_Stories');
 
 		$(document).one('click', () => {
 			$footerForm.removeClass('is-submitted-success');

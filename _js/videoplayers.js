@@ -1,14 +1,14 @@
 
-import {$body, $top, $window, $siteheader, easeOutBack} from './globals.js';
+import {$body, $top, $window, $siteheader, easeOutBack, needsVideoSwap} from './globals.js';
 
-import {homevideo} from './pageload-sequence.js';
+import {trackFacebookEvent} from './email-subscribe.js';
+import {homevideo, isHomePage} from './pageload-sequence.js';
 
 
 const $homeherotop = $('#dhr-hero-top'),
 			$homeherobot = $('#dhr-hero-bottom'),
 			$episodelist = $('#dhr-episode-list'),
-			$playbtns = $('a[data-video]'),
-			isHomePage = $body.hasClass('dhr-currentpage-index');
+			$playbtns = $('a[data-video]');
 
 
 const dismissBeforeEnd = ($element, callback) => {
@@ -24,11 +24,14 @@ let isPlaying = false;
 
 
 $playbtns.each(function(index) {
+	
+	if (needsVideoSwap) return;
 
 	const $t = $(this),
 				$target = $($t.data('video-target')),
 				$targetparent = $target.parent('.dhr-fluidvideo'),
 				videopath = $target.data('video'),
+				posterImg = $target.data('poster'),
 				pageUrl = $target.data('link');
 	
 	let $closebtn = $('<button id="dhr-videoclose-'+index+'"><i class="icon-cancel" aria-hidden="true"></i><span class="sr-only">Close</span></button>'),
@@ -49,7 +52,7 @@ $playbtns.each(function(index) {
 		e.preventDefault();
 		if ($target.hasClass('velocity-animating')) return;
 
-		const videoHtml = `<video>
+		const videoHtml = `<video width="1600" height="900" controls poster="${posterImg}">
 			<source src="${videopath}.webm" type="video/webm">
 			<source src="${videopath}.mp4" type="video/mp4">
 			<source src="${videopath}.ogv" type="video/ogg">
@@ -62,11 +65,11 @@ $playbtns.each(function(index) {
 
 		//plyr opts/events setup
 		const vidplyr = window.plyr.setup($video[0], {
-			controls: ['play', 'progress', 'mute', 'volume', 'fullscreen'],
-			volume: 8
+			controls: ['play', 'progress', 'mute', 'volume', 'fullscreen']
 		}),
 		$plyrEl = $target.find('.plyr--video');
 		plyrRef = vidplyr[0];
+
 		plyrRef.on('ready', (event) => {
 			isPlayReady = true;
 			if (!isPlaying) {
@@ -74,6 +77,7 @@ $playbtns.each(function(index) {
 				isPlaying = true;
 			}
 		});
+
 		plyrRef.on('ended', (event) => {
 			$body.addClass('is-videoended');
 			if (isHomePage) {
@@ -97,26 +101,26 @@ $playbtns.each(function(index) {
 			$targetparent.velocity('scroll', {
 				offset: !isTaller ? -(($window.height() - expectedHeight) / 2) : 0,
 				duration: 500,
-				complete: () => $target.velocity('slideDown', {duration: 1000, easing: 'easeOutQuart'})
+				complete: () => {
+					$target.velocity('slideDown', {
+						duration: 1000, 
+						easing:'easeOutQuart',
+						begin: () => {
+							if (plyrRef && plyrRef.isReady()) {
+								plyrRef.play();
+								isPlaying = true;
+							} 
+						},
+						complete: () => {
+							if (Modernizr.videoautoplay) {
+								homevideo.pause();
+							}
+							$body.addClass('is-playingvideo');
+						}
+					});
+				} 
 			});
 
-			$plyrEl.velocity({
-				translateY: ['0%']
-			}, {
-				duration: 700, 
-				delay: 1150, 
-				easing:'easeOutCirc', 
-				begin: () => {
-					if (plyrRef.isReady()) {
-						plyrRef.play();
-						isPlaying = true;
-					} 
-				},
-				complete: () => { 
-					homevideo.pause();
-					$body.addClass('is-playingvideo');
-				}
-			});
 
 		//single story / features
 		} else {
@@ -155,6 +159,9 @@ $playbtns.each(function(index) {
 		}
 
 		firstOpen = false;
+
+		//this will need to be dynamic (data-attr in dom)
+		trackFacebookEvent('Jess_Leather');
 	});
 	
 	
@@ -177,7 +184,10 @@ $playbtns.each(function(index) {
 					plyrRef = null;
 					$target.find('video').remove();
 					isPlaying = false;
-					homevideo.play();
+
+					if (Modernizr.videoautoplay) {
+						homevideo.play();
+					}
 				}
 			});
 
@@ -214,7 +224,7 @@ $playbtns.each(function(index) {
 
 
 $(document).on('click', () => {
-	if (!isPlaying) return;
+	if (!isPlaying || needsVideoSwap) return;
 	$('button[id^="dhr-videoclose-"]').trigger('click');
 });
 

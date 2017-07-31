@@ -2,8 +2,12 @@
 //it is a bundle of jquery & plugins because some don't yet support es6 module
 
 
-import './utils.js'; //polyfills, small jquery plugs, etc... include first
+// simulate ios safari's autoplay disability:
+// window.Modernizr.videoautoplay = false;
+// $('html').addClass('no-videoautoplay');
 
+
+import './utils.js'; //polyfills, small jquery plugs, etc... include first
 
 import './general-ui.js'; //global functionality
 

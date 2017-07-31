@@ -91,6 +91,24 @@
 		overflow:hidden; border-radius:50%;
 		transition: transform .7s $ease-out-back;
 	}
+
+	
+	//inline video fallback (mobile / touch)
+	&.has-fallback {
+		padding: 0;
+		max-width: none;
+
+		> div {
+			position: relative;
+		}
+
+		video {
+			width:100% !important;
+			height: auto;
+			display: block; 
+			border-radius: 6px;
+		}
+	}
 }
 
 
@@ -115,6 +133,11 @@
 		position: relative;
 		overflow: hidden;
 		height: 100vh;
+
+		&.is-fallback {
+			background-position: center center;
+			background-size: cover;
+		}
 	}
 
 	&--autoheight {
@@ -263,9 +286,9 @@
 
 //FEATURES SPECIFIC
 .dhr-currentpage-features {
-
 	.dhr-fixedhero--img {
 		//background-attachment:fixed;
+		background-position: center center;
 		&:after {
 			content:""; display:block; position:absolute;
 			top:0; left:0; width:100%; height:100%;
@@ -283,6 +306,17 @@
 
 
 
+@media (max-width:$bp-sm+1) {
+	
+	.dhr-currentpage-features {
+		.dhr-fixedhero--img {
+			background-position: center center;
+		}
+	}
+
+}
+
+
 
 
 
@@ -296,6 +330,10 @@
 
 
 @media (min-width:$bp-md) {
+
+	.dhr-fixedhero {
+		position: fixed;
+	}
 
 	.dhr-hero {
 		padding: 10em 0 5.5em;
