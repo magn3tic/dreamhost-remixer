@@ -228,6 +228,82 @@ $footerForm.submit(function (e) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.isHomePage = exports.homevideo = undefined;
+
+var _globals = __webpack_require__(0);
+
+var _scrollTicker = __webpack_require__(4);
+
+//import SplitText from './splittext.js';
+var $top = $('#top'),
+    $loadscreen = $('#dhr-loadscreen'),
+    $homevideo = $('#dhr-home-videoel');
+
+var homevideo = exports.homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
+
+var pageOutDuration = 500;
+
+var isHomePage = exports.isHomePage = _globals.$body.hasClass('dhr-currentpage-index') || $('#dhr-episodes-list').length;
+
+//internal links - on navigate away
+var $transitionlinks = $('a[data-page-transition]');
+
+$transitionlinks.click(function (event) {
+
+	//disabling for now - need to keep browser history intact
+	return;
+
+	if (!window.Modernizr.history || !window.Modernizr.localstorage) return;
+
+	event.preventDefault();
+	var href = $(this).attr('href');
+
+	if (href.indexOf('#') === 0) return;
+
+	$top.velocity('scroll', { duration: pageOutDuration });
+	_globals.$body.addClass('is-pagetransitioning').velocity('transition.fadeOut', { duration: pageOutDuration });
+
+	//window.history.pushState({}, '', href);
+
+	setTimeout(function () {
+		window.location.replace(href);
+	}, pageOutDuration);
+});
+
+//on page fully loaded
+var onFullPageload = function onFullPageload() {
+
+	_globals.$body.addClass('is-fullyloaded');
+	$top.velocity('scroll', { duration: 50 });
+
+	$loadscreen.velocity('transition.fadeOut', { duration: 400, delay: 20, complete: function complete() {} });
+
+	window.setTimeout(function () {
+		_scrollTicker.inViewTicker.call();
+		_scrollTicker.ticker.call();
+	}, 150);
+
+	if (isHomePage) {
+		homevideo.play();
+	}
+};
+
+if (window.Pace) {
+	Pace.on('done', onFullPageload, window);
+} else {
+	_globals.$window.on('load', onFullPageload);
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 exports.$modalstaggeritems = undefined;
 
 var _globals = __webpack_require__(0);
@@ -337,82 +413,6 @@ _globals.$window.resize(function () {
 
 if (window.location.hash === '#contact') {
 	$modaltrigger.trigger('click');
-}
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.isHomePage = exports.homevideo = undefined;
-
-var _globals = __webpack_require__(0);
-
-var _scrollTicker = __webpack_require__(4);
-
-//import SplitText from './splittext.js';
-var $top = $('#top'),
-    $loadscreen = $('#dhr-loadscreen'),
-    $homevideo = $('#dhr-home-videoel');
-
-var homevideo = exports.homevideo = $homevideo.length === 1 ? $homevideo[0] : false;
-
-var pageOutDuration = 500;
-
-var isHomePage = exports.isHomePage = _globals.$body.hasClass('dhr-currentpage-index') || $('#dhr-episodes-list').length;
-
-//internal links - on navigate away
-var $transitionlinks = $('a[data-page-transition]');
-
-$transitionlinks.click(function (event) {
-
-	//disabling for now - need to keep browser history intact
-	return;
-
-	if (!window.Modernizr.history || !window.Modernizr.localstorage) return;
-
-	event.preventDefault();
-	var href = $(this).attr('href');
-
-	if (href.indexOf('#') === 0) return;
-
-	$top.velocity('scroll', { duration: pageOutDuration });
-	_globals.$body.addClass('is-pagetransitioning').velocity('transition.fadeOut', { duration: pageOutDuration });
-
-	//window.history.pushState({}, '', href);
-
-	setTimeout(function () {
-		window.location.replace(href);
-	}, pageOutDuration);
-});
-
-//on page fully loaded
-var onFullPageload = function onFullPageload() {
-
-	_globals.$body.addClass('is-fullyloaded');
-	$top.velocity('scroll', { duration: 50 });
-
-	$loadscreen.velocity('transition.fadeOut', { duration: 400, delay: 20, complete: function complete() {} });
-
-	window.setTimeout(function () {
-		_scrollTicker.inViewTicker.call();
-		_scrollTicker.ticker.call();
-	}, 150);
-
-	if (isHomePage) {
-		homevideo.play();
-	}
-};
-
-if (window.Pace) {
-	Pace.on('done', onFullPageload, window);
-} else {
-	_globals.$window.on('load', onFullPageload);
 }
 
 /***/ }),
@@ -653,7 +653,7 @@ var _globals = __webpack_require__(0);
 
 var _emailSubscribe = __webpack_require__(1);
 
-var _contactModal = __webpack_require__(2);
+var _contactModal = __webpack_require__(3);
 
 var $form = $('#dhr-contact-form');
 
@@ -824,7 +824,7 @@ exports.mainNavOpen = undefined;
 
 var _globals = __webpack_require__(0);
 
-var _pageloadSequence = __webpack_require__(3);
+var _pageloadSequence = __webpack_require__(2);
 
 var _emailSubscribe = __webpack_require__(1);
 
@@ -1199,7 +1199,7 @@ var _globals = __webpack_require__(0);
 
 var _emailSubscribe = __webpack_require__(1);
 
-var _pageloadSequence = __webpack_require__(3);
+var _pageloadSequence = __webpack_require__(2);
 
 var $homeherotop = $('#dhr-hero-top'),
     $homeherobot = $('#dhr-hero-bottom'),
@@ -1419,13 +1419,13 @@ __webpack_require__(10);
 
 __webpack_require__(7);
 
-__webpack_require__(3);
+__webpack_require__(2);
 
 __webpack_require__(8);
 
 __webpack_require__(5);
 
-__webpack_require__(2);
+__webpack_require__(3);
 
 __webpack_require__(11);
 
