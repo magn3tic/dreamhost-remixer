@@ -88,6 +88,7 @@ var $body = exports.$body = $('body'),
     fadeIn = exports.fadeIn = window.location.hash === '#fademode',
     isDev = exports.isDev = window.location.hostname === 'localhost',
     needsVideoSwap = exports.needsVideoSwap = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
+    isAutoplayLink = exports.isAutoplayLink = window.location.hash === '#autoplay',
     easeOutBack = exports.easeOutBack = [0.0755, 0.985, 0.325, 1.07];
 
 var getVideoHtml = exports.getVideoHtml = function getVideoHtml(poster, videopath) {
@@ -272,6 +273,7 @@ $transitionlinks.click(function (event) {
 
 //on page fully loaded
 var onFullPageload = function onFullPageload() {
+	$(document).trigger('dhr.pagereveal');
 
 	_globals.$body.addClass('is-fullyloaded');
 	$top.velocity('scroll', { duration: 50 });
@@ -827,6 +829,14 @@ var _globals = __webpack_require__(0);
 var _pageloadSequence = __webpack_require__(2);
 
 var _emailSubscribe = __webpack_require__(1);
+
+//trigger click for autoplay links
+if (_globals.isAutoplayLink && !_pageloadSequence.isHomePage) {
+	$(document).on('dhr.pagereveal', function () {
+		$('[data-video-target]').first().trigger('click');
+		window.location.hash = '';
+	});
+}
 
 //background video hero video fallback
 var backgroundVideoFallback = function backgroundVideoFallback() {

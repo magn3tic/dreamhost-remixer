@@ -1,10 +1,19 @@
 
 
-import {$body, $window, $sitefooter, needsVideoSwap, getVideoHtml} from './globals.js';
+import {$body, $window, $sitefooter, needsVideoSwap, isAutoplayLink, getVideoHtml} from './globals.js';
 import {isHomePage} from './pageload-sequence.js';
 import {trackFacebookEvent} from './email-subscribe.js';
 
 
+
+
+//trigger click for autoplay links
+if (isAutoplayLink && !isHomePage) {
+	$(document).on('dhr.pagereveal', () => {
+		$('[data-video-target]').first().trigger('click');
+		window.location.hash = '';
+	});
+}
 
 //background video hero video fallback
 const backgroundVideoFallback = () => {

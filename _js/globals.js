@@ -10,6 +10,7 @@ export const $body = $('body'),
 						 fadeIn = window.location.hash === '#fademode',
 						 isDev = window.location.hostname === 'localhost',
 						 needsVideoSwap = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent),
+						 isAutoplayLink = window.location.hash === '#autoplay',
 						 easeOutBack = [0.0755, 0.985, 0.325, 1.07];
 
 export const getVideoHtml = (poster, videopath) => {

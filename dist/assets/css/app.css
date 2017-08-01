@@ -1270,7 +1270,8 @@ a.dhr-button, button.dhr-button {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover; }
+    background-size: cover;
+    background-position: center center; }
   .dhr-fixedhero--outer {
     position: relative;
     overflow: hidden;
@@ -2945,7 +2946,7 @@ html.no-generatedcontent a:hover {
           -ms-transform: scale(1.03);
               transform: scale(1.03); }
       .dhr-nextepisode > a:hover ~ .dhr-coverimg:after {
-        opacity: 0.5; }
+        opacity: 0.25; }
     .dhr-nextepisode > a:hover ~ .dark-mark-over svg {
       -webkit-transform: scale(0.95) rotate(9deg);
           -ms-transform: scale(0.95) rotate(9deg);
@@ -2967,7 +2968,7 @@ html.no-generatedcontent a:hover {
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(41, 43, 51, 0.65);
+      background: rgba(41, 43, 51, 0.5);
       mix-blend-mode: multiply;
       -webkit-transition: opacity 0.5s ease;
       -o-transition: opacity 0.5s ease;

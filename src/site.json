@@ -22,6 +22,10 @@
 		"master-of-cultural-identity": {
 			"title": "Master of Cultural Identity",
 			"desc": ""
+		},
+		"master-of-perseverance": {
+			"title": "Master of Perseverance",
+			"desc": ""
 		}
 	},
 
@@ -54,7 +58,7 @@
 		"headline": "",
 		"image": "episode-poster-perseverance.jpg",
 		"video": "",
-		"url": "#0",
+		"url": "master-of-perseverance.html",
 		"release": "08/24/17 6:45 AM"
 	},  
 	{

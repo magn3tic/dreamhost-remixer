@@ -53,6 +53,7 @@ $transitionlinks.click(function(event) {
 
 //on page fully loaded
 const onFullPageload = () => {
+	$(document).trigger('dhr.pagereveal');
 
 	$body.addClass('is-fullyloaded');
 	$top.velocity('scroll', {duration:50});
