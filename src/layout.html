@@ -3,32 +3,45 @@
 <head>
 	<meta charset="UTF-8">
 
-	<script>window.paceOptions = {target:'#dhr-loadscreen'};</script>
+	<!-- Google Tag Manager -->
+	<script>
+		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-5RL5TLQ');
+	</script>
+	<!-- End Google Tag Manager -->
+
+	<script>
+		window.paceOptions = {target:'#dhr-loadscreen'};
+	</script>
+
 	{{> scripts-inline}}
 
 	<script>
-	//surge protector...getit?
-	(function(win, ss) {
-		if (win.location.hostname.indexOf('surge') > -1 && ss && !ss['unlocked']) {
-			var pw = prompt('Enter the password:');
-			if (pw !== 'mag') { window.location.replace('https://www.google.com'); }
-			if (ss) {ss['unlocked'] = 'yes';}
-		}
-	})(window, sessionStorage);
+		//surge protector...getit?
+		(function(win, ss) {
+			if (win.location.hostname.indexOf('surge') > -1 && ss && !ss['unlocked']) {
+				var pw = prompt('Enter the password:');
+				if (pw !== 'mag') { window.location.replace('https://www.google.com'); }
+				if (ss) {ss['unlocked'] = 'yes';}
+			}
+		})(window, sessionStorage);
 	</script>
 
 	<script>
-	//GetDrip JS Setup - https://www.getdrip.com/docs/js-api
-	var _dcq = _dcq || [];
-  var _dcs = _dcs || {}; 
-  _dcs.account = '8667489';
-  (function() {
-    var dc = document.createElement('script');
-    dc.type = 'text/javascript'; dc.async = true; 
-    dc.src = '//tag.getdrip.com/8667489.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(dc, s);
-  })();
+		//GetDrip JS Setup - https://www.getdrip.com/docs/js-api
+		var _dcq = _dcq || [];
+		var _dcs = _dcs || {}; 
+		_dcs.account = '8667489';
+		(function() {
+			var dc = document.createElement('script');
+			dc.type = 'text/javascript'; dc.async = true; 
+			dc.src = '//tag.getdrip.com/8667489.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(dc, s);
+		})();
 	</script>
 
 	<meta name="robots" content="noindex">
@@ -44,18 +57,28 @@
 	<meta property="og:site_name" content="{{globals.name}}">
 
 	<script>
-	//facebook tracking js
-	!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-	n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-	n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-	t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-	document,'script','https://connect.facebook.net/en_US/fbevents.js');
-	fbq('init', '629608764097562'); // Insert your pixel ID here.
-	fbq('track', 'PageView');
+		//facebook tracking js
+		!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+		n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+		document,'script','https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '629608764097562'); // Insert your pixel ID here.
+		fbq('track', 'PageView');
 	</script>
 
 </head>
 <body class="dhr-currentpage-{{current_page_name}} version-blendmoded">
+
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe 
+			src="https://www.googletagmanager.com/ns.html?id=GTM-5RL5TLQ"
+			height="0" width="0" style="display:none;visibility:hidden">
+		</iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
 	<div id="top"></div>
 
 	{{#if debug}}
