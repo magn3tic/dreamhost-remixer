@@ -1,7 +1,7 @@
 {
 	"globals": {
 		"name": "DreamHost Remixer",
-		"remixer_signup_url": "https://signup.dreamhost.com/remixer/email/",
+		"remixer_signup_url": "https://signup.dreamhost.com/remixer/email/?from=remixer",
 		"panel_url": "https://panel.dreamhost.com/",
 		"dreamhost_main": "https://www.dreamhost.com/"
 	},
