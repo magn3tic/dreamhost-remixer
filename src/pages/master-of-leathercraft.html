@@ -48,7 +48,7 @@
 
 		</div>
 
-		<div class="dhr-markbg">
+		<div class="dhr-markbg" data-inview="background-svg">
 			<svg x="0px" y="0px" viewBox="0 0 190 186">
 				<path fill="#FFFFFF" d="M179.1,136.4c-14,7.8-30.3,12.2-47.7,11.8c-51.1-1-91.6-42.4-90.6-92.4c0.4-17,5.4-32.7,14-46.1C27.5,25,8.8,53.5,8.1,86.6c-1,50,39.6,91.4,90.7,92.4C132.6,179.7,162.4,162.6,179.1,136.4"/>
 				<path fill="#2bace9" d="M130.5,137.5c0.6,0,1.1,0,1.7,0c13.3,0,26.5-3.3,38.2-9.5c6.9-11.8,10.9-25.5,10.9-40.2c0-44.1-35.6-79.8-79.6-79.8c-13.9,0-26.9,3.6-38.2,9.8c-7.3,11.8-11.4,25.4-11.7,39.3C50.9,100.5,86.2,136.6,130.5,137.5"/>
@@ -65,7 +65,7 @@
 
 		<div class="slider-overlay-container">
 
-			<div class="dhr-episode-carousel">
+			<div class="dhr-episode-carousel" data-inview="carousel">
 				<figure class="cell-img">
 					<img src="assets/img/leathercraft-slide-1.jpg" alt="leather goods on table">
 				</figure>
@@ -93,7 +93,7 @@
 	<section class="dhr-block dhr-block--imagegroup dhr-block--light">
 		<div class="inner">
 			
-			<div class="inner-small dhr-block--content">
+			<div class="inner-small dhr-block--content" data-inview="children">
 				<h5 class="dhr-preheadline">Words to Live By</h5>
 				<h3 class="dhr-sectionheadline">"Go Fast. Don't Suck."</h3>
 				<p>“Go Fast. Don’t Suck.” was originally preached by Jess’s late younger brother, Tim. To Jess, it captures the juxtaposition of raw aggression and careful finesse that distinguishes his work. To us, it illustrates what we love most about Remixer.</p>
@@ -101,18 +101,19 @@
 			</div>
 
 			<div class="inner-small dhr-single--imagegroup">
-				<figure>
-					<img src="assets/img/leathercraft-body-1.jpg" alt="metal ring">
-				</figure>
-				<figure>
-					<img src="assets/img/leathercraft-body-2.jpg" alt="leather belt">
-				</figure>
-				<figure>
-					<img src="assets/img/leathercraft-body-3.jpg" alt="leather badge">
-				</figure>
-
-				<div class="dhr-single--imagegroup-bg" data-lazy-bg="assets/img/leathercraft-tire-track.png">
-					<span class="dhr-single--imagegroup-bgimg"></span>
+				<div data-inview="children">
+					<figure>
+						<img src="assets/img/leathercraft-body-1.jpg" alt="metal ring">
+					</figure>
+					<figure>
+						<img src="assets/img/leathercraft-body-2.jpg" alt="leather belt">
+					</figure>
+					<figure>
+						<img src="assets/img/leathercraft-body-3.jpg" alt="leather badge">
+					</figure>
+				</div>
+				<div data-inview="streak" class="dhr-single--imagegroup-bg">
+					<span class="dhr-single--imagegroup-bgimg" data-lazy-bg="assets/img/leathercraft-tire-track.png"></span>
 				</div>
 			</div>
 
@@ -127,10 +128,12 @@
 			<div class="inner-large">
 
 				<div class="dhr-oneimg--logo">
-					<figure><img src="assets/img/leathercraft-logo.png" alt="174 Leatherworks Logo"></figure>
+					<figure data-inview="fade-up-in" class="inview-delay2x">
+						<img src="assets/img/leathercraft-logo.png" alt="174 Leatherworks Logo">
+					</figure>
 				</div>
 				
-				<figure class="dhr-oneimg--fig">
+				<figure class="dhr-oneimg--fig" data-inview="children">
 					<img src="assets/img/video-poster-leathercraft.jpg" alt="dreamhost remix customer">
 					<span class="dhr-baseplate dhr-baseplate--blue"></span>
 				</figure>
@@ -141,7 +144,7 @@
 	<section class="dhr-block dhr-block--singlequote dhr-block--minpad dhr-block--dark">
 		<div class="inner">
 			<div class="inner-7">
-				<div class="dhr-single--quote">
+				<div class="dhr-single--quote" data-inview="children">
 					<blockquote>“I ended up choosing Remixer because it was the simplest way for me to just focus on my business, produce great pieces, and not have to worry about maintaining a website all the time. It was simple, it was easy, and it kept me in the garage, making sure pieces are perfect. I don’t have to worry about my website being perfect because it already is.”</blockquote>
 					<span class="dhr-single--quote-border"></span>
 				</div>
@@ -155,7 +158,7 @@
 	<section class="dhr-block dhr-block--light dhr-testify dhr-testify--narrow">
 		<div class="inner">
 			
-			<div class="dhr-testify--img dhr-testify--img-multi">
+			<div class="dhr-testify--img dhr-testify--img-multi" data-inview="imgoverlay">
 				<figure>
 					<img src="assets/img/leathercraft-interview-1.jpg" alt="hand-stitched leather products">
 				</figure>
@@ -171,22 +174,22 @@
 			<div class="dhr-testify--content dhr-testify--interview">
 				<div class="dhr-testify--interview-transcript">
 					<ul>
-						<li>
+						<li data-inview="children">
 							<h5>How long did it take you to create your Remixer site?</h5>
 							<cite>Jess</cite>
 							<blockquote>“I spent a couple of hours a day for three days before I was ready to hit publish, but I took my time with it.”</blockquote>
 						</li>
-						<li>
+						<li data-inview="children">
 							<h5>Have you tried other website builders before?</h5>
 							<cite>Jess</cite>
 							<blockquote>“Yes, and none are as intuitive as Remixer. It’s crazy how easy they make it to go in and create a website that looks professionally done.”</blockquote>
 						</li>
-						<li>
+						<li data-inview="children">
 							<h5>What was something that surprised you about Remixer?</h5>
 							<cite>Jess</cite>
 							<blockquote>“How customizable everything is. They have a library of content sections that allows you to lay out your page however you want.” </blockquote>
 						</li>
-						<li>
+						<li data-inview="children">
 							<h5>What’s your favorite aspect of your Remixer site?</h5>
 							<cite>Jess</cite>
 							<blockquote>“It’s really cool how easily it links out to all of my social media—including my Etsy page.”</blockquote>
@@ -194,41 +197,46 @@
 					</ul>
 				</div>
 				
-				<div class="dhr-testify--btns">
-					<a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
-				</div>
-
-				<div class="dhr-testify--social" data-in-view="children">
-					<h5>Share</h5>
-					<ul data-social-links>
-
-						<li>
-							<a href="mailto:?subject=Dreamhost Remixer&body=%%url%%">
-								<span class="sr-only">Share via Email</span>
-								<i class="icon-mail" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="https://www.facebook.com/sharer/sharer.php?u=%%url%%">
-								<span class="sr-only">Share on Facebook</span>
-								<i class="icon-facebook" aria-hidden="true"></i>
-							</a>
-						</li>
-						<li>
-							<a href="http://twitter.com/share?url=%%url%%">
-								<span class="sr-only">Share on Twitter</span>
-								<i class="icon-twitter" aria-hidden="true"></i>
-							</a>
-						</li>
+				<div data-inview="children">
 					
-					</ul>
+					<div class="dhr-testify--btns">
+						<a href="{{globals.remixer_signup_url}}" class="dhr-button" data-text="Try Remixer for Free">Try Remixer for Free</a>
+					</div>
+
+					<div class="dhr-testify--social" data-in-view="children">
+						<h5>Share</h5>
+						<ul data-social-links>
+
+							<li>
+								<a href="mailto:?subject=Dreamhost Remixer&body=%%url%%">
+									<span class="sr-only">Share via Email</span>
+									<i class="icon-mail" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.facebook.com/sharer/sharer.php?u=%%url%%">
+									<span class="sr-only">Share on Facebook</span>
+									<i class="icon-facebook" aria-hidden="true"></i>
+								</a>
+							</li>
+							<li>
+								<a href="http://twitter.com/share?url=%%url%%">
+									<span class="sr-only">Share on Twitter</span>
+									<i class="icon-twitter" aria-hidden="true"></i>
+								</a>
+							</li>
+						
+						</ul>
+					</div>
+
 				</div>
+
 			</div>
 
 		</div>
 
 
-		<div class="dhr-markbg">
+		<div class="dhr-markbg" data-inview="background-svg">
 			<svg x="0px" y="0px" viewBox="0 0 190 186">
 				<path fill="#FFFFFF" d="M179.1,136.4c-14,7.8-30.3,12.2-47.7,11.8c-51.1-1-91.6-42.4-90.6-92.4c0.4-17,5.4-32.7,14-46.1C27.5,25,8.8,53.5,8.1,86.6c-1,50,39.6,91.4,90.7,92.4C132.6,179.7,162.4,162.6,179.1,136.4"/>
 				<path fill="#2bace9" d="M130.5,137.5c0.6,0,1.1,0,1.7,0c13.3,0,26.5-3.3,38.2-9.5c6.9-11.8,10.9-25.5,10.9-40.2c0-44.1-35.6-79.8-79.6-79.8c-13.9,0-26.9,3.6-38.2,9.8c-7.3,11.8-11.4,25.4-11.7,39.3C50.9,100.5,86.2,136.6,130.5,137.5"/>
@@ -239,7 +247,7 @@
 
 
 
-	{{> next-episode img='assets/img/hero-master-of-cultural.jpg' subheadline='Master of Cultural Identity' mainheadline='Trish moved to LA for a bachelor’s degree. Then she tried fusion food.' link='#0' comingsoon=true leftword='Coming' rightword='Soon'}}
+	{{> next-episode img='assets/img/hero-master-of-cultural.jpg' subheadline='Master of Cultural Identity' mainheadline='Trish moved to LA for a bachelor’s degree. Then she tried fusion food.' link='/master-of-cultural-identity.html#autoplay' leftword="Play" rightword="Video"}}
 
 </main>
 

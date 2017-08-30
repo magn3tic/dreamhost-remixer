@@ -183,7 +183,8 @@
 	transform: translateY(-50%);
 
 	&img {
-		display:block;
+		display:block !important;
+		background-position: center center;
 		height:0;
 		padding-bottom: (101/1397)*100%;
 	}

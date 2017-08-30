@@ -60,76 +60,154 @@ $inview_transition_duration: 1.2s;
 $inview_transition_delay: 0.15s;
 $inview_transition_ease: $ease-out-quart;
 
-// [data-inview="fade-up-in"] {
-// 	opacity: 0;
-// 	transform: translateY(-40px);
-// 	transition: opacity $inview_transition_duration linear, transform $inview_transition_duration $inview_transition_ease;
-// 	transition-delay: $inview_transition_delay;
 
-// 	&.is-inview {
-// 		opacity: 1;
-// 		transform: translateY(0);
-// 	}
-// }
+[data-inview="fade-up-in"] {
+	opacity: 0;
+	transform: translateY(-40px);
+	transition: opacity $inview_transition_duration ease, transform $inview_transition_duration $inview_transition_ease;
+	transition-delay: $inview_transition_delay;
 
+	&.inview-delay {
+		transition-delay: $inview_transition_delay * 2;
+	}
+	&.inview-delay2x {
+		transition-delay: $inview_transition_delay * 8;
+	}
 
-
-// [data-inview="children"] {
-// 	> * {
-// 		opacity: 0;
-// 		transform: translateY(-50px);
-// 		transform: translateY(-3rem);
-// 		transition: opacity $inview_transition_duration ease, transform $inview_transition_duration $ease-out-quart;
-
-// 		@for $i from 1 through 7 {
-// 			&:nth-child(#{$i}) {
-// 				transition-delay: $inview_transition_delay*$i;
-// 			}
-// 		}
-// 	}
-
-// 	&.is-inview {
-// 		> * {
-// 			opacity: 1;
-// 			transform: translateY(0);
-// 		}
-// 	}
-// }
+	&.is-inview {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 
 
 
-// [data-inview="imgoverlay"] {
-	
-// 	> figure {
-// 		opacity: 0;
-// 		transform: translateX(-20%);
-// 		transition: transform 1.5s $ease-out-quart;
-// 	}
+[data-inview="streak"] {
+	opacity:0;
+	transition: opacity $inview_transition_duration ease;
+
+	&.inview-delay {
+		transition-delay: $inview_transition_delay * 4;
+	}
+
+	&.is-inview {
+		opacity: 1;
+	}
+}
 
 
-// 	.dhr-testify--img-overlay {
-// 		opacity: 0;
-// 		transform: translateX(-100%);
-// 		transition: transform 1.9s $ease-out-quart;
-// 	}
+
+[data-inview="children"] {
+	> * {
+		opacity: 0;
+		transform: translateY(-40px);
+		transition: opacity $inview_transition_duration ease, transform $inview_transition_duration $inview_transition_ease;
+
+		@for $i from 1 through 7 {
+			&:nth-child(#{$i}) {
+				transition-delay: $inview_transition_delay*$i;
+			}
+		}
+	}
+
+	&.is-inview {
+		> * {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
 
 
-// 	&.is-inview {
+
+
+[data-inview="background-svg"] {
+	svg {
+		opacity:0;
+		transition: opacity $inview_transition_duration ease;
+		path {
+			transform: translate(330px, -330px);
+			transition: all $inview_transition_duration $inview_transition_ease;
+			+ path {
+				transform: translate(20px, -20px);
+			}
+		}
+	}
+
+	&.is-inview {
+		svg {
+			opacity:1;
+			path {
+				transform: translate(0, 0);
+			}
+		}
+	}
+}
+
+
+
+
+[data-inview="carousel"] {
+	opacity:0;
+	transform: translateX(40px);
+	transition: opacity $inview_transition_duration ease, transform $inview_transition_duration $inview_transition_ease;
+
+	+ .dhr-image-overlay--right {
+		transform-origin: left center;
+		opacity:0;
+		transform: translateX(80px) scale(1.5,1);
+		transition: opacity $inview_transition_duration ease 0.3s, transform $inview_transition_duration $inview_transition_ease 0.3s;
+	}
+
+	&.is-inview {
+		opacity:1;
+		transform: translateX(0);
+		+ .dhr-image-overlay--right {
+			opacity:1;
+			transform: translateX(0) scale(1);
+		}
+	}
+}
+
+
+
+
+
+[data-inview="imgoverlay"] {
+	> figure {
+		opacity: 0;
+		transform: translateX(-40px);
+		transition: opacity 1.5s ease, transform 1.5s $ease-out-quart;
+	}
+	.dhr-testify--img-overlay {
+		opacity: 0;
+		transform: translateX(-80px);
+		transition: opacity 1.5s ease, transform 1.5s $ease-out-quart .3s;
+	}
+
+	&.is-inview {
 		
-// 		.dhr-testify--img-overlay, figure {
-// 			opacity: 1;
-// 			transform: translateX(0);
-// 		}
-
-// 	}
-
-// }
+		.dhr-testify--img-overlay, figure {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+}
 
 
+@media (min-width:$bp-lg) {
 
+	[data-inview="side-slide"] {
+		opacity:0;
+		transform: translateX(70px);
+		transition: opacity $inview_transition_duration ease 0.3s, transform $inview_transition_duration $inview_transition_ease 0.3s;
 
+		&.is-inview {
+			opacity:1;
+			transform: translateX(0);
+		}
+	}
 
-
-
+}
 
 
