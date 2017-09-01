@@ -438,10 +438,10 @@ var _breakpoints2 = _interopRequireDefault(_breakpoints);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var bps = new _breakpoints2.default();
+var hasSiteHeader = _globals.$siteheader.length;
 
 //inview class toggling
 var $inviewels = $('[data-inview]');
-var $footerForm = $('.dhr-footer--form');
 
 var inViewTicker = exports.inViewTicker = function inViewTicker() {
 	$inviewels.each(function () {
@@ -450,14 +450,6 @@ var inViewTicker = exports.inViewTicker = function inViewTicker() {
 			$t.addClass('is-inview');
 		}
 	});
-};
-
-//footer form
-var formInView = null;
-var footerFormFocused = null;
-
-var footerInView = function footerInView() {
-	if ($footerForm.inView()) {} else {}
 };
 
 // header behavior
@@ -489,36 +481,34 @@ var scrollUpdate = function scrollUpdate() {
 var ticker = exports.ticker = function ticker() {
 	if (didScroll) {
 		scrollUpdate();
-
 		inViewTicker();
-
-		if (!_globals.$siteheader.length) return;
 
 		if (isSmallScreen) {
 			_globals.$siteheader.attr('style', '');
-			return;
-		}
+		} else if (hasSiteHeader) {
 
-		if (scrollCurrent <= 0) {
-			//if back at window top
-			_globals.$siteheader.css('top', 0).addClass('at-page-top');
-		} else if (scrollDiff > 0) {
-			//back up from downscroll
-			_globals.$siteheader.css('top', headertop > 0 ? 0 : headertop);
+			if (scrollCurrent <= 0) {
+				//if back at window top
+				_globals.$siteheader.css('top', 0).addClass('at-page-top');
+			} else if (scrollDiff > 0) {
+				//back up from downscroll
+				_globals.$siteheader.css('top', headertop > 0 ? 0 : headertop);
 
-			if (scrollCurrent > headerheight + 30) {
-				_globals.$siteheader.removeClass('at-page-top');
+				if (scrollCurrent > headerheight + 30) {
+					_globals.$siteheader.removeClass('at-page-top');
+				}
+			} else if (scrollDiff < 0) {
+				// if (scrollCurrent + winheight >= docheight - headerheight) {
+				// 	//just reached page bottom
+				// 	$siteheader.css('top', (headertop = scrollCurrent + winheight - docheight ) < 0 ? headertop : 0);
+				// 	$siteheader.removeClass('at-page-top');
+				// } else {
+				//$siteheader.removeClass('at-page-top');
+				_globals.$siteheader.css('top', Math.abs(headertop) > headerheight ? -headerheight : headertop);
+				//}
 			}
-		} else if (scrollDiff < 0) {
-			// if (scrollCurrent + winheight >= docheight - headerheight) {
-			// 	//just reached page bottom
-			// 	$siteheader.css('top', (headertop = scrollCurrent + winheight - docheight ) < 0 ? headertop : 0);
-			// 	$siteheader.removeClass('at-page-top');
-			// } else {
-			//$siteheader.removeClass('at-page-top');
-			_globals.$siteheader.css('top', Math.abs(headertop) > headerheight ? -headerheight : headertop);
-			//}
 		}
+
 		exports.scrollBefore = scrollBefore = scrollCurrent;
 
 		exports.didScroll = didScroll = false;
@@ -528,7 +518,7 @@ var ticker = exports.ticker = function ticker() {
 
 _globals.$window.on('resize', $.debounce(300, false, scrollUpdate));
 _globals.$window.scroll(function () {
-	return exports.didScroll = didScroll = true;
+	exports.didScroll = didScroll = true;
 });
 
 /***/ }),
