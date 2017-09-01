@@ -43,7 +43,11 @@
 			"facebook": "",
 			"twitter": "",
 			"instagram": "https://www.instagram.com/174leatherworks/"
-		}
+		},
+		"prefix": "leathercraft",
+		"username": "Jess Etchemendy",
+		"userbiz": "174 Leatherworks",
+		"vimeo_bg": "https://player.vimeo.com/external/221299424.hd.mp4?s=918e35d222267879b7cd4a6c30afcf5a9bb329cc&profile_id=174"
 	}, 
 	{
 		"name": "Master of Cultural Identity",
@@ -51,7 +55,11 @@
 		"image": "episode-poster-culturalidentity.jpg",
 		"video": "",
 		"url": "master-of-cultural-identity.html",
-		"release": "08/10/17 9:30 PM"
+		"release": "08/10/17 9:30 PM",
+		"prefix": "culturalidentity",
+		"username": "Trish Myers",
+		"userbiz": "Freelance Chef",
+		"vimeo_bg": "https://player.vimeo.com/external/229917190.hd.mp4?s=8ba6a583d3a2b0ca86505e277f0f4bb36caf621a&profile_id=174"
 	}, 
 	{
 		"name": "Master of Perseverance",
@@ -59,7 +67,11 @@
 		"image": "episode-poster-perseverance.jpg",
 		"video": "",
 		"url": "master-of-perseverance.html",
-		"release": "08/23/17 8:00 PM"
+		"release": "08/23/17 8:00 PM",
+		"prefix": "perseverance",
+		"username": "Mika Leah",
+		"userbiz": "Goomi Group",
+		"vimeo_bg": "https://player.vimeo.com/external/230995403.hd.mp4?s=4566112d6720f560c0cde04267290ef00d437554&profile_id=174"
 	},  
 	{
 		"name": "Master of Dexterity",
@@ -67,7 +79,11 @@
 		"image": "episode-poster-dexterity.jpg",
 		"video": "",
 		"url": "master-of-dexterity.html",
-		"release": "09/07/17 5:00 AM"
+		"release": "09/01/17 5:00 AM",
+		"prefix": "dexterity",
+		"username": "Chase Fitzsimmons",
+		"userbiz": "Good Company Barber",
+		"vimeo_bg": "https://player.vimeo.com/external/231963771.hd.mp4?s=0fe90b6d3c691ae04ccb5c90191388eaafac1ed5&profile_id=174"
 	}
 	],
 

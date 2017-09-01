@@ -95,6 +95,10 @@ var getVideoHtml = exports.getVideoHtml = function getVideoHtml(poster, videopat
 						return '<video class="dhr-native-video" poster="' + poster + '" controls>\n\t\t\t\t    <source src="' + videopath + '.webm" type="video/webm">\n\t\t\t\t\t\t<source src="' + videopath + '.mp4" type="video/mp4">\n\t\t\t\t\t\t<source src="' + videopath + '.ogv" type="video/ogg">\n\t\t\t\t\t</video>';
 };
 
+var getRandomIndex = exports.getRandomIndex = function getRandomIndex(array) {
+						return Math.floor(Math.random() * array.length);
+};
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -819,6 +823,24 @@ var _globals = __webpack_require__(0);
 var _pageloadSequence = __webpack_require__(2);
 
 var _emailSubscribe = __webpack_require__(1);
+
+//randomize index page feature
+var $episodeItem = $('.dhr-episodeitem');
+
+if ($episodeItem.length) {
+	var stories = [];
+	$episodeItem.each(function (i, el) {
+		var $t = $(el);
+		stories.push({
+			prefix: $t.data('story-prefix'),
+			name: $t.data('story-username'),
+			biz: $t.data('story-userbiz')
+		});
+	});
+
+	var rindex = (0, _globals.getRandomIndex)(stories);
+	var currentStory = stories[rindex];
+}
 
 //trigger click for autoplay links
 if (_globals.isAutoplayLink && !_pageloadSequence.isHomePage) {

@@ -4,9 +4,9 @@
 	<div class="dhr-main">
 		<div class="dhr-fixedhero--outer">
 			<video preload loop muted id="dhr-home-videoel" class="dhr-fixedhero--video" poster="assets/img/poster-cultural-identity.jpg">
-				<source src="https://player.vimeo.com/external/230995403.hd.mp4?s=4566112d6720f560c0cde04267290ef00d437554&profile_id=174" type="video/mp4">
-				<source src="/assets/vid/perseverance-background.webm" type="video/webm">
-				<source src="/assets/vid/perseverance-background.ogv" type="video/ogg">
+				<source src="https://player.vimeo.com/external/231963771.hd.mp4?s=0fe90b6d3c691ae04ccb5c90191388eaafac1ed5&profile_id=174" type="video/mp4">
+				<source src="/assets/vid/dexterity-background.webm" type="video/webm">
+				<source src="/assets/vid/dexterity-background.ogv" type="video/ogg">
 			</video>
 		</div>
 	</div>
@@ -19,14 +19,14 @@
 		
 		<div id="dhr-hero-top" class="inner">
 			<div class="dhr-hero--content" data-inview="children">
-				<h5 class="dhr-preheadline">Master of <span>Perseverance</span></h5>
+				<h5 class="dhr-preheadline">Master of <span>Dexterity</span></h5>
 				<h1 class="dhr-mainheadline">Master Your Domain with Remixer by DreamHost.</h1>
 				<div class="dhr-hero--owner">
 					<figure class="dhr-hero--owner-img">
 						<svg x="0px" y="0px"	viewBox="0 0 190 186">
 							<defs>
 								<pattern id="dhr-headshot" patternUnits="userSpaceOnUse" width="190" height="186" viewbox="0 0 190 186">
-	  							<image xlink:href="assets/img/headshot-master-of-perseverance.jpg" width="190" height="186" />
+	  							<image xlink:href="assets/img/headshot-master-of-dexterity.jpg" width="190" height="186" />
 								</pattern>
 							</defs>
 							<g style="fill:url(#dhr-headshot)">
@@ -36,10 +36,10 @@
 						</svg>
 					</figure>
 					<div class="dhr-hero--owner-name">
-						<p><strong>Mika Leah</strong> <span>- Goomi Group</span></p>
+						<p><strong id="dhr-owner-username">Chase Fitzsimmons</strong> <span id="dhr-owner-biz">- Good Company Barber</span></p>
 					</div>
 				</div>
-				<a href="/master-of-perseverance.html" class="dhr-hero--link"></a>
+				<a href="/master-of-dexterity.html" class="dhr-hero--link"></a>
 			</div>
 			<div class="dhr-hero--play" data-inview="fade-up-in">
 				<a href="#0" data-hovercard data-hovercard-scale="1.1" data-hovercard-tilt="15" data-video data-video-target="#dhr-hero-embedtarget">
@@ -56,7 +56,7 @@
 			</div>
 			
 			<div class="dhr-fluidvideo">
-				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/perseverance-full" data-poster="assets/img/nothing.gif" data-link="master-of-perseverance.html" data-facebook-event="Mika_Yoga"></div>
+				<div id="dhr-hero-embedtarget" class="dhr-fluidvideo--wrapper" data-video="assets/vid/dexterity-full" data-poster="assets/img/nothing.gif" data-link="master-of-perseverance.html" data-facebook-event="Mika_Yoga"></div>
 			</div>
 			
 
@@ -75,8 +75,8 @@
 		<div class="inner" data-inview="fade-up-in">
 			{{#each episodes}}
 			
-			<div class="dhr-episodeitem">
-				<a data-hovercard data-page-transition href="{{this.url}}" class="dhr-episodeitem--link-{{@index}}">
+			<div class="dhr-episodeitem" data-story-prefix="{{this.prefix}}" data-story-username="{{this.username}}" data-story-userbiz="{{this.userbiz}}" data-story-vimeo="{{this.vimeo_bg}}">
+				<a data-hovercard data-page-transition href="/{{this.url}}" class="dhr-episodeitem--link-{{@index}}">
 					<div class="dhr-episodeitem--content">
 						<div class="dhr-episodeitem--liner">
 							<div data-countdown="{{this.release}}" class="dhr-episodeitem--countdown">

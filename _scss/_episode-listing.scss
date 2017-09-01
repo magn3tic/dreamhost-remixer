@@ -92,6 +92,7 @@
 
 		.dhr-episodeitem--activeborder {
 			transform: scale(1,1);
+			border-radius: .5em;
 			transform-origin: left center;
 		}
 	}
@@ -121,8 +122,10 @@
 	}
 	&--activeborder {
 		display: block; position:absolute; z-index:99;
-		bottom:0; left:1%; width:98%;
-		border-radius: .5em;
+		bottom:0; left: 2px; 
+		right:2px; 
+		width:auto;
+		border-radius: 1.5em;
 		height: .5em;
 		background: $primary;
 		transform-origin: right center;

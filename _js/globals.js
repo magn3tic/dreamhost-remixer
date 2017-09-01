@@ -20,3 +20,5 @@ export const getVideoHtml = (poster, videopath) => {
 						<source src="${videopath}.ogv" type="video/ogg">
 					</video>`;
 };
+
+export const getRandomIndex = array => Math.floor(Math.random()*array.length);

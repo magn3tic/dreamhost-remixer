@@ -1,8 +1,35 @@
 
 
-import {$body, $window, $sitefooter, needsVideoSwap, isAutoplayLink, getVideoHtml} from './globals.js';
+import {$body, $window, $sitefooter, needsVideoSwap, isAutoplayLink, getVideoHtml, getRandomIndex} from './globals.js';
 import {isHomePage} from './pageload-sequence.js';
 import {trackFacebookEvent} from './email-subscribe.js';
+
+
+
+
+//randomize index page feature
+const $episodeItem = $('.dhr-episodeitem');
+
+if ($episodeItem.length) {
+	let stories = [];
+	$episodeItem.each((i, el) => {
+		const $t = $(el);
+		stories.push({
+			prefix: $t.data('story-prefix'),
+			name: $t.data('story-username'),
+			biz: $t.data('story-userbiz')
+		})
+	});
+
+	const rindex = getRandomIndex(stories);
+	const currentStory = stories[rindex];
+
+
+
+}
+
+
+
 
 
 

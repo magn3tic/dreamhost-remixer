@@ -1735,6 +1735,7 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
     -webkit-transform: scale(1, 1);
         -ms-transform: scale(1, 1);
             transform: scale(1, 1);
+    border-radius: .5em;
     -webkit-transform-origin: left center;
         -ms-transform-origin: left center;
             transform-origin: left center; }
@@ -1764,9 +1765,10 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
     position: absolute;
     z-index: 99;
     bottom: 0;
-    left: 1%;
-    width: 98%;
-    border-radius: .5em;
+    left: 2px;
+    right: 2px;
+    width: auto;
+    border-radius: 1.5em;
     height: .5em;
     background: #ffa700;
     -webkit-transform-origin: right center;
