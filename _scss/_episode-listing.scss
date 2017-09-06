@@ -117,7 +117,7 @@
 	}
 
 	&--icon {
-		display: inline-block;
+		display: none;
 		font-size: 1.7em;
 	}
 	&--activeborder {
@@ -132,7 +132,7 @@
 		transform: scale(0,1);
 		transition: transform .7s $ease-out-circ;
 	}
-
+	
 	
 	//overrides for the locked state
 	&--locked {
@@ -170,6 +170,14 @@
 	}
 
 } //end episodde item
+
+
+
+.dhr-episodeitem.is-activestory {
+	.dhr-episodeitem--icon {
+		display: inline-block;
+	}
+}
 
 
 

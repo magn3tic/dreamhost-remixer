@@ -17,19 +17,25 @@ if ($episodeItem.length) {
 		stories.push({
 			prefix: $t.data('story-prefix'),
 			name: $t.data('story-username'),
-			biz: $t.data('story-userbiz')
+			biz: $t.data('story-userbiz'),
+			vimeo: $t.data('story-vimeo')
 		})
 	});
 
 	const rindex = getRandomIndex(stories);
 	const currentStory = stories[rindex];
 
-
+	$episodeItem.eq(rindex).addClass('is-activestory');
 
 }
 
 
 
+
+$.fn.myplugin = function(opts) {
+	var def = {};
+	var s = $.extend(opts, def);
+};
 
 
 

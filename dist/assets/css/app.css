@@ -1758,7 +1758,7 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
   .dhr-episodeitem--liner {
     padding: 0 .5em .5em; }
   .dhr-episodeitem--icon {
-    display: inline-block;
+    display: none;
     font-size: 1.7em; }
   .dhr-episodeitem--activeborder {
     display: block;
@@ -1794,6 +1794,9 @@ body.is-playingvideo button[id^="dhr-videoclose"] {
     -webkit-transform: scale(1, 1);
         -ms-transform: scale(1, 1);
             transform: scale(1, 1); }
+
+.dhr-episodeitem.is-activestory .dhr-episodeitem--icon {
+  display: inline-block; }
 
 .is-hovering .dhr-episodeitem .dhr-episodelist--activeborder {
   -webkit-transform: scale(1, 1);

@@ -834,13 +834,21 @@ if ($episodeItem.length) {
 		stories.push({
 			prefix: $t.data('story-prefix'),
 			name: $t.data('story-username'),
-			biz: $t.data('story-userbiz')
+			biz: $t.data('story-userbiz'),
+			vimeo: $t.data('story-vimeo')
 		});
 	});
 
 	var rindex = (0, _globals.getRandomIndex)(stories);
 	var currentStory = stories[rindex];
+
+	$episodeItem.eq(rindex).addClass('is-activestory');
 }
+
+$.fn.myplugin = function (opts) {
+	var def = {};
+	var s = $.extend(opts, def);
+};
 
 //trigger click for autoplay links
 if (_globals.isAutoplayLink && !_pageloadSequence.isHomePage) {
