@@ -642,7 +642,7 @@
 					<div class="dhr-contactmodal--form">
 						<form id="dhr-contact-form" class="dhr-inlineform" method="POST" action="https://www.getdrip.com/forms/58648395/submissions">
 							<p>
-								<span class="dhr-inlineform--word">Hello, my name is</span>
+								<!--<span class="dhr-inlineform--word">Hello, my name is</span>-->
 								<span class="dhr-inlineform--input">
 									<input type="text" id="dhr-contact-firstname-input" name="fields[first_name]" placeholder="First Name *" data-required>
 									<label for="dhr-contact-firstname-input">First Name</label>
@@ -651,15 +651,30 @@
 									<input type="text" id="dhr-contact-lastname-input" name="fields[last_name]" placeholder="Last Name *" data-required>
 									<label for="dhr-contact-lastname-input">Last Name</label>
 								</span>
-								<span class="dhr-inlineform--word">, from</span>
+								<!--<span class="dhr-inlineform--word">, from</span>
 								<span class="dhr-inlineform--input">
 									<input type="text" id="dhr-contact-company-input" name="fields[company_name]" placeholder="Company Name">
 									<label for="dhr-contact-company-input">Company Name</label>
 								</span>
-								<span class="dhr-inlineform--word">.</span>
+								<span class="dhr-inlineform--word">.</span>-->
 							</p>
+		
 							<p>
-								<span class="dhr-inlineform--word">I would like to contact</span>
+								<!--<span class="dhr-inlineform--word">You can reach me at</span>-->
+								<span class="dhr-inlineform--input">
+									<input type="email" id="dhr-contact-email-input" name="fields[email]" placeholder="Email Address *" data-required>
+									<label for="dhr-contact-email-input">Email Address</label>
+								</span>
+								<!--<span class="dhr-inlineform--word">or call</span>
+								<span class="dhr-inlineform--input">
+									<input type="tel" id="dhr-contact-phone-input" name="fields[phone_number]" placeholder="Phone Number">
+									<label for="dhr-contact-phone-input">Phone Number</label>
+								</span>
+								<span class="dhr-inlineform--word">Talk to you soon!</span>-->
+							</p>
+		
+							<p>
+								<!--<span class="dhr-inlineform--word">I would like to contact</span>
 								<span class="dhr-inlineform--input" data-field-type="select">
 									<select name="fields[department]" id="dhr-contact-dept-input" data-required>
 										<option value="">-- Select One *</option>
@@ -668,25 +683,13 @@
 									</select>	
 									<label for="dhr-contact-dept-input">Department</label>
 								</span>
-								<span class="dhr-inlineform--word">regarding</span>
+								<span class="dhr-inlineform--word">regarding</span>-->
 								<span class="dhr-inlineform--input dhr-inlineform--input-question">
-									<input type="text" id="dhr-contact-question-input" name="fields[question]" placeholder="Briefly write your question *" data-required>
+									<input type="text" id="dhr-contact-question-input" name="fields[question]" placeholder="How can we help? *" data-required>
 									<label for="dhr-contact-question-input">Question</label>
 								</span>
 							</p>
-							<p>
-								<span class="dhr-inlineform--word">You can reach me at</span>
-								<span class="dhr-inlineform--input">
-									<input type="email" id="dhr-contact-email-input" name="fields[email]" placeholder="Email Address *" data-required>
-									<label for="dhr-contact-email-input">Email Address</label>
-								</span>
-								<span class="dhr-inlineform--word">or call</span>
-								<span class="dhr-inlineform--input">
-									<input type="tel" id="dhr-contact-phone-input" name="fields[phone_number]" placeholder="Phone Number">
-									<label for="dhr-contact-phone-input">Phone Number</label>
-								</span>
-								<span class="dhr-inlineform--word">Talk to you soon!</span>
-							</p>
+							
 							<div class="dhr-contactmodal--btns">
 								<div class="dhr-inline">
 									<button type="submit" class="dhr-button" data-text="Send Your Question">Send Your Question</button>
